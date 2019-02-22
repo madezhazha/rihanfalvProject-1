@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,9 @@ import { PersonpageComponent } from './components/personpage/personpage.componen
 import { ChatComponent } from './components/chat/chat.component';
 import { HeadComponent } from './components/head/head.component';
 
+import { FeedbacksuccessComponent } from './components/Feedback/feedbacksuccess/feedbacksuccess.component';
+import { PersonalfeedbackComponent } from './components/Feedback/personalfeedback/personalfeedback.component';
+
 //头部组件
 import { LangingComponent } from './components/head/langing/langing.component';
 import { LandComponent } from './components/head/langing/land/land.component';
@@ -22,9 +27,6 @@ import { RegisterComponent } from './components/head/langing/register/register.c
 import { ForgetpasswordComponent } from './components/head/langing/forgetpassword/forgetpassword.component';
 import { WebheadComponent } from './components/head/webhead/webhead.component';
 
-
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 //
 
@@ -48,6 +50,8 @@ import { FormsModule } from '@angular/forms';
     WebheadComponent,
 
 
+    FeedbacksuccessComponent,
+    PersonalfeedbackComponent
   ],
   imports: [
     BrowserModule,

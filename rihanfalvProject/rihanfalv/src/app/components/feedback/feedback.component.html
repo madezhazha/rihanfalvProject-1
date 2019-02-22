@@ -1,3 +1,25 @@
-<p>
-  feedback works!
-</p>
+<meta name="viewport" content="width=450,user-scalable:no">
+
+<body>
+ <h1>反馈中心</h1>
+   <div class="ex">
+     <h2>反馈类型：</h2>
+      <div class="n">
+         <input type="radio" value="产品意见" name="neixing" id="neixing1" [(ngModel)]="neixing"><label for="neixing1">产品意见</label>
+         <input type="radio" value="资料纠错" name="neixing" id="neixing2" [(ngModel)]="neixing"><label for="neixing2">资料纠错</label>
+         <input type="radio" value="程序错误" name="neixing" id="neixing3" [(ngModel)]="neixing"><label for="neixing3">程序错误</label>
+      </div>
+    </div>
+ <br>
+ <div class="ex">
+   <h2>你的意见：</h2>
+   <textarea name="mark" id="mark"  [(ngModel)]="mark" placeholder="请输入您的意见或建议"></textarea>
+ </div>
+ <br>
+ <div style="margin:0 auto;width:200px;">
+   <button (click)="submit()">提交</button>
+   <br>
+   <br>
+   <button>返回首页</button>
+ </div>
+</body>
