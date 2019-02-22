@@ -1,0 +1,17 @@
+<div class="main">
+  <input type="file" accept="image/*" id="image" class="file" (change)="change()">
+  <label for="image"><div class='upload'>
+      <canvas id="tutorial"> 
+          你的浏览器不支持 canvas，请升级你的浏览器。
+      </canvas>
+  </div></label>
+  <div class="background">
+      <small class="background">+</small>
+  </div>
+  <div class="yes"><button class="yes">确定</button></div>
+  <div class="no"><button class="no">取消</button></div>
+</div>
+
+<!--label，label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。
+  如果您在 label 元素内点击文本，就会触发此控件。-->
+<!--<label> 标签的 for 属性应当与相关元素的 id 属性相同。-->

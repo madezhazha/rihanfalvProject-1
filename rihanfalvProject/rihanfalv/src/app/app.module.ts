@@ -26,6 +26,7 @@ import { LandComponent } from './components/head/langing/land/land.component';
 import { RegisterComponent } from './components/head/langing/register/register.component';
 import { ForgetpasswordComponent } from './components/head/langing/forgetpassword/forgetpassword.component';
 import { WebheadComponent } from './components/head/webhead/webhead.component';
+import { UploadHeadimageComponent } from './components/personpage/upload-headimage/upload-headimage.component';
 
 
 //
@@ -51,7 +52,8 @@ import { WebheadComponent } from './components/head/webhead/webhead.component';
 
 
     FeedbacksuccessComponent,
-    PersonalfeedbackComponent
+    PersonalfeedbackComponent,
+    UploadHeadimageComponent
   ],
   imports: [
     BrowserModule,
