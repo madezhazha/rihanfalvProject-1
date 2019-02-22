@@ -1,0 +1,9 @@
+div.close{
+    font-family : 微软雅黑;
+    color:white;
+    position: absolute;
+    z-index:2;
+    font-size:18px;
+    top:12px;
+    left:350px;
+}
