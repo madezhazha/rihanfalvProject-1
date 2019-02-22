@@ -6,15 +6,15 @@
     </div>
     <div class="form">
       <form #registerform="ngForm" (onSubmit)="onSubmit()"><br>
-        <label for="emailId">邮箱:{{user.Email}}</label><br>
+        <label for="emailId">邮箱</label><br>
         <input class="inputCSS" type="email"  required  
          id="emailId"  name="emailN" [(ngModel)]="user.Email" placeholder="请用邮箱的格式" #email="ngModel"><br>
         <br>
-        <label for="passwordId">密码:{{user.Password}}</label><br>
+        <label for="passwordId">密码</label><br>
         <input class="inputCSS" type="password" required minlength="6" pattern="[0-9a-zA-Z]*"
          id="passwordId" name="passwordN" [(ngModel)]="user.Password" placeholder="请用字母和数字且输入不少于6位"><br>
         <br>
-        <label for="confirmPassword">再次输入密码:{{confirmPassword}}</label><br>
+        <label for="confirmPassword">再次输入密码</label><br>
         <input class="inputCSS" type="password" required  minlength="6" pattern="[0-9a-zA-Z]*"
         id="confirmPassword" name="confirmPasswordN" [(ngModel)]="confirmPassword" placeholder="请用字母和数字且输入不少于6位" ><br>
         <br>

@@ -1,9 +1,9 @@
 <app-land *ngIf="NowFace==0" 
 (gotoRegisters)="gotoRegister()" 
 (gotoForgetPasswords)="gotoForgetPassword()"
-(LoginData)="getLoginData($event)">
+(LoginData)="getLoginData($event)" >
 </app-land>
 
-<app-register *ngIf="NowFace==1" (event)="getNowFace($event)"></app-register>
-<app-forgetpassword *ngIf="NowFace==2"  (event)="getNowFace($event)"></app-forgetpassword>
+<app-register *ngIf="NowFace==1" (event)="getNowFace($event)" ></app-register>
+<app-forgetpassword *ngIf="NowFace==2"  (event)="getNowFace($event)" ></app-forgetpassword>
 <div class="close" (click)="close()">X</div>

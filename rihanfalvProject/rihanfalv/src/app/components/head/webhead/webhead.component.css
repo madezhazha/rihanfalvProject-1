@@ -15,7 +15,7 @@ div.headImage{
     position: absolute;
     right:60px;
     top:2px;
-
+    opacity:0; 
     width: 40px;
     height:40px;
 }

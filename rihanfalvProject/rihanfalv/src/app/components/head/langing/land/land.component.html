@@ -10,7 +10,7 @@
   <div class="Tip2" *ngIf="in.Tip=='登陆成功'">
     提示：{{in.Tip}}
   </div>
-  <div class="form">
+  <div class="form" >
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
       <p>邮箱</p>
       <input type="text" formControlName="Email">
