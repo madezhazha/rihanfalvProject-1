@@ -1,0 +1,26 @@
+h1{
+
+    text-align: center;
+    color:blue
+}
+.ex{
+    background-color: rgb(238, 242, 245)
+
+}
+#mark{
+    font-size: 20px;
+    border-color: black;
+    width:97%;
+    height: 200px;
+}
+button{
+    border-radius: 20px;
+    width: 200px;
+    height: 40px;
+    background-color:  rgb(76, 149, 206);
+    
+    
+}
+.n{
+    font-size:20px
+}
