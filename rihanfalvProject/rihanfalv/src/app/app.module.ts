@@ -21,13 +21,18 @@ import { HomepageComponent} from './components/homepage/homepage.component';
 import { FeedbacksuccessComponent } from './components/Feedback/feedbacksuccess/feedbacksuccess.component';
 import { PersonalfeedbackComponent } from './components/Feedback/personalfeedback/personalfeedback.component';
 
-//头部组件
+// ng头部组件
 import { LangingComponent } from './components/head/langing/langing.component';
 import { LandComponent } from './components/head/langing/land/land.component';
 import { RegisterComponent } from './components/head/langing/register/register.component';
 import { ForgetpasswordComponent } from './components/head/langing/forgetpassword/forgetpassword.component';
 import { WebheadComponent } from './components/head/webhead/webhead.component';
 import { UploadHeadimageComponent } from './components/personpage/upload-headimage/upload-headimage.component';
+
+import { LegalComponent } from './components/provisions/legal/legal.component';
+import { ArticleComponent } from './components/provisions/article/article.component';
+import { ContentComponent } from './components/provisions/content/content.component';
+import { ApiSerivice } from './apiservice';
 
 
 //
@@ -44,7 +49,7 @@ import { UploadHeadimageComponent } from './components/personpage/upload-headima
     ChatComponent,
     HeadComponent,
     HomepageComponent,
-    //头部组件
+    // 头部组件
     LangingComponent,
     LandComponent,
     RegisterComponent,
@@ -54,7 +59,10 @@ import { UploadHeadimageComponent } from './components/personpage/upload-headima
 
     FeedbacksuccessComponent,
     PersonalfeedbackComponent,
-    UploadHeadimageComponent
+    UploadHeadimageComponent,
+    LegalComponent,
+    ArticleComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +72,9 @@ import { UploadHeadimageComponent } from './components/personpage/upload-headima
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    ApiSerivice,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,41 @@
+<aside id="aside">
+<div class="back">
+<button  class="backb" (click)="hideAside()"></button>
+</div>
+<div class="category">
+  <h1>类别: {{category}}</h1>
+  <li><button (click)="category = '宪法';choose()">宪法</button><button (click)="category = '教育';choose()">教育</button></li>
+  <li><button (click)="category = '国会';choose()">国会</button><button (click)="category = '文化';choose()">文化</button></li>
+  <li><button (click)="category = '行政组织';choose()">行政组织</button><button (click)="category = '宪产业规则法';choose()">产业规则</button></li>
+  <li><button (click)="category = '国家公务员';choose()">国家公务员</button><button (click)="category = '农业';choose()">农业</button></li>
+  <li><button (click)="category = '行政程序';choose()">行政程序</button><button (click)="category = '水产业';choose()">水产业</button></li>
+  <li><button (click)="category = '地方自治';choose()">地方自治</button><button (click)="category = '林业';choose()">林业</button></li>
+  <li><button (click)="category = '统计';choose()">统计</button><button (click)="category = '矿业';choose()">矿业</button></li>
+  <li><button (click)="category = '地方财政';choose()">地方财政</button><button (click)="category = '工业';choose()">工业</button></li>
+  <li><button (click)="category = '司法';choose()">司法</button><button (click)="category = '民事';choose()">民事</button></li>
+  <li><button (click)="category = '金融保险';choose()">金融保险</button><button (click)="category = '刑事';choose()">刑事</button></li>
+  <li><button (click)="category = '外汇贸易';choose()">外汇贸易</button><button (click)="category = '公安人员';choose()">公安人员</button></li>
+  <li><button (click)="category = '陆运';choose()">陆运</button><button (click)="category = '消防';choose()">消防</button></li>
+  <li><button (click)="category = '海运';choose()">海运</button><button (click)="category = '国土开发';choose()">国土开发</button></li>
+  <li><button (click)="category = '航空';choose()">航空</button><button (click)="category = '国债';choose()">国债</button></li>
+  <li><button (click)="category = '外事';choose()">外事</button><button (click)="category = '商业';choose()">商业</button></li>
+  <li><button (click)="category = '防卫';choose()">防卫</button><button (click)="category = '土地';choose()">土地</button></li>
+  <li><button (click)="category = '货物运输';choose()">货物运输</button><button (click)="category = '城市规划';choose()">城市规划</button></li>
+  <li><button (click)="category = '浏览';choose()">浏览</button><button (click)="category = '马路';choose()">马路</button></li>
+  <li><button (click)="category = '邮政';choose()">邮政</button><button (click)="category = '江河';choose()">江河</button></li>
+  <li><button (click)="category = '电信';choose()">电信</button><button (click)="category = '防灾对策';choose()">防灾对策</button></li>
+  <li><button (click)="category = '劳动';choose()">劳动</button><button (click)="category = '建筑、住宅';choose()">建筑、住宅</button></li>
+  <li><button (click)="category = '环境保护';choose()">环境保护</button><button (click)="category = '财务通则';choose()">财务通则</button></li>
+  <li><button (click)="category = '厚生';choose()">厚生</button><button (click)="category = '国有财产';choose()">国有财产</button></li>
+  <li><button (click)="category = '社会福利';choose()">社会福利</button><button (click)="category = '国税';choose()">国税</button></li>
+  </div>
+</aside>
+<br>
+<a class="titles">法律条文：</a>
+ <button class="kindb" (click)="showAside()">类别</button>
+ <br>
+<div class="body">
+	<div *ngFor="let type of types">
+  <button class="type" (click)="posttype(type.legaltype)">{{type.legaltype}}</button>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+.title{
+    border: 0px;
+    height: 80px;
+    margin-right:1px;
+    background:rgb(146, 218, 40);
+    margin: 0px;
+    padding: 0%;
+    flex-direction:row;
+    line-height: 1px;
+}
+
+ul{   
+    padding: 0%;
+}
+
+li{
+    list-style-type: none;
+}
+
+a{
+    padding:4px;
+    color: black;
+    text-decoration:none;
+    
+}
+
+.progress{
+    float: right;
+    margin-right:5%;
+}
+
+.type{
+    font-size: 120%;
+    border: 1.5px solid rgb(211, 209, 209);
+    border-radius: 15px;
+    width:90%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.993);
+    box-shadow: 2px 2px 1px #dad8d8;
+    margin:10px;
+    color:rgb(68, 68, 68);
+}
+
+.body{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.back{
+    position: absolute;
+    right: 3%;
+    width:15%;
+    height: 4%;
+    border: none;
+    border-radius: 5px;
+    background: cornflowerblue;
+    color: antiquewhite;
+}
+
+.titles{
+    margin: 2%;
+    color:rgb(68, 68, 68);
+    top: 20%;
+    font-size: 18px;
+}

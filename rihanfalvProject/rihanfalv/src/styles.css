@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    width: 100%;
+    overflow-x: hidden;   /* 限制页面左右移动 */
+    margin-top: 0%;
+}
