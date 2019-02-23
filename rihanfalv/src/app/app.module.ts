@@ -35,6 +35,7 @@ import { ThesisComponent } from './components/personpage/collection/thesis/thesi
 import { DatePipe } from '@angular/common';
 // 服务
 import {GetdataService} from '../app/services/getdata.service';
+import { CaseDataComponent } from './components/case/case-data/case-data.component';
 //
 
 @NgModule({
@@ -60,7 +61,8 @@ import {GetdataService} from '../app/services/getdata.service';
     ThesisComponent,
     FeedbacksuccessComponent,
     PersonalfeedbackComponent,
-    UploadHeadimageComponent
+    UploadHeadimageComponent,
+    CaseDataComponent
   ],
   imports: [
     BrowserModule,

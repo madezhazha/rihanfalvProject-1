@@ -1,0 +1,32 @@
+.field{
+    height: 34px;
+    margin-top:4px; 
+    background-color: rgba(255, 238, 221, 1);
+}
+
+.point{
+    color: #ff6666;
+}
+.judgePoint{
+    position: relative;
+    height: 500px;
+    background-color: rgba(255, 238, 221, 1)
+}
+
+
+
+.veiwAll{
+    position: absolute;
+    height: 20px;
+    background-color:rgba(255, 238, 221, 1);
+    right: 0;
+    bottom: 0;
+}
+
+li{
+    list-style: none;
+}
+
+#five:focus{
+  border: 1px red;
+}
