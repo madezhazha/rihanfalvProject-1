@@ -13,7 +13,7 @@ export class ContentComponent implements OnInit {
   public content: any = {
     legaltype:   '',
     legaltitle:  '',
-    legalconent: ''
+    legalcontent: ''
   };
 
 

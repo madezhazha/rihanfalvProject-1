@@ -8,5 +8,5 @@ export class APIResponse2 {
 export class APIResponse3 {
     public legaltype:     string;
     public legaltitle:    string;
-    public legalconent:   string;
+    public legalcontent:   string;
 }
