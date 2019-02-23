@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GolangService} from '../golang.service';
+import {GolangService} from './golang.service';
 import {HotnewsBox, ArticalBox} from './struct';
 import * as $ from 'jquery';
 var artical_num = 0;  //当前页面上已经有多少文章 
@@ -82,6 +82,7 @@ export class HomepageComponent implements OnInit {
           if (result == null || result.length<10){
             this.more_button_show = "没有跟多了...";
             artical_num=9999;            //服务器里的文章不足100篇
+            $(".more").addClass("nomore");
           } 
           console.log(result.length);
           artical_num += result.length;

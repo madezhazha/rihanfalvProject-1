@@ -114,6 +114,10 @@ a{
     font-size: small;
     display: inline;
 }
+.nomore{
+    background-color: darkgray;
+    color: azure;
+}
 
 /* 文章图片 */
 .atc_pic{

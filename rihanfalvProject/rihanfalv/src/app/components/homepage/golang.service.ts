@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable} from 'rxjs';
-import {HotnewsBox, ArticalBox} from '../app/homepage/struct';
+import {HotnewsBox, ArticalBox} from './struct';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,9 @@ export class GolangService {
     private http:HttpClient
   ){}
   //vps
-  // private url ='http://129.204.193.192:4400/';
+  private url ='http://129.204.193.192:4400/';
   // virtual machin
-  private url ='http://192.168.226.128:4400/'    
+  // private url ='http://192.168.226.128:4400/'    
   //请求首页的文章数据，从index 到 index+9 的文章数据，自动添加到文章列表末尾
   GetArtical(index:number):Observable<ArticalBox[]>{  
       var post = {index:index};

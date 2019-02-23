@@ -16,6 +16,7 @@ import { CaseComponent } from './components/case/case.component';
 import { PersonpageComponent } from './components/personpage/personpage.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { HeadComponent } from './components/head/head.component';
+import { HomepageComponent} from './components/homepage/homepage.component';
 
 import { FeedbacksuccessComponent } from './components/Feedback/feedbacksuccess/feedbacksuccess.component';
 import { PersonalfeedbackComponent } from './components/Feedback/personalfeedback/personalfeedback.component';
@@ -42,7 +43,7 @@ import { UploadHeadimageComponent } from './components/personpage/upload-headima
     PersonpageComponent,
     ChatComponent,
     HeadComponent,
-
+    HomepageComponent,
     //头部组件
     LangingComponent,
     LandComponent,
