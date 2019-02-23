@@ -1,0 +1,97 @@
+._三级标题 {
+    font-family:'Arial Normal', 'Arial';
+    font-weight:bold;
+    font-style:normal;
+    font-size:18px;
+    text-align:left;
+    position: absolute;
+    left: 95px;
+    width: 200px;
+    height: 50px;
+    overflow: hidden;
+    top:5px;
+  }
+
+  .paperlist{
+      height: auto;
+      overflow: hidden;
+      padding-bottom: 10px;
+      padding-top: 10px;
+  }
+
+.paper{
+    position: relative;
+    background: white;
+    position: relative;
+    width: 424px;
+    height: 85px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: 12px;
+}
+
+
+.mes{
+    position: relative;
+    left:320px;
+    height: 30px;
+    width: 100px;
+    top:-80px;
+    text-align: left;
+}
+
+.mes img{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+.picture{
+    width:80px;
+    height: 85px;
+    border-radius: 3px;
+}
+
+.mes .name{
+    position: absolute;
+    font-size: 11px;
+    right:15px;
+
+}
+
+.num{
+    font-size: 10px;
+    color:gray;
+    position: absolute;
+    top:34px;
+    left: 95px;
+}
+
+.mes .time{
+    position: absolute;
+    color:#6B6B6B;
+    font-size: 9px;
+    right:15px;
+    top:15px;
+}
+
+.lablecontainer{
+    position: absolute;
+    bottom: 8px;
+    left: 90px;
+    width:auto;
+    height: 20px;
+}
+
+.lables{
+    font-size: 10px;
+    text-align: center;
+    padding: 3px; 
+    border: 0.5px solid rgb(197, 178, 178);
+    border-radius: 2px; 
+    float:left; 
+    margin-left:5px; 
+}
+
+    

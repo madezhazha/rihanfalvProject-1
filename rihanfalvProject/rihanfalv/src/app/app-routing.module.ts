@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { FeedbacksuccessComponent } from './components/Feedback/feedbacksuccess/feedbacksuccess.component';
 import { PersonalfeedbackComponent } from './components/Feedback/personalfeedback/personalfeedback.component';
+import { PaperComponent } from './components/paper/paper.component';
+import { PaperwebComponent } from './components/paper/paperweb/paperweb.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,12 @@ const routes: Routes = [
   {
     path:'Feedbacksuccess',component:FeedbacksuccessComponent
   },
+  {
+    path:'paper',component:PaperComponent
+  },
+  {
+    path:'paperweb/:ID',component:PaperwebComponent
+  }
 ];
 
 @NgModule({
