@@ -1,0 +1,93 @@
+<app-chat-head></app-chat-head>
+
+<div id="base" class="">
+
+  <!-- Unnamed (文本框) -->
+  <div id="u5" class="ax_default text_field">
+    <input id="u5_input" style=" border-width: 2.3px;" type="text" [(ngModel)]="inputValue" />
+  </div>
+
+  <div id="u6" class="ax_default icon" (click)="search()">
+    <img id="u6_img" class="img " src="assets/images/index/u7.png" />
+  </div>
+
+  <!-- Unnamed (矩形) -->
+  <div id="u0" class="ax_default sticky_2" (click)="tag('刑法')">
+    <div id="u0_text" class="text ">
+      <p><span>刑法</span></p>
+    </div>
+  </div>
+
+  <!-- Unnamed (矩形) -->
+  <div id="u1" class="ax_default sticky_2" (click)="tag('民法商法')">
+    <div id="u1_text" class="text ">
+      <p><span>民法商法</span></p>
+    </div>
+  </div>
+
+  <!-- Unnamed (矩形) -->
+  <div id="u2" class="ax_default sticky_2" (click)="tag('行政法')">
+    <div id="u2_text" class="text ">
+      <p><span>行政法</span></p>
+    </div>
+  </div>
+
+  <!-- Unnamed (矩形) -->
+  <div id="u3" class="ax_default sticky_2" (click)="tag('社会法')">
+    <div id="u3_text" class="text ">
+      <p><span>社会法</span></p>
+    </div>
+  </div>
+
+  <!-- Unnamed (矩形) -->
+  <div id="u4" class="ax_default sticky_2" (click)="tag('诉讼与非诉讼程序法')">
+    <div id="u4_text" class="text ">
+      <p><span>诉讼与非诉讼程序法</span></p>
+    </div>
+  </div>
+
+</div>
+<hr style="margin-top:30px;">
+
+
+<div style="margin-top:20px;margin-left: 20px;" *ngFor="let item of nowData">
+
+  <div style="font-size:20px;">
+    <div>
+      <a href="post?topicID={{item.ID}}" style="color: black;text-decoration: none;">问题:{{item.Topictitle}}</a>
+    </div>
+  </div>
+
+  <div style="font-size:12px;font-size: 14px;color: #767474;">
+    <div>
+      <p><span>描述:{{item.Topiccontent}}</span></p>
+    </div>
+  </div>
+
+  <div style="font-size: 13px;;float: left;">
+    <div>
+      <p><span>楼主:</span></p>
+    </div>
+  </div>
+
+  <div style="font-size:12px;margin-left: 100px;">
+    <div>
+      <p><span>时间:{{item.Creationtime}}</span></p>
+    </div>
+  </div>
+
+  <hr style="margin-right:20px;margin-top:20px;">
+
+</div>
+
+<div *ngIf="isMax" style="margin-top:20px;" style="font-size: 13px;text-align: center;color: #333333;">
+    <div>
+      <span>暂无更多</span>
+    </div>
+  </div>
+
+  <div *ngIf="!isMax" style="margin-top:20px;" style="font-size: 13px;text-align: center;color: #333333;">
+    <div>
+      <span (click)="more()">显示更多</span>
+    </div>
+  </div>

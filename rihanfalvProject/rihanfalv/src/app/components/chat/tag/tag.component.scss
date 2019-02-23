@@ -1,0 +1,232 @@
+.ax_default {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    line-height: normal;
+}
+
+p {
+    margin: 0px;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    -webkit-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern=1";
+    font-kerning: normal;
+}
+
+.text_field {
+    color: #000000;
+    text-align: left;
+}
+
+input {
+    padding: 1px 0px 1px 0px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    background-image: none;
+    width: 356px;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+}
+
+#base {
+    margin: 0px;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: none;
+    max-width: 450px;
+    min-width: 220px; 
+    width: 100%; 
+    
+    text-align: left;
+
+
+    margin-top: 20px;
+    margin-left: 50px;
+    z-index: 0;
+}
+
+#u0 {
+    margin-right: 20px;
+    float: left;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 1);
+    border-width: 0px;
+    left: 0px;
+    top: 64px;
+    width: 66px;
+    height: 29px;
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 12px;
+    text-align: center;
+}
+
+#u0_text {
+    margin-top: 6.5px;
+    margin-left: 10px;
+    border-width: 0px;
+    left: 10px;
+    top: 8px;
+    width: 46px;
+    word-wrap: break-word;
+}
+
+
+#u1 {
+    margin-right: 20px;
+    float: left;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 1);
+    border-width: 0px;
+    left: 83px;
+    top: 64px;
+    width: 76px;
+    height: 29px;
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 12px;
+    text-align: center;
+}
+
+#u1_text {
+    margin-top: 6.5px;
+    margin-left: 10px;
+    border-width: 0px;
+    left: 10px;
+    top: 8px;
+    width: 56px;
+    word-wrap: break-word;
+}
+
+#u2 {
+    margin-right: 20px;
+    float: left;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 1);
+    border-width: 0px;
+    left: 182px;
+    top: 64px;
+    width: 66px;
+    height: 29px;
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 12px;
+    text-align: center;
+}
+
+#u2_text {
+    margin-top: 6.5px;
+    margin-left: 10px;
+    border-width: 0px;
+    left: 10px;
+    top: 8px;
+    width: 46px;
+    word-wrap: break-word;
+}
+
+
+#u3 {
+    margin-left: 270px;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 1);
+    border-width: 0px;
+    top: 64px;
+    width: 66px;
+    height: 29px;
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 12px;
+    text-align: center;
+}
+
+#u3_text {
+    padding-top: 6.5px;
+    padding-left: 10px;
+    border-width: 0px;
+    left: 10px;
+    top: 8px;
+    width: 46px;
+    word-wrap: break-word;
+}
+
+
+#u4 {
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 1);
+    border-width: 0px;
+    left: 0px;
+    top: 103px;
+    width: 130px;
+    height: 34px;
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 12px;
+    text-align: center;
+}
+
+#u4_text {
+    padding-top: 6.5px;
+    padding-left: 10px;
+    border-width: 0px;
+    left: 10px;
+    top: 10px;
+    width: 110px;
+    word-wrap: break-word;
+}
+
+#u5 {
+
+    float: left;
+    border-width: 20px;
+    top: 0px;
+    width: 304px;
+    height: 35px;
+}
+
+#u5_input {
+    top: 0px;
+    width: 304px;
+    height: 35px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}
+
+#u6_img {
+    margin-left: 20px;
+    margin-top: 5px;
+    border-width: 0px;
+    left: 0px;
+    top: 0px;
+    width: 29px;
+    height: 28px;
+}
+
+#u6 {
+    margin-bottom: 40px;
+    border-width: 0px;
+    left: 327px;
+    top: 4px;
+    height: 28px;
+    color: #E4E4E4;
+}

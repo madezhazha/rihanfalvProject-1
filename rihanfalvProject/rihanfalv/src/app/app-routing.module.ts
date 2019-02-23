@@ -12,6 +12,12 @@ import { PaperwebComponent } from './components/paper/paperweb/paperweb.componen
 import { CaseComponent } from './components/case/case.component';
 import { CaseDataComponent } from './components/case/case-data/case-data.component';
 
+import { PopularComponent } from '../app/components/chat/popular/popular.component';
+import { PostComponent } from '../app/components/chat/post/post.component';
+import { ReplyPageComponent } from '../app/components/chat/reply-page/reply-page.component';
+import { ChatHeadComponent } from '../app/components/chat/chat-head/chat-head.component';
+import { TagComponent } from '../app/components/chat/tag/tag.component';
+
 
 const routes: Routes = [
   {
@@ -44,6 +50,12 @@ const routes: Routes = [
   {
     path:"display-data",component:CaseDataComponent
   },
+
+  { path: 'popular', component: PopularComponent },
+  { path: 'post', component: PostComponent },
+  { path: 'replyPage', component: ReplyPageComponent },
+  { path: 'head', component: ChatHeadComponent },
+  { path: 'tag', component: TagComponent },
 ];
 
 @NgModule({

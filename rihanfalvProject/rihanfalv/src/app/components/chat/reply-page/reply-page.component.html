@@ -1,0 +1,32 @@
+<app-chat-head></app-chat-head>
+
+<div id="base" class="">
+
+  <!-- Unnamed (水平线) -->
+  <div id="u3" class="ax_default line">
+    <img id="u3_img" class="img " src="assets/images/index/u4.png" />
+  </div>
+
+  <!-- Unnamed (矩形) -->
+  <div id="u2" class="ax_default _三级标题">
+    <div id="u2_text" class="text ">
+      <p><span>问题：{{RoutingData.topicTitle}}</span></p>
+    </div>
+  </div>
+
+  <!-- Unnamed (多行文本框) -->
+  <div id="u1" class="ax_default text_area">
+    <textarea id="u1_input" [(ngModel)]="text"></textarea>
+  </div>
+
+  <!-- Unnamed (矩形) -->
+  <div id="u0" class="ax_default primary_button ripple " (click)="submit()">
+    <div id="u0_text" class="text ">
+      <p><span>提交</span></p>
+    </div>
+  </div>
+
+
+
+
+</div>

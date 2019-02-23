@@ -14,7 +14,6 @@ import { PaperwebComponent } from './components/paper/paperweb/paperweb.componen
 import { SearchComponent } from './components/search/search.component';
 import { CaseComponent } from './components/case/case.component';
 import { PersonpageComponent } from './components/personpage/personpage.component';
-import { ChatComponent } from './components/chat/chat.component';
 import { HeadComponent } from './components/head/head.component';
 import { HomepageComponent} from './components/homepage/homepage.component';
 
@@ -45,7 +44,13 @@ import { DatePipe } from '@angular/common';
 import {GetdataService} from '../app/services/getdata.service';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { CaseDataComponent } from './components/case/case-data/case-data.component';
-//
+//讨论区
+import { PostComponent } from './components/chat/post/post.component';
+import { PopularComponent } from './components/chat/popular/popular.component';
+import { ReplyPageComponent } from './components/chat/reply-page/reply-page.component';
+import { ChatHeadComponent } from './components/chat/chat-head/chat-head.component';
+import { TagComponent } from './components/chat/tag/tag.component';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +61,6 @@ import { CaseDataComponent } from './components/case/case-data/case-data.compone
     SearchComponent,
     CaseComponent,
     PersonpageComponent,
-    ChatComponent,
     HeadComponent,
     HomepageComponent,
     // 头部组件
@@ -75,7 +79,13 @@ import { CaseDataComponent } from './components/case/case-data/case-data.compone
     ArticleComponent,
     ContentComponent,
     SanitizeHtmlPipe,
-    CaseDataComponent
+    CaseDataComponent,
+    //讨论区
+    PostComponent,
+    PopularComponent,
+    ReplyPageComponent,
+    ChatHeadComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,

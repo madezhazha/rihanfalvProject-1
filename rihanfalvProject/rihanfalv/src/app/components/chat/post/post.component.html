@@ -1,0 +1,129 @@
+<app-chat-head></app-chat-head>
+
+<div id="base" class="">
+
+  <!-- 讨论组合 (组 合) -->
+  <div id="u0" class="ax_default" data-label="讨论组合" data-left="0" data-top="22" data-width="448" data-height="355">
+
+
+    <!-- 标题 -->
+    <div id="u1" class="ax_default _三级标题">
+      <div id="u1_text" class="text ">
+        <p><span>{{thread?.thread.Topictitle}}</span></p>
+      </div>
+    </div>
+
+
+    <!-- 以下楼主 -->
+    <div id="host">
+      <div id="hasTextContent" style="margin:10px">
+        <div id="img_name_floor_time" style="margin-bottom: 10px">
+          <!-- 头像 -->
+          <div id="u3" class="ax_default image">
+            <img id="u3_img" class="img " src="assets/images/index/u3.png" />
+          </div>
+
+          <!-- 名称 -->
+          <div id="u4" class="ax_default ">
+            <div id="u4_text" class="text ">
+              <p><span>{{thread?.user.Username}}</span></p>
+            </div>
+          </div>
+
+          <!-- 楼主 -->
+          <div id="u11" class="ax_default ">
+            <div id="u11_text" class="text ">
+              <p><span>楼主</span></p>
+            </div>
+          </div>
+
+          <!-- 时间 -->
+          <div id="u5" class="ax_default ">
+            <div id="u5_text" class="text ">
+              <p><span>{{thread?.thread.Creationtime}}</span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 文本段落 -->
+        <div id="u2" class="ax_default _文本段落">
+          <div id="u2_text" class="text ">
+            <p><span>{{thread?.thread.Topiccontent}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 帖子之间的横条 -->
+      <div id="u6" class="ax_default box_1">
+        <img id="u6_img" class="img " src="assets/images/index/u6.png" />
+      </div>
+    </div>
+
+
+    <!-- ------------------------------------------------------------------------- -->
+    <!-- 以下回帖 -->
+    <div id="Responder" *ngFor="let item of nowData">
+      <div id="hasTextContent" style="margin:10px">
+        <div id="img_name_floor_time" style="margin-bottom: 10px">
+          <!-- 头像 -->
+          <div id="u8" class="ax_default image">
+            <img id="u8_img" class="img " src="assets/images/index/u3.png" />
+          </div>
+
+          <!-- 名称 -->
+          <div id="u9" class="ax_default ">
+            <div id="u9_text" class="text ">
+              <p><span>{{item.user.Username}}</span></p>
+            </div>
+          </div>
+
+          <!-- 楼层层数 -->
+          <div id="u12" class="ax_default ">
+            <div id="u12_text" class="text ">
+              <p><span>{{item.post.Floor}}楼</span></p>
+            </div>
+          </div>
+
+          <!-- 时间 -->
+          <div id="u10" class="ax_default ">
+            <div id="u10_text" class="text ">
+              <p><span>{{item.post.Replytime}}</span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 文本段落 -->
+        <div id="u7" class="ax_default _文本段落">
+          <div id="u7_text" class="text ">
+            <p><span>{{item.post.Repiycontent}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 帖子之间的横条 -->
+      <div id="u13" class="ax_default box_1">
+        <img id="u13_img" class="img " src="assets/images/index/u6.png" />
+      </div>
+    </div>
+
+    <div *ngIf="isMax" style="margin-top:20px;">
+      <div>
+        <span>暂无更多</span>
+      </div>
+    </div>
+
+    <div *ngIf="!isMax" style="margin-top:20px;">
+      <div>
+        <span (click)="more()">显示更多</span>
+      </div>
+    </div>
+
+    <!-- 我要回答 -->
+    <div id="u14" class="primary_button ripple" (click)="reply()" style="margin-bottom:70px;">
+      <div id="u14_text" class="text ">
+        <p><span>我要回答</span></p>
+      </div>
+    </div>
+
+  </div>
+</div>

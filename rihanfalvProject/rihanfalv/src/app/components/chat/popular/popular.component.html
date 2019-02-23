@@ -1,0 +1,85 @@
+<!-- <div style="width:450px;height:90px;background-color:tomato">头部</div> -->
+
+<div id="base" class="">
+
+  <app-chat-head></app-chat-head>
+
+  <!-- Unnamed (讨论区-讨论模块) -->
+  <div class="ripple" style="margin-bottom:20px" *ngFor="let item of nowData" (click)="read(item)">
+    <div id="u8_div" class="" style="border-right-width: 1.7px;border-bottom-width:1.7px;">
+
+      <div id="content" style="margin-top: 0.5%;margin-left: 1.5%;">
+        <div id="img_name_time" style="margin-bottom: 10px;">
+
+          <!-- 头像 -->
+          <div id="u9" class="ax_default image">
+            <img id="u9_img" class="img " src="assets/images/new_page_1/u9.png" />
+          </div>
+
+          <!-- 昵称 -->
+          <div id="u10" class="ax_default ">
+            <div id="u10_text" class="text ">
+              <p><span>{{item.user.Username}}</span></p>
+            </div>
+          </div>
+
+          <!-- 发帖时间 -->
+          <div id="u11" class="ax_default ">
+            <div id="u11_text" class="text ">
+              <p><span>{{item.thread.Creationtime}}</span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 标题 -->
+        <div id="u13" class="ax_default _三级标题">
+          <div id="u13_text" class="text ">
+            <p><span>{{item.thread.Topictitle}}</span></p>
+          </div>
+        </div>
+
+        <!-- 文本段落 -->
+        <div id="u12" class="ax_default _文本段落">
+          <div id="u12_text" class="text " style="white-space:pre;-webkit-box-orient: vertical;">
+            <p><span maxlength="20">{{item.thread.Topiccontent}}</span></p>
+          </div>
+        </div>
+
+        <!-- 评论数 -->
+        <div id="u14" class="ax_default ">
+          <div id="u14_text" class="text ">
+            <p><span>评论：{{item.thread.Numberofreplies}}</span></p>
+          </div>
+        </div>
+
+        <!-- 浏览数 -->
+        <div id="u15" class="ax_default ">
+          <div id="u15_text" class="text ">
+            <p><span>浏览：{{item.thread.Visitvolume}}</span></p>
+          </div>
+        </div>
+
+        <!-- 收藏数 -->
+        <div id="u16" class="ax_default ">
+          <div id="u16_text" class="text ">
+            <p><span>收藏：{{item.thread.Collectionvolume}}</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isMax" style="margin-top:20px;" style="font-size: 13px;text-align: center;color: #333333;">
+    <div>
+      <span>暂无更多</span>
+    </div>
+  </div>
+
+  <div *ngIf="!isMax" style="margin-top:20px;" style="font-size: 13px;text-align: center;color: #333333;">
+    <div>
+      <span (click)="more()">显示更多</span>
+    </div>
+  </div>
+
+</div>
