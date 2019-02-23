@@ -1,0 +1,176 @@
+
+.selected{
+    background-color: deepskyblue!important;
+    /* 网络上说!important表示改类的CSS样式优先，因为在案例的按钮里面有两个类，这时候需要一个优先的关系 */
+    color: white;
+}
+
+.case,.reason,.time,.level{
+    background-color: white;
+    width: 70px;
+    height: 30px;
+    padding: 3px 6px;
+    font-family: "微软雅黑";
+    border: 1px solid;
+    border-radius: 8px;
+    margin-right: 9px;
+    text-align: center;
+    margin-left: 8px;
+    outline: 0;
+}
+
+/* 制作按钮的状态 */
+button:focus{
+    background-color: deepskyblue;
+    color: white;
+}
+
+.caseContent{
+    margin-top: 12px;
+    /* width: auto 0; */
+    height: 100px;
+    border:1px solid;
+    border-radius: 6px;
+}
+
+.all,.criminal,.civil,.admin,.economics{
+    padding: 1px;
+    margin-right: 20px;
+    float: left;
+    color: #169BD5;
+}
+
+/* 这是显示第二层内容的刑事案例 */
+.caseContent1{
+    margin-top: 8px;
+    height: 100px;
+    border:1px solid;
+    border-radius: 6px;
+}
+.criminalAction,.endangerPublic,.endangerNational,.corruption,.qinfan{
+    padding: 1px;
+    margin-right: 20px;
+    color: #169BD5;
+    float: left;
+}
+
+/* 这是显示第二层内容的民事案例 */
+.caseContent2{
+    margin-top: 8px;
+    height: 100px;
+    border:1px solid;
+    border-radius: 6px;
+}
+.contractDispute,.wuquan,.laborDispute,.personDispute,.otherDispute{
+    padding: 1px;
+    margin-right: 20px;
+    color: #169BD5;
+    float: left;
+}
+
+/* 这里显示第二层内容的行政案例 */
+.caseContent3{
+    margin-top: 8px;
+    height: 50px;
+    border:1px solid;
+    border-radius: 6px;
+}
+.handle,.AdminLit{
+    padding: 1px;
+    margin-right: 20px;
+    color: #169BD5;
+    float: left;
+}
+
+/* 这里显示第二层内容的商事、经济案例 */
+.caseContent4{
+    margin-top: 8px;
+    height: 50px;
+    border:1px solid;
+    border-radius: 6px;
+}
+.zhengquan,.futureTrade,.insurance,.bankruptcy,.commerical{
+    padding: 1px;
+    margin-right: 20px;
+    color: #169BD5;
+    float: left;
+}
+
+
+
+/* 判决法理的样式 */
+.reasonContent{
+    margin-top: 12px;
+    /* width: auto 0; */
+    height: 100px;
+    border:1px solid;
+    border-radius: 6px;
+}
+
+.evidence,.justCause,.surrenderOneself,.jointOffender{
+    padding: 1px;
+    margin-right: 20px;
+    float: left;
+    color: #169BD5;
+}
+
+/* 审判时间 */
+.timeContent{
+    margin-top: 12px;
+    /* width: auto 0; */
+    height: 100px;
+    border:1px solid;
+    border-radius: 6px;
+}
+
+.time1,.time2,.time3,.time4,.time5{
+    padding: 1px;
+    margin-right: 20px;
+    float: left;
+    color: #169BD5;
+}
+
+/* 审级 */
+.levelContent{
+    margin-top: 12px;
+    /* width: auto 0; */
+    height: 100px;
+    border:1px solid;
+    border-radius: 6px;
+}
+
+.secondInstance,.firstInstance,.againInstance,.implment{
+    padding: 3px;
+    margin-right: 40px;
+    float: left;
+    color: #169BD5;
+}
+
+a{
+    color: #169BD5;
+    text-decoration: none;
+}
+.firstAll{
+    display: block;
+    background-color: pink;
+    border-radius: 6px;
+}
+a:focus,a:active{
+    color: red;
+}
+
+.previous,.next{
+    /* background-color: white; */
+    width: 60px;
+    height: 30px;
+    padding: 3px 6px;
+    font-family: "微软雅黑";
+    border: 1px solid;
+    border-radius: 8px;
+    margin-right: 9px;
+    text-align: center;
+    margin-left: 8px;
+    outline: 0;
+}
+
+

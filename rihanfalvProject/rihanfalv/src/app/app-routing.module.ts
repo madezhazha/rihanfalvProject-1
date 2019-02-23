@@ -9,6 +9,9 @@ import { ArticleComponent } from './components/provisions/article/article.compon
 import { ContentComponent } from './components/provisions/content/content.component';
 import { PaperComponent } from './components/paper/paper.component';
 import { PaperwebComponent } from './components/paper/paperweb/paperweb.component';
+import { CaseComponent } from './components/case/case.component';
+import { CaseDataComponent } from './components/case/case-data/case-data.component';
+
 
 const routes: Routes = [
   {
@@ -34,6 +37,12 @@ const routes: Routes = [
   },
   {
     path: 'paperweb/:ID', component: PaperwebComponent
+  },
+  {
+    path:"CaseAnalysis",component:CaseComponent
+  },
+  {
+    path:"display-data",component:CaseDataComponent
   },
 ];
 

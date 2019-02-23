@@ -44,6 +44,7 @@ import { DatePipe } from '@angular/common';
 // 服务
 import {GetdataService} from '../app/services/getdata.service';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import { CaseDataComponent } from './components/case/case-data/case-data.component';
 //
 
 @NgModule({
@@ -73,7 +74,8 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
     LegalComponent,
     ArticleComponent,
     ContentComponent,
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    CaseDataComponent
   ],
   imports: [
     BrowserModule,

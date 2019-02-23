@@ -1,3 +1,179 @@
-<p>
-  case works!
-</p>
+<button class="case" (click)="displayCase()" [class.selected]="case===true">案例</button>
+<button class="reason" (click)="displayReason()">判决法理</button>
+<button class="time" (click)="displayTime()">判决时间</button>
+<button class="level" (click)="displayLevel()">审级</button>
+
+
+<!-- 这里是案例第一层显示案例 -->
+<div *ngIf="case" class="caseContent">
+  <div>
+    <p class="all" (click)="hideContent()" [class.firstAll]="caseContent[4]===true"><a  (click)="changeSearchContent('全部')">全部</a></p>
+  </div>
+  <div (click)="displayCrim()">
+    <p class="criminal"><a  (click)="changeSearchContent('刑事案件')">刑事案件</a></p>
+  </div>
+  <div (click)="displayCivil()">
+    <p class="civil"><a  (click)="changeSearchContent('民事案件')">民事案件</a></p>
+  </div>
+  <div (click)="dispalyAdmin()">
+    <p class="admin"><a  (click)="changeSearchContent('行政案例')">行政案例</a></p>
+  </div>
+  <div (click)="displayEcon()">
+    <p class="economics"><a  (click)="changeSearchContent('商事、经济案例')">商事、经济案例</a></p>
+  </div>
+</div>
+
+<!-- 这里显示第一层判决法理 -->
+<div *ngIf="reason" class="reasonContent"> 
+  <div>
+    <p class="evidence"><a  (click)="changeSearchContent('证据')">证据</a></p>
+  </div>
+  <div>
+    <p class="justCause"><a  (click)="changeSearchContent('正当防卫')">正当防卫</a></p>
+  </div>
+  <div>
+    <p class="surrenderOneself"><a  (click)="changeSearchContent('自首')">自首</a></p>
+  </div>
+  <div>
+    <p class="jointOffender"><a  (click)="changeSearchContent('共同犯罪')">共同犯罪</a></p>
+  </div>
+</div>
+
+
+<!-- 这里显示第一层审判时间 -->
+<div *ngIf="time" class="timeContent">
+  <div>
+    <p class="time1"><a  (click)="changeSearchContent('2019')">2019</a></p>
+  </div>
+  <div>
+    <p class="time2"><a  (click)="changeSearchContent('2018')">2018</a></p>
+  </div>
+  <div>
+    <p class="time3"><a  (click)="changeSearchContent('2017')">2017</a></p>
+  </div>
+  <div>
+    <p class="time4"><a  (click)="changeSearchContent('2016')">2016</a></p>
+  </div>
+  <div>
+    <p class="time5"><a  (click)="changeSearchContent('2015')">2015</a></p>
+  </div>
+</div>
+
+<!-- 这是案例第一层的审级 -->
+<div *ngIf="level" class="levelContent">
+  <div>
+    <p class="secondInstance"><a  (click)="changeSearchContent('二审')">二审</a></p>
+  </div>
+  <div>
+    <p class="firstInstance"><a  (click)="changeSearchContent('一审')">一审</a></p>
+  </div>
+  <div>
+    <p class="againInstance"><a  (click)="changeSearchContent('再审')">再审</a></p>
+  </div>
+  <div>
+    <p class="implment"><a  (click)="changeSearchContent('执行')">执行</a></p>
+  </div>
+</div>
+
+<!-- 这里是案例第二层显示刑事案例的内容 -->
+<div *ngIf="caseContent[0]" class="caseContent1">
+  <div>
+    <p class="criminalAction"><a (click)="changeSearchContent('刑法诉讼')">刑法诉讼</a></p>
+  </div>
+  <div>
+    <p class="endangerPublic"><a  (click)="changeSearchContent('危害公共安全')">危害公共安全</a></p>
+  </div>
+  <div>
+    <p class="endangerNational"><a  (click)="changeSearchContent('危害国家安全罪')">危害国家安全罪</a></p>
+  </div>
+  <div>
+    <p class="corruption"><a  (click)="changeSearchContent('贪贿罪')">贪贿罪</a></p>
+  </div>
+  <div>
+    <p class="qinfan"><a  (click)="changeSearchContent('侵犯财产罪')">侵犯财产罪</a></p>
+  </div>
+</div>
+
+<!-- 这里是案例第二层显示民事案例的内容 -->
+<div *ngIf="caseContent[1]" class="caseContent2">
+  <div>
+    <p class="contractDispute"><a  (click)="changeSearchContent('合同权纠纷')">合同权纠纷</a></p>
+  </div>
+  <div>
+    <p class="wuquan"><a  (click)="changeSearchContent('物权纠纷')">物权纠纷</a></p>
+  </div>
+  <div>
+    <p class="laborDispute"><a  (click)="changeSearchContent('劳动权纠纷')">劳动权纠纷</a></p>
+  </div>
+  <div>
+    <p class="personDispute"><a  (click)="changeSearchContent('人格权纠纷')">人格权纠纷</a></p>
+  </div>
+  <div>
+    <p class="otherDispute"><a (click)="changeSearchContent('其他纠纷')">其他纠纷</a></p>
+  </div>
+</div>
+
+<!-- 这里是案例第二层显示行政案例的内容 -->
+<div *ngIf="caseContent[2]" class="caseContent3">
+  <div>
+    <p class="handle"><a  (click)="changeSearchContent('行政机关自行处理案例')">行政机关自行处理案例</a></p>
+  </div>
+  <div>
+    <p class="AdminLit"><a  (click)="changeSearchContent('行政诉讼案')">行政诉讼案</a></p>
+  </div>
+</div>
+
+<!-- 这里是案例第二层显示商事、经济案例 -->
+<div *ngIf="caseContent[3]" class="caseContent4">
+  <div>
+    <p class="zhengquan"><a  (click)="changeSearchContent('证券')">证券</a></p>
+  </div>
+  <div>
+    <p class="futureTrade"><a  (click)="changeSearchContent('期货交易')">期货交易</a></p>
+  </div>
+  <div>
+    <p class="insurance"><a  (click)="changeSearchContent('保险')">保险</a></p>
+  </div>
+  <div>
+    <p class="bankruptcy"><a  (click)="changeSearchContent('破产')">破产</a></p>
+  </div>
+  <div>
+    <p class="commerical"><a  (click)="changeSearchContent('商事仲裁')">商事仲裁</a></p>
+  </div>
+</div>
+
+<!-- 显示从后端拿到的总共的数据 -->
+<div id="result"><p><span> <span style="font-size:20px; color: rebeccapurple">{{searchContent}}</span> 检索结果：{{list.length}}</span></p></div>
+
+<!-- 显示数据库的数据 -->
+<div class="bigContent" id="bigContent">
+    <li style="height:580px;border:1px solid;border-radius: 8px;list-style: none"  *ngFor="let item of PageList">
+        <div>
+            <h2 style="color:black">{{item.title}}</h2>
+            <p style="color:black">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}</p>
+            <p style="color:black">{{item.casecontent}}</p>
+            <p><span><h2 style="color:blue"><a routerLink="/display-data" (click)="sendData(item.casetitle)">裁判书</a></h2></span></p>
+        </div>
+    </li>
+
+    <div>
+        <button type="button" [disabled]="!preShow" (click)="showPrePage()"class="previous"><a (click)="goTo('result')">上一页</a></button>
+        <input type="text" (change)="onChangePage($event.target.value)" placeholder="{{curPage}}" value="{{curPage}}" style="width: 29px;height: 30px;">
+        <span> / {{pageNo}} 页</span>
+        <button type="button" [disabled]="!nextShow" (click)="showNextPage()" class="next"><a (click)="goTo('result')">下一页</a></button>
+        <span> 每页显示 : </span>
+        <select (change)="onChangePageSize($event.target.value)">
+          <option *ngFor="let pageSize of pageSizes" value="{{pageSize}}">{{pageSize}}</option>
+        </select>
+        <span>共{{list.length}}条</span>
+      </div>
+</div>
+
+
+
+
+
+
+
+
+
