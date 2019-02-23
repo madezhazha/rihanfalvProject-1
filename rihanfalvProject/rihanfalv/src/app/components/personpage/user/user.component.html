@@ -1,0 +1,126 @@
+<hr>
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6">
+                <!-- 按钮触发模态框 -->
+                <a style="cursor: pointer;margin-right: 1%"data-toggle="modal" data-target="#LookModal">
+                        <img [src]=user.Image width="50px" height="50px" class="img-circle">
+                </a>
+                {{user.UserName}}
+                <a style="margin-left:1%;margin-right: 50%;cursor: pointer;" 
+                data-toggle="modal" 
+                data-target="#ChangeModal">修改>>
+                </a>
+            </div>
+            <div class="col-xs-6" style="line-height:45px;">
+                {{user.Integral}}积分<a style="margin-left:1%;cursor: pointer;">充值</a>
+            </div>
+        </div>
+    </div>
+  <!-- 模态框（Modal） 修改信息-->
+    <div class="modal fade" id="ChangeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
+                    <!-- 错误警告 -->
+                    <div class="alert alert-warning" style="width: 100% ; margin: 0 auto" [hidden]="!iswarn " >
+                            <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+                            <strong>{{msg}}</strong>
+                    <!-- 成功提示 -->
+                    </div>
+                    <div class="alert alert-success" style="width: 100%;margin: 0 auto" [hidden]="!issuccess">
+                            <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+                            <strong>{{msg}}</strong>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">用户名：</span>
+                        <input type="text" class="form-control" [(ngModel)]="temp.UserName">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">新密码：</span>
+                        <input type="password" class="form-control" [(ngModel)]="temp.Password">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">确认密码：</span>
+                        <input type="password" class="form-control" [(ngModel)]="Password">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮箱：</span>
+                        <input type="email" class="form-control" [(ngModel)]="temp.Email">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">头像：</span>
+                        <img [src]="imgsrc" width="100px" height="100px" alt="未选择头像" class="img-thumbnail"> 
+                    </div>
+                    <!-- 显示系统头像 isshow默认为true-->
+                    <div [hidden]="isshow">
+                            <a (click)="isshow=!isshow" style="cursor: pointer;">显示系统头像</a>
+                    </div>
+                    <!-- 关闭系统头像 -->
+                    <div [hidden]="!isshow">
+                        <a (click)="isshow=!isshow" style="cursor: pointer;">关闭系统头像</a>
+                        <div class="row">
+                                <div class="col-xs-4" *ngFor="let item of imgsrcs">
+                                    <a style="cursor: pointer;" (click)="changeimg(item);">
+                                        <img src={{item}} width="50px" height="50px"  alt="picture"  class="img-circle" >
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="close()">关闭</button>
+                    <button type="button" class="btn btn-primary" (click)="changeinfo()">提交修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- 模态框（Modal） 查看信息-->
+    <div class="modal fade" id="LookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">用户信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">用户名：</span>
+                        <input type="text" class="form-control" disabled [value]="user.UserName">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮箱：</span>
+                        <input type="email" class="form-control" disabled [value]="user.Email">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">头像：</span>
+                        <img [src]="user.Image" width="100px" height="100px" class="img-thumbnail">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">积分：</span>
+                        <input type="email" class="form-control"  disabled [value]="user.Integral">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">注册日期：</span> 
+                        <input type="text" class="form-control" disabled [value]=user.RegisterDate>
+                    </div><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div>
+    <button type="button" class="btn btn-info btn-lg" (click)="collection()" style="width:50%;margin-left:25%">我的收藏</button><br><br>
+    <button type="button" class="btn btn-info btn-lg" style="width:50%;margin-left: 25%">我的帖子</button><br><br>
+    <button type="button" class="btn btn-info btn-lg" style="width:50%;margin-left:25%">我的回复</button><br><br>
+    <button type="button" class="btn btn-info btn-lg" style="width:50%;margin-left:25%">我的反馈</button>
+</div>

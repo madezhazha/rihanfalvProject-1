@@ -22,6 +22,7 @@ import { FeedbacksuccessComponent } from './components/Feedback/feedbacksuccess/
 import { PersonalfeedbackComponent } from './components/Feedback/personalfeedback/personalfeedback.component';
 
 // ng头部组件
+// 头部组件
 import { LangingComponent } from './components/head/langing/langing.component';
 import { LandComponent } from './components/head/langing/land/land.component';
 import { RegisterComponent } from './components/head/langing/register/register.component';
@@ -35,6 +36,13 @@ import { ContentComponent } from './components/provisions/content/content.compon
 import { ApiSerivice } from './apiservice';
 
 
+// 个人主页
+import { UserComponent } from './components/personpage/user/user.component' ;
+import { CollectionComponent } from './components/personpage/collection/collection.component' ;
+import { ThesisComponent } from './components/personpage/collection/thesis/thesis.component' ;
+import { DatePipe } from '@angular/common';
+// 服务
+import {GetdataService} from '../app/services/getdata.service';
 //
 
 @NgModule({
@@ -55,8 +63,9 @@ import { ApiSerivice } from './apiservice';
     RegisterComponent,
     ForgetpasswordComponent,
     WebheadComponent,
-
-
+    UserComponent,
+    CollectionComponent,
+    ThesisComponent,
     FeedbacksuccessComponent,
     PersonalfeedbackComponent,
     UploadHeadimageComponent,
@@ -74,6 +83,8 @@ import { ApiSerivice } from './apiservice';
   ],
   providers: [
     ApiSerivice,
+    GetdataService,
+     DatePipe
   ],
   bootstrap: [AppComponent]
 })
