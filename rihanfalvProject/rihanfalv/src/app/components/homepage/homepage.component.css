@@ -1,0 +1,176 @@
+.homepagebody{
+    background-color: rgba(235, 235, 235, 0.959);
+    width:100%; 
+    height: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: auto;
+    font-size: smaller;
+    margin-bottom: 0px;
+    color: rgb(66, 63, 63);
+}
+.homepagebody hr{
+    height:1px;
+    border:0px;
+    border-top:1px solid rgb(195, 199, 201);
+    margin:4px 8px 0px 8px;
+    padding:0px;
+    overflow:hidden;
+}
+a{
+    color: rgb(66, 63, 63);
+}
+
+/* 显示图片的位置 ，包含picture 和 scall_box 和 describe*/
+.picturebox{
+    background-color: rgb(224, 245, 247);
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.picture{
+    height: 130px;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    padding:0px;
+    z-index: 0;
+}
+
+.picture img{
+    display: inlineb;
+    z-index: -1;
+    height: 100%;
+    width: auto;
+}
+.describe_box{
+    height:30px;
+    background-color: rgb(48, 42, 42);
+    opacity:0.6; 
+    z-index: 6;
+    position: relative;
+    bottom: 30px;
+    text-align: center;
+}
+.describe{
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+}
+.describe p{
+    line-height: 30px;
+    margin: 1px;
+    color: aliceblue;
+    font-size: larger;
+}
+
+.scalle_box{
+    margin: 2px;
+    width: auto;
+    height: 3px;
+    display: inline-block;
+    z-index: 4;
+    position:relative;
+    bottom: 29px;
+}
+.scalle_box dt{
+    width:13px;
+    height: 100%;
+    margin: 1px 5px 1px 5px;
+    float: left;
+    background-color: rgb(180, 225, 231);
+    border-radius: 2px;
+}
+
+.scalle_box dt.on{
+    background-color: rgb(23, 214, 248);
+    box-shadow:0 0 7px rgb(99, 180, 235);  
+}
+
+.artical{
+    height: 60px;
+    width: 96%;
+    /* text-align: center; */
+    display: inline-block;
+    margin-top: 10px;
+    /* background-color: rgb(183, 209, 209); */
+}
+
+/* "查看更多新闻"按钮 */
+.more{
+    height:35px;
+    width: 90%;
+    background-color: rgb(183, 231, 211);
+    border-radius: 2px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.more p{
+    color: rgb(105, 104, 103);
+    top: 50%;
+    line-height: 35px;
+    font-size: small;
+    display: inline;
+}
+
+/* 文章图片 */
+.atc_pic{
+    width:30%;
+    height:60px;
+    float: left;
+    /* background-color: cadetblue; */
+    display: block;
+}
+.atc_pic img{
+    width: 100%;
+    height: 100%;
+}
+.atc_tex{
+    /* background-color: rgb(223, 170, 170); */
+    /* float: left; */
+    padding:2px;
+    width: 69%;
+    /* min-width: 155px; */
+    height: 40px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    padding:1px;
+    text-align:left;
+    display: block;
+}
+.artical p{
+    margin: 0px;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+.atc_time p{
+    float:right;
+    font-size: 9px;
+    margin:0px 5px 0px;
+    position: relative;
+    top:4px;
+}
+.atc_til{
+    width:90%;
+    height: 20px;
+    background-color: burlywood;
+    position: relative;
+    right: -10px;
+}
+.atc_time{
+    height:15px;
+    width: auto;
+    color: rgb(166, 167, 167);
+    /* background-color: antiquewhite; */
+    float: right;
+    margin-right: 8px;
+}
+
+
+dl{
+    position: relative;
+    bottom: 10px;
+}
