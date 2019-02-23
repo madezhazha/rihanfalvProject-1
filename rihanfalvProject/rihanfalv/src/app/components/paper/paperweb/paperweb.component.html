@@ -1,3 +1,28 @@
-<p>
-  paperweb works!
-</p>
+<div class="head" ng-cloak>
+  <a routerLink="/paper">&lt;&lt;返回</a>
+  <div class="nt">
+    <span class="name">{{Paper?.Author}}</span>
+    <span class="time">{{Paper?.Time|date: 'yyyy-MM-dd'}}</span>
+  </div>
+  <button (click)="collect()">{{Collectword}}</button>
+  <div class="lablecontainer">
+    <span class="lable" *ngFor="let lable of Paper?.Lable">
+     {{lable}}
+    </span>
+ </div>
+</div>
+
+<div class="content" ng-cloak>
+  <div class="title">{{Paper?.Title}}</div>
+
+  <div id="contentbox" #contentbox >
+    <div class="contentp" id="text" #text>
+      <div id="p" [innerHTML]="Paper?.Content |sanitizeHtml"></div>
+    </div>
+  </div>
+  
+  <div class="show" [ngClass]="{'ishidden':Paper?.Length<1000}" id="show" #show >
+      <a (click)="mshow()">查看剩余部分</a> 
+  </div>
+
+</div>

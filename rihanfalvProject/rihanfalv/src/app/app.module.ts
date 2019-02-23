@@ -43,6 +43,7 @@ import { ThesisComponent } from './components/personpage/collection/thesis/thesi
 import { DatePipe } from '@angular/common';
 // 服务
 import {GetdataService} from '../app/services/getdata.service';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 //
 
 @NgModule({
@@ -71,7 +72,8 @@ import {GetdataService} from '../app/services/getdata.service';
     UploadHeadimageComponent,
     LegalComponent,
     ArticleComponent,
-    ContentComponent
+    ContentComponent,
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,

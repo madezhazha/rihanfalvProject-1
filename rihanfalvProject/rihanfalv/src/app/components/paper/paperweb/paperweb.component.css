@@ -1,0 +1,147 @@
+
+.head{
+    position: relative;
+    height: 80px;
+    color:white;
+    background-image: linear-gradient(  
+    to bottom,   
+    rgba(10, 90, 30, 0.2) 0%,   
+    rgba(10,90,30,0.3) 5%,   
+    rgba(10,90,30,0.5) 20%,   
+    rgba(10,90,30,0.5) 80%,   
+    rgba(10,90,30,0.3) 95%,   
+    rgba(10,90,30,0.2) 100%
+    );  
+}
+
+.head a{
+    position: absolute;
+    display: inline-block;
+    color:white;
+    cursor: pointer;
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+    left: 10px;
+    font-size: 14px;
+}
+
+.nt{
+    position: absolute;
+    top:20px;
+    left:185px;
+}
+
+.name{
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+.time{
+    font-size: 11px;
+    display: block;
+    text-align: center;
+}
+
+.lablecontainer{
+    position: absolute; 
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    height: 20px;
+}
+
+.lable{
+    font-size: 9px;
+    border-radius: 3px;
+    background: white;
+    color: rgb(94, 81, 81);
+    float:left; 
+    margin-left:5px; 
+    padding: 3px;
+}
+
+.head button{
+    position: absolute;
+    right:20px;
+    top: 20px;
+    cursor: pointer;
+    height: 30px;
+    width: 60px;
+    border-width: 0px; /* 边框宽度 */	
+    border-radius: 3px; /* 边框半径 */	
+    background: rgb(10, 107, 67); /* 背景颜色 */	
+    cursor: pointer; /* 鼠标移入按钮范围时出现手势 */	
+    outline: none; /* 不显示轮廓线 */	
+    font-family: Microsoft YaHei; /* 设置字体 */	
+    color: white; /* 字体颜色 */	
+    font-size: 12px; /* 字体大小 */
+}
+
+
+.content{
+    position: relative;
+    width: 450px;
+    height: auto;
+    overflow-y: hidden;
+    text-align: center;
+    background: white;
+}
+
+.contentp{
+    background: white;
+    width: 438px;
+    padding: 6px;
+    height: auto;
+    text-align: left;
+    margin-top: 3px;
+    font-size: 14px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+
+
+.title{
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+a{
+    display: inline-block;
+    color: rgb(8, 187, 127);
+    font-weight: bold;
+    cursor: pointer;
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+}
+
+.show{
+    position: absolute;
+    bottom: 0px;
+    width: 450px;
+    text-align: center;
+    border-top: 1px gray dashed;
+    background-image: linear-gradient(  
+    to right,   
+    rgba(0,0,0,0.2) 0%,   
+    rgba(0,0,0,0.5) 5%,   
+    rgba(0,0,0,0.7) 10%,   
+    rgba(0,0,0,0.7) 90%,   
+    rgba(0,0,0,0.5) 95%,   
+    rgba(0,0,0,0.2) 100%
+    );  
+}
+
+.ishidden{
+    display: none;
+}
+
+#contentbox{
+    height: 620px;
+    overflow-y: hidden;
+}

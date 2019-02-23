@@ -1,0 +1,99 @@
+div.main{
+    position:relative;/*父div用相对定位*/
+    height: 477px;
+    width:385px;
+    border-radius:7px;
+    overflow: hidden;/*溢出部分隐藏*/
+    border: 1px solid rgb(112, 112, 112);
+    background-color: rgb(255, 255, 255)
+}
+div.head{
+    z-index:1;
+    position:absolute;/*子div用绝对定位*/
+    height:46px;
+    width:385px;
+    background-color: #199ED8
+}
+div.title{
+    position:absolute;
+    z-index:2;
+    top:-3px;
+    left: 17px;
+}
+p.title{
+    font-size:18px;
+    color:white;
+}
+button{
+    border: 1px solid #ccc;
+    background-color: #199ED8;
+    width: 307px;
+    height: 39px;
+    border-radius:7px;
+    color: rgb(255, 255, 255);
+    font-size:18px;
+}
+input[type="text"],
+input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+    width: 300px;
+}
+label{
+    font-size: 1.2em;
+}
+.inputCSS{
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+    width: 300px;
+}
+div.form{
+    position: absolute;
+    left:37px;
+    top:50px;
+}
+input[type="text"].Verification{
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+    width: 140px;
+}
+button.Verification{
+    border: 1px solid #ccc;
+    background-color: #199ED8;
+    width: 140px;
+    height: 33px;
+    border-radius:7px;
+    color: rgb(255, 255, 255);
+    font-size:16px;
+}
+div.Verification{
+    position: absolute;
+    top:315px;
+    left:195px;
+}
+button:disabled {
+    background-color: #eee;
+    color: #ccc;
+    cursor: auto;
+    
+  }
+
+.timeNumber{
+    color: rgb(41, 124, 75);
+}
+div.line1{
+    position: absolute;
+    left:37px;
+    top:431px;
+}
+div.line2{
+    position: absolute;
+    left:263px;
+    top:431px;
+}

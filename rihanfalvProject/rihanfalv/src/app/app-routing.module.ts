@@ -7,16 +7,18 @@ import { PersonalfeedbackComponent } from './components/Feedback/personalfeedbac
 import { LegalComponent } from './components/provisions/legal/legal.component';
 import { ArticleComponent } from './components/provisions/article/article.component';
 import { ContentComponent } from './components/provisions/content/content.component';
+import { PaperComponent } from './components/paper/paper.component';
+import { PaperwebComponent } from './components/paper/paperweb/paperweb.component';
 
 const routes: Routes = [
   {
-    path:'Feedback',component:FeedbackComponent
+    path: 'Feedback', component: FeedbackComponent
   },
   {
-    path:'Personalfeedback',component:PersonalfeedbackComponent
+    path: 'Personalfeedback', component: PersonalfeedbackComponent
   },
   {
-    path:'Feedbacksuccess',component:FeedbacksuccessComponent
+    path: 'Feedbacksuccess', component: FeedbacksuccessComponent
   },
   {
     path: 'legal', component: LegalComponent
@@ -26,6 +28,12 @@ const routes: Routes = [
   },
   {
     path: 'content', component: ContentComponent
+  },
+  {
+    path: 'paper', component: PaperComponent
+  },
+  {
+    path: 'paperweb/:ID', component: PaperwebComponent
   },
 ];
 
