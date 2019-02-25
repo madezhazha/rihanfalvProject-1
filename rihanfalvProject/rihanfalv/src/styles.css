@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+html{
     width: 100%;
-    overflow-x: hidden;   /* 限制页面左右移动 */
-    margin-top: 0%;
+    /* max-width: 450px; */
+    width: 450px;
+    /* overflow-x: hidden;   限制页面左右移动 */
+    margin:0px auto ;
+    /* margin-top: 0%; */
 }

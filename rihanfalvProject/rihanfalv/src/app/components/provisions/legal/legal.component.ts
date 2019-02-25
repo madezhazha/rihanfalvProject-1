@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiSerivice } from 'src/app/apiservice';
-import { APIResponse } from 'src/app/apiresponse';
+// import { ApiSerivice } from 'src/app/apiservice';
+// import { APIResponse } from 'src/app/apiresponse';
+import { ApiSerivice } from '../../../apiservice';
+import { APIResponse } from '../../../apiresponse';
 import { Router } from '@angular/router';
 
 @Component({
