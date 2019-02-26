@@ -50,6 +50,8 @@ import { PopularComponent } from './components/chat/popular/popular.component';
 import { ReplyPageComponent } from './components/chat/reply-page/reply-page.component';
 import { ChatHeadComponent } from './components/chat/chat-head/chat-head.component';
 import { TagComponent } from './components/chat/tag/tag.component';
+import { SearchresultComponent } from './components/search/searchresult/searchresult.component';
+import { SearchkeywordPipe } from './pipes/searchkeyword.pipe';
 
 
 @NgModule({
@@ -85,7 +87,9 @@ import { TagComponent } from './components/chat/tag/tag.component';
     PopularComponent,
     ReplyPageComponent,
     ChatHeadComponent,
-    TagComponent
+    TagComponent,
+    SearchresultComponent,
+    SearchkeywordPipe
   ],
   imports: [
     BrowserModule,

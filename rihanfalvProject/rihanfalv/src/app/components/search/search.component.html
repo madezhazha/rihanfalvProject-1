@@ -1,3 +1,39 @@
-<p>
-  search works!
-</p>
+<body>
+<div class="module">
+<div class="search">
+   <form>
+     <select  name="searchgroup" id="searchgroup"  [(ngModel)]="this.searchgroup">
+     <option [value]="item" *ngFor="let item of this.searchlist">
+       {{item}}
+     </option>
+   </select>
+ <input type="text" [(ngModel)]="KeyWord" 
+ [ngModelOptions]="{standalone: true}" class="text1"
+  placeholder="搜索{{this.searchgroup}}" onkeyup="value=value.replace(/\s/g,'')"/>
+  <button (click)="doSearch()" type="submit">  
+    <img src="../../../assets/search.png" width="14" />  
+    Search</button>
+</form>
+</div>
+</div>
+<div class="module">
+ 
+<div class="history" *ngIf="IfHistory"> 搜索记录
+<ul>
+  <li *ngFor="let item of HistoryList;let key=index">
+    <img src="../../../assets/history.png" width="14">
+ <button (click)="reSearch(item)" class="searchitem">
+   {{item}}
+  </button>
+ <button (click)="deleteHistory(key)" class="x">
+   x
+  </button>
+ <hr>
+  </li>
+</ul>
+<button (click)="remove()" class="remove">
+  清空历史记录
+</button>
+</div>
+</div>
+</body>

@@ -1,6 +1,7 @@
 import { Component, OnInit, } from '@angular/core';
 import {InputData} from '../langing/land/input'
 import { Input } from '@angular/compiler/src/core';
+
 @Component({
   selector: 'app-webhead',
   templateUrl: './webhead.component.html',
@@ -43,6 +44,5 @@ export class WebheadComponent implements OnInit {
   getLoginData(input:InputData){
     this.In=input;
   }
-
 
 }

@@ -18,6 +18,8 @@ import { ReplyPageComponent } from '../app/components/chat/reply-page/reply-page
 import { ChatHeadComponent } from '../app/components/chat/chat-head/chat-head.component';
 import { TagComponent } from '../app/components/chat/tag/tag.component';
 import { HomepageComponent} from './components/homepage/homepage.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchresultComponent } from './components/search/searchresult/searchresult.component';
 
 const routes: Routes = [
   // { path: 'text', component:PaperComponent },               //测试专用
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path: 'replyPage', component: ReplyPageComponent },
   { path: 'head', component: ChatHeadComponent },
   { path: 'tag', component: TagComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'searchresult', component: SearchresultComponent },
   { path: '', redirectTo: 'homepage', pathMatch: 'full' } ,
 ];
 

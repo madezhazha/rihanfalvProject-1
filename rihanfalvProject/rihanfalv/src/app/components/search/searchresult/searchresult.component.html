@@ -1,0 +1,63 @@
+<div class="module">
+  <div class="classify">
+  <button>全部</button>
+  <button>法律条文</button>
+  <button>论文</button>
+  <button>案例</button>
+  </div>
+  </div>
+  <div class="module">
+  <div *ngIf="getstatus()==false">
+      <br>
+      肥肠抱歉，没有搜索到目标
+      <br>
+      <br>
+  </div>
+  <ul *ngIf="getstatus()!=0">
+  <div class="module">
+  <div>
+      <br>
+      共查询到{{this.m_search.list.length}}条相关信息
+      <br>
+  </div>
+   <div *ngFor="let item of this.m_search.list" class="module">
+       <div  *ngIf="ifreadall==false">
+  <li *ngIf="item.LegalId<this.m_search.list[2].LegalId">
+          显示部分内容
+      <!-- 因提取出的数据按顺序排列，故小于第三个的id即为前二项 -->
+  <div class="title">
+      <a href="/" [innerHTML]="item.LegalTitle |keyword:this.m_search.KeyWord"></a>
+      <button class="label">标签1</button>
+      <button class="label">标签2</button>
+      <button class="star">收藏</button>
+  </div>
+  <div class="content">
+      <span [innerHTML]="item.LegalContent |keyword:this.m_search.KeyWord">
+      </span>
+          </div>
+          </li></div>
+  <!-- 显示部分内容 -->
+          <li  *ngIf="ifreadall==true">
+                  显示全部内容 
+                  <div class="title">
+                      <a href="/" [innerHTML]="item.LegalTitle |keyword:this.m_search.KeyWord"></a>
+                      <button class="label">标签1</button>
+                      <button class="label">标签2</button>
+                      <button class="star">收藏</button>
+                  </div>
+                  <div class="content">
+                      <span [innerHTML]="item.LegalContent |keyword:this.m_search.KeyWord">
+                      </span>
+                          </div>
+                          </li>
+                        <!-- 显示全部内容 -->
+      </div>
+  </div>
+  <hr>
+  <button (click)="readall()" class="readall" *ngIf="this.ifreadbutton">
+      查看全部
+  </button>
+  </ul>
+  
+  </div>
+  
