@@ -18,7 +18,7 @@ export class PaperComponent implements OnInit {
 
   Isbottom:boolean=false;  //是否页面到底
   Isover:boolean=false;    //文章是否已无
-  CurrentPageLastID:number=0;  //但前加载页数最后文章Id
+  CurrentPage:number=1;  //但前加载页数最后文章Id
 
   Nowcountry:string="Japan";   //当前模块 日/韩 用于进行筛选显示
   Articles:Article[]=[];  //论文列表
@@ -28,16 +28,17 @@ export class PaperComponent implements OnInit {
   getArticles(){
    let api="http://localhost:8000/";
    const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
-   this.http.post(api,{CurrentPageLastID:this.CurrentPageLastID,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>
+   this.http.post(api,{CurrentPage:this.CurrentPage,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>
     {
       if(response!=null)
       {
         this.Articles=this.Articles.concat(response);
-        //this.CurrentPage++;
-        this.CurrentPageLastID=this.Articles[this.Articles.length-1].ID
+        this.CurrentPage++;
+        //this.CurrentPage=this.Articles[this.Articles.length-1].ID
       }
       else{
         this.Isover=true
+        
       }
     });
   }

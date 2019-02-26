@@ -5,7 +5,7 @@ export class Article{
     Time:string;
     Content:string;
     Length:number;
-    Country:string;
+    //Country:string;
     Lable:string[];
     Lablestring:string;
 }
