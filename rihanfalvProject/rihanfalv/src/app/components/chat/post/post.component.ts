@@ -11,14 +11,19 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class PostComponent implements OnInit {
 
+  private
+
   // 楼主的数据
   private hostData: any;
 
   private thread: any;
   private post: any;
   private isMax: boolean = false;
-
   private nowData: any;
+
+
+  //  是否收藏
+  private collection: any;
 
   constructor(
     private activatedRouter: ActivatedRoute,
@@ -31,14 +36,17 @@ export class PostComponent implements OnInit {
       // debugger;
       this.hostData = response;
       console.log(this.hostData.topicID);
-      this.dataService.getPostList(response.topicID).subscribe((resp) => {
+      // 1是假数据，代表用户id
+      this.dataService.getPostList(1, response.topicID).subscribe((resp) => {
+        this.collection = resp.collection;
+        console.log(this.collection.Collectioncontentid);
         this.post = resp.post;
         this.thread = resp.thread;
         this.nowData = this.post.slice(0, 4);
         console.log(resp);
         if (this.nowData.length == this.post.length) {
           this.isMax = true;
-        }else{
+        } else {
           this.isMax = false;
         }
       });
@@ -74,6 +82,19 @@ export class PostComponent implements OnInit {
     if (this.nowData.length == this.post.length) {
       this.isMax = true;
     }
+  }
+
+  collect() {
+    // 1也是模拟用户id
+    this.dataService.collect("1", this.hostData.topicID).subscribe((response) => {
+      this.collection.Collectioncontentid = response;
+    });
+  }
+
+  cancel() {
+    this.dataService.cancel("1", this.hostData.topicID).subscribe((response) => {
+      this.collection.Collectioncontentid = response;
+    });
   }
 
 }

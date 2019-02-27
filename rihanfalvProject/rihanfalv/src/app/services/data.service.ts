@@ -14,6 +14,8 @@ export class DataService {
   apiUrl3 = "http://localhost:8888/thread/post"
   apiUrl4 = "http://localhost:8888/thread/reply"
   apiUrl5 = "http://localhost:8888/thread/search"
+  apiUrl6 = "http://localhost:8888/thread/collect"
+  apiUrl7 = "http://localhost:8888/thread/cancel"
 
   constructor(
     private http: HttpClient
@@ -27,16 +29,24 @@ export class DataService {
     return this.http.get<any>(this.apiUrl2)
   }
 
-  getPostList(topicID: string): Observable<any> {
-    return this.http.get<any>(this.apiUrl3, { params: { topicID: topicID } })
+  getPostList(userID, topicID: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl3, { params: { userID: userID, topicID: topicID } })
   }
 
   submitReply(userID: string, topicID: string, text: string, floor: string, ): Observable<any> {
     return this.http.get<any>(this.apiUrl4, { params: { userID: userID, topicID: topicID, text: text, floor: floor, } })
   }
 
-  search(condition: string) {
+  search(condition: string): Observable<any> {
     return this.http.get<any>(this.apiUrl5, { params: { condition: condition } })
+  }
+
+  collect(userID: string, topicID: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl6, { params: { userID: userID, topicID: topicID } })
+  }
+
+  cancel(userID: string, topicID: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl7, { params: { userID: userID, topicID: topicID } })
   }
 
 }

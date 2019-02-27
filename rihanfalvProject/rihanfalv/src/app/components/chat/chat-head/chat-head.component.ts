@@ -17,7 +17,7 @@ export class ChatHeadComponent implements OnInit {
   }
 
   popular(){
-    this.router.navigate(['/popular']);
+    this.router.navigate(['/discussionarea']);
   }
   tag(){
     this.router.navigate(['/tag']);

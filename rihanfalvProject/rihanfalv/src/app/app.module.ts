@@ -53,6 +53,8 @@ import { TagComponent } from './components/chat/tag/tag.component';
 import { SearchresultComponent } from './components/search/searchresult/searchresult.component';
 import { SearchkeywordPipe } from './pipes/searchkeyword.pipe';
 
+import { myPipe } from './components/chat/popular/popular.component';
+
 
 @NgModule({
   declarations: [
@@ -89,7 +91,8 @@ import { SearchkeywordPipe } from './pipes/searchkeyword.pipe';
     ChatHeadComponent,
     TagComponent,
     SearchresultComponent,
-    SearchkeywordPipe
+    SearchkeywordPipe,
+    myPipe
   ],
   imports: [
     BrowserModule,

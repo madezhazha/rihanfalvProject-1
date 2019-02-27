@@ -1,29 +1,29 @@
 package main
- 
-import(
-	"net/http"
+
+import (
 	"fmt"
+	"net/http"
 	"time"
-	"./homepage"
-	"./head"
-	"./law"
+
 	"./chat"
-	"./analysis"
-	"./thesis"
+	"./feedback"
+	"./head"
+	"./homepage"
+	"./law"
 )
 
-func main(){
+func main() {
 	fmt.Println("The Porgam is running ...")
 	mux := http.NewServeMux()
 	//================================================================ homepage
-	mux.HandleFunc("/get",homepage.GetImages)
-	mux.HandleFunc("/gethomepageartical",homepage.GetHomePageArtical)
-	mux.HandleFunc("/gethomepagehotnews",homepage.GetHomePageHotnews)
-	//================================================================ law  
-    mux.HandleFunc("/type",law.Typeget)
-    mux.HandleFunc("/title",law.Titlepost)
-    mux.HandleFunc("/label",law.Labelpost)
-    mux.HandleFunc("/content",law.Contentpost)
+	mux.HandleFunc("/get", homepage.GetImages)
+	mux.HandleFunc("/gethomepageartical", homepage.GetHomePageArtical)
+	mux.HandleFunc("/gethomepagehotnews", homepage.GetHomePageHotnews)
+	//================================================================ law
+	mux.HandleFunc("/type", law.Typeget)
+	mux.HandleFunc("/title", law.Titlepost)
+	mux.HandleFunc("/label", law.Labelpost)
+	mux.HandleFunc("/content", law.Contentpost)
 	//================================================================ head
 	mux.HandleFunc("/", head.Log(head.Hello))
 	mux.HandleFunc("/register", head.Register)
@@ -36,13 +36,16 @@ func main(){
 	mux.HandleFunc("/showuseranslist", chat.ShowUserAnsList) // 个人回答列表
 	mux.HandleFunc("/addtopics", chat.AddTopics)             // 添加帖子
 	//================================================================= thesis
-	mux.HandleFunc("/paper",thesis.articleList)
-	mux.HandleFunc("/paperweb",thesis.articleDetial)
-	mux.HandleFunc("/paper",thesis.isCollectedArticle)
-	//================================================================= ......
+	mux.HandleFunc("/paper", thesis.articleList)
+	mux.HandleFunc("/paperweb", thesis.articleDetial)
+	mux.HandleFunc("/paper", thesis.isCollectedArticle)
+	//================================================================= feedback
+	mux.HandleFunc("/addfeedback", feedback.Addfeedback)
+	mux.HandleFunc("/userfeedback", feedback.Userfeedback)
+	//=================================================================
 	server := &http.Server{
-		Addr: "0.0.0.0:4400",
-		Handler: mux,
+		Addr:        "0.0.0.0:4400",
+		Handler:     mux,
 		ReadTimeout: time.Duration(10 * int64(time.Second)),
 	}
 	server.ListenAndServe()

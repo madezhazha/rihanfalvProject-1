@@ -14,8 +14,8 @@ func main() {
 
 	mux.HandleFunc("/test", route.Test)
 
-	fmt.Println("Web:9000")
-	err := http.ListenAndServe(":9000", mux)
+	fmt.Println("Web:8080启动成功")
+	err := http.ListenAndServe(":8080", mux)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
