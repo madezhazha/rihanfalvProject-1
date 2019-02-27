@@ -1,14 +1,17 @@
-h1{
+.biaoti{
 
     text-align: center;
-    color:blue
+    color:rgb(82, 82, 247);
+    font-size: 30px;
+    font-weight:bold;
+    line-height:70px
 }
 .ex{
     background-color: rgb(238, 242, 245)
 
 }
 #mark{
-    font-size: 20px;
+    font-size: 15px;
     border-color: black;
     width:97%;
     height: 200px;
@@ -23,4 +26,10 @@ button{
 }
 .n{
     font-size:20px
+}
+
+.lx{
+    font-size: 20px;
+    font-weight:bold;
+
 }

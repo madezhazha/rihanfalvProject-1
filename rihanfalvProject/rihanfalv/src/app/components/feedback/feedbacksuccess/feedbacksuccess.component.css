@@ -1,7 +1,10 @@
-h1{
+.biaoti{
 
     text-align: center;
-    color:blue
+    color:rgb(82, 82, 247);
+    font-size: 30px;
+    font-weight:bold;
+    line-height:70px
 }
 h2{
 
