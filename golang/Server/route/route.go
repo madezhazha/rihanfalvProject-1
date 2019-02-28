@@ -16,6 +16,8 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "hello")
 }
 
+
+
 func Cors(w http.ResponseWriter) {
 	//跨域
 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域

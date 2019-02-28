@@ -46,7 +46,7 @@ doSearch(){//搜索按键
   localStorage.setItem('HistoryList',JSON.stringify(this.HistoryList));//储存进localstorage
   this.readHistory()
   this.m_search.KeyWord=this.KeyWord
-  this.m_search.searchgroup=this.searchgroup
+  this.m_search.Classify=this.searchgroup
   this.m_search.searchtogo()//传数据给后端
   this.router.navigate(['searchresult'])
   this.KeyWord=null;

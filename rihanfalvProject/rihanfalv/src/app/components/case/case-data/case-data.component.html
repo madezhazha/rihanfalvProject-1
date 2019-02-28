@@ -3,11 +3,11 @@
   <div style="float:right"><img src={{imageUrl}} (click)="changeImg()" style="width: 23px;"></div>
 </div>
 <div class="judgePoint">
-  <div [innerHTML]="display_data"></div>
-  <div class="veiwAll"><a name="veiwAll" style="text-decoration: none" data-toggle="modal" data-target="#myModal">查看全部</a></div>
+  <div [innerHTML]="displayData"></div>
+  <div class="veiwAll" *ngIf="IsPay"><a name="veiwAll" style="text-decoration: none" data-toggle="modal" data-target="#myModal">查看全部</a></div>
 </div>
 
-<div>
+<!-- <div>
   <h2>(一)首部</h2>
   <div>
     <p>1.裁判书字号</p>
@@ -77,15 +77,14 @@
       <span>再审时间：</span><span>{{retrialtime}}</span>
     </div>
   </div>
+</div> -->
+
+<!-- 这里显示首部 -->
+<div>
+  <h2>首部</h2>
+  <div [innerHTML]="header"></div>
 </div>
 
-
-<!-- <img src="./assets/image/fiveStar1.PNG"> -->
-
-<!-- <img src={{imageUrl}} (click)="changeImg()"> -->
-
-
-<!-- 这里是弹窗的内容 -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLable" aria-hidden="true">
   <div class="modal-dialog">
@@ -191,7 +190,6 @@
     </div>
   </div>
 </div>
-
 
 
 
