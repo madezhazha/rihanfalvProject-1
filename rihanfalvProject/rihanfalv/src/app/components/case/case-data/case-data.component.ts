@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,Renderer2 } from '@angular/core';
 import{ActivatedRoute}from "@angular/router"
 import{HttpClient,HttpHeaders} from '@angular/common/http'
+import {DomSanitizer} from '@angular/platform-browser'
 
 @Component({
   selector: 'app-case-data',
@@ -11,41 +12,27 @@ export class CaseDataComponent implements OnInit {
 
   constructor(
     public activatedRoute:ActivatedRoute,
-    public http:HttpClient
+    public http:HttpClient,
+    private sanitizer:DomSanitizer,
+    private el:ElementRef,
+    private renderer2:Renderer2
   ) { }
 
   ngOnInit() {
     this.getData()
-
     this.getTxt()
   }
 
   //从后端拿数据所设置的变量
   title:string
-  all_data:any  //法官观点
-  display_data:any
-  firstinstance:any  //一审判决书
-  secondtrial:any   //二审判决书
-  thirdtrial:any    //再审判决书
-  publicoffice:any  //公诉机关
-  plaintiff:any     //原告人
-  agent:any         //委托人
-  defendant:any     //被告人
-  counsel:any       //辩护人
-  trialgrade:any    //审级
-  firstcourt:any    //一审法院
-  firstpeople:any   //一审合议庭组成人员
-  secondcourt:any   //二审法院
-  secondpeople:any  //二审合议庭组成人员
-  retrial:any       //再审法院
-  retrialpeople:any //再审合议庭组成人员
-  firsttime:any     //一审结束时间
-  secondtime:any    //二审结束时间
-  retrialtime:any   //再审结束时间
-
-
-  
-
+  viewpoint:any
+  header:any
+  stringLength:number=500
+  displayData:any   //显示数据
+  receiveData:any   //接收从后端发来的数据
+  IsPay:boolean=true     //是否已经交钱,这个是否付钱的操作决定着：是否出现查看全部
+  IsCollection:boolean=false //是否已经收藏
+  casecontent:any
 
   imageUrl:string='./assets/image/fiveStar1.PNG'
 
@@ -76,6 +63,7 @@ export class CaseDataComponent implements OnInit {
   getData(){
     this.activatedRoute.queryParams.subscribe(params=>{
       this.title=params["title"]
+      this.casecontent=params["casecontent"]
     })
     console.log(this.title)  //成功接收到数据
   }
@@ -88,32 +76,44 @@ export class CaseDataComponent implements OnInit {
 
     var api = "http://localhost:8009/displaytxt"
 
-    this.http.post(api,{"content":this.title},httpOptions).subscribe((response:any)=>{
-      this.all_data=response["judgepoint"]   //法官观点
-      this.display_data=this.all_data.substr(0,300)   //法官观点的截取
-      this.firstinstance = response["firstinstance"]
-      this.secondtrial = response["secondtrial"]
-      this.thirdtrial = response["thirdtrial"]
-      this.publicoffice = response["publicoffice"]
-      this.plaintiff = response["plaintiff"]
-      this.agent = response["agent"]
-      this.defendant = response["defendant"]
-      this.counsel = response["counsel"]
-      this.trialgrade = response["trialgrade"]
-      this.firstcourt = response["firstcourt"]
-      this.firstpeople = response["firstpeople"]
-      this.secondcourt = response["secondcourt"]
-      this.secondpeople = response["secondpeople"]
-      this.retrial = response["retrial"]
-      this.retrialpeople = response["retrialpeople"]
-      this.firsttime = response["firsttime"]
-      this.secondtime = response["secondtime"]
-      this.retrialtime = response["retrialtime"]
+    this.http.post(api,{"content":this.title,"useid":"悟悔"},httpOptions).subscribe((response:any)=>{
+      this.viewpoint=response["viewpoint"]
+      // this.receiveData=this.viewpoint.substr(0,500)   //限制显示字符串的个数  现在不用字符串限制了
+      this.displayData=this.sanitizer.bypassSecurityTrustHtml(this.viewpoint)
+      this.header=this.sanitizer.bypassSecurityTrustHtml(response['header'])
+
+      //判断是否收藏和付款
+      if(response["ispay"]==="1"){
+        this.IsPay=false
+        this.renderer2.setStyle(this.el.nativeElement.querySelector(".judgePoint"),'height',"auto")
+      }else{
+        this.IsPay=true
+      }
+
+      if(response['iscollection']==='1'){
+        this.changeImg()
+      }
+
+      console.log(this.IsPay)
     })
   }
 
   displayAlldata(){
-    this.display_data=this.all_data
+    this.IsPay=false
+    this.displayData=this.sanitizer.bypassSecurityTrustHtml(this.viewpoint)   //为了要将HTML中的内容与原先的一模一样的显示出来
+    this.renderer2.setStyle(this.el.nativeElement.querySelector(".judgePoint"),'height',"auto")
+  }
+
+  getest(){
+    const httpOptions={
+      headers:new HttpHeaders({'Content-Type':"application/json"})
+    }
+
+    var api = "http://localhost:8009/alipay"
+
+    this.http.post(api,{"content":"全部"},httpOptions).subscribe((response:any)=>{
+      console.log(response)
+    })
   }
 
 }
