@@ -13,9 +13,9 @@
   }
 
   .paperlist{
-      height: auto;
+      height: 100%;
       overflow: hidden;
-      padding-bottom: 10px;
+      padding-bottom: 0px;
       padding-top: 10px;
   }
 
@@ -23,12 +23,11 @@
     position: relative;
     background: white;
     position: relative;
-    width: 424px;
-    height: 85px;
-    border-radius: 7px;
+    width: 450px;
+    height: 90px;
     cursor: pointer;
-    margin-top: 5px;
-    margin-left: 12px;
+    border-bottom: 1px solid gray;
+    margin-top: 0.5px;
 }
 
 
@@ -49,7 +48,7 @@
 
 .picture{
     width:80px;
-    height: 85px;
+    height: 90px;
     border-radius: 3px;
 }
 

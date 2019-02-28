@@ -14,7 +14,7 @@ export class PaperwebComponent implements OnInit {
   @ViewChild('contentbox') contentbox:ElementRef;
   @ViewChild('text') text:ElementRef;
   @ViewChild('show') showbutton:ElementRef;
-
+  @ViewChild('more') more:ElementRef;
 
   ID:number; 
   Collectword:string="收藏";  //bug
@@ -30,6 +30,7 @@ export class PaperwebComponent implements OnInit {
   mshow(){
     this.renderer2.setStyle(this.showbutton.nativeElement,"display","none")
     this.renderer2.setStyle(this.contentbox.nativeElement,"height","auto")
+    this.renderer2.setStyle(this.more.nativeElement,"display","none")
   }
 
 
