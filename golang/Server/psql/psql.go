@@ -24,7 +24,6 @@ var db *sql.DB
 
 func init() {
 	db = open()
-	defer db.Close()
 	fmt.Println("数据库连接成功")
 }
 
