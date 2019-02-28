@@ -3,7 +3,7 @@ package psql
 import (
 	"fmt"
 
-	_ "github.com/lib/pq"
+	//_ "github.com/lib/pq"
 )
 
 type Feedback struct {
