@@ -27,3 +27,7 @@ func init() {
 	defer db.Close()
 	fmt.Println("数据库连接成功")
 }
+
+func TestDB() {
+	fmt.Print("数据库连接测试完成\n")
+}

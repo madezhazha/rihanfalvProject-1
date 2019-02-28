@@ -5,10 +5,13 @@ import (
 	"log"
 	"net/http"
 
+	"./psql"
 	"./route"
 )
 
 func main() {
+
+	psql.TestDB()
 
 	mux := http.NewServeMux()
 

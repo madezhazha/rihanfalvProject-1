@@ -147,15 +147,14 @@
 
 <!-- 显示数据库的数据 -->
 <div class="bigContent" id="bigContent">
-    <li style="height:580px;border:1px solid;border-radius: 8px;list-style: none"  *ngFor="let item of PageList">
+    <li style="height:250px;border:1px solid;border-radius: 8px;list-style: none"  *ngFor="let item of PageList">
         <div>
-            <h2 style="color:black">{{item.title}}</h2>
+            <h2 style="color:black">{{item.casetitle}}</h2>
             <p style="color:black">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}</p>
-            <p style="color:black">{{item.casecontent}}</p>
+            <div style="height:100px;overflow:hidden"><p style="color:black">{{item.casecontent}}</p></div>
             <p><span><h2 style="color:blue"><a routerLink="/display-data" (click)="sendData(item.casetitle)">裁判书</a></h2></span></p>
         </div>
     </li>
-
     <div>
         <button type="button" [disabled]="!preShow" (click)="showPrePage()"class="previous"><a (click)="goTo('result')">上一页</a></button>
         <input type="text" (change)="onChangePage($event.target.value)" placeholder="{{curPage}}" value="{{curPage}}" style="width: 29px;height: 30px;">
@@ -168,8 +167,6 @@
         <span>共{{list.length}}条</span>
       </div>
 </div>
-
-
 
 
 
