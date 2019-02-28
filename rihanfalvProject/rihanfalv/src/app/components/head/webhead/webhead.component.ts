@@ -15,7 +15,7 @@ export class WebheadComponent implements OnInit {
   IfLogin:boolean=false;  //是否已经登录
 
 
-  In:InputData={IfLogin:false,Tip:"",Image};
+  In:InputData={ID:'',IfLogin:false,Tip:"",Image,Token:''}
 
   constructor() { }
 
