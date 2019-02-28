@@ -72,8 +72,8 @@
 .remove{
     font-size: 14px;
 }
-    body {
-    /* top: 0px;
+    /* body {
+    top: 0px;
     margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
@@ -83,8 +83,8 @@
     min-width: 220px;
     border-style: solid;
     border-color: darkgray;
-    border-width: 1px; */
-    }
+    border-width: 1px; 
+    }*/
     .module{
     text-align:center;
     border-style: solid;

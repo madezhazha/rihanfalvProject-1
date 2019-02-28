@@ -16,9 +16,12 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/test", route.Test)
+	
+	mux.HandleFunc("/addfeedback", route.Addfeedback)
+	mux.HandleFunc("/userfeedback", route.Userfeedback)
 
-	fmt.Println("Web:8080启动成功")
-	err := http.ListenAndServe(":8080", mux)
+	fmt.Println("Web:7080启动成功")
+	err := http.ListenAndServe(":7080", mux)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

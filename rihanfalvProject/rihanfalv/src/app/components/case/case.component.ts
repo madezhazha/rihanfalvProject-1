@@ -196,12 +196,10 @@ export class CaseComponent implements OnInit {
     }
   
     //上面设置的都是第一，第二层的页面的设置，下面是从数据库接受到数据之后的显示
-    // num:number=this.list.length;
 
     changeSearchContent(content:string){
       this.searchContent=content;
       this.list=[]
-
       //这里使用get请求就行了，发送的数据再说
 
       const httpOptions={
@@ -221,8 +219,7 @@ export class CaseComponent implements OnInit {
             this.list.push(this.data)
           }
         }
-
-        // console.log(this.list)  用来测试，能否成功的将数据接收到
+        // console.log(this.list)  //用来测试，能否成功的将数据接收到
         this.onChangePageSize("10")
       })
 
@@ -257,9 +254,6 @@ export class CaseComponent implements OnInit {
           this.list.push(this.data)
         }
       }
-
-      // console.log(this.list)
-
       //为什么会在这里显示呢？这是因为执行一次：getPageList()不起任何作用，list的值不会传进去
       this.onChangePageSize("10")
     })
