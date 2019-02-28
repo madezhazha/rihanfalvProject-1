@@ -17,7 +17,7 @@ export class LandComponent implements OnInit {
   @Output() gotoForgetPasswords= new EventEmitter(); //跳转到忘记密码界面
   @Output() LoginData = new EventEmitter<InputData>();
 
-  in:InputData={IfLogin:false,Tip:"",Image}         //传到子组件（“register”，“forgetPassword”，“land”）
+  in:InputData={ID:'',IfLogin:false,Tip:"",Image,Token:''}         //传到子组件（“register”，“forgetPassword”，“land”）
   out:OutputData={Email:"",Password:""}             //传到父组件（webhead）的数据
   conversions:any                     
 
@@ -44,6 +44,8 @@ export class LandComponent implements OnInit {
     this.https.getInput(this.out).subscribe(
       (data:InputData)=>{
         this.in=data;
+        localStorage.setItem("id",this.in.ID);
+        localStorage.setItem('token',this.in.Token);
         this.LoginData.emit(this.in);
       }
     )
