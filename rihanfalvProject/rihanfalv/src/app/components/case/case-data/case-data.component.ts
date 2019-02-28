@@ -3,6 +3,7 @@ import{ActivatedRoute}from "@angular/router"
 import{HttpClient,HttpHeaders} from '@angular/common/http'
 import {DomSanitizer} from '@angular/platform-browser'
 
+
 @Component({
   selector: 'app-case-data',
   templateUrl: './case-data.component.html',
@@ -34,10 +35,10 @@ export class CaseDataComponent implements OnInit {
   IsCollection:boolean=false //是否已经收藏
   casecontent:any
 
-  imageUrl:string='./assets/image/fiveStar1.PNG'
+  imageUrl:string='./assets/images/fiveStar1.PNG'
 
   changeImg(){
-    this.imageUrl='./assets/image/fiveStar2.PNG'
+    this.imageUrl='./assets/images/fiveStar2.PNG'
   }
 
   money:string="5";
@@ -65,7 +66,7 @@ export class CaseDataComponent implements OnInit {
       this.title=params["title"]
       this.casecontent=params["casecontent"]
     })
-    console.log(this.title)  //成功接收到数据
+    // console.log(this.title)  //成功接收到数据
   }
 
 
@@ -74,9 +75,9 @@ export class CaseDataComponent implements OnInit {
       headers:new HttpHeaders({'content-Type':'application/json'})
     }
 
-    var api = "http://localhost:8009/displaytxt"
+    var api = "http://localhost:7080/displaytxt"
 
-    this.http.post(api,{"content":this.title,"useid":"悟悔"},httpOptions).subscribe((response:any)=>{
+    this.http.post(api,{"content":this.title},httpOptions).subscribe((response:any)=>{
       this.viewpoint=response["viewpoint"]
       // this.receiveData=this.viewpoint.substr(0,500)   //限制显示字符串的个数  现在不用字符串限制了
       this.displayData=this.sanitizer.bypassSecurityTrustHtml(this.viewpoint)
@@ -93,8 +94,6 @@ export class CaseDataComponent implements OnInit {
       if(response['iscollection']==='1'){
         this.changeImg()
       }
-
-      console.log(this.IsPay)
     })
   }
 

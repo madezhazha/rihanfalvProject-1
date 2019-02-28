@@ -206,7 +206,7 @@ export class CaseComponent implements OnInit {
         headers:new HttpHeaders({'Content-Type':'application/json'})
       }
 
-      var api = "http://localhost:8009/alldata"
+      var api = "http://localhost:7080/alldata"
 
       // 注意这里的content是要搞事情的
 
@@ -241,7 +241,7 @@ export class CaseComponent implements OnInit {
       headers:new HttpHeaders({'Content-Type':'application/json'})
     }
 
-    var api = "http://localhost:8009/alldata"
+    var api = "http://localhost:7080/alldata"
 
     // 注意这里的content是要搞事情的
 

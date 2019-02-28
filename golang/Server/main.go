@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
 	"./psql"
 	"./route"
 )
@@ -19,6 +18,9 @@ func main() {
 	
 	mux.HandleFunc("/addfeedback", route.Addfeedback)
 	mux.HandleFunc("/userfeedback", route.Userfeedback)
+	//我自己添加的案例分析
+	mux.HandleFunc("/alldata",route.Displayhomeall)
+	mux.HandleFunc("/displaytxt",route.Displaytxt)
 
 	fmt.Println("Web:7080启动成功")
 	err := http.ListenAndServe(":7080", mux)
