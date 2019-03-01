@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat-head',
   templateUrl: './chat-head.component.html',
-  styleUrls: ['./chat-head.component.scss']
+  styleUrls: ['./chat-head.component.css']
 })
 export class ChatHeadComponent implements OnInit {
 

@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"../psql"
+	"strconv"
 	
 )
 
@@ -19,7 +20,7 @@ type Mes struct{
 
 //按信息查询文章详情
 type Detial struct{
-	ID int;
+	ID string;
 	Country string;
 }
 
@@ -65,10 +66,11 @@ func articleDetial(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	var article psql.Article
+	id,_:=strconv.Atoi(detial.ID)
 	if detial.Country=="Japan"{
-		article=psql.GetJapanArticle(detial.ID)  //collletion.ArticleID
+		article=psql.GetJapanArticle(id)  //collletion.ArticleID
 	}else if detial.Country=="Korea"{
-		article=psql.GetKoreaArticle(detial.ID)
+		article=psql.GetKoreaArticle(id)
 	}
 	
 	//判断是否收藏

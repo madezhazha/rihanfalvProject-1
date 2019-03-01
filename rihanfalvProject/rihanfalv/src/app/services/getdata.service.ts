@@ -7,9 +7,9 @@ export class GetdataService {
 
   constructor(private http: HttpClient) { }
   get() {
-    return this.http.get('http://localhost:8080/get');
+    return this.http.get('http://localhost:7080/get');
   }
   change(user) {
-    return this.http.post('http://localhost:8080/put', user);
+    return this.http.post('http://localhost:7080/post', user);
   }
 }

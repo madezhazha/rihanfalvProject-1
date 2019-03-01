@@ -45,7 +45,6 @@ body {
     background-image: none;
     max-width: 450px;
     min-width: 220px; 
-    width: 100%; 
     
     text-align: left;
 
@@ -186,7 +185,7 @@ body {
     border-width: 0px;
     left: 10px;
     top: 10px;
-    width: 110px;
+    width: 120px;
     word-wrap: break-word;
 }
 

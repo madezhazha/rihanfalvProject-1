@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"../psql"
-
-	_ "github.com/lib/pq"
+	_ "github.com/bmizerany/pq"
+	// _ "github.com/lib/pq"
 )
 
 func Addfeedback(w http.ResponseWriter, r *http.Request) {

@@ -7,7 +7,7 @@ import { Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
-  styleUrls: ['./popular.component.scss']
+  styleUrls: ['./popular.component.css']
 })
 export class PopularComponent implements OnInit {
 

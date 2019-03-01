@@ -39,7 +39,7 @@ div.head{
 div.title{
     position:absolute;
     z-index:2;
-    top:-3px;
+    top:10px;
     left: 17px;
 }
 p.title{

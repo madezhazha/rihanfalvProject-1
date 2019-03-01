@@ -1,12 +1,11 @@
 package psql
 
 import(
-	//"database/sql"
-	//_"github.com/lib/pq"
+	// _"github.com/lib/pq"
 	"fmt"
-	//"log"
 	"strings"
 )
+
 
 
 //创建一个结构体用来接收所有的数据
@@ -19,32 +18,19 @@ type Information struct{
 	trialgrade string
 	title string
 	event string
+	Type string
 }
 
 
-type concretelaw struct{
-	ID string
-	judgepoint string
-	firstinstance string
-	secondtrial string
-	thirdtrial string
-	title string
-	publicoffice string
-	plaintiff string
-	agent string
-	defendant string
-	counsel string
-	trialgrade string
-	firstcourt string
-	firstpeople string
-	secondcourt string
-	secondpeople string
-	retrial string
-	retrialpeople string
-	firsttime string
-	secondtime string
-	retrialtime string
+
+type concretelaw1 struct{
+	ID string 
+	viewpoint string
+	casetitle string
+	header string
+	Type string
 }
+
 
 
 
@@ -53,9 +39,8 @@ func Getalldata()interface{}{
 
 	all_data := make(map[string]map[string]string)
 
-
 	//数据库的查询
-	rows,err := db.Query("select * from content")
+	rows,err := db.Query("select * from casething")
 
 	if err!=nil{
 		fmt.Println(err)
@@ -65,7 +50,7 @@ func Getalldata()interface{}{
 	var info Information
 
 	for rows.Next(){
-		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event)
+		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event,&info.Type)
 
 		if err!=nil{
 			fmt.Println(err)
@@ -81,6 +66,7 @@ func Getalldata()interface{}{
 		all_data[info.ID]["trialgrade"] = info.trialgrade
 		all_data[info.ID]["casetitle"] = info.title
 		all_data[info.ID]["casecontent"] = info.event
+		all_data[info.ID]["type"] = info.Type
 
 	}
 
@@ -95,7 +81,7 @@ func Getfirstfloor(data string)interface{}{
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from content where causeofaction=$1",data)
+	rows,err := db.Query("select * from casething where causeofaction=$1",data)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -105,7 +91,7 @@ func Getfirstfloor(data string)interface{}{
 	var info Information
 
 	for rows.Next(){
-		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event)
+		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event,&info.Type)
 
 		if err!=nil{
 			fmt.Println(err)
@@ -121,6 +107,7 @@ func Getfirstfloor(data string)interface{}{
 		all_data[info.ID]["trialgrade"] = info.trialgrade
 		all_data[info.ID]["casetitle"] = info.title
 		all_data[info.ID]["casecontent"] = info.event
+		all_data[info.ID]["type"] = info.Type
 	}
 
 	rows.Close()
@@ -135,7 +122,7 @@ func Getreason(data string)interface{}{
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from content where concretecasetype=$1",data)
+	rows,err := db.Query("select * from casething where concretecasetype=$1",data)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -145,7 +132,7 @@ func Getreason(data string)interface{}{
 	var info Information
 
 	for rows.Next(){
-		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event)
+		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event,&info.Type)
 
 		if err!=nil{
 			fmt.Println(err)
@@ -161,6 +148,7 @@ func Getreason(data string)interface{}{
 		all_data[info.ID]["trialgrade"] = info.trialgrade
 		all_data[info.ID]["casetitle"] = info.title
 		all_data[info.ID]["casecontent"] = info.event
+		all_data[info.ID]["type"] = info.Type
 	}
 
 	rows.Close()
@@ -175,7 +163,7 @@ func Getlevel(data string)interface{}{
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from content where trialgrade=$1",data)
+	rows,err := db.Query("select * from casething where trialgrade=$1",data)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -185,7 +173,7 @@ func Getlevel(data string)interface{}{
 	var info Information
 
 	for rows.Next(){
-		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event)
+		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event,&info.Type)
 
 		if err!=nil{
 			fmt.Println(err)
@@ -201,6 +189,7 @@ func Getlevel(data string)interface{}{
 		all_data[info.ID]["trialgrade"] = info.trialgrade
 		all_data[info.ID]["casetitle"] = info.title
 		all_data[info.ID]["casecontent"] = info.event
+		all_data[info.ID]["type"] = info.Type
 	}
 
 	rows.Close()
@@ -215,7 +204,7 @@ func Getsecondfloor(data string)interface{}{
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from content where legalprinciple=$1",data)
+	rows,err := db.Query("select * from casething where legalprinciple=$1",data)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -225,7 +214,7 @@ func Getsecondfloor(data string)interface{}{
 	var info Information
 
 	for rows.Next(){
-		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event)
+		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event,&info.Type)
 
 		if err!=nil{
 			fmt.Println(err)
@@ -241,6 +230,7 @@ func Getsecondfloor(data string)interface{}{
 		all_data[info.ID]["trialgrade"] = info.trialgrade
 		all_data[info.ID]["casetitle"] = info.title
 		all_data[info.ID]["casecontent"] = info.event
+		all_data[info.ID]["type"] = info.Type
 	}
 
 	rows.Close()
@@ -253,7 +243,7 @@ func Gettime(data string)interface{}{
 
 	a:=0
 
-	rows,err := db.Query("select * from content")
+	rows,err := db.Query("select * from casething")
 
 	if err!=nil{
 		fmt.Println(err)
@@ -263,7 +253,7 @@ func Gettime(data string)interface{}{
 	var info Information
 
 	for rows.Next(){
-		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event)
+		err:=rows.Scan(&info.ID,&info.trialtime,&info.causetype,&info.concretecasetype,&info.judgetype,&info.trialgrade,&info.title,&info.event,&info.Type)
 
 		if err!=nil{
 			fmt.Println(err)
@@ -287,7 +277,7 @@ func Gettime(data string)interface{}{
 			all_data[info.ID]["trialgrade"] = info.trialgrade
 			all_data[info.ID]["casetitle"] = info.title
 			all_data[info.ID]["casecontent"] = info.event
-
+			all_data[info.ID]["type"] = info.Type
 			a=0;
 		}
 	}
@@ -299,63 +289,31 @@ func Gettime(data string)interface{}{
 }
 
 
+//法官观点
 func Gettext(data string)interface{}{
-	var con concretelaw
-	var all_data string
+	var con concretelaw1
 
-	//创建一个单个集合承接数据
-	all := make(map[string]string)
-
-	rows,err := db.Query("select * from content where title=$1",data)
+	//创建一个单个集合的承接数据
+	all:=make(map[string]string)
+	rows,err:=db.Query("select * from point where casetitle=$1",data) 
 
 	if err!=nil{
 		fmt.Println(err)
-		return "系统出现错误"
+		return "系统出席那错误"
 	}
-
-
 	for rows.Next(){
-		err:=rows.Scan(&con.ID,&con.judgepoint,&con.firstinstance,&con.secondtrial,&con.thirdtrial,&con.title,&con.publicoffice,&con.plaintiff,&con.agent,&con.defendant,&con.counsel,&con.trialgrade,&con.firstcourt,&con.firstpeople,&con.secondcourt,&con.secondpeople,&con.retrial,&con.retrialpeople,&con.firsttime,&con.secondtime,&con.retrialtime)
-
+		err:=rows.Scan(&con.ID,&con.viewpoint,&con.casetitle,&con.header,&con.Type)
 		if err!=nil{
 			fmt.Println(err)
-			return "系统出现错误2"
+			return "系统出现错误"
 		}
-
-
-
-		all_data=con.judgepoint
-		//数据的替换，可以将数据显示出来
-		all_data=strings.Replace(all_data,"<","&lt;",-1)
-		all_data=strings.Replace(all_data,">","&gt;",-1)
-		all_data=strings.Replace(all_data,"\n","<br>",-1)
-		all_data=strings.Replace(all_data,"\t","&nbsp;&nbsp;&nbsp;",-1)
-		all_data=strings.Replace(all_data,"\n","<br>",-1)
-		all_data=strings.Replace(all_data," ","&nbsp;",-1)
-
-		all["judgepoint"]=all_data
-		all["firstinstance"]=con.firstinstance
-		all["secondtrial"]=con.secondtrial
-		all["thirdtrial"]=con.thirdtrial
-		all["title"]=con.title
-		all["publicoffice"]=con.publicoffice
-		all["plaintiff"]=con.plaintiff
-		all["agent"]=con.agent
-		all["defendant"]=con.defendant
-		all["counsel"]=con.counsel
-		all["trialgrade"]=con.trialgrade
-		all["firstcourt"]=con.firstcourt
-		all["firstpeople"]=con.firstpeople
-		all["secondcourt"]=con.secondcourt
-		all["secondpeople"]=con.secondpeople
-		all["retrial"]=con.retrial
-		all["retrialpeople"]=con.retrialpeople
-		all["firsttime"]=con.firsttime
-		all["secondtime"]=con.secondtime
-		all["retrialtime"]=con.retrialtime
+		all["viewpoint"]=con.viewpoint
+		all["casetitle"]=con.casetitle
+		all["header"]=con.header
+		all["type"]=con.Type
 	}
 
-	rows.Close()
+	defer rows.Close()
 
 	return all
 }
