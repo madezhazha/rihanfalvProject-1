@@ -1,7 +1,7 @@
 package psql
 
 import(
-	_"github.com/lib/pq"
+	// _"github.com/lib/pq"
 	"fmt"
 	"strings"
 )

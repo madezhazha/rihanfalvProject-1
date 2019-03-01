@@ -21,11 +21,13 @@ func main() {
 	//我自己添加的案例分析
 	mux.HandleFunc("/alldata",route.Displayhomeall)
 	mux.HandleFunc("/displaytxt",route.Displaytxt)
+	// 个人主页
+	mux.HandleFunc("/get", route.Get)
+	mux.HandleFunc("/post", route.Post)
 
 	fmt.Println("Web:7080启动成功")
 	err := http.ListenAndServe(":7080", mux)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
-
 }

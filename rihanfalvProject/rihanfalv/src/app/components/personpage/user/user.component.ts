@@ -21,12 +21,12 @@ export class UserComponent implements OnInit {
     RegisterDate: ''
   };
   imgsrcs: string[] = [
-    '../../../assets/image/1.jpg',
-    '../../../assets/image/2.jpg',
-    '../../../assets/image/3.jpg',
-    '../../../assets/image/4.jpg',
-    '../../../assets/image/5.jpg',
-    '../../../assets/image/6.jpg'
+    '../../../../assets/images/1.jpg',
+    '../../../../assets/images/2.jpg',
+    '../../../../assets/images/3.jpg',
+    '../../../../assets/images/4.jpg',
+    '../../../../assets/images/5.jpg',
+    '../../../../assets/images/6.jpg'
   ];
   msgs: string[] = [
     '信息不完整请补全信息！',
