@@ -31,10 +31,13 @@ func main() {
 	mux.HandleFunc("/thread/collect", route.Collect)
 	mux.HandleFunc("/thread/cancel", route.Cancel)
 
+	// 个人主页
+	mux.HandleFunc("/get", route.Get)
+	mux.HandleFunc("/post", route.Post)
+
 	fmt.Println("Web:7080启动成功")
 	err := http.ListenAndServe(":7080", mux)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
-
 }
