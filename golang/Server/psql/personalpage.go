@@ -3,29 +3,33 @@ package psql
 import (
 	// "database/sql"
 	"fmt"
-	_ "github.com/bmizerany/pq"
 	"log"
+
+	_ "github.com/bmizerany/pq"
 )
+
 type User struct {
-	UserId int
-	UserName string
-	Password string
-	Email string
-	Image string
-	Integral int
+	UserId       int
+	UserName     string
+	Password     string
+	Email        string
+	Image        string
+	Integral     int
 	RegisterDate string
 }
-var  user1 User
+
+var user1 User
 var err error
-func SelectUser() User{
-	rows, err := db.Query("SELECT * FROM page")	//执行一次查询，返回多行结果
+
+func SelectUser() User {
+	rows, err := db.Query("SELECT * FROM page") //执行一次查询，返回多行结果
 	if err != nil {
 		log.Fatal(err)
 	}
 	//如果Next()返回假，rows回自动close()
-	for rows.Next(){
+	for rows.Next() {
 		//注意这里的Scan括号中的参数顺序，和 SELECT 的字段顺序要保持一致。
-		if err := rows.Scan(&user1.UserId, &user1.UserName, &user1.Password, &user1.Email,&user1.Image,&user1.Integral,&user1.RegisterDate); err != nil {
+		if err := rows.Scan(&user1.UserId, &user1.UserName, &user1.Password, &user1.Email, &user1.Image, &user1.Integral, &user1.RegisterDate); err != nil {
 			log.Fatal(err)
 		}
 	}
@@ -43,7 +47,7 @@ func UpdateUser(user User) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	_, err = stmt.Exec(user.UserName,user.Password,user.Email,user.Image,user.Integral,user.RegisterDate,user.UserId)
+	_, err = stmt.Exec(user.UserName, user.Password, user.Email, user.Image, user.Integral, user.RegisterDate, user.UserId)
 	stmt.Close()
 	fmt.Println("修改成功！")
 }

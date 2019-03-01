@@ -32,7 +32,7 @@ func GetPost(topicid int) (usersAndPosts []map[string]interface{}, err error) {
 	}
 	for rows.Next() {
 		conv := Post{}
-		user := User{}
+		user := MyUser{}
 		userAndPost := make(map[string]interface{})
 		if err = rows.Scan(
 			&conv.Replieid, &conv.Userid, &conv.Topicid, &conv.Repiycontent,
@@ -54,7 +54,7 @@ func GetPost(topicid int) (usersAndPosts []map[string]interface{}, err error) {
 }
 
 // User 根据回帖的userid找到用户
-func (post *Post) User() (user User, err error) {
+func (post *Post) User() (user MyUser, err error) {
 	err = db.QueryRow("SELECT userid, username, email, image,integral,registrationdate FROM users WHERE userid = $1", post.Userid).
 		Scan(&user.Userid, &user.Username, &user.Email, &user.Image, &user.Integral, &user.Registrationdate)
 	return

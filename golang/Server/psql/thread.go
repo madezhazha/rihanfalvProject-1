@@ -11,8 +11,8 @@ import (
 // JSONTime json的格式化时间
 type JSONTime time.Time
 
-// User 用户的结构体
-type User struct {
+// MyUser 用户的结构体
+type MyUser struct {
 	Userid           int
 	Username         string
 	Password         string
@@ -45,7 +45,7 @@ func GetThread() (usersAndThreads []map[string]interface{}, err error) {
 	}
 	for rows.Next() {
 		conv := Thread{}
-		user := User{}
+		user := MyUser{}
 		userAndThread := make(map[string]interface{})
 		if err = rows.Scan(
 			&conv.ID, &conv.Userid, &conv.Topictitle, &conv.Topiccontent, &conv.Creationtime, &conv.Numberofreplies,
@@ -66,7 +66,7 @@ func GetThread() (usersAndThreads []map[string]interface{}, err error) {
 }
 
 // User 根据主帖的userid找到指定的用户
-func (thread *Thread) User() (user User, err error) {
+func (thread *Thread) User() (user MyUser, err error) {
 	err = db.QueryRow("SELECT userid, username, email, image,integral,registrationdate FROM users WHERE userid = $1", thread.Userid).
 		Scan(&user.Userid, &user.Username, &user.Email, &user.Image, &user.Integral, &user.Registrationdate)
 	return
