@@ -29,12 +29,13 @@ export class TagComponent implements OnInit {
   search() {
     this.dataService.search(this.inputValue).subscribe((response) => {
       this.resultData = response;
-      this.nowData = this.resultData.slice(0, 2);
-      console.log(this.resultData);
-      if (this.nowData.length == this.resultData.length) {
-        this.isMax = true;
-      } else {
-        this.isMax = false;
+      if (this.resultData != null) {
+        this.nowData = this.resultData.slice(0, 2);
+        if (this.nowData.length == this.resultData.length) {
+          this.isMax = true;
+        } else {
+          this.isMax = false;
+        }
       }
     });
   }

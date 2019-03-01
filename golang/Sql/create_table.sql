@@ -71,4 +71,31 @@ feedbackreplie text NOT NULL
 --案例分析
 
 
+--讨论区
+CREATE TABLE topics (
+  topicid serial primary key NOT NULL,
+  posterid int2 NOT NULL,
+  topictitle text NOT NULL,
+  topiccontent text NOT NULL,
+  creationtime timestamp(0) NOT NULL,
+  numberofreplies int4 DEFAULT 0,
+  finalreplytime timestamp(0),
+  collectionvolume int4 DEFAULT 0,
+  visitvolume int4 DEFAULT 0,
+  japanorkorea int2,
+  label varchar(255)
+);
+
+
+CREATE TABLE replies (
+  replieid serial primary key NOT NULL,
+  userid int4 NOT NULL,
+  topicid int4 NOT NULL,
+  replycontent text ,
+  floor int4 NOT NULL,
+  replytime timestamp(6)
+);
+
+
+
 

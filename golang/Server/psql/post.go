@@ -80,7 +80,10 @@ func CreatePost(userID int, topicID int, text string, floor int) error {
 // IsCollected 根据用户id和主贴id判断收藏表里面指定用户是否收藏某个主贴
 func IsCollected(userID int, topicID int) (collection Collection, err error) {
 	rows, err := db.Query("SELECT * FROM collection WHERE userid = $1 AND collectiontype=$2 AND collectioncontentid=$3",
-		userID, "主贴", topicID)
+		userID, "topics", topicID)
+	if err != nil {
+		return
+	}
 	for rows.Next() {
 		if err = rows.Scan(&collection.Collectionid, &collection.Userid, &collection.Collectioncontentid,
 			&collection.Collectiontime, &collection.Collectiontype); err != nil {
@@ -98,7 +101,7 @@ func Collect(userID int, topicID int) (collectionid int, err error) {
 		return
 	}
 	defer stmt.Close()
-	err = stmt.QueryRow(userID, topicID, time.Now(), "主贴").Scan(&collectionid)
+	err = stmt.QueryRow(userID, topicID, time.Now(), "topics").Scan(&collectionid)
 	return
 }
 
@@ -110,7 +113,7 @@ func Cancel(userID int, topicID int) (collectionid int, err error) {
 		return
 	}
 	defer stmt.Close()
-	_, err = stmt.Exec(userID, topicID, "主贴")
+	_, err = stmt.Exec(userID, topicID, "topics")
 	if err != nil {
 		return
 	}

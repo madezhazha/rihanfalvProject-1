@@ -35,19 +35,19 @@ export class PostComponent implements OnInit {
     this.activatedRouter.queryParams.subscribe((response) => {
       // debugger;
       this.hostData = response;
-      console.log(this.hostData.topicID);
+      // console.log(this.hostData.topicID);
       // 1是假数据，代表用户id
       this.dataService.getPostList(1, response.topicID).subscribe((resp) => {
         this.collection = resp.collection;
-        console.log(this.collection.Collectioncontentid);
         this.post = resp.post;
         this.thread = resp.thread;
-        this.nowData = this.post.slice(0, 4);
-        console.log(resp);
-        if (this.nowData.length == this.post.length) {
-          this.isMax = true;
-        } else {
-          this.isMax = false;
+        if (this.post != null) {
+          this.nowData = this.post.slice(0, 4);
+          if (this.nowData.length == this.post.length) {
+            this.isMax = true;
+          } else {
+            this.isMax = false;
+          }
         }
       });
     });

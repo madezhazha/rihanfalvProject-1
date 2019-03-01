@@ -39,7 +39,7 @@ type Thread struct {
 
 // GetThread 从数据库获取所有的帖子
 func GetThread() (usersAndThreads []map[string]interface{}, err error) {
-	rows, err := db.Query("SELECT topicid,userid,topictitle,topiccontent,creationtime,numberofreplies,finalreplytime,collectionvolume,visitvolume,japanorkorea FROM topics ORDER BY topicid")
+	rows, err := db.Query("SELECT topicid,posterid,topictitle,topiccontent,creationtime,numberofreplies,finalreplytime,collectionvolume,visitvolume,japanorkorea FROM topics ORDER BY topicid")
 	if err != nil {
 		return
 	}
@@ -72,12 +72,15 @@ func (thread *Thread) User() (user MyUser, err error) {
 	return
 }
 
-// ThreadByTopicID 根据topicid找到对应的唯一主贴(包过用户)
+// ThreadByTopicID 根据topicid找到对应的唯一主贴(包过主贴的用户信息)
 func ThreadByTopicID(topicID int) (userAndThread map[string]interface{}, err error) {
 	thread := Thread{}
 	userAndThread = make(map[string]interface{})
-	err = db.QueryRow("SELECT topicid,userid,topictitle,topiccontent,creationtime FROM topics WHERE topicid = $1", topicID).
+	err = db.QueryRow("SELECT topicid,posterid,topictitle,topiccontent,creationtime FROM topics WHERE topicid = $1", topicID).
 		Scan(&thread.ID, &thread.Userid, &thread.Topictitle, &thread.Topiccontent, &thread.Creationtime)
+	if err != nil {
+		return
+	}
 	userAndThread["thread"] = thread
 	userAndThread["user"], err = thread.User()
 	if err != nil {
@@ -105,7 +108,7 @@ func AddRepNum(topicID int) error {
 // RsByCondition 根据查询条件查询出结果
 func RsByCondition(condition []string) (thread []Thread, err error) {
 	for i, value := range condition {
-		rows, err := db.Query("SELECT topicid,userid,topictitle,topiccontent,creationtime FROM topics where label like $1 ORDER BY topicid", "%"+value+"%")
+		rows, err := db.Query("SELECT topicid,posterid,topictitle,topiccontent,creationtime FROM topics where label like $1 ORDER BY topicid", "%"+value+"%")
 		if err != nil {
 			return nil, err
 		}

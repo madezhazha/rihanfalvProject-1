@@ -1,7 +1,6 @@
 package route
 
 import (
-	//"ChatServe/psql"
 	"encoding/json"
 	"net/http"
 	"strconv"

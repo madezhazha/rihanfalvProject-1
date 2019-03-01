@@ -27,14 +27,16 @@ export class PopularComponent implements OnInit {
     this.dataService.getThreadList().subscribe((response) => {
       // debugger;
       this.threadList = response;
-      this.nowData = this.threadList.slice(0, 2);
-      console.log(this.threadList);
-      console.log(this.nowData);
-      if (this.nowData.length == this.threadList.length) {
-        this.isMax = true;
-      } else {
-        this.isMax = false;
+      if (this.threadList) {
+        this.nowData = this.threadList.slice(0, 1);
+        if (this.nowData.length == this.threadList.length) {
+          this.isMax = true;
+        } else {
+          this.isMax = false;
+        }
       }
+      // console.log(this.threadList);
+      // console.log(this.nowData);
     });
   }
 
@@ -48,9 +50,12 @@ export class PopularComponent implements OnInit {
   }
 
   more() {
-    this.nowData = this.threadList.slice(0, this.nowData.length + 5);
-    console.log(this.nowData);
-    if (this.nowData.length == this.threadList.length) {
+    if (this.threadList != null) {
+      this.nowData = this.threadList.slice(0, this.nowData.length + 5);
+      if (this.nowData.length == this.threadList.length) {
+        this.isMax = true;
+      }
+    } else {
       this.isMax = true;
     }
   }
