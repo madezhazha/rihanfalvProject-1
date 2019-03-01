@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-reply-page',
   templateUrl: './reply-page.component.html',
-  styleUrls: ['./reply-page.component.scss']
+  styleUrls: ['./reply-page.component.css']
 })
 export class ReplyPageComponent implements OnInit {
 

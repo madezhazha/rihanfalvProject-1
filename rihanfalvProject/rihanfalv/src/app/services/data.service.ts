@@ -9,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  apiUrl1 = "http://localhost:8888/thread"
-  apiUrl2 = "http://localhost:8888/thread/list"
-  apiUrl3 = "http://localhost:8888/thread/post"
-  apiUrl4 = "http://localhost:8888/thread/reply"
-  apiUrl5 = "http://localhost:8888/thread/search"
-  apiUrl6 = "http://localhost:8888/thread/collect"
-  apiUrl7 = "http://localhost:8888/thread/cancel"
+  apiUrl1 = "http://localhost:7080/thread"
+  apiUrl2 = "http://localhost:7080/thread/list"
+  apiUrl3 = "http://localhost:7080/thread/post"
+  apiUrl4 = "http://localhost:7080/thread/reply"
+  apiUrl5 = "http://localhost:7080/thread/search"
+  apiUrl6 = "http://localhost:7080/thread/collect"
+  apiUrl7 = "http://localhost:7080/thread/cancel"
 
   constructor(
     private http: HttpClient

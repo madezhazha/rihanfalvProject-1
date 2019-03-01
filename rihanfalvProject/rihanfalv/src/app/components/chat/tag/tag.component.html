@@ -52,13 +52,13 @@
 
 <div style="margin-top:20px;margin-left: 20px;" *ngFor="let item of nowData">
 
-  <div style="font-size:20px;">
+  <div style="font-size:20px;margin-bottom: 5px;">
     <div>
-      <a href="post?topicID={{item.ID}}" style="color: black;text-decoration: none;">问题:{{item.Topictitle}}</a>
+      <a href="post?topicID={{item.ID}}" style="color: #0366d6;text-decoration: none;">问题:{{item.Topictitle}}</a>
     </div>
   </div>
 
-  <div style="font-size:12px;font-size: 14px;color: #767474;">
+  <div style="font-size:12px;font-size: 14px;color: #767474;margin-bottom: 15px;">
     <div>
       <p><span>描述:{{item.Topiccontent}}</span></p>
     </div>
@@ -66,13 +66,13 @@
 
   <div style="font-size: 13px;;float: left;">
     <div>
-      <p><span>楼主:</span></p>
+      <p><span style="color: #767474;">楼主:</span></p>
     </div>
   </div>
 
-  <div style="font-size:12px;margin-left: 100px;">
+  <div style="font-size:12px;margin-left: 100px;margin-top: 1.8px;">
     <div>
-      <p><span>时间:{{item.Creationtime}}</span></p>
+      <p><span style="color: #767474;">时间:{{item.Creationtime}}</span></p>
     </div>
   </div>
 
