@@ -14,8 +14,8 @@ export class PersonalfeedbackComponent implements OnInit {
   ngOnInit() {
     const httpOptions={headers:new HttpHeaders({'Content-Type' :'application/json'})}
     let api='http://localhost:7080/userfeedback';
-    this.http.post(api,{"userid":'owen'},httpOptions).subscribe((response:any)=>{
-            this.list=response.result;
+    this.http.post(api,{"userid":'9527'},httpOptions).subscribe((response:any)=>{
+            this.list=response;
             console.log(this.list)
            //console.log(this.id)
            //alert('成功')

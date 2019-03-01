@@ -2,7 +2,7 @@ package route
 import(
 	"encoding/json"
 	"fmt"
-	_ "github.com/bmizerany/pq"
+	//_ "github.com/bmizerany/pq"
 	"io/ioutil"
 	"net/http"
 	"../psql"

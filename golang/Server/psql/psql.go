@@ -3,8 +3,8 @@ package psql
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/bmizerany/pq"
-	//_ "github.com/lib/pq"
+
+	_ "github.com/lib/pq"
 )
 
 //全局变量，数据库实例
@@ -15,8 +15,8 @@ const (
 	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
-	password = "123456"
-	dbname   = "law"
+	password = "834295"
+	dbname   = "postgres"
 )
 
 //初始化，调用包时执行

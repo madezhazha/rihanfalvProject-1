@@ -1,10 +1,12 @@
 package route
 
 import (
-	"ChatServe/psql"
+	//"ChatServe/psql"
 	"encoding/json"
 	"net/http"
 	"strconv"
+
+	"../psql"
 )
 
 // ListPost 列出某一主贴的所有回帖

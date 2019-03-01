@@ -4,8 +4,7 @@ import (
 	// "database/sql"
 	"fmt"
 	"log"
-
-	_ "github.com/bmizerany/pq"
+	//_ "github.com/bmizerany/pq"
 )
 
 type User struct {

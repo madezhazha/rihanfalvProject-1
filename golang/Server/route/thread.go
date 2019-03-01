@@ -1,10 +1,11 @@
 package route
 
 import (
-	"ChatServe/psql"
 	"encoding/json"
 	"net/http"
 	"strings"
+
+	"../psql"
 )
 
 // ListThread 列出所有的主贴
