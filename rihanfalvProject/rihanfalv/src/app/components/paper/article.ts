@@ -8,4 +8,5 @@ export class Article{
     //Country:string;
     Lable:string[];
     Lablestring:string;
+    Iscollected:boolean;
 }

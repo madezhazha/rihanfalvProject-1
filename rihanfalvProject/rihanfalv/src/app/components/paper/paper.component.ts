@@ -12,10 +12,7 @@ import {fromEvent} from 'rxjs'
 })
 export class PaperComponent implements OnInit {
 
-
-  Islogin:boolean;
   
-
   Isbottom:boolean=false;  //是否页面到底
   Isover:boolean=false;    //文章是否已无
   CurrentPage:number=1;  //但前加载页数最后文章Id
@@ -26,7 +23,7 @@ export class PaperComponent implements OnInit {
 
 
   getArticles(){
-   let api="http://localhost:8000/";
+   let api="http://localhost:8000/paper";
    const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
    this.http.post(api,{CurrentPage:this.CurrentPage,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>
     {
@@ -49,6 +46,7 @@ export class PaperComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.Nowcountry=xxx.get()  //获取当前模块
     fromEvent(window,'scroll')
     .subscribe(
       ()=>{

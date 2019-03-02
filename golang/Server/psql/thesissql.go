@@ -16,8 +16,8 @@ type Article struct{
 	Length int;  //长度
 	Country string;  //国家
 	Lable []string;  //标签组上传给前端
-	//Iscollected bool; //是否收藏
 	Tagstring string; //数据库标签字符串 用于分割合并处理
+	IsCollected bool; //是否收藏
 }
 
 
@@ -167,4 +167,40 @@ func CollectArticle(userid int,ctype string,articleid int,collectiontime string)
 	
 	defer stmt.Close()
 	fmt.Println("insert sucess")
+}
+
+//取消收藏
+func DeleteArticleCollect(userid int,ctype string,articleid int){
+	stmt,erro:=db.Prepare("Delete From collection where userid=$1 and collectiontype=$2 and collectioncontentid=$3")
+	if erro!=nil{
+		fmt.Println("collect prepare erro",erro)
+	}
+	res,erro:=stmt.Exec(userid,ctype,articleid)
+	if erro!=nil{
+		fmt.Println("stmt erro",erro)
+	}
+	
+	res.LastInsertId()
+	
+	defer stmt.Close()
+	fmt.Println("delete sucess")
+}
+
+//查询收藏文章
+func GetCollectedArticle(userid int,ctype string,articleid int) bool{
+	stmt,_:=db.Prepare("Select * from collection where userid=$1 and collectiontype=$2 and collectioncontentid=$3")
+	row,_:=stmt.Query(userid,ctype,articleid)
+	var article Article
+	for row.Next(){
+		erro:=row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Country,&article.Tagstring)
+		if erro!=nil{
+			fmt.Println("Scan erro",erro)
+		}
+	}
+	defer row.Close()
+	if article.ID==0{
+		return false
+	}else{
+		return true
+	} 
 }

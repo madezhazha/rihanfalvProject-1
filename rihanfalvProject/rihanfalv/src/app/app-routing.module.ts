@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'legal', component: LegalComponent },
   { path: 'article', component: ArticleComponent },
   { path: 'content', component: ContentComponent },
-  { path: 'paperweb/:ID', component: PaperwebComponent},
+  { path: 'paperweb/:ArticleID', component: PaperwebComponent},
   { path: 'display-data',component:CaseDataComponent},
   { path: 'post', component: PostComponent },
   { path: 'replyPage', component: ReplyPageComponent },

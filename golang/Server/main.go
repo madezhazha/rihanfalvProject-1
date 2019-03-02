@@ -35,6 +35,11 @@ func main() {
 	mux.HandleFunc("/get", route.Get)
 	mux.HandleFunc("/post", route.Post)
 
+	//论文
+	mux.HandleFunc("/paper",route.ArticleList)  //论文首页
+	mux.HandleFunc("/paperweb",route.ArticleDetial) //论文内容页
+	mux.HandleFunc("/paperweb/collect",route.IsCollectedArticle) //处理论文收藏
+
 	fmt.Println("Web:7080启动成功")
 	err := http.ListenAndServe(":7080", mux)
 	if err != nil {
