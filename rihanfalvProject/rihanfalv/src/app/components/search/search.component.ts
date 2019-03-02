@@ -16,6 +16,7 @@ public IfHistory=false;//是否存在历史记录
 public getkey:any={}
 public searchlist=["全部","法律条文","论文","案例"]
 public searchgroup="全部"
+public ifsearch=false//搜索状态,false显示搜索历史,true显示搜索内容
   constructor(public router: Router,public http:HttpClient,public m_search:DosearchService) { }
 
   ngOnInit() {this.readHistory()
@@ -38,6 +39,7 @@ readHistory(){
 
 
 doSearch(){//搜索按键
+  this.m_search.list=null;
   if(!this.KeyWord)return;
   if(this.HistoryList.indexOf(this.KeyWord)==-1)//判断是否有重复
   this.HistoryList.push(this.KeyWord)//无重复则pushKeyWord进List
@@ -48,7 +50,8 @@ doSearch(){//搜索按键
   this.m_search.KeyWord=this.KeyWord
   this.m_search.Classify=this.searchgroup
   this.m_search.searchtogo()//传数据给后端
-  this.router.navigate(['searchresult'])
+  //this.router.navigate(['searchresult'])
+  this.ifsearch=true
   this.KeyWord=null;
 
 }
