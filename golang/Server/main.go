@@ -16,6 +16,10 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/test", route.Test)
+	//homepage
+	mux.HandleFunc("/homepage/image", route.GetImages)
+	mux.HandleFunc("/homepage/articals",route.GetHomePageArtical)
+	mux.HandleFunc("/homepage/hotnews", route.GetHomePageHotnews)
 
 	mux.HandleFunc("/addfeedback", route.Addfeedback)
 	mux.HandleFunc("/userfeedback", route.Userfeedback)
