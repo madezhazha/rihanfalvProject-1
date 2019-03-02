@@ -27,8 +27,8 @@ export class PersonalfeedbackComponent implements OnInit {
     this.router.navigate(['/Feedback/'])
   }
   bin(){
+    this.router.navigate(['/homepage/'])
     
-  
   }
 
 }
