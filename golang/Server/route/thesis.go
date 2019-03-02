@@ -7,10 +7,8 @@ import (
 	"net/http"
 	"../psql"
 	"strconv"
-	
+	"time"
 )
-
-
 
 //用于按信息查询数据库文章列表
 type Mes struct{
@@ -20,13 +18,21 @@ type Mes struct{
 
 //按信息查询文章详情
 type Detial struct{
-	ID string;
+	UserID string;
+	ArticleID string;
 	Country string;
 }
 
+//处理收藏信息结构体
+type Collection struct{
+	UserID string
+	ArticleID string
+	Country string
+	IsCollected bool
+}
 
 //显示论文列表上传
-func articleList(w http.ResponseWriter, r *http.Request){
+func ArticleList(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问..域  跨域
 	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
 	w.Header().Set("content-type", "application/json")             //返回数据格式是json
@@ -52,7 +58,7 @@ func articleList(w http.ResponseWriter, r *http.Request){
 }
 
 //获取文章详情
-func articleDetial(w http.ResponseWriter, r *http.Request){
+func ArticleDetial(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问..域  跨域
 	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
 	w.Header().Set("content-type", "application/json")             //返回数据格式是json
@@ -66,16 +72,20 @@ func articleDetial(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	var article psql.Article
-	id,_:=strconv.Atoi(detial.ID)
+	articleid,_:=strconv.Atoi(detial.ArticleID)
+	userid,_:=strconv.Atoi(detial.UserID)
 	if detial.Country=="Japan"{
-		article=psql.GetJapanArticle(id)  //collletion.ArticleID
+		article=psql.GetJapanArticle(articleid)  //collletion.ArticleID
+		//判断收藏
+		if userid!=0{
+			article.IsCollected=psql.GetCollectedArticle(userid,"japanthesis",articleid)
+		}
 	}else if detial.Country=="Korea"{
-		article=psql.GetKoreaArticle(id)
+		article=psql.GetKoreaArticle(articleid)
+		if userid!=0{
+			article.IsCollected=psql.GetCollectedArticle(userid,"koreathesis",articleid)
+		}
 	}
-	
-	//判断是否收藏
-	//IsCollected:=getUserCollectiond(psql.DB,collletion)
-	//article.Iscollected=IsCollected
 
 	data,_:=json.Marshal(article)
 	w.Write(data)
@@ -84,10 +94,36 @@ func articleDetial(w http.ResponseWriter, r *http.Request){
 }
 
 //处理文章收藏和取消收藏
-func isCollectedArticle(w http.ResponseWriter, r *http.Request){
+func IsCollectedArticle(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问..域  跨域
 	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
 	w.Header().Set("content-type", "application/json")             //返回数据格式是json
 	defer r.Body.Close()
-	//
+	body, _ := ioutil.ReadAll(r.Body)
+	var collection Collection
+	json.Unmarshal(body,&collection)
+	if collection.Country==""{
+		return
+	}
+	articleid,_:=strconv.Atoi(collection.ArticleID)
+	userid,_:=strconv.Atoi(collection.UserID)
+	if collection.IsCollected==true{
+		if collection.Country=="Japan"{
+			psql.DeleteArticleCollect(userid,"japanthesis",articleid)
+		}else if collection.Country=="Korea"{
+			psql.DeleteArticleCollect(userid,"koreathesis",articleid)
+		}
+	}else if collection.IsCollected==false{
+		if collection.Country=="Japan"{
+			t:=time.Now().Format("2006-01-02")
+			psql.CollectArticle(userid,"japanthesis",articleid,t)
+		}else if collection.Country=="Korea"{
+			t:=time.Now().Format("2006-01-02")
+			psql.CollectArticle(userid,"koreathesis",articleid,t)
+		}
+	}
+	var result map[string]int=map[string]int{"Result":1}
+	date,_:=json.Marshal(result)
+	w.Write(date)
+
 }

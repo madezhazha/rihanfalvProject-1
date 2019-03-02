@@ -10,6 +10,7 @@ import(
 func GetImages(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Access-Control-Allow-Origin", "*") 
 	vars := r.URL.Query()
+	fmt.Println("hhhhhhh")
 	tag := vars["tag"]
 	name := vars["name"]
 	if( len(tag)!=1 && len(name)!=1 ){
@@ -22,8 +23,7 @@ func GetImages(w http.ResponseWriter, r *http.Request){
 
 
 func GetHomePageArtical(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Access-Control-Allow-Origin", "*") 
-	w.Header().Set("Access-Control-Allow-Headers","Content-Type");
+	SetHeader(w)
 	body, _ := ioutil.ReadAll(r.Body)
 	if(len(body) == 0){
 		return
@@ -39,8 +39,7 @@ func GetHomePageArtical(w http.ResponseWriter, r *http.Request){
 
 
 func GetHomePageHotnews(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Access-Control-Allow-Origin", "*") 
-	w.Header().Set("Access-Control-Allow-Headers","Content-Type")
+	SetHeader(w)
 	date := psql.GetHomePageHotnewDate()
 	date_json,_ := json.Marshal(date)
 	w.Write(date_json)

@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  posturl='http://localhost:8090/register';      //注册的url
-  getVerificationUrl='http://localhost:8090/sendVerification'
+  posturl='http://localhost:7080/register';      //注册的url
+  getVerificationUrl='http://localhost:7080/sendVerification'
 
   confirmPassword:string                       //确认密码
   Verification:string                       //后端生成验证码
