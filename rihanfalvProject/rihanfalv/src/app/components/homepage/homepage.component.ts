@@ -91,7 +91,6 @@ export class HomepageComponent implements OnInit {
         });
         return;
   }
-
   //加载首页头部的自动轮播框的图片，链接和标题，固定5个,初始化时自动调用
   get_head_new(){
       this.service.GetHeadNews().subscribe(
@@ -101,8 +100,4 @@ export class HomepageComponent implements OnInit {
         }
       )
   }
-
-
-
-
 }

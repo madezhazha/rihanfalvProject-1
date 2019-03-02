@@ -9,7 +9,7 @@ import (
 )
 
 func Addfeedback(w http.ResponseWriter, r *http.Request) {
-	SetHader(w)
+	SetHeader(w)
 	r.ParseForm()
 	if r.Method == "POST" {
 		result, err := ioutil.ReadAll(r.Body)
@@ -28,7 +28,7 @@ func Addfeedback(w http.ResponseWriter, r *http.Request) {
 }
 
 func Userfeedback(w http.ResponseWriter, r *http.Request) {
-	SetHader(w)
+	SetHeader(w)
 	r.ParseForm() //解析参数，默认是不会解析的
 	if r.Method == "POST" {
 		//fmt.Println("123")

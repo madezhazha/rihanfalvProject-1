@@ -17,7 +17,7 @@ func main() {
 
 	mux.HandleFunc("/test", route.Test)
 	//homepage
-	mux.HandleFunc("/homepage/image", route.GetImages)
+	mux.HandleFunc("/getimage/", route.GetImages)
 	mux.HandleFunc("/homepage/articals",route.GetHomePageArtical)
 	mux.HandleFunc("/homepage/hotnews", route.GetHomePageHotnews)
 
@@ -36,7 +36,7 @@ func main() {
 	mux.HandleFunc("/thread/cancel", route.Cancel)
 
 	// 个人主页
-	mux.HandleFunc("/get", route.Get)
+	// mux.HandleFunc("/get", route.Get)
 	mux.HandleFunc("/post", route.Post)
 
 	//论文
