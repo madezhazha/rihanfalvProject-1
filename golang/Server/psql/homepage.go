@@ -3,8 +3,6 @@ package psql
 import(
 	"io/ioutil"
 	"fmt"
-	//_"github.com/lib/pq"
-	//"database/sql"
 	"log"
 )
 
@@ -40,6 +38,7 @@ func GetHomePageHotnewDate()(date [5]HomePageNews){
 	return 
 }
 
+//return homepage aritical data
 func GetHPADate(index int64)(date []ArticlaBox){
 	command := "select imgurl, linkurl, brif, date from homepageartical order by id asc offset $1 limit 10"
 	rows,err := db.Query(command,index)

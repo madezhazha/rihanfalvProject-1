@@ -17,7 +17,7 @@ func Addfeedback(userid string, feedbacktype string, feedbackcontent string) {
 
 	stmt, err := db.Prepare("insert into feedback2(userid,feedbacktype,feedbackcontent,feedbackreplie) values($1,$2,$3,$4)")
 	CheckErr(err)
-
+	//################################################## checkErr -> panic ?
 	_, err = stmt.Exec(userid, feedbacktype, feedbackcontent, "无")
 	CheckErr(err)
 	fmt.Println("insert into feedback success")
