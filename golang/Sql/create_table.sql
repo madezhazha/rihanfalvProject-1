@@ -32,7 +32,7 @@ Create table koreathesis(
 	thesisauthor text,
 	publicationtime date,
 	thesiscontent text,
-	thesislength text,
+	thesislength integer,
 	lables text
 );
 
@@ -42,7 +42,7 @@ Create table japanthesis(
 	thesisauthor text,
 	publicationtime date,
 	thesiscontent text,
-	thesislength text,
+	thesislength integer,
 	lables text
 );
 
