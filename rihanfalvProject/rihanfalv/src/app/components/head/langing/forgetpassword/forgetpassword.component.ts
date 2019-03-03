@@ -19,8 +19,8 @@ export class ForgetpasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  posturl='http://localhost:8090/changePassword';      //修改密码的url
-  getVerificationUrl='http://localhost:8090/CPsendVerification'  //修改密码的url
+  posturl='http://localhost:7080/changePassword';      //修改密码的url
+  getVerificationUrl='http://localhost:7080/CPsendVerification'  //修改密码的url
 
   confirmPassword:string                        //确认密码
   Verification:string                           //后端生成验证码

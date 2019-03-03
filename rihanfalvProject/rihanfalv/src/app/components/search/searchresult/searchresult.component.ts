@@ -10,43 +10,49 @@ import { Router } from '@angular/router';
 })
 
 export class SearchresultComponent implements OnInit {
-public list:any[]=[]
-public ifreadbutton=true//阅读更多按钮是否显示
-public ifreadall=false//是否阅读全部
-  constructor(public router: Router,public http:HttpClient,public m_search:DosearchService) { }
+public list=new Array();
+public text :string
+public page=1
+  constructor(public router: Router,public http:HttpClient,public m_search:DosearchService) { 
+  }
 
   ngOnInit() {
-this.ifreadbutton=true
-this.ifreadall=false
+
   }
 
   getstatus(){
     if(!this.m_search.list){
-          return false //未获取数据     
+         this.text="未获取搜索数据" //未获取数据
+         return false     
     }
     if(this.m_search.list.length==0){
-      return false //未获取数据     
+      this.text="搜索目标不存在"  
+      return false   
 }
-    this.list=this.m_search.list
-    if(this.m_search.list.length<=2){
-      this.ifreadall=true
-      this.ifreadbutton=false
-        //数据少于2条，显示全部
-    }
-    else{
-      //数据多于2条，显示前2条
-    }
+for(let i =0;i<5;i++){
+  if(this.m_search.list[i])
+   this.list[i]=this.m_search.list[i]
+}
+
      return true
 
   }
-   back() {    // 返回上一页面
-    this.router.navigate(['/Search']);
-  }
-  readall(){
-     this.ifreadbutton=false//阅读更多按钮是否显示
- this.ifreadall=true//是否阅读全部
-  }
 
+readmore(){
+  let length=this.m_search.list.length
+  let addlist=new Array();
+  if(length<5)return;
+  if(this.page*5>length)
+    return
+
+  for(let i =0;i<5;i++){
+    if(this.m_search.list[this.page*5+i])
+     addlist[i]=this.m_search.list[this.page*5+i]
+  }
+    this.page++
+    this.list=this.list.concat(addlist);
+   console.log(this.list)
+}
 
 
 }

@@ -15,8 +15,8 @@ const (
 	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
-	password = "123456"
-	dbname   = "lawsystem"
+	password = "ysm@121388"
+	dbname   = "jkproject"
 )
 
 //初始化，调用包时执行

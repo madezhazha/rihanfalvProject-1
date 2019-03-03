@@ -144,35 +144,74 @@ func Displaytxt(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// func Testalipay(w http.ResponseWriter, r *http.Request) {
-// 	//这里测试能否实现支付宝支付
+//收藏
+func CollectData(w http.ResponseWriter,r *http.Request){
+	w=Cross(w)
 
-// 	w = Cross(w)
+	var Data map[string]interface{}
+	var content string
+	var insturction string
+	var titleId string
+	var languageType string
+	var userId string
+	body,err:=ioutil.ReadAll(r.Body)
 
-// 	Alipay := alipay.Client{
-// 		Partner:   "2016092800613779",
-// 		Key:       "MIIEpAIBAAKCAQEA7BJPNAZ/M3fbMb7xOQQaAwb/bRTIU8M3LU/QVzCNiSROZpUkKrFeeEPsSD+9Fq0CgZ2FqGnKWl6Pyhri32W/x9e43GY5dpDtd8HZuOwSUHIN89KbKa7qtRx2F831NvARO2HpwYFBtFHcMvbjTCoT+phtx3drILgk3gxoZ45SCaOet77/xBuP5GvlU4N/5Ksprm2CNEV2tXr4j8fIcG34/aWwA54zdFc0+8aytfjHsQ445u4ZkcoUiMrJ1XF9xn8m6el0dzKak9rL8zGcRrsBVYwh6x/Tgsl7uWSKS2scs4fdIubtigOOhi7GSMQY6PVBBwK7b604gD4U8ejQeM/LiwIDAQABAoIBAB4mUHtCgShfnF0EF+bCQVg1opWZ2+PmwLtGwEMCbnEfc+viDFZvhLMzaY/opAurWPCY36Mcr71O6mpTeLozUoUBZhiv7ZLY+5sZ5OabL9OaXXHQagSu1EcBNYvgv/qeOnUtEh+mlG+lLMxNf8YQcbDFmu+orsPlAMBjMUpYgN2+CwkCijjWQ5WoFtpq6yCBg/dIA8/FCe9MJBB52VwR1amLX+9uM/ps3ayPctF9U5HMUV8D2ddqRkq1BVLydO/uEhxMC2rgYFf3r66/nKDgNLHGcdYhDRYdA/Cee2dqQKl0nd+KpnIxyTo1MXl9FH/agOl1eIRi9VYrFVaJGyWqXFECgYEA/jfcHIwi4+jQ9beFayMO6ILayzxPU0RFGRhMwvLSfzmyfyoKWRNni7XzVBtB0Q47CAq/KBotKSwtORB1SWaryOWECUyCxCXszVO1TSbBq69Iyvo4wwCIw46BsJHHSdoIkyr8b7mCUjvh1QDIplEcpZBxqpZeelM1cMD2a10P8X0CgYEA7bnjpSY3iuRPITQR+byDd0gzny4CsACnXUa644sW7Ta8Zcya5+DRj+eG7MxCN5CpIXcnJflp+RherlDjvWKb0qiimSOY7CJxpR3i2bkeyMYJe97kJvvrI8c51bDnK54PrDQ25Ow1R2xryEaelzS3+tRkGyFCs2AZO9hrRzvBv6cCgYEA1g0Wyvq8Dgbkm2DReCpmzSQRMfswF75uJ/kr+SIYV4OvZh9x4xrRnvOvVOw2eN5wmg7icdPInthRo7DV8N4AWwHWMTY5DQuZ3jFTgQjXHcZTloUl8hurDG4biR7WHLr3aWNSdohO0QsW1hD44gF+C3IaIzbFil4xqyTu1+veFskCgYEAtbZkwwU+aYVw0vGJV/r4BsKC6wbxePVW+R6qlmnoIXS4d5v5QIuBxFz2rqTHbM+/6Fu66fUHQyeUn+wm2Mm6UEEk4KfsKXt+oPcCQuiVFmUCNNRAU2g26cdMdwJdAeM1Ga1j1IKViz3d+V25tdzPUQTubCp1YMVxJGSeQ/nydHsCgYANqnKkfHYAdHPhJZbRfzXUJ4+oUIBW7XliZbc3eNc91rn/xi/WORjzbqvmFMqYiFDAfTQTIv05O7w9Gj1Zm1gchzAzwYwoCVbKumKJ54dc6pgO6zasU4m87CZOKFsBTMCVcNpYxAhEEOEczdTMeeIfNruesbjdCu6fOlkooZm3IQ==",
-// 		ReturnUrl: "http://127.0.0.1:4200/display-data?title=%E9%99%88%E9%A1%BA%E8%A1%8C%E7%AD%89%E6%95%85%E6%84%8F%E4%BC%A4%E5%AE%B3%E6%A1%88",
-// 		NotifyUrl: "http://127.0.0.1:4200/display-data?title=%E9%99%88%E9%A1%BA%E8%A1%8C%E7%AD%89%E6%95%85%E6%84%8F%E4%BC%A4%E5%AE%B3%E6%A1%88",
-// 		Email:     "bcsbxs2618@sandbox.com",
-// 	}
+	if err!=nil{
+		fmt.Println(err)
+		var info string ="连接出现错误"
+		response:=Response{info}
+		json,_:=json.Marshal(response)
+		w.Write(json)
+		return
+	}
 
-// 	form := Alipay.Form(alipay.Options{
-// 		OrderId:  "123",
-// 		Fee:      99.8,
-// 		NickName: "翱翔大空",
-// 		Subject:  "充值100",
-// 	})
+	json.Unmarshal(body,&Data)
+	
+	if Data!=nil{
+		content = Data["title"].(string)
+		insturction = Data["data"].(string)
+		titleId = Data["titleId"].(string)
+		languageType = Data["type"].(string)
+		userId = Data["userid"].(string)
+		
+		psql.Implement(content,insturction,titleId,languageType,userId)
+	}
+}
 
-// 	if form == "" {
-// 		fmt.Println("可以成功吗？")
-// 	}
 
-// 	var info string = "可以成功吗？"
+//收藏的初始状态
+func InitialState(w http.ResponseWriter,r *http.Request){
+	w=Cross(w)
 
-// 	response := Response{info}
+	var Data map[string]interface{}
+	var content string
+	var titleId string
+	var languageType string
+	var userId string
+	body,err:=ioutil.ReadAll(r.Body)
 
-// 	json, _ := json.Marshal(response)
+	if err!=nil{
+		fmt.Println(err)
+		var info string ="连接出现错误"
+		response:=Response{info}
+		json,_:=json.Marshal(response)
+		w.Write(json)
+		return
+	}
 
-// 	w.Write(json)
-// }
+	json.Unmarshal(body,&Data)
+
+	if Data!=nil{
+		content = Data["title"].(string)
+		titleId = Data["titleId"].(string)
+		languageType = Data["type"].(string)
+		userId = Data["userid"].(string)
+		
+		data:=psql.Statecollect(content,titleId,languageType,userId)
+
+		response:=Response{data}
+
+		json,_:=json.Marshal(response)
+		w.Write(json)
+	}
+}
