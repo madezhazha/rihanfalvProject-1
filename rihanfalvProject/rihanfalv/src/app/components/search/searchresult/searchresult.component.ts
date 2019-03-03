@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild,Renderer2} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import{DosearchService}from "../dosearch.service"
 import { Router } from '@angular/router';
@@ -13,7 +13,12 @@ export class SearchresultComponent implements OnInit {
 public list=new Array();
 public text :string
 public page=1
-  constructor(public router: Router,public http:HttpClient,public m_search:DosearchService) { 
+public searchlist=["全部","法律条文","论文","案例"]
+public searchgroup="全部"
+
+@ViewChild('click') changeclass:ElementRef;
+
+  constructor(public router: Router,public http:HttpClient,public m_search:DosearchService,private renderer2:Renderer2) { 
   }
 
   ngOnInit() {
@@ -29,8 +34,11 @@ public page=1
       this.text="搜索目标不存在"  
       return false   
 }
+if(this.m_search.list.length<5){
+  this.list=this.m_search.list
+}
+if(this.m_search.list.length>=5)
 for(let i =0;i<5;i++){
-  if(this.m_search.list[i])
    this.list[i]=this.m_search.list[i]
 }
 
@@ -54,5 +62,9 @@ readmore(){
    console.log(this.list)
 }
 
-
+click(item){
+  this.m_search.Classify=item
+this.m_search.searchtogo()
+  this.renderer2.setStyle(this.changeclass.nativeElement,"background-color","0000FF")
+}
 }

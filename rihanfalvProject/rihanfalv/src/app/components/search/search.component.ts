@@ -52,7 +52,6 @@ doSearch(){//搜索按键
   this.m_search.searchtogo()//传数据给后端
   //this.router.navigate(['searchresult'])
   this.ifsearch=true
-  this.KeyWord=null;
 
 }
 deleteHistory(key){//删除某项历史记录

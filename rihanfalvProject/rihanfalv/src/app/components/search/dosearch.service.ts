@@ -12,6 +12,7 @@ export class DosearchService {
 public Classify:any="全部"
 
   searchtogo(){
+    this.list=null
     const httpOptions={ headers:new HttpHeaders({'Content-Type':'application/json'}) };
     let api='http://localhost:9090/legal'; 
     this.getkey.KeyWord=this.KeyWord

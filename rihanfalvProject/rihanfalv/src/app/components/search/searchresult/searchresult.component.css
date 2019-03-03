@@ -1,16 +1,10 @@
-.module{
+/* .module{
     border-style: solid;
     border-width: 1px;
     margin:2px;
     }
 
-    ul{
-    list-style:none;
-    display:block;
-    white-space: pre-wrap;
-    padding:10px;
-    margin:0px;
-    }
+   
 
     /* body {
     text-align:center;
@@ -25,7 +19,7 @@
     border-style: solid;
     border-color: darkgray;
     border-width: 1px;} */
-
+/* 
     .title{
     margin:4px;
     font-size:18px;
@@ -44,40 +38,52 @@
     border:1px;
     background-color: rgb(252, 255, 97);
     border-radius: 7px;	
-    }
+    } */ 
+    
+    ul{
 
-    .module .content{
-    margin:2px;
-    font-size:14px;
+        list-style:none;
+        /* display:block; */
+        white-space: pre-wrap;
+        padding:10px;
+        margin:0px;
+        display:inline
+        }
+    
+    .content{
+    position: absolute;
+    left: -30px;
+    top: 50px;
+    padding: 14px;
+    padding-top: 8px !important;
+    font-size:10px;
     text-align:left;
     overflow: hidden;
-    height: 60px;
+    height: 40px;
     text-overflow:ellipsis; 
+    word-wrap:break-word;
+    word-break:break-all;
     }
 
-    .classify{  
-    margin:20px;
-    font-size:14px;
-    text-align:center;
+    .blank{
+        font-size: 14px;
+        height: 25px;
+        width:85px;
+        margin:3px;
+color: #3d4450;
+background-color: darkseagreen;
     }
-    .classify :hover{
-    border-color: steelblue;
-    }
-    .classify button{
-        margin:5px;
-    font-size:22px;
-    background-color: white;
-    border-radius:7px;
-    color:gray;
-    border:2px solid #a4d1f0;
-    background:rgb(232, 249, 255);
-    }
+    /* .blank:link {background-color: #FF0000}
+    .blank:visited {background-color: #00FF00}
+   .blank:hover {background-color: #FF00FF} */
+   .active {
+    font-size: 14px;
+    height: 25px;
+    width:85px;
+    margin:3px;
+color: #3d4450;
+background-color: #0000FF}
     
-    .classify button:focus{
-    font-size:22px;
-    border-color: rgba(0, 191, 255, 0.747);
-    color: black; 
-    }
 
 
    
@@ -94,5 +100,103 @@
     background-color: white;
     }
 
-         
-         
+
+
+    ._三级标题 {
+        font-family:'Arial Normal', 'Arial';
+        font-weight:bold;
+        font-style:normal;
+        font-size:15px;
+        text-align:left;
+        position: absolute;
+        left: 0px;
+        width: 300px;
+        height: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis; 
+        top:5px;
+      }
+    
+      .paperlist{
+        text-align: center;
+          height: 100%;
+          overflow: hidden;
+          padding-bottom: 0px;
+          padding-top: 10px;
+      }
+    
+    .paper{
+        position: relative;
+        background: white;
+        position: relative;
+        width: 450px;
+        height: 90px;
+        border-bottom: 1px solid gray;
+        margin-top: 0.5px;
+    }
+    
+    
+    .mes{
+        position: relative;
+        left:320px;
+        height: 30px;
+        width: 100px;
+        top:-80px;
+        text-align: left;
+    }
+    
+    .mes img{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .picture{
+        width:80px;
+        height: 90px;
+        border-radius: 3px;
+    }
+    
+    .mes .name{
+        position: absolute;
+        font-size: 11px;
+        right:15px;
+    
+    }
+    
+    .num{
+        font-size: 10px;
+        color:gray;
+        position: absolute;
+        top:34px;
+        left: 0px;
+    }
+    
+    .mes .time{
+        position: absolute;
+        color:#6B6B6B;
+        font-size: 9px;
+        right:15px;
+        top:15px;
+    }
+    
+    .lablecontainer{
+        position: absolute;
+        bottom: 8px;
+        left: 90px;
+        width:auto;
+        height: 20px;
+    }
+    
+    .lables{
+        font-size: 10px;
+        text-align: center;
+        padding: 3px; 
+        border: 0.5px solid rgb(197, 178, 178);
+        border-radius: 2px; 
+        float:left; 
+        margin-left:5px; 
+    }
+    
+        
