@@ -14,7 +14,7 @@ public Classify:any="全部"
   searchtogo(){
     this.list=null
     const httpOptions={ headers:new HttpHeaders({'Content-Type':'application/json'}) };
-    let api='http://localhost:9090/legal'; 
+    let api='http://localhost:7080/search'; 
     this.getkey.KeyWord=this.KeyWord
     this.getkey.Classify=this.Classify
     this.http.post(api,this.getkey,httpOptions).subscribe(response=>{ 
