@@ -30,3 +30,7 @@ insert into homepageartical(imgurl,linkurl,brif,date)values(
     CURRENT_DATE
 );
 --homepage test data over...
+
+-- 因为案例分析的数据太多了，大家将案例分析类型.csv的文件，使用pgAdmin插入到casething的表格就行了
+
+

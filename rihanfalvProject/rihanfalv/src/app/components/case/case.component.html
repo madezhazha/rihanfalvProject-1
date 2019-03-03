@@ -1,7 +1,10 @@
-<button class="case" (click)="displayCase()" [class.selected]="case===true">案例</button>
-<button class="reason" (click)="displayReason()">判决法理</button>
-<button class="time" (click)="displayTime()">判决时间</button>
-<button class="level" (click)="displayLevel()">审级</button>
+
+<div class="buttonstyle">
+  <button class="case" (click)="displayCase()" [class.selected]="case===true">案例</button>
+  <button class="reason" (click)="displayReason()">判决法理</button>
+  <button class="time" (click)="displayTime()">判决时间</button>
+  <button class="level" (click)="displayLevel()">审级</button> 
+</div>
 
 
 <!-- 这里是案例第一层显示案例 -->
@@ -147,12 +150,14 @@
 
 <!-- 显示数据库的数据 -->
 <div class="bigContent" id="bigContent">
-    <li style="height:250px;border:1px solid;border-radius: 8px;list-style: none"  *ngFor="let item of PageList">
+    <li style="height:230px;border:1px solid;border-radius: 8px;list-style: none"  *ngFor="let item of PageList">
         <div>
             <h2 style="color:black">{{item.casetitle}}</h2>
             <p style="color:black">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}</p>
             <div style="height:100px;overflow:hidden"><p style="color:black">{{item.casecontent}}</p></div>
-            <p><span><h2 style="color:blue"><a routerLink="/display-data" (click)="sendData(item.casetitle)">裁判书</a></h2></span></p>
+            <div>
+              <div><a routerLink="/display-data" (click)="sendData(item.casetitle)" style="color:blue;font-size:20px;float: left">裁判书</a></div></div>
+              <div style="float:right;font-style: italic">{{item.trialtime}}</div>
         </div>
     </li>
     <div>

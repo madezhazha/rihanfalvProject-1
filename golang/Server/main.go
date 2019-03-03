@@ -29,9 +29,11 @@ func main() {
 
 	mux.HandleFunc("/addfeedback", route.Addfeedback)
 	mux.HandleFunc("/userfeedback", route.Userfeedback)
-	//我自己添加的案例分析
+	//案例分析
 	mux.HandleFunc("/alldata", route.Displayhomeall)
 	mux.HandleFunc("/displaytxt", route.Displaytxt)
+	mux.HandleFunc("/changecollect",route.CollectData)
+	mux.HandleFunc("/InitialState",route.InitialState)
 
 	// 讨论区
 	mux.HandleFunc("/thread/list", route.ListThread)
