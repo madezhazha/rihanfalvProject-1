@@ -3,13 +3,21 @@
         <ul class="nav navbar-nav">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center ;display: block" href="#" routerLink="/">返回</a></div>
-                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center;display: block">论文</a></div>
-                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center;display: block">案例</a></div>
-                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center;display: block">法条</a></div>
+                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center ;display: block" href="#" routerLink="/userpage">返回</a></div>
+                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center;display: block"  (click)="thesis()">论文</a></div>
+                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center;display: block"  (click)="case()">案例</a></div>
+                    <div class="col-xs-3"><a style="cursor: pointer;text-align: center;display: block"  (click)="topic()">帖子</a></div>
                 </div>
             </div>
         </ul>
     </div>
 </nav>
-<app-thesis></app-thesis>
+<div *ngIf="flag==0">
+    <app-thesis></app-thesis>
+</div>
+<div *ngIf="flag==1">
+    <app-collectedcase></app-collectedcase>
+</div>
+<div *ngIf="flag==2">
+    <app-collectedtopic></app-collectedtopic>
+</div>

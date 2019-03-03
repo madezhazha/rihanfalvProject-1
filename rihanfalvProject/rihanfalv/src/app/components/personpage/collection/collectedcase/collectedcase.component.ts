@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { Router,NavigationExtras} from '@angular/router';
 
-
 @Component({
-  selector: 'app-thesis',
-  templateUrl: './thesis.component.html',
-  styleUrls: ['./thesis.component.css']
+  selector: 'app-collectedcase',
+  templateUrl: './collectedcase.component.html',
+  styleUrls: ['./collectedcase.component.css']
 })
-export class ThesisComponent implements OnInit {
+export class CollectedcaseComponent implements OnInit {
 
   public arr:any[]=[];
   public CollectionMsg:any[]=[];
   public UserID:number=1;
-  public Thesis:any[]=[];
+  public Literature:any[]=[];
+  public Cases:any[]=[];
   public Flag:number=1;
   
 
@@ -36,32 +36,31 @@ export class ThesisComponent implements OnInit {
            if(this.arr[i].CollectionTime.length<3){
              break;
            } 
-           if(this.arr[i].CollectionType=="japanthesis"||this.arr[i].CollectionType=="koreathesis"){
+           if(this.arr[i].CollectionType=="japancase"||this.arr[i].CollectionType=="koreacase"){
              this.CollectionMsg[k]=this.arr[i];
              k++
            }
            
                      
          }
-
-         
+     
          console.log(response);
        })
      
   }
   specificContent(CollectionType,CollectionContentID){
 
-    if(CollectionType=="japanthesis"){
+    if(CollectionType=="japancase"){
       let Contentid: NavigationExtras = {             
       queryParams: { ContentID:CollectionContentID },                
     };       
-    this.router.navigate(['/paperweb'],Contentid) ;
+    this.router.navigate(['/case'],Contentid) ;
     }
-    if(CollectionType=="koreathesis"){
+    if(CollectionType=="koreacase"){
       let Contentid: NavigationExtras = {             
       queryParams: { ContentID:CollectionContentID },                
     };       
-    this.router.navigate(['/paperweb'],Contentid) ;
+    this.router.navigate(['/case'],Contentid) ;
     }
     
   }

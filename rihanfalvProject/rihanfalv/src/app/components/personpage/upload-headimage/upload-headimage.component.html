@@ -8,8 +8,11 @@
   <div class="background">
       <small class="background">+</small>
   </div>
-  <div class="yes"><button class="yes">确定</button></div>
-  <div class="no"><button class="no">取消</button></div>
+  <div class="yes"><button class="yes" (click)="postData()">确定</button></div>
+  <div class="no"><button class="no" [routerLink]="[ '/userpage' ]">取消</button></div>
+  <div>
+    {{ImgResponse}}
+  </div>
 </div>
 
 <!--label，label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。
