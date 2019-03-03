@@ -11,7 +11,7 @@ import(
 )
 //获取用户信息
 func Get(w http.ResponseWriter, r *http.Request) {
-	SetHader(w)
+	SetHeader(w)
 	user1 := psql.SelectUser()
 	js, err := json.Marshal(user1)   //将数据编码成json字符串
 	if err != nil {
@@ -22,7 +22,7 @@ func Get(w http.ResponseWriter, r *http.Request) {
 }
 //修改用户信息
 func Post(w http.ResponseWriter, r *http.Request) {
-	SetHader(w)
+	SetHeader(w)
 	r.ParseForm() //解析url参数，默认是不会解析的
 	if  r.Method == "POST" {
 		result, _ := ioutil.ReadAll(r.Body)
@@ -36,7 +36,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 }
 //接收，前端上传图片转成base64
 func PostBase(w http.ResponseWriter, r *http.Request) {
-	SetHader(w)
+	SetHeader(w)
 	r.ParseForm() //解析url参数，默认是不会解析的
 	if  r.Method == "POST" {
 		result, _ := ioutil.ReadAll(r.Body)
@@ -50,7 +50,7 @@ func PostBase(w http.ResponseWriter, r *http.Request) {
 }
 //读取图片，转成base64发给前端
 func GetBase(w http.ResponseWriter, r *http.Request) {
-	SetHader(w)
+	SetHeader(w)
 	r.ParseForm() //解析url参数，默认是不会解析的
 	if  r.Method == "GET" {
 		img, _ := ioutil.ReadFile("picture.png")               //直接读取文件内容，内容是[]byte类型

@@ -36,5 +36,9 @@ export class FeedbackComponent implements OnInit {
 
     }
   }
+  bin(){
+    this.router.navigate(['/homepage/'])
+    
+  }
 
 }

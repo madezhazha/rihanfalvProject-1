@@ -16,8 +16,8 @@
 </form>
 </div>
 </div>
-<div class="module">
-<div class="history" *ngIf="IfHistory"> 搜索记录
+<div class="module" *ngIf="!this.ifsearch">
+<div class="history" *ngIf="IfHistory" > 搜索记录
 <ul>
   <li *ngFor="let item of HistoryList;let key=index">
     <img src="../../../assets/history.png" width="14">
@@ -34,5 +34,8 @@
   清空历史记录
 </button>
 </div>
+</div>
+<div class="module" *ngIf="this.ifsearch">
+<app-searchresult></app-searchresult>
 </div>
 </body>

@@ -1,26 +1,20 @@
 package psql
-
 import(
 	"io/ioutil"
 	"fmt"
 	"log"
 )
-
 type HomePageNews struct{
 	Img_url	string 			`json:"imgurl"`
 	Link_url string 		`json:"linkurl"`
 	Title	string 			`json:"title"`
 }
-
 type ArticlaBox struct{
 	Img_url	string 			`json:"imgurl"`
 	Link_url string 		`json:"linkurl"`
 	Brif	string 			`json:"brief"`
 	Date	string 			`json:"date"`
 }
-
-
-
 //Get the lastest fith news data 
 func GetHomePageHotnewDate()(date [5]HomePageNews){
 	command := "select imgurl, linkurl, title from homepagenews order by id desc limit 5"
@@ -49,12 +43,13 @@ func GetHPADate(index int64)(date []ArticlaBox){
 		return
 	}
 	for i := 0;rows.Next();i++ {
-		rows.Scan(&temp.Img_url, &temp.Link_url, &temp.Brif, &temp.Date)
+		var str string
+		rows.Scan(&temp.Img_url, &temp.Link_url, &temp.Brif, &str)
+		temp.Date = (str[0:10])
 		date = append(date,temp)
 	}
 	return
 }
-
 //return images's byte that user needed
 func Images(tag string, name string)[]byte{
 	var  img_path string = "/home/ubuntu/DockerWorkPlace/Golang/source/images/"
