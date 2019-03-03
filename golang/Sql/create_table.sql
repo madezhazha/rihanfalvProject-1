@@ -32,7 +32,7 @@ Create table koreathesis(
 	thesisauthor text,
 	publicationtime date,
 	thesiscontent text,
-	thesislength text,
+	thesislength integer,
 	lables text
 );
 
@@ -42,7 +42,7 @@ Create table japanthesis(
 	thesisauthor text,
 	publicationtime date,
 	thesiscontent text,
-	thesislength text,
+	thesislength integer,
 	lables text
 );
 
@@ -68,7 +68,37 @@ feedbackreplie text NOT NULL
 
 
 
---案例分析
+--案例分析 第一个表示：案例，第二个表：法官观点，第三个表为：案例收藏表
+create table casething(
+  id serial primary key,
+  trialtime text,
+  causeofaction text,
+  concretecasetype text,
+  legalprinciple text, 
+  trialgrade text,
+  casetitle text,
+  casecontent text,
+  Type varchar(2)
+  );
+
+  create table point(
+    id serial primary key,
+    viewpoint text default '无',
+    casetitle text default '无',
+    header text default '无',
+    type varchar(2)
+  );
+  create table collectioncase(
+    id serial primary key,
+    userid text,
+    collectiontype text,
+    collectiontitle text,
+    collectiontitleid text
+);
+
+  
+
+
 
 
 --讨论区

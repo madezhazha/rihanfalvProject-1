@@ -4,16 +4,17 @@ import { Router,NavigationExtras} from '@angular/router';
 
 
 @Component({
-  selector: 'app-thesis',
-  templateUrl: './thesis.component.html',
-  styleUrls: ['./thesis.component.css']
+  selector: 'app-collectedtopic',
+  templateUrl: './collectedtopic.component.html',
+  styleUrls: ['./collectedtopic.component.css']
 })
-export class ThesisComponent implements OnInit {
+export class CollectedtopicComponent implements OnInit {
 
   public arr:any[]=[];
   public CollectionMsg:any[]=[];
   public UserID:number=1;
-  public Thesis:any[]=[];
+  public Literature:any[]=[];
+  public Topics:any[]=[];
   public Flag:number=1;
   
 
@@ -36,33 +37,26 @@ export class ThesisComponent implements OnInit {
            if(this.arr[i].CollectionTime.length<3){
              break;
            } 
-           if(this.arr[i].CollectionType=="japanthesis"||this.arr[i].CollectionType=="koreathesis"){
+           if(this.arr[i].CollectionType=="topic"){
              this.CollectionMsg[k]=this.arr[i];
              k++
            }
            
                      
          }
-
-         
          console.log(response);
        })
      
   }
   specificContent(CollectionType,CollectionContentID){
 
-    if(CollectionType=="japanthesis"){
+    
       let Contentid: NavigationExtras = {             
       queryParams: { ContentID:CollectionContentID },                
     };       
-    this.router.navigate(['/paperweb'],Contentid) ;
-    }
-    if(CollectionType=="koreathesis"){
-      let Contentid: NavigationExtras = {             
-      queryParams: { ContentID:CollectionContentID },                
-    };       
-    this.router.navigate(['/paperweb'],Contentid) ;
-    }
+    this.router.navigate(['/post'],Contentid) ;
+    
+    
     
   }
 

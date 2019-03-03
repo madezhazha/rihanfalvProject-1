@@ -21,6 +21,10 @@ import { HomepageComponent} from './components/homepage/homepage.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchresultComponent } from './components/search/searchresult/searchresult.component';
 
+import { UserComponent } from './components/personpage/user/user.component' ;
+import { CollectionComponent } from './components/personpage/collection/collection.component' ;
+import { UploadHeadimageComponent } from './components/personpage/upload-headimage/upload-headimage.component';
+
 const routes: Routes = [
   // { path: 'text', component:PaperComponent },               //测试专用
   { path: 'homepage', component: HomepageComponent},        //首页
@@ -42,6 +46,13 @@ const routes: Routes = [
   { path: 'tag', component: TagComponent },
   { path: 'search', component: SearchComponent },
   { path: 'searchresult', component: SearchresultComponent },
+
+
+  {path:'userpage',component:UserComponent},
+  {path:'collection',component:CollectionComponent},
+  {path:'uploadimage',component:UploadHeadimageComponent},
+  
+
   { path: '', redirectTo: 'homepage', pathMatch: 'full' } ,
 ];
 

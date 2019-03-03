@@ -54,6 +54,8 @@ import { SearchresultComponent } from './components/search/searchresult/searchre
 import { SearchkeywordPipe } from './pipes/searchkeyword.pipe';
 
 import { myPipe } from './components/chat/popular/popular.component';
+import { CollectedcaseComponent } from './components/personpage/collection/collectedcase/collectedcase.component';
+import { CollectedtopicComponent } from './components/personpage/collection/collectedtopic/collectedtopic.component';
 
 
 @NgModule({
@@ -92,7 +94,9 @@ import { myPipe } from './components/chat/popular/popular.component';
     TagComponent,
     SearchresultComponent,
     SearchkeywordPipe,
-    myPipe
+    myPipe,
+    CollectedcaseComponent,
+    CollectedtopicComponent
   ],
   imports: [
     BrowserModule,

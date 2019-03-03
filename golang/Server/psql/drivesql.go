@@ -31,6 +31,14 @@ type concretelaw1 struct{
 	Type string
 }
 
+type collectioncase struct{
+	ID string
+	collectiontype string
+	collectiontitle string
+	collectiontitleid string
+	userId string
+}
+
 
 
 
@@ -311,9 +319,75 @@ func Gettext(data string)interface{}{
 		all["casetitle"]=con.casetitle
 		all["header"]=con.header
 		all["type"]=con.Type
+		all["ID"]=con.ID
 	}
 
 	defer rows.Close()
 
 	return all
 }
+
+
+//执行收藏和取消收藏的指令
+func Implement(contenTitle string,instruction string,titleId string,languageType string,userId string){
+	// var collect collectioncase
+
+	//注意这是处理事件
+	if(instruction=="collect"){
+		//收藏
+		stmt,err:=db.Prepare("insert into collectioncase(userid,collectiontype,collectiontitle,collectiontitleid) values($1,$2,$3,$4)")
+		if err!=nil{
+			fmt.Println("添加数据的时候出现的错误1",err)
+			return 
+		}
+		rs,err:=stmt.Exec(userId,languageType,contenTitle,titleId)
+
+		if err!=nil{
+			fmt.Println("添加数据的时候出现错误2",err)
+		}
+		fmt.Println("添加数据成功",rs)
+
+	}
+	if(instruction=="cancle"){
+		//取消收藏
+		stmt,err:=db.Prepare("delete from collectioncase where userid=$1 and collectiontype=$2 and collectiontitle =$3 and collectiontitleid=$4")
+		if err!=nil{
+			fmt.Println("删除数据的时候出现的错误1",err)
+			return 
+		}
+		rs,err:=stmt.Exec(userId,languageType,contenTitle,titleId)
+
+		if err!=nil{
+			fmt.Println("删除数据的时候出现错误2",err)
+			return 
+		}
+		fmt.Println("删除数据成功",rs)
+	}
+}
+
+//收藏的初状态
+func Statecollect(contenTitle string,titleId string,languageType string,userId string)string{
+	var collect collectioncase
+
+	//使用userid对文章进行判断
+	rows,err:=db.Query("select * from collectioncase where userid=$1",userId)
+
+	if err!=nil{
+		fmt.Println("查找收藏的状态的时候出现的错误1",err)
+		return "错误"
+	}
+	
+	for rows.Next(){
+		err:=rows.Scan(&collect.ID,&collect.userId,&collect.collectiontype,&collect.collectiontitle,&collect.collectiontitleid)
+		if err!=nil{
+			fmt.Println("查找收藏状态的时候出现错误2",err)
+		}
+		if(collect.collectiontype==languageType&&collect.collectiontitle==contenTitle&&collect.collectiontitleid==titleId){
+			return "collect"
+		}
+	}
+	return "uncollect"
+}
+
+
+

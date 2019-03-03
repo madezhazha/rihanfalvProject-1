@@ -22,8 +22,13 @@ export class CaseDataComponent implements OnInit {
   ngOnInit() {
     this.getData()
     this.getTxt()
+    this.storageUserid()
+    // this.initialState()
   }
-
+    storageUserid(){
+      var storage=window.localStorage;
+      storage.setItem("userid",'1')
+    }
   //从后端拿数据所设置的变量
   title:string
   viewpoint:any
@@ -34,11 +39,48 @@ export class CaseDataComponent implements OnInit {
   IsPay:boolean=true     //是否已经交钱,这个是否付钱的操作决定着：是否出现查看全部
   IsCollection:boolean=false //是否已经收藏
   casecontent:any
+  changeNumber:number=0
+  languageType:string      //语言
+  titleId:string           //标题的id
+  userId:string            //使用者的id
+
 
   imageUrl:string='./assets/images/fiveStar1.PNG'
 
   changeImg(){
-    this.imageUrl='./assets/images/fiveStar2.PNG'
+    var storage=window.localStorage;
+    this.userId=storage["userid"]
+
+    console.log("这个是localstorage的数据：",this.userId)
+    if(this.changeNumber===0){
+      //这个表示收藏信息
+      this.imageUrl='./assets/images/fiveStar2.PNG'
+      this.changeNumber=this.changeNumber+1
+      //给后端发送post请求
+      const httpOptions={
+        headers:new HttpHeaders({'Content-Type':'application/json'})
+      }
+      var api="http://localhost:7080/changecollect"
+      this.http.post(api,{"title":this.title,"data":"collect","type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
+      {
+        console.log(response)
+      })
+    }else{
+      //这个表示取消收藏信息
+      this.imageUrl='./assets/images/fiveStar1.PNG'
+      this.changeNumber=this.changeNumber-1
+
+      const httpOptions={
+        headers:new HttpHeaders({'Content-Type':'application/json'})
+      }
+      var api="http://localhost:7080/changecollect"
+      this.http.post(api,{"title":this.title,"data":"cancle","type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
+      {
+        console.log(response)
+      })
+    }
+    
+
   }
 
   money:string="5";
@@ -83,16 +125,17 @@ export class CaseDataComponent implements OnInit {
       this.displayData=this.sanitizer.bypassSecurityTrustHtml(this.viewpoint)
       this.header=this.sanitizer.bypassSecurityTrustHtml(response['header'])
 
-      //判断是否收藏和付款
+      //接收语言类型和title的id
+      this.languageType=response["type"]
+      this.titleId=response["ID"]
+      this.initialState(this.languageType,this.titleId)   //这个是用来判断时候已经是收藏的状态了
+
+      //判断是和付款
       if(response["ispay"]==="1"){
         this.IsPay=false
         this.renderer2.setStyle(this.el.nativeElement.querySelector(".judgePoint"),'height',"auto")
       }else{
         this.IsPay=true
-      }
-
-      if(response['iscollection']==='1'){
-        this.changeImg()
       }
     })
   }
@@ -103,16 +146,28 @@ export class CaseDataComponent implements OnInit {
     this.renderer2.setStyle(this.el.nativeElement.querySelector(".judgePoint"),'height',"auto")
   }
 
-  getest(){
+
+  //一开始的收藏状态
+  initialState(languageType,titleId){
+    var storage=window.localStorage;
+    this.userId=storage["userid"]
+    console.log(this.userId,this.title,this.languageType,this.titleId)
     const httpOptions={
-      headers:new HttpHeaders({'Content-Type':"application/json"})
+      headers:new HttpHeaders({'content-Type':'application/json'})
     }
-
-    var api = "http://localhost:8009/alipay"
-
-    this.http.post(api,{"content":"全部"},httpOptions).subscribe((response:any)=>{
-      console.log(response)
+    var api = "http://localhost:7080/InitialState"
+    this.http.post(api,{"title":this.title,"type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
+    {
+      if (response["data"]==='collect'){
+        this.imageUrl='./assets/images/fiveStar2.PNG'
+        this.changeNumber=1
+      }else{
+        this.imageUrl='./assets/images/fiveStar1.PNG'
+        this.changeNumber=0
+      }
     })
   }
+
+
 
 }

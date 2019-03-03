@@ -1,0 +1,24 @@
+
+
+  
+    <table class="collections" cellspacing="8px" >  
+  
+      <tr *ngFor="let aitem of CollectionMsg" >
+        <div class="collection" (click)="specificContent(aitem.CollectionType,aitem.CollectionContentID)">
+  
+          <div class="title">
+  
+            <h4>&nbsp;&nbsp;&nbsp;{{aitem.CollectionTitle}}</h4>
+          </div>
+          <div class="content">
+  
+              &nbsp;&nbsp;{{aitem.CollectionContent}}
+          </div>
+          <div class="time">
+              &nbsp;&nbsp;{{aitem.CollectionTime|date: 'yyyy-MM-dd'}}
+          </div>
+         
+        </div>
+      </tr>
+    </table>
+  

@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollectionComponent implements OnInit {
 
+  public flag:number=0;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  thesis(){
+    this.flag=0;
+  }
+  case(){
+    this.flag=1;
+  }
+  topic(){
+    this.flag=2;
   }
 
 }

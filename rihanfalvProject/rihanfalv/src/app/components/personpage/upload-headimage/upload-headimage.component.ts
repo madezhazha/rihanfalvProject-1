@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-upload-headimage',
@@ -9,8 +11,12 @@ export class UploadHeadimageComponent implements OnInit {
   /*********这里是数据区****** */
   reader=new FileReader();//图片读取对象
   canvasImg:string='';//储存导出的图片的base64
+
+  public UserID:number=1;
+  public ImgResponse:any;
+
   /*********这里是函数区****** */
-  constructor() { }
+  constructor(private router: Router, public http:HttpClient) { }
 
   ngOnInit() {
   }
@@ -37,6 +43,28 @@ export class UploadHeadimageComponent implements OnInit {
 
     }
   
+  }
+  postData(){
+    const httpOptions={headers : new HttpHeaders({'Content-Type':'application/json'})};
+ 
+    var api ='http://localhost:4000/photo';
+
+    if(this.canvasImg.length<100){
+
+      this.ImgResponse="上传错误"
+    } else {
+    var api ='http://localhost:4000/photo';
+
+    this.http.post(api,{"UserID":this.UserID,"photomsg":this.canvasImg},httpOptions).subscribe((response:any)=>{
+      //console.log(response);
+
+      this.ImgResponse=response;
+      this.router.navigate(['/userpage']) ;
+
+
+    })
+    }
+
   }
 
 }

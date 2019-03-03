@@ -57,6 +57,10 @@
                         <span class="input-group-addon">头像：</span>
                         <img [src]="imgsrc" width="100px" height="100px" alt="未选择头像" class="img-thumbnail"> 
                     </div>
+
+                    <div >
+                         <a [routerLink]="[ '/uploadimage' ]" style="cursor: pointer;">上传头像</a>
+                    </div>
                     <!-- 显示系统头像 isshow默认为true-->
                     <div [hidden]="isshow">
                             <a (click)="isshow=!isshow" style="cursor: pointer;">显示系统头像</a>
