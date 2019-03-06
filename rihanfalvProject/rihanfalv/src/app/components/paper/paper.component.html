@@ -1,8 +1,9 @@
+<app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
 <div class="paperlist" ng-cloak>
   <div *ngFor="let article of Articles">
     <div class="paper" [routerLink]="['/paperweb',article.ID]">
       <div>
-       <img src="../../../assets/images/相关论文/timg.jpg" class="picture">
+       <img src="../../../assets/word.jpg" class="picture">
         <div class="_三级标题">{{article.Title}}</div>
         <div class="num">字数：{{article.Length}}</div>
         <div class="mes">

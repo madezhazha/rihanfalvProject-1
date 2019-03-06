@@ -10,8 +10,14 @@
     height: 50px;
     overflow: hidden;
     top:5px;
+    overflow-x: hidden; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
-
+    app-webhead{
+        position: relative;
+        z-index: 999;
+    }
   .paperlist{
       height: 100%;
       overflow: hidden;
@@ -22,12 +28,12 @@
 .paper{
     position: relative;
     background: white;
-    position: relative;
     width: 450px;
     height: 90px;
     cursor: pointer;
     border-bottom: 1px solid gray;
     margin-top: 0.5px;
+    
 }
 
 

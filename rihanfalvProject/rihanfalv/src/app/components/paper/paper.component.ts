@@ -23,7 +23,7 @@ export class PaperComponent implements OnInit {
 
 
   getArticles(){
-   let api="http://localhost:8000/paper";
+   let api="http://localhost:7080/paper";
    const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
    this.http.post(api,{CurrentPage:this.CurrentPage,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>
     {
@@ -35,9 +35,40 @@ export class PaperComponent implements OnInit {
       }
       else{
         this.Isover=true
-        
       }
     });
+  }
+
+  //日韩切换初始化
+  newArticles(){
+    let api="http://localhost:7080/paper";
+    const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
+    this.http.post(api,{CurrentPage:this.CurrentPage,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>
+     {
+       if(response!=null)
+       {
+         this.Articles=response
+         this.CurrentPage++;
+         //this.CurrentPage=this.Articles[this.Articles.length-1].ID
+       }
+       else{
+         this.Articles=[]
+         this.Isover=true
+       }
+     });
+   }
+
+  getJapanKorea(isJapan:boolean){
+    if(isJapan){
+      this.Nowcountry="Japan"
+      this.CurrentPage=1;
+      this.newArticles()
+    }
+    else{
+      this.Nowcountry="Korea"
+      this.CurrentPage=1;
+      this.newArticles()
+    }
   }
 
   constructor(private http:HttpClient,private router:Router) { 

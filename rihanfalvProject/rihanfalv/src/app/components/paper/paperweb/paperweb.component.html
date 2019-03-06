@@ -17,14 +17,13 @@
 
   <div id="contentbox" #contentbox >
     <div class="contentp" id="text" #text>
-      <div id="p" [innerHTML]="Paper?.Content |sanitizeHtml"></div>
+      <div id="p" [innerHTML]="Paper?.Content|sanitizeHtml"></div>
     </div>
-  </div>
+</div>
 
 
   <p [ngClass]="{'ishidden':Paper?.Length<1000}" #more>.........................</p>
   
 </div>
-<div class="show" [ngClass]="{'ishidden':Paper?.Length<1000}" id="show" #show >
-      <a (click)="mshow()">查看剩余部分</a> 
-  </div>
+
+  <a (click)="mshow()" id="show" [ngClass]="{'ishidden':Paper?.Length<1000}"  #showbutton >查看剩余部分</a> 

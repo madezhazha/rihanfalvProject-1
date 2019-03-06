@@ -71,6 +71,7 @@ func ArticleDetial(w http.ResponseWriter, r *http.Request){
 	if detial.Country==""{     //collletion.ArticleID==0
 		return
 	}
+	fmt.Println(detial)
 	var article psql.Article
 	articleid,_:=strconv.Atoi(detial.ArticleID)
 	userid,_:=strconv.Atoi(detial.UserID)
@@ -86,6 +87,7 @@ func ArticleDetial(w http.ResponseWriter, r *http.Request){
 			article.IsCollected=psql.GetCollectedArticle(userid,"koreathesis",articleid)
 		}
 	}
+	fmt.Println(article.IsCollected)
 
 	data,_:=json.Marshal(article)
 	w.Write(data)
@@ -105,6 +107,7 @@ func IsCollectedArticle(w http.ResponseWriter, r *http.Request){
 	if collection.Country==""{
 		return
 	}
+	fmt.Println(collection)
 	articleid,_:=strconv.Atoi(collection.ArticleID)
 	userid,_:=strconv.Atoi(collection.UserID)
 	if collection.IsCollected==true{

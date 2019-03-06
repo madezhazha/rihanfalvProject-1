@@ -1,3 +1,7 @@
+body{
+    height: 100%;
+}
+
 .head{
     position: relative;
     height: 80px;
@@ -96,7 +100,7 @@
     height: auto;
     text-align: left;
     margin-top: 3px;
-    font-size: 14px;
+    font-size: 12px;
     display: inline-block;
     overflow: hidden;
 }
@@ -107,6 +111,7 @@
     font-size: 17px;
     font-weight: bold;
     margin-top: 10px;
+   
 }
 
 a{
@@ -119,8 +124,8 @@ a{
     line-height: 40px;
 }
 
-.show{
-    position: fixed;
+#show{
+    position: relative;
     bottom: 0px;
     width: 450px;
     text-align: center;

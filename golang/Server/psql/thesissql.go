@@ -14,10 +14,19 @@ type Article struct{
 	Time string;  //时间
 	Content string;  //内容
 	Length int;  //长度
-	Country string;  //国家
+	//Country string;  //国家
 	Lable []string;  //标签组上传给前端
 	Tagstring string; //数据库标签字符串 用于分割合并处理
 	IsCollected bool; //是否收藏
+}
+
+//收藏结构体
+type Colle struct{
+	Userid int;
+	Collectionid int;
+	Collectiontype string
+	Collectioncontentid int
+	Collectiontime string
 }
 
 
@@ -33,7 +42,7 @@ func ShowArticleList() []Article{
 
 	for row.Next(){
 		var article Article
-		erro = row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Country,&article.Tagstring)
+		erro = row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Tagstring)
 		if erro != nil {
 			fmt.Println("showscan error:",erro)
 		}
@@ -66,7 +75,7 @@ func GetJapanArticlesPart(currentpage int) []Article{
 
 	for rows.Next(){
 		var article Article
-		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Country,&article.Tagstring)
+		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Tagstring)
 		if erro != nil {
 			fmt.Println("showscan error:",erro)
 		}
@@ -99,7 +108,7 @@ func GetKoreaArticlesPart(currentpage int) []Article{
 
 	for rows.Next(){
 		var article Article
-		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Country,&article.Tagstring)
+		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Tagstring)
 		if erro != nil {
 			fmt.Println("showscan error:",erro)
 		}
@@ -123,9 +132,9 @@ func GetJapanArticle(id int) Article{
 	stmt,_:=db.Prepare("Select * from japanthesis where thesisId=$1 ")
 	row,_:=stmt.Query(id)
 	for row.Next(){
-		erro:=row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Country,&article.Tagstring)
+		erro:=row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Tagstring)
 		if erro!=nil{
-			fmt.Println("Scan erro",erro)
+			fmt.Println("xx Scan erro",erro)
 		}
 	}
 	defer row.Close()
@@ -140,7 +149,7 @@ func GetKoreaArticle(id int) Article{
 	stmt,_:=db.Prepare("Select * from koreathesis where thesisId=$1 ")
 	row,_:=stmt.Query(id)
 	for row.Next(){
-		erro:=row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Country,&article.Tagstring)
+		erro:=row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Tagstring)
 		if erro!=nil{
 			fmt.Println("Scan erro",erro)
 		}
@@ -162,8 +171,7 @@ func CollectArticle(userid int,ctype string,articleid int,collectiontime string)
 		fmt.Println("stmt erro",erro)
 	}
 	
-	id,_:=res.LastInsertId()
-	fmt.Println(id)
+	res.LastInsertId()
 	
 	defer stmt.Close()
 	fmt.Println("insert sucess")
@@ -190,15 +198,15 @@ func DeleteArticleCollect(userid int,ctype string,articleid int){
 func GetCollectedArticle(userid int,ctype string,articleid int) bool{
 	stmt,_:=db.Prepare("Select * from collection where userid=$1 and collectiontype=$2 and collectioncontentid=$3")
 	row,_:=stmt.Query(userid,ctype,articleid)
-	var article Article
+	var collection Colle
 	for row.Next(){
-		erro:=row.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Country,&article.Tagstring)
+		erro:=row.Scan(&collection.Userid,&collection.Collectionid,&collection.Collectiontype,&collection.Collectioncontentid,&collection.Collectiontime)
 		if erro!=nil{
 			fmt.Println("Scan erro",erro)
 		}
 	}
 	defer row.Close()
-	if article.ID==0{
+	if collection.Collectioncontentid==0{
 		return false
 	}else{
 		return true

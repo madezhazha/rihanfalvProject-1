@@ -13,15 +13,15 @@ export class PaperwebComponent implements OnInit {
   //获取dom节点
   @ViewChild('contentbox') contentbox:ElementRef;
   @ViewChild('text') text:ElementRef;
-  @ViewChild('show') showbutton:ElementRef;
+  @ViewChild('showbutton') showbutton:ElementRef;
   @ViewChild('more') more:ElementRef;
 
   ArticleID:string;
   UserID:string;
   Country:string="Japan";
 
-  Collectword:string="收藏";  //bug
-  Iscollected:boolean=false;  //判断是否收藏文章
+  Collectword:string  //bug
+  //Iscollected:boolean=false;  //判断是否收藏文章
   //检查用户收藏有此文章id则显示对应字段
   Paper:Article;    //文章对象
   
@@ -30,20 +30,17 @@ export class PaperwebComponent implements OnInit {
 
   Islogin:boolean=false;
 
-  result:any={
-    Result:0
-  }
 
   //展示剩余内容
   mshow(){
     if(this.Islogin==false)
-     {
+    {
        //弹出登录框
-     }
-     else{
-      this.renderer2.setStyle(this.showbutton.nativeElement,"display","none")
+    }
+    else{
       this.renderer2.setStyle(this.contentbox.nativeElement,"height","auto")
       this.renderer2.setStyle(this.more.nativeElement,"display","none")
+      this.renderer2.setStyle(this.showbutton.nativeElement,"display","none")
      }
    
   }
@@ -57,21 +54,16 @@ export class PaperwebComponent implements OnInit {
      }
      else{ 
       const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
-      let api="http://localhost:8000/paperweb/collect";
-      this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country,Iscollected:this.Iscollected},httpOptions).subscribe((response:any)=>
+      let api="http://localhost:7080/paperweb/collect";
+      this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country,Iscollected:this.Paper.IsCollected},httpOptions).subscribe((response:any)=>
       {
-        this.result=response
-        if(this.result.Result==1){
-          this.Iscollected=!this.Iscollected;
-          if(this.Iscollected==true){
-           this.Collectword="取消收藏";
-          }
-          else{
-           this.Collectword="收藏";
-          }
+        let result=response
+        this.Paper.IsCollected=!this.Paper.IsCollected
+        if(this.Paper.IsCollected==true){
+          this.Collectword="取消收藏";
         }
         else{
-          console.log("false")
+          this.Collectword="收藏";
         }
       });
 
@@ -83,10 +75,19 @@ export class PaperwebComponent implements OnInit {
    //服务器获取文章详情
    get(){
     const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
-    let api="http://localhost:8000/paperweb";
+    let api="http://localhost:7080/paperweb";
     this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country},httpOptions).subscribe((response:any)=>
     {
       this.Paper=response
+      //this.Iscollected=this.Paper.Iscollected
+      //console.log(this.Iscollected)
+      console.log(this.Paper.IsCollected)
+      if(this.Paper.IsCollected==true){
+        this.Collectword="取消收藏";
+       }
+       else{
+        this.Collectword="收藏";
+       }
     });
    }
 
@@ -101,11 +102,16 @@ export class PaperwebComponent implements OnInit {
     if(userid!="")
     {
       this.Islogin=true;
+      this.UserID=userid
     }
+    else{
+      
+    }
+
     
-   if(this.Islogin==false){
-     this.Collectword=="收藏"
-   }
+   //if(this.Islogin==false){
+    // this.Collectword=="收藏"
+   //}
     //this.Paper=this.artservice.get()  //获取要展示的文章详情
 
     //this.ID=this.artservice.getId();  //一.存入本地缓存显示
@@ -113,10 +119,10 @@ export class PaperwebComponent implements OnInit {
     //二.地址传值显示
     this.routerIonfo.params
     .subscribe((params:Params)=>{
-      this.ArticleID=params['ArrticleID']
+      this.ArticleID=params['ArticleID']
     })
     this.get();
-    this.Iscollected=this.Paper.Iscollected
+    //this.Iscollected=this.Paper.Iscollected
   }
 
 }
