@@ -150,15 +150,19 @@
 
 <!-- 显示数据库的数据 -->
 <div class="bigContent" id="bigContent">
-    <li style="height:230px;border:1px solid;border-radius: 8px;list-style: none"  *ngFor="let item of PageList">
-        <div>
-            <h2 style="color:black">{{item.casetitle}}</h2>
-            <p style="color:black">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}</p>
-            <div style="height:100px;overflow:hidden"><p style="color:black">{{item.casecontent}}</p></div>
+    <li style="height:150px;border:1px solid;border-radius: 8px;list-style: none;margin-top: 1px"  *ngFor="let item of PageList">
+      <a routerLink="/display-data" (click)="sendData(item.casetitle)">
+         <div>
+            <h4 style="color:black">{{item.casetitle}}</h4>
+            <div style="font-style: italic;color: black">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}</div>
+            <div style="height:60px;overflow:hidden"><p style="color:black">{{item.casecontent}}</p></div>
             <div>
-              <div><a routerLink="/display-data" (click)="sendData(item.casetitle)" style="color:blue;font-size:20px;float: left">裁判书</a></div></div>
-              <div style="float:right;font-style: italic">{{item.trialtime}}</div>
+              <div style="color:blue;font-size:20px;float: left;">裁判书</div>
+              <div style="float:right;font-style: italic;color: black">{{item.trialtime}}</div>
+            </div>
         </div>
+      </a>
+       
     </li>
     <div>
         <button type="button" [disabled]="!preShow" (click)="showPrePage()"class="previous"><a (click)="goTo('result')">上一页</a></button>

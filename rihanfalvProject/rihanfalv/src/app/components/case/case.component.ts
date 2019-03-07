@@ -31,6 +31,7 @@ export class CaseComponent implements OnInit {
     searchContent:string="全部";
     public list :any[]=[]  //用来接收数据的
     data:any
+    languageType:string="韩"     //语言的类型
 
   //这里用来分页显示的
   pageNo = 1; //当前页码
@@ -199,6 +200,8 @@ export class CaseComponent implements OnInit {
 
     changeSearchContent(content:string){
       this.searchContent=content;
+      console.log(content)
+      console.log(this.languageType)
       this.list=[]
       //这里使用get请求就行了，发送的数据再说
 
@@ -210,16 +213,19 @@ export class CaseComponent implements OnInit {
 
       // 注意这里的content是要搞事情的
 
-      this.http.post(api,{"content":content},httpOptions).subscribe((response:any)=>{
-        // console.log(response)
+      this.http.post(api,{"content":content,"languageType":this.languageType},httpOptions).subscribe((response:any)=>{
+        console.log(response)
         //遍历对象，并且将数据放在一个数组中
-        for(const key of Object.keys(response)){
-          if(response.hasOwnProperty(key)){
-            this.data=response[key]
-            this.list.push(this.data)
+        if(response){
+          for(const key of Object.keys(response)){
+           if(response.hasOwnProperty(key)){
+              this.data=response[key]
+              this.list.push(this.data)
+            }
           }
         }
-        // console.log(this.list)  //用来测试，能否成功的将数据接收到
+        
+        console.log(this.list)  //用来测试，能否成功的将数据接收到
         this.onChangePageSize("10")
       })
 
@@ -233,7 +239,7 @@ export class CaseComponent implements OnInit {
   }
 
 
-  //一开始就显示数据
+  //一开始就显示数据，我添加了数据语言
   DisplayContent(){
 
     //使用post请求
@@ -245,7 +251,7 @@ export class CaseComponent implements OnInit {
 
     // 注意这里的content是要搞事情的
 
-    this.http.post(api,{"content":"全部"},httpOptions).subscribe((response:any)=>{
+    this.http.post(api,{"content":"全部","languageType":this.languageType},httpOptions).subscribe((response:any)=>{
       // console.log(response)
       //遍历对象，并且将数据放在一个数组中
       for(const key of Object.keys(response)){

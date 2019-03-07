@@ -29,6 +29,7 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 	//用来接收数据
 	var data map[string]interface{}
+	var languageType string
 
 	//接收前端发来的请求的请求
 	body, err := ioutil.ReadAll(r.Body)
@@ -45,8 +46,9 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 	if data != nil {
 		if data["content"] == "全部" {
+			languageType=data["languageType"].(string)
 			//这里从服务端拿去数据
-			all_data := psql.Getalldata()
+			all_data := psql.Getalldata(languageType)
 			// fmt.Println(all_data)
 
 			json, _ := json.Marshal(all_data)
@@ -59,8 +61,9 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 		if data["content"] == "刑事案件" || data["content"] == "民事案件" || data["content"] == "行政案例" || data["content"] == "商事、经济案例" {
 
 			getBody := data["content"].(string)
+			languageType=data["languageType"].(string)
 
-			all_data := psql.Getfirstfloor(getBody)
+			all_data := psql.Getfirstfloor(getBody,languageType)
 
 			json, _ := json.Marshal(all_data)
 
@@ -70,8 +73,9 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 		if data["content"] == "证据" || data["content"] == "正当防卫" || data["content"] == "自首" || data["content"] == "共同犯罪" {
 
 			getBody := data["content"].(string)
+			languageType=data["languageType"].(string)
 
-			all_data := psql.Getreason(getBody)
+			all_data := psql.Getreason(getBody,languageType)
 
 			json, _ := json.Marshal(all_data)
 
@@ -80,10 +84,11 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 		if data["content"] == "2019" || data["content"] == "2018" || data["content"] == "2017" || data["content"] == "2016" || data["content"] == "2015" {
 
 			getBody := data["content"].(string)
+			languageType=data["languageType"].(string)
 
 			fmt.Println(getBody)
 
-			all_data := psql.Gettime(getBody)
+			all_data := psql.Gettime(getBody,languageType)
 
 			json, _ := json.Marshal(all_data)
 
@@ -92,20 +97,22 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 		if data["content"] == "一审" || data["content"] == "二审" || data["content"] == "再审" || data["content"] == "执行" {
 
 			getBody := data["content"].(string)
+			languageType=data["languageType"].(string)
 
-			all_data := psql.Getlevel(getBody)
+			all_data := psql.Getlevel(getBody,languageType)
 
 			json, _ := json.Marshal(all_data)
 
 			w.Write(json)
 		}
-		if data["content"] == "刑事诉讼" || data["content"] == "危害公共安全" || data["content"] == "危害国家安全罪" || data["content"] == "贪贿罪" || data["content"] == "侵犯财产罪" || data["content"] == "合同权纠纷" ||
+		if data["content"] == "刑法诉讼" || data["content"] == "危害公共安全" || data["content"] == "危害国家安全罪" || data["content"] == "贪贿罪" || data["content"] == "侵犯财产罪" || data["content"] == "合同权纠纷" ||
 			data["content"] == "物权纠纷" || data["content"] == "劳动权纠纷" || data["content"] == "人格权纠纷" || data["content"] == "其他纠纷" || data["content"] == "行政机关自行处理案例" || data["content"] == "行政诉讼案" ||
 			data["content"] == "证券" || data["content"] == "期货交易" || data["content"] == "保险" || data["content"] == "破产" || data["content"] == "商事仲裁" {
 
 			getBody := data["content"].(string)
+			languageType=data["languageType"].(string)
 
-			all_data := psql.Getsecondfloor(getBody)
+			all_data := psql.Getsecondfloor(getBody,languageType)
 
 			json, _ := json.Marshal(all_data)
 

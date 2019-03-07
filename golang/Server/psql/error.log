@@ -2,3 +2,5 @@
 ERROR 2019/03/02 21:01:47 thread.go:17: pq: S:"错误" V:"ERROR" C:"42P01" M:"关系 \"topics\" 不存在" P:"140" F:"d:\\pginstaller.auto\\postgres.windows-x64\\src\\backend\\parser\\parse_relation.c" L:"1180" R:"parserOpenTable"
 ERROR 2019/03/03 11:33:23 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/03 11:33:24 thread.go:17: pq: relation "topics" does not exist
+ERROR 2019/03/06 22:32:54 thread.go:17: pq: relation "topics" does not exist
+ERROR 2019/03/06 22:39:33 thread.go:17: pq: relation "topics" does not exist
