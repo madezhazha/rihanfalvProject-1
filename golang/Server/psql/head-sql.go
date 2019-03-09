@@ -5,8 +5,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	jwt "github.com/dgrijalva/jwt-go"
+	//	jwt "github.com/dgrijalva/jwt-go"
 )
 
 // var db *sql.DB
@@ -35,7 +34,7 @@ func CheckEmailPassword(o Output) (Input, string) {
 		if password == o.Password {
 			//放回登陆成功
 			in.ID = strconv.Itoa(id)
-			in.Token = GetToken(in.ID)
+			//	in.Token = GetToken(in.ID)
 			in.IfLogin = true
 			in.Tip = "登陆成功"
 		} else {
@@ -59,7 +58,7 @@ func check(err error) {
 }
 
 //检查令牌
-func CheckToken(token string, k string) bool {
+/*func CheckToken(token string, k string) bool {
 	key := []byte(k)
 	_, err := jwt.Parse(token, func(*jwt.Token) (interface{}, error) {
 		return key, nil
@@ -87,7 +86,7 @@ func GetToken(k string) string {
 		return ""
 	}
 	return ss
-}
+}*/
 
 //注册检验是否存在用户
 func Register(re *HeadUser) {

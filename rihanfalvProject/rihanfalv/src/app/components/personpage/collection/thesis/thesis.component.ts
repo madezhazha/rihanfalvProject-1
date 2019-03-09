@@ -23,7 +23,7 @@ export class ThesisComponent implements OnInit {
     this.CollectionMsg.length=0
     const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json'})};
 
-       var api ='http://localhost:4000/collection';
+       var api ='http://localhost:7080/collection';
        this.http.post(api,{"userid":this.UserID},httpOptions).subscribe((response:any)=>{
 
          this.arr=response;

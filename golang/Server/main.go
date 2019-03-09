@@ -56,6 +56,9 @@ func main() {
 	mux.HandleFunc("/get", route.Get)
 	mux.HandleFunc("/post", route.Post)
 
+	//收藏
+	mux.HandleFunc("/collection", route.UserCollection)
+
 	//论文
 	mux.HandleFunc("/paper", route.ArticleList)                   //论文首页
 	mux.HandleFunc("/paperweb", route.ArticleDetial)              //论文内容页
