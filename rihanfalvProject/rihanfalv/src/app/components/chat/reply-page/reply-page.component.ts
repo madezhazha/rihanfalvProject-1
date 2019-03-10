@@ -12,7 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ReplyPageComponent implements OnInit {
 
   private RoutingData: any;
+  // 回答的文本
   private text: string;
+
+  // 登录的用户ID
+  private userID: any;
 
   constructor(
     private activatedRouter: ActivatedRoute,
@@ -22,8 +26,9 @@ export class ReplyPageComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRouter.queryParams.subscribe((response) => {
+      this.userID=localStorage.getItem("id")
+      console.log(this.userID);
       this.RoutingData = response;
-      console.log(this.RoutingData);
     });
   }
 
@@ -32,9 +37,9 @@ export class ReplyPageComponent implements OnInit {
       alert("内容不能为空");
       return;
     }
-    // 这里的1是模拟用户的userid
-    this.dataService.submitReply("1", this.RoutingData.topicID,
-      this.text, this.RoutingData.floor).subscribe(()=>{
+    // 这里的userID代表回答的用户
+    this.dataService.submitReply(this.userID, this.RoutingData.topicID,
+      this.text, this.RoutingData.floor).subscribe(() => {
         let navigationExtras: NavigationExtras = {
           queryParams: {
             topicID: this.RoutingData.topicID,

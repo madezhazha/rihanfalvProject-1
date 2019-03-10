@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../../services/data.service';
 import { Router, NavigationExtras } from '@angular/router';
 
+import { InputData } from '../../head/langing/land/input'
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -25,6 +27,14 @@ export class PostComponent implements OnInit {
   //  是否收藏
   private collection: any;
 
+  // 是否登录
+  private Islogin: boolean;
+  // 是否弹出登录框
+  private IfWantLogin: boolean = false;
+
+  // 登录的用户ID
+  private userID: any;
+
   constructor(
     private activatedRouter: ActivatedRoute,
     private dataService: DataService,
@@ -33,11 +43,19 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRouter.queryParams.subscribe((response) => {
+      // localStorage.removeItem("id");
+      //获取用户信息
+      this.userID = localStorage.getItem("id");
+      if (this.userID != null) {
+        this.Islogin = true;
+      } else {
+        this.Islogin = false
+        this.userID = -1;
+      }
       // debugger;
       this.hostData = response;
-      // console.log(this.hostData.topicID);
-      // 1是假数据，代表用户id
-      this.dataService.getPostList(1, response.topicID).subscribe((resp) => {
+      // 这里的userID代表是否收藏此帖的用户ID
+      this.dataService.getPostList(this.userID, response.topicID).subscribe((resp) => {
         this.collection = resp.collection;
         this.post = resp.post;
         this.thread = resp.thread;
@@ -48,6 +66,8 @@ export class PostComponent implements OnInit {
           } else {
             this.isMax = false;
           }
+        } else {
+          this.isMax = true;
         }
       });
     });
@@ -86,15 +106,31 @@ export class PostComponent implements OnInit {
 
   collect() {
     // 1也是模拟用户id
-    this.dataService.collect("1", this.hostData.topicID).subscribe((response) => {
+    this.dataService.collect(this.userID, this.hostData.topicID).subscribe((response) => {
       this.collection.Collectioncontentid = response;
     });
   }
 
   cancel() {
-    this.dataService.cancel("1", this.hostData.topicID).subscribe((response) => {
+    this.dataService.cancel(this.userID, this.hostData.topicID).subscribe((response) => {
       this.collection.Collectioncontentid = response;
     });
+  }
+
+  //关闭登陆框
+  boxClose() {
+    this.IfWantLogin = false;
+  }
+
+  getLoginData(loginData: InputData) {
+    if (loginData.IfLogin == true) {
+      this.Islogin = true
+      this.boxClose();
+    }
+  }
+
+  popupLogin() {
+    this.IfWantLogin = true;
   }
 
 }
