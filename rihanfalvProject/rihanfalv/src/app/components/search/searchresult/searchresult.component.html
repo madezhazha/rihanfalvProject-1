@@ -1,12 +1,13 @@
 
-
+<hr>
+{{this.text}}
     <ul *ngIf="getstatus()">
         <div class="paperlist">
         <div>
             共查询到{{this.m_search.list.length}}条相关信息
         </div>
          <div *ngFor="let item of this.list" class="paper">
-                <li >  <hr>
+                <li > 
                         <div class="_三级标题" >
                             //{{item.Classify}}//
                             <span *ngIf="item.Classify=='论文'">
@@ -15,15 +16,20 @@
                         <span *ngIf="item.Classify=='法律'"><a [routerLink]="['/article','legaltype']" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
                         </div>
-                        <div class="num" *ngIf="item.Classify=='论文'">字数：{{item.Length}}</div>
+                        <!-- <div class="num" *ngIf="item.Classify=='论文'">字数：{{item.Length}}</div> -->
                     <div class="mes">
                     <span class="name">{{item.Author}}</span>
-                    <span class="time">{{item.Time|date: 'yyyy-MM-dd'}}</span>
+                    <span class="time">{{item.Date|date: 'yyyy-MM-dd'}}</span>
                     </div>
-                     <div class="paper">
+                     <div class="content">
+                            <span class="labelcontainer" *ngFor="let label of item.Labelbox">
+                                    <span  class="label">
+                                       {{label}}
+                                    </span>
+                                </span>
                            <!-- <span>{{item.lables|json}}</span> -->
-                             <span  [innerHTML]="item?.Content |keyword:this.m_search.KeyWord" > 
-                            </span>
+                             <div  [innerHTML]="item?.Content |keyword:this.m_search.KeyWord" > 
+                             </div> 
                                 </div> 
                               
                                 </li> 
@@ -32,7 +38,7 @@
           
         </div>
         <hr>
-           <button (click)="readmore()" class="readmore" style="height: 40px;">加载更多</button>
+        <button type="button" class="btn btn-default navbar-btn"(click)="readmore()">加载更多</button>
           page:{{this.page}}
         </ul>
       

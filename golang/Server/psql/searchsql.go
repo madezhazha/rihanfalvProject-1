@@ -19,6 +19,7 @@ type Searchbox struct{
 	Content string `json:"Content"`
 	Length int `json:"Length"`
 	Label string `json:"Label"`
+	Labelbox []string `json:"Labelbox"`
 	Value int `json:"Value"`
 	Classify string `json:"Classify"`
 }
@@ -63,6 +64,7 @@ func Legalsearch(readkey string,searchlist []Searchbox)[]Searchbox{//从法律�
 		} //检查错误
 		for rows.Next() { //将rows赋值
 		rows.Scan(&m.ID, &m.Type, &m.Title, &m.Content, &m.Label)
+		m.Labelbox=strings.Split(m.Label,"/")
 		m.Classify="法律"
 		searchlist=append(searchlist,m)
 		}	
@@ -79,9 +81,11 @@ func Thesissearch(readkey string,searchlist []Searchbox)[]Searchbox{//从论文�
 		} //检查错误
 		for rows.Next() { //将rows赋值
 		rows.Scan(&m.ID, &m.Title, &m.Author, &m.Time, &m.Content,&m.Length,&m.Label)
+		m.Labelbox=strings.Split(m.Label,"/")
 		m.Classify="论文"
 		searchlist=append(searchlist,m)
 		}	
+
 	return searchlist
 }
 
@@ -92,11 +96,11 @@ func Scoreofsearch(searchlist []Searchbox,readkey string){//判断内容的相�
         searchlist[i].Value=0
 		titlecount:=strings.Count(searchlist[i].Title, readkey)//获取内容中key的出现次数
 		searchlist[i].Value=searchlist[i].Value+titlecount*100
-		fmt.Println("标题包含：",titlecount) 
+		//fmt.Println("标题包含：",titlecount) 
 		contentcount:=strings.Count(searchlist[i].Content, readkey)
 		searchlist[i].Value=searchlist[i].Value+contentcount*5
-		 fmt.Println("内容包含",contentcount)  
-		 fmt.Println("相关度：",searchlist[i].Value)
+		// fmt.Println("内容包含",contentcount)  
+		// fmt.Println("相关度：",searchlist[i].Value)
 		 //分数=标题出现次数*100+内容出现次数*5(+点击次数)
 	}
 }	

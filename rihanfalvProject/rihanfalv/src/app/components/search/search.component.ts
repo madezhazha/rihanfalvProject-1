@@ -21,6 +21,8 @@ public ifsearch=false//搜索状态,false显示搜索历史,true显示搜索内�
   constructor(public router: Router,public http:HttpClient,public m_search:DosearchService) { }
 
   ngOnInit() {this.readHistory()
+    console.log(this.m_search.list)
+
 }
 readHistory(){
   let SearchList=JSON.parse(localStorage.getItem('HistoryList'));//读取历史记录
@@ -73,6 +75,7 @@ remove(){//清除历史记录
 
 setInfo(item){
   this.searchgroup=item
+  this.doSearch()
 }
 
 getJapanKorea(isJapan:boolean){

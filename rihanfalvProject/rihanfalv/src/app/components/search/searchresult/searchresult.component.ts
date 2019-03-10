@@ -21,7 +21,6 @@ public page=1
   }
 
   ngOnInit() {
-
   }
 
   getstatus(){
@@ -35,10 +34,14 @@ public page=1
 }
 if(this.m_search.list.length<5){
   this.list=this.m_search.list
+  this.text=null;
+
 }
 if(this.m_search.list.length>=5)
 for(let i =0;i<5;i++){
    this.list[i]=this.m_search.list[i]
+   this.text=null;
+
 }
 
      return true
