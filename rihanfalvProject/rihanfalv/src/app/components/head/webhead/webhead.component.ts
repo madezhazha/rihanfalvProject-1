@@ -35,6 +35,11 @@ export class WebheadComponent implements OnInit {
       this.wasJapan=false;
       this.JapanOrKoreaBool=false;
     }
+    if(localStorage.getItem("id")!=null){
+      this.In.ID=localStorage.getItem("id");
+      this.In.IfLogin=true;
+      this.In.Image=localStorage.getItem("headImage");
+    }
   }
   //日韩转换的按钮
   JapanKoreaChange(){

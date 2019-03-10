@@ -43,8 +43,6 @@ export class PopularComponent implements OnInit {
           this.isMax = false;
         }
       }
-      // console.log(this.threadList);
-      // console.log(this.nowData);
     });
   }
 

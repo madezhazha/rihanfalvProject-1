@@ -52,6 +52,15 @@ func main() {
 	mux.HandleFunc("/showuseranslist", route.ShowUserAnsList) // 个人回答列表
 	mux.HandleFunc("/addtopics", route.AddTopics)             // 添加帖子
 
+	//法律条文
+	mux.HandleFunc("/type",route.Typeget)
+    mux.HandleFunc("/title",route.Titlepost)
+    mux.HandleFunc("/titles",route.Titleget)
+    mux.HandleFunc("/label",route.Labelpost)
+    mux.HandleFunc("/labels",route.Labelget)
+    mux.HandleFunc("/content",route.Contentpost)
+	mux.HandleFunc("/contents",route.Contentget)
+	
 	// 个人主页
 	mux.HandleFunc("/get", route.Get)
 	mux.HandleFunc("/post", route.Post)
