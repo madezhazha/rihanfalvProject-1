@@ -1,3 +1,4 @@
+<div><app-webhead></app-webhead></div>
 <hr>
 <div>
     <div class="container-fluid">
@@ -56,11 +57,10 @@
                     <div class="input-group">
                         <span class="input-group-addon">头像：</span>
                         <img [src]="imgsrc" width="100px" height="100px" alt="未选择头像" class="img-thumbnail"> 
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal" [routerLink]="[ '/uploadimage' ]" style="cursor: pointer;" (click)="close()">上传头像</button>
                     </div>
 
-                    <div >
-                         <a [routerLink]="[ '/uploadimage' ]" style="cursor: pointer;">上传头像</a>
-                    </div>
                     <!-- 显示系统头像 isshow默认为true-->
                     <div [hidden]="isshow">
                             <a (click)="isshow=!isshow" style="cursor: pointer;">显示系统头像</a>
