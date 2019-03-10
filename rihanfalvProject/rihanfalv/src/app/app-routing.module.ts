@@ -21,6 +21,11 @@ import { HomepageComponent} from './components/homepage/homepage.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchresultComponent } from './components/search/searchresult/searchresult.component';
 
+import { MychatComponent } from './components/chat/mychat/mychat.component';
+import { ToQuestionComponent } from './components/chat/to-question/to-question.component';
+import { MyQuestionComponent } from './components/chat/my-question/my-question.component';
+import { MyAmswerComponent } from './components/chat/my-amswer/my-amswer.component';
+
 import { UserComponent } from './components/personpage/user/user.component' ;
 import { CollectionComponent } from './components/personpage/collection/collection.component' ;
 import { UploadHeadimageComponent } from './components/personpage/upload-headimage/upload-headimage.component';
@@ -38,7 +43,7 @@ const routes: Routes = [
   { path: 'legal', component: LegalComponent },
   { path: 'article', component: ArticleComponent },
   { path: 'content', component: ContentComponent },
-  { path: 'paperweb/:ArticleID', component: PaperwebComponent},
+  { path: 'paperweb/:route/:ArticleID', component: PaperwebComponent},
   { path: 'display-data',component:CaseDataComponent},
   { path: 'post', component: PostComponent },
   { path: 'replyPage', component: ReplyPageComponent },
@@ -46,6 +51,11 @@ const routes: Routes = [
   { path: 'tag', component: TagComponent },
   { path: 'search', component: SearchComponent },
   { path: 'searchresult', component: SearchresultComponent },
+
+  { path: 'mychat', component: MychatComponent },
+  { path: 'toquestion', component: ToQuestionComponent },
+  { path: 'myquestion', component: MyQuestionComponent },
+  { path: 'myanswer', component: MyAmswerComponent },
 
 
   {path:'userpage',component:UserComponent},

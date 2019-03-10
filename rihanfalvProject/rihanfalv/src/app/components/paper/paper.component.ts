@@ -23,6 +23,14 @@ export class PaperComponent implements OnInit {
 
 
   getArticles(){
+    let country=localStorage.getItem("JapanOrKorea")
+    if (country=="日")
+    {
+      this.Nowcountry="Japan"
+    }
+    else{
+      this.Nowcountry="Korea"
+    }
    let api="http://localhost:7080/paper";
    const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
    this.http.post(api,{CurrentPage:this.CurrentPage,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>

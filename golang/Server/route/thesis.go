@@ -2,7 +2,7 @@ package route
 
 import (
 	"encoding/json"
-	"fmt"
+	//"fmt"
 	"io/ioutil"
 	"net/http"
 	"../psql"
@@ -53,7 +53,7 @@ func ArticleList(w http.ResponseWriter, r *http.Request){
 
 	data,_:=json.Marshal(Articles) 
 	w.Write(data)
-	fmt.Println("submit Articles sucess")
+	//fmt.Println("submit Articles sucess")
 }
 
 //获取文章详情
@@ -70,6 +70,7 @@ func ArticleDetial(w http.ResponseWriter, r *http.Request){
 	if detial.Country==""{     //collletion.ArticleID==0
 		return
 	}
+	//fmt.Println(detial.Country)
 	var article psql.Article
 	articleid,_:=strconv.Atoi(detial.ArticleID)
 	userid,_:=strconv.Atoi(detial.UserID)
@@ -85,11 +86,10 @@ func ArticleDetial(w http.ResponseWriter, r *http.Request){
 			article.IsCollected=psql.GetCollectedArticle(userid,"koreathesis",articleid)
 		}
 	}
-	fmt.Println(article.IsCollected)
 
 	data,_:=json.Marshal(article)
 	w.Write(data)
-	fmt.Println("submit article sucess")
+	//fmt.Println("submit article sucess")
 	
 }
 
