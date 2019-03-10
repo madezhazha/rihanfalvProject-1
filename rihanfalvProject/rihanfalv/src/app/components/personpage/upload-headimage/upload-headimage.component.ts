@@ -47,13 +47,13 @@ export class UploadHeadimageComponent implements OnInit {
   postData(){
     const httpOptions={headers : new HttpHeaders({'Content-Type':'application/json'})};
  
-    var api ='http://localhost:4000/photo';
+    var api ='http://localhost:7080/photo';
 
     if(this.canvasImg.length<100){
 
       this.ImgResponse="上传错误"
     } else {
-    var api ='http://localhost:4000/photo';
+    
 
     this.http.post(api,{"UserID":this.UserID,"photomsg":this.canvasImg},httpOptions).subscribe((response:any)=>{
       //console.log(response);

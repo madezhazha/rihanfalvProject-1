@@ -21,7 +21,7 @@ var user1 User
 var err error
 
 func SelectUser() User {
-	rows, err := db.Query("SELECT * FROM page") //执行一次查询，返回多行结果
+	rows, err := db.Query("SELECT * FROM users") //执行一次查询，返回多行结果
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,7 +42,7 @@ func SelectUser() User {
 }
 func UpdateUser(user User) {
 	//大写会自动转换为小写,要加斜杆和双引号
-	stmt, err := db.Prepare("UPDATE \"page\" SET \"username\"=$1, \"password\"=$2, \"email\"=$3, \"image\"=$4, \"integral\"=$5, \"registrationdate\"=$6  WHERE \"userid\"=$7")
+	stmt, err := db.Prepare("UPDATE \"users\" SET \"username\"=$1, \"password\"=$2, \"email\"=$3, \"image\"=$4, \"integral\"=$5, \"registrationdate\"=$6  WHERE \"userid\"=$7")
 	if err != nil {
 		log.Fatal(err)
 	}
