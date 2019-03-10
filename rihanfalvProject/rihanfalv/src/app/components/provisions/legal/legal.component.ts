@@ -50,9 +50,8 @@ export class LegalComponent implements OnInit {
    }
 
    public title(legaltype: string) {
-     this.router.navigate(['article'], {
-       queryParams: {legaltype: legaltype}
-       });
+     this.router.navigate(['/article','legaltype']
+       );
    }
 
    public choose() {                         // 法律条文的分类显示
