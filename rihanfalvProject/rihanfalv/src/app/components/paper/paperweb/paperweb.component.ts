@@ -36,12 +36,14 @@ export class PaperwebComponent implements OnInit {
 
   IfWantLogin:boolean=false;
   //关闭登陆框
+  
   boxClose(){
     this.IfWantLogin=false;
   }
 
   getLoginData(date:InputData)
   {
+    localStorage.setItem('headImage',date.Image)
     //this.finishedlogin=date.IfLogin
     if(date.IfLogin==true)
     {
