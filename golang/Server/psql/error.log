@@ -4,3 +4,18 @@ ERROR 2019/03/03 11:33:23 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/03 11:33:24 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/06 22:32:54 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/06 22:39:33 thread.go:17: pq: relation "topics" does not exist
+ERROR 2019/03/10 14:06:38 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:06:58 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:02 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:07 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:13 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:36 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:13:06 thread.go:17: sql: Scan error on column index 1, name "username": unsupported Scan, storing driver.Value type <nil> into type *string
+ERROR 2019/03/10 14:13:09 thread.go:17: sql: Scan error on column index 1, name "username": unsupported Scan, storing driver.Value type <nil> into type *string
+ERROR 2019/03/10 14:14:39 thread.go:17: sql: Scan error on column index 4, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 14:18:10 post.go:37: pq: column "integral" does not exist
+ERROR 2019/03/10 14:18:24 post.go:37: pq: column "integral" does not exist
+ERROR 2019/03/10 14:18:30 post.go:37: pq: column "integral" does not exist
+ERROR 2019/03/10 14:32:20 post.go:43: sql: Scan error on column index 2, name "collectiontype": converting driver.Value type string ("topics") to a int: invalid syntax
+ERROR 2019/03/10 14:33:26 post.go:43: sql: Scan error on column index 2, name "collectiontype": converting driver.Value type string ("topics") to a int: invalid syntax
+ERROR 2019/03/10 14:34:10 post.go:43: sql: Scan error on column index 2, name "collectiontype": converting driver.Value type string ("topics") to a int: invalid syntax

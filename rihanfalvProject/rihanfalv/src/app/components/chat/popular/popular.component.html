@@ -1,5 +1,5 @@
 <!-- <div style="width:450px;height:90px;background-color:tomato">头部</div> -->
-<app-webhead></app-webhead>
+<app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
 <div id="base" class="">
 
   <app-chat-head></app-chat-head>
@@ -82,4 +82,8 @@
     </div>
   </div>
 
+</div>
+
+<div class="app-langing" *ngIf="IfWantLogin">
+  <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
 </div>
