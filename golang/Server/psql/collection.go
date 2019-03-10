@@ -37,27 +37,17 @@ func SqlSelect(UserID int) []CollectionsMsg {
 		CollectionsMsgList = append(CollectionsMsgList, CollectionsMsg)
 	}
 
-	japancaseRows, err := db.Query("SELECT collectiontime,casetitle,collectionid,collectioncontentid,viewpoint,collectiontype FROM collection join japancases on(collection.collectioncontentid = japancases.caseid)    where userid=$1 and collectiontype='japancase' ", UserID)
+	caseRows, err := db.Query("SELECT collectiontime,casetitle,collectionid,collectioncontentid,casecontent,collectiontype FROM collection join casething on(collection.collectioncontentid = casething.id)    where userid=$1 and collectiontype='koreacase' ", UserID)
 	checkErr(err)
 
-	for japancaseRows.Next() {
+	for caseRows.Next() {
 
-		err = japancaseRows.Scan(&CollectionsMsg.CollectionTime, &CollectionsMsg.CollectionTitle, &CollectionsMsg.CollectionID, &CollectionsMsg.CollectionContentID, &CollectionsMsg.CollectionContent, &CollectionsMsg.CollectionType)
-		checkErr(err)
-		CollectionsMsgList = append(CollectionsMsgList, CollectionsMsg)
-
-	}
-
-	koreacaseRows, err := db.Query("SELECT collectiontime,casetitle,collectionid,collectioncontentid,viewpoint,collectiontype FROM collection join koreacases on(collection.collectioncontentid = koreacases.caseid)    where userid=$1 and collectiontype='koreacase' ", UserID)
-	checkErr(err)
-
-	for koreacaseRows.Next() {
-
-		err = koreacaseRows.Scan(&CollectionsMsg.CollectionTime, &CollectionsMsg.CollectionTitle, &CollectionsMsg.CollectionID, &CollectionsMsg.CollectionContentID, &CollectionsMsg.CollectionContent, &CollectionsMsg.CollectionType)
+		err = caseRows.Scan(&CollectionsMsg.CollectionTime, &CollectionsMsg.CollectionTitle, &CollectionsMsg.CollectionID, &CollectionsMsg.CollectionContentID, &CollectionsMsg.CollectionContent, &CollectionsMsg.CollectionType)
 		checkErr(err)
 
 		CollectionsMsgList = append(CollectionsMsgList, CollectionsMsg)
 	}
+
 	japanthesisRows, err := db.Query("SELECT collectiontime,thesistitle,collectionid,collectioncontentid,thesiscontent,collectiontype FROM collection join japanthesis on(collection.collectioncontentid = japanthesis.thesisid)    where userid=$1 and collectiontype='japanthesis' ", UserID)
 	checkErr(err)
 
