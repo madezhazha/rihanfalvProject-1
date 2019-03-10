@@ -52,6 +52,11 @@ import { ChatHeadComponent } from './components/chat/chat-head/chat-head.compone
 import { TagComponent } from './components/chat/tag/tag.component';
 import { SearchresultComponent } from './components/search/searchresult/searchresult.component';
 import { SearchkeywordPipe } from './pipes/searchkeyword.pipe';
+//我的问答
+import { MychatComponent } from './components/chat/mychat/mychat.component';
+import { ToQuestionComponent } from './components/chat/to-question/to-question.component';
+import { MyQuestionComponent } from './components/chat/my-question/my-question.component';
+import { MyAmswerComponent } from './components/chat/my-amswer/my-amswer.component';
 
 import { myPipe } from './components/chat/popular/popular.component';
 import { CollectedcaseComponent } from './components/personpage/collection/collectedcase/collectedcase.component';
@@ -96,7 +101,11 @@ import { CollectedtopicComponent } from './components/personpage/collection/coll
     SearchkeywordPipe,
     myPipe,
     CollectedcaseComponent,
-    CollectedtopicComponent
+    CollectedtopicComponent,
+    MychatComponent,
+    ToQuestionComponent,
+    MyQuestionComponent,
+    MyAmswerComponent
   ],
   imports: [
     BrowserModule,

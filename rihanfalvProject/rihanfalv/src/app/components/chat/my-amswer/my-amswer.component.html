@@ -1,0 +1,56 @@
+<!-- 提问、回答 头部 -->
+<div id="DetailHeader">
+  <a id="QAReturn" (click)="detailReturn()" >&lt;返回</a>
+  <!-- [routerLink]="[ '/discussion/myqueans' ]" -->
+  <span id="DeHeadQA">
+    <a id="QAMyQue" (click)="detailMyQue()" >我的提问</a>
+    <!-- [routerLink]="[ '/queansdetail/myquestion' ]" -->
+    <a id="QAMyAns" (click)="detailMyAns()" >我的回答</a>
+    <!-- [routerLink]="[ '/queansdetail/myanswer' ]" -->
+  </span>
+</div>
+
+  <!-- 回答列表 -->
+  <div class="detailBody">回答列表
+
+    <ul>
+      <li *ngFor="let item of AnsList;let key=index" [hidden]="key>this.DisplayCount" >
+        <div id="Ansorder">
+
+           <a [routerLink]="[ '/' ]">
+                <div class="List">
+                  <div class="Info">
+                      <div class="Image">
+                            <img width="28px" height="28px" src="../../../../assets/images/index/u159.png" >
+                      </div>
+                      
+                      <div class="NameTime">
+                        <div class="Nickname">{{this.UserName}}</div>
+                        <div class="LastTime">
+                          第{{item.floor}}楼 &nbsp; {{item.replytime | date:'HH:mm:ss  yyyy/MM/dd'}}
+                        </div>
+                      </div>
+                      
+                  </div>
+                   
+                  <div class="Content">
+                    <h3>{{item.replycontent}}</h3>
+                    <!-- <span>{{item.floor}}楼</span> -->
+                  </div>
+                  
+                </div>
+              </a>
+          
+        </div>
+      </li>
+
+      <li *ngIf="DisplayCount < MyAnsCount" >
+        <div id="loadmore">
+          <a (click)="loadMore()">
+          <span>加载更多...</span>
+        </a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
