@@ -1,5 +1,5 @@
 <div class="head" ng-cloak>
-  <a routerLink="/paper">&lt;&lt;返回</a>
+  <a (click)="back()">&lt;&lt;返回</a>
   <div class="nt">
     <span class="name">{{Paper?.Author}}</span>
     <span class="time">{{Paper?.Time|date: 'yyyy-MM-dd'}}</span>
@@ -27,3 +27,9 @@
 </div>
 
   <a (click)="mshow()" id="show" [ngClass]="{'ishidden':Paper?.Length<1000}"  #showbutton >查看剩余部分</a> 
+
+  <div class="app-langing" *ngIf="IfWantLogin">
+    <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
+  </div>
+  
+

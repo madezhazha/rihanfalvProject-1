@@ -51,25 +51,34 @@ export class ThesisComponent implements OnInit {
   }
   specificContent(CollectionType,CollectionContentID){
 
+
+
+    localStorage.setItem("route","/collection") 
+
     if(CollectionType=="japanthesis"){
 
-     
-
-      let Contentid: NavigationExtras = {             
-      queryParams: { ContentID:CollectionContentID },                
-    }; 
-    var JapanOrKorea:string="日";    
-    localStorage.setItem("JapanOrKorea",JapanOrKorea)      
-    this.router.navigate(['/paperweb'],Contentid) ;
-    }
-    if(CollectionType=="koreathesis"){
-      let Contentid: NavigationExtras = {             
-      queryParams: { ContentID:CollectionContentID },                
-    };   
-    var JapanOrKorea:string="韩";      
-    localStorage.setItem("JapanOrKorea",JapanOrKorea)
     
-    this.router.navigate(['/paperweb'],Contentid) ;
+      var JapanOrKorea:string="日";    
+  
+      localStorage.setItem("JapanOrKorea",JapanOrKorea)  
+
+     /* let Contentid: NavigationExtras = {             
+      queryParams: { ArticleID: CollectionContentID },                
+    }; 
+        
+    this.router.navigate(['/paperweb'],Contentid) ;*/
+    }
+
+    if(CollectionType=="koreathesis"){
+      
+      var JapanOrKorea:string="韩";      
+    
+      localStorage.setItem("JapanOrKorea",JapanOrKorea)
+     /* let Contentid: NavigationExtras = {             
+      queryParams: { ArticleID:CollectionContentID },                
+    };   
+       
+    this.router.navigate(['/paperweb'],Contentid) ;*/
     }
     
   }

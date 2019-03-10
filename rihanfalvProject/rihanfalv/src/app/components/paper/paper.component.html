@@ -1,8 +1,8 @@
-<app-webhead (isJapan)="getJapanKorea($event)" [IfLogin]=""></app-webhead>
+<app-webhead (isJapan)="getJapanKorea($event)" ></app-webhead>
 
 <div class="paperlist" ng-cloak>
   <div *ngFor="let article of Articles">
-    <div class="paper" [routerLink]="['/paperweb',article.ID]">
+    <div class="paper" [routerLink]="['/paperweb','/paper',article.ID]">
       <div>
        <img src="../../../assets/word.jpg" class="picture">
         <div class="_三级标题">{{article.Title}}</div>

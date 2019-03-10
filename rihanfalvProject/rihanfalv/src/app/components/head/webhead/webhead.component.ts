@@ -23,6 +23,23 @@ export class WebheadComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(localStorage.getItem("JapanOrKorea")=="日"){
+      this.JapanOrKorea="日";
+      this.BackgroundImage="../../../../assets/背景图片1.png"
+      this.wasJapan=true;
+      this.JapanOrKoreaBool=true;
+    }
+    else{
+      this.JapanOrKorea="韩"
+      this.BackgroundImage="../../../../assets/背景图片2.png"
+      this.wasJapan=false;
+      this.JapanOrKoreaBool=false;
+    }
+    if(localStorage.getItem("id")!=null){
+      this.In.ID=localStorage.getItem("id");
+      this.In.IfLogin=true;
+      this.In.Image=localStorage.getItem("headImage");
+    }
   }
   //日韩转换的按钮
   JapanKoreaChange(){

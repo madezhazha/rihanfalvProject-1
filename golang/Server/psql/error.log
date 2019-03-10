@@ -4,4 +4,8 @@ ERROR 2019/03/03 11:33:23 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/03 11:33:24 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/06 22:32:54 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/06 22:39:33 thread.go:17: pq: relation "topics" does not exist
+<<<<<<< HEAD
 ERROR 2019/03/10 14:17:32 thread.go:17: pq: relation "topics" does not exist
+=======
+ERROR 2019/03/10 14:17:05 thread.go:17: pq: column "integral" does not exist
+>>>>>>> accd88360fefeb242ffec82a9cfad87ba3c7054a

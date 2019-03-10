@@ -2,6 +2,12 @@ body{
     height: 100%;
 }
 
+.app-langing{
+    position:fixed;
+    top:160px;
+    left:35px;
+    z-index: 997;
+}
 .head{
     position: relative;
     height: 80px;
@@ -100,7 +106,7 @@ body{
     height: auto;
     text-align: left;
     margin-top: 3px;
-    font-size: 12px;
+    font-size: 15px;
     display: inline-block;
     overflow: hidden;
 }
@@ -125,7 +131,7 @@ a{
 }
 
 #show{
-    position: relative;
+    position: fixed;
     bottom: 0px;
     width: 450px;
     text-align: center;

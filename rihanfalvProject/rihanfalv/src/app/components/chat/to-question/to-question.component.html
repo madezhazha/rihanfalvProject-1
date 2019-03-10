@@ -1,0 +1,10 @@
+<app-webhead></app-webhead>
+
+<div id="WantToQue">
+  <input type="text" placeholder="问题标题" [(ngModel)]="TopicTitle">
+  <textarea name="QueConcent" id="queConcent" cols="30" rows="10" placeholder="描述问题" [(ngModel)]="TopicContent"></textarea>
+  <input type="text" placeholder="添加标签，每个用空格隔开，最多三个" [(ngModel)]="TopicLabel">
+  <button (click)="addTopics()">提交</button>
+  <button (click)="toQueReturn()">返回</button>
+  <!-- [routerLink]="[ '/discussion/myqueans' ]" -->
+</div>
