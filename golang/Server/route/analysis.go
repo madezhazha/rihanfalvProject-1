@@ -8,6 +8,8 @@ import (
 
 	"../psql"
 	// "github.com/ascoders/alipay"
+	"time"
+	"strconv"
 )
 
 //处理跨域
@@ -162,6 +164,7 @@ func CollectData(w http.ResponseWriter,r *http.Request){
 	var languageType string
 	var userId string
 	body,err:=ioutil.ReadAll(r.Body)
+	t:=time.Now().Format("2006-01-02")
 
 	if err!=nil{
 		fmt.Println(err)
@@ -177,11 +180,14 @@ func CollectData(w http.ResponseWriter,r *http.Request){
 	if Data!=nil{
 		content = Data["title"].(string)
 		insturction = Data["data"].(string)
-		titleId = Data["titleId"].(string)
+		titleId = Data["titleId"].(string)  //字符串
+		titleID,_:= strconv.Atoi(titleId)     //将字符串转化为整形
 		languageType = Data["type"].(string)
 		userId = Data["userid"].(string)
+		userID,_:= strconv.Atoi(userId)
 		
-		psql.Implement(content,insturction,titleId,languageType,userId)
+		psql.Implement(content,insturction,titleID,languageType,userID,t)
+		//给了时间
 	}
 }
 
@@ -196,6 +202,7 @@ func InitialState(w http.ResponseWriter,r *http.Request){
 	var languageType string
 	var userId string
 	body,err:=ioutil.ReadAll(r.Body)
+	
 
 	if err!=nil{
 		fmt.Println(err)
@@ -211,10 +218,12 @@ func InitialState(w http.ResponseWriter,r *http.Request){
 	if Data!=nil{
 		content = Data["title"].(string)
 		titleId = Data["titleId"].(string)
+		titleID,_:=strconv.Atoi(titleId)
 		languageType = Data["type"].(string)
 		userId = Data["userid"].(string)
+		userID,_:= strconv.Atoi(userId)
 		
-		data:=psql.Statecollect(content,titleId,languageType,userId)
+		data:=psql.Statecollect(content,titleID,languageType,userID)
 
 		response:=Response{data}
 

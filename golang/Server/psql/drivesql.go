@@ -39,6 +39,14 @@ type collectioncase struct{
 	userId string
 }
 
+type collection struct{
+	userid int   //用户id
+	collectionid int   //收藏的id
+	collectiontype string //收藏该文章的语言类型
+	collectioncontentid int //收藏该文章的id，就相当于titleid
+	collectiontime string //收藏时间
+}
+
 
 
 
@@ -329,18 +337,24 @@ func Gettext(data string)interface{}{
 
 
 //执行收藏和取消收藏的指令
-func Implement(contenTitle string,instruction string,titleId string,languageType string,userId string){
+func Implement(contenTitle string,instruction string,titleId int,languageType string,userId int,collectiontime string){
+	//上面代表的内容有：文章的title，执行收藏还是取消看收藏的指令，文章的id，语言类型，用户id
 	// var collect collectioncase
 
 	//注意这是处理事件
 	if(instruction=="collect"){
 		//收藏
-		stmt,err:=db.Prepare("insert into collectioncase(userid,collectiontype,collectiontitle,collectiontitleid) values($1,$2,$3,$4)")
+		if(languageType=="日"){
+			languageType = "japancase"
+		}else{
+			languageType = "koreacase"
+		}
+		stmt,err:=db.Prepare("insert into collection(userid,collectiontype,collectioncontentid,collectiontime) values($1,$2,$3,$4)")
 		if err!=nil{
 			fmt.Println("添加数据的时候出现的错误1",err)
 			return 
 		}
-		rs,err:=stmt.Exec(userId,languageType,contenTitle,titleId)
+		rs,err:=stmt.Exec(userId,languageType,titleId,collectiontime)
 
 		if err!=nil{
 			fmt.Println("添加数据的时候出现错误2",err)
@@ -350,12 +364,17 @@ func Implement(contenTitle string,instruction string,titleId string,languageType
 	}
 	if(instruction=="cancle"){
 		//取消收藏
-		stmt,err:=db.Prepare("delete from collectioncase where userid=$1 and collectiontype=$2 and collectiontitle =$3 and collectiontitleid=$4")
+		if(languageType=="日"){
+			languageType = "japancase"
+		}else{
+			languageType = "koreacase"
+		}
+		stmt,err:=db.Prepare("delete from collection where userid=$1 and collectiontype=$2 and collectioncontentid =$3")
 		if err!=nil{
 			fmt.Println("删除数据的时候出现的错误1",err)
 			return 
 		}
-		rs,err:=stmt.Exec(userId,languageType,contenTitle,titleId)
+		rs,err:=stmt.Exec(userId,languageType,titleId)
 
 		if err!=nil{
 			fmt.Println("删除数据的时候出现错误2",err)
@@ -366,11 +385,16 @@ func Implement(contenTitle string,instruction string,titleId string,languageType
 }
 
 //收藏的初状态
-func Statecollect(contenTitle string,titleId string,languageType string,userId string)string{
-	var collect collectioncase
+func Statecollect(contenTitle string,titleId int,languageType string,userId int)string{
+	var collect collection
+	if(languageType=="日"){
+		languageType = "japancase"
+	}else{
+		languageType = "koreacase"
+	}
 
 	//使用userid对文章进行判断
-	rows,err:=db.Query("select * from collectioncase where userid=$1",userId)
+	rows,err:=db.Query("select * from collection where userid=$1",userId)
 
 	if err!=nil{
 		fmt.Println("查找收藏的状态的时候出现的错误1",err)
@@ -378,11 +402,11 @@ func Statecollect(contenTitle string,titleId string,languageType string,userId s
 	}
 	
 	for rows.Next(){
-		err:=rows.Scan(&collect.ID,&collect.userId,&collect.collectiontype,&collect.collectiontitle,&collect.collectiontitleid)
+		err:=rows.Scan(&collect.userid,&collect.collectionid,&collect.collectiontype,&collect.collectioncontentid,&collect.collectiontime)
 		if err!=nil{
 			fmt.Println("查找收藏状态的时候出现错误2",err)
 		}
-		if(collect.collectiontype==languageType&&collect.collectiontitle==contenTitle&&collect.collectiontitleid==titleId){
+		if(collect.collectiontype==languageType&&collect.collectioncontentid==titleId){
 			return "collect"
 		}
 	}
