@@ -31,6 +31,8 @@ export class PaperwebComponent implements OnInit {
 
   Islogin:boolean=false;
 
+  url:string  //路由
+
 
   IfWantLogin:boolean=false;
   //关闭登陆框
@@ -122,8 +124,7 @@ export class PaperwebComponent implements OnInit {
 
 
    back(){
-     let url=localStorage.getItem("route")
-     this.rout.navigate([url])
+     this.rout.navigate([this.url])
    }
 
 
@@ -157,6 +158,7 @@ export class PaperwebComponent implements OnInit {
     this.routerIonfo.params
     .subscribe((params:Params)=>{
       this.ArticleID=params['ArticleID']
+      this.url=params['route']
     })
     this.get();
     //this.Iscollected=this.Paper.Iscollected
