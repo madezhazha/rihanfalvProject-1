@@ -2,6 +2,12 @@ body{
     height: 100%;
 }
 
+.app-langing{
+    position:fixed;
+    top:160px;
+    left:35px;
+    z-index: 997;
+}
 .head{
     position: relative;
     height: 80px;

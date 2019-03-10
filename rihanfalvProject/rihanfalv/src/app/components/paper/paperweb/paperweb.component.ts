@@ -30,12 +30,17 @@ export class PaperwebComponent implements OnInit {
 
   Islogin:boolean=false;
 
-
+  IfWantLogin:boolean=false;
+  //关闭登陆框
+  boxClose(){
+    this.IfWantLogin=false;
+  }
   //展示剩余内容
   mshow(){
-    if(this.Islogin==false)
+    if(this.Islogin==true)
     {
        //弹出登录框
+       this.IfWantLogin=true;
     }
     else{
       this.renderer2.setStyle(this.contentbox.nativeElement,"height","auto")
