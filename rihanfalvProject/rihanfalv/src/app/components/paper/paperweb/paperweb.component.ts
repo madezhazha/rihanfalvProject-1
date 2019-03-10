@@ -31,7 +31,7 @@ export class PaperwebComponent implements OnInit {
 
   Islogin:boolean=false;
 
-  finishedlogin:boolean
+
   IfWantLogin:boolean=false;
   //关闭登陆框
   boxClose(){
@@ -43,6 +43,7 @@ export class PaperwebComponent implements OnInit {
     //this.finishedlogin=date.IfLogin
     if(date.IfLogin==true)
     {
+      this.Islogin=true
       this.get()
     }
   }
@@ -69,9 +70,7 @@ export class PaperwebComponent implements OnInit {
      {
        //弹出登录框
        this.IfWantLogin=true;
-       if(this.finishedlogin==true){
-        this.get()
-      }
+
      }
      else{ 
       const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
@@ -103,6 +102,7 @@ export class PaperwebComponent implements OnInit {
     else{
       this.Country="Korea"
     }
+    this.UserID=localStorage.getItem("id")
     //console.log(this.Country)
     const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
     let api="http://localhost:7080/paperweb";
