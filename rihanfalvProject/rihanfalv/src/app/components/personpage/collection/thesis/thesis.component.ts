@@ -19,33 +19,20 @@ export class ThesisComponent implements OnInit {
 
 
   constructor(private router: Router, public http:HttpClient) { }
+  
   ngOnInit() {
     this.CollectionMsg.length=0
     const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json'})};
 
-       var api ='http://localhost:7080/collection';
+       var api ='http://localhost:7080/collectionthesis';
        this.http.post(api,{"userid":this.UserID},httpOptions).subscribe((response:any)=>{
 
-         this.arr=response;
+        this.CollectionMsg=response;
          
 
-         var i:number;
-         var k:number=0;
-        
-         for( i=0;i<100;i++){
-           if(this.arr[i].CollectionTime.length<3){
-             break;
-           } 
-           if(this.arr[i].CollectionType=="japanthesis"||this.arr[i].CollectionType=="koreathesis"){
-             this.CollectionMsg[k]=this.arr[i];
-             k++
-           }
-           
-                     
-         }
+         
 
          
-         console.log(response);
        })
      
   }

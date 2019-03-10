@@ -69,7 +69,9 @@ func main() {
 	mux.HandleFunc("/photo",route.Photo)
 
 	//收藏
-	mux.HandleFunc("/collection", route.UserCollection)
+	mux.HandleFunc("/collectionthesis", route.UserCollectionThesis)
+	mux.HandleFunc("/collectioncase", route.UserCollectionCase)
+	mux.HandleFunc("/collectiontopic", route.UserCollectionTopic)
 
 	//论文
 	mux.HandleFunc("/paper", route.ArticleList)                   //论文首页
