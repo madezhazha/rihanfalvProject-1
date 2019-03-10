@@ -15,10 +15,11 @@ export class CaseComponent implements OnInit {
 
   ) 
   {
-    this.DisplayContent();
+    this.changeSearchContent("全部");
    }
 
   ngOnInit() {
+    
   }
 
     //下面的这些操作都是为了不同页面的显示的
@@ -31,7 +32,8 @@ export class CaseComponent implements OnInit {
     searchContent:string="全部";
     public list :any[]=[]  //用来接收数据的
     data:any
-    languageType:string="韩"     //语言的类型
+    languageType:string    //语言的类型
+
 
   //这里用来分页显示的
   pageNo = 1; //当前页码
@@ -68,7 +70,6 @@ export class CaseComponent implements OnInit {
       this.curPage = 1;
     }
     this.PageList = this.list.slice((this.curPage - 1) * this.pageSize, (this.curPage) * this.pageSize);   //切片
-    // console.log(this.list)
 
   }
   //点击上一页方法
@@ -198,10 +199,14 @@ export class CaseComponent implements OnInit {
   
     //上面设置的都是第一，第二层的页面的设置，下面是从数据库接受到数据之后的显示
 
-    changeSearchContent(content:string){
-      this.searchContent=content;
-      console.log(content)
-      console.log(this.languageType)
+    changeSearchContent(content:string,language?:string){
+      this.searchContent=content
+      if(language===undefined){
+        this.languageType=localStorage.getItem("JapanOrKorea")
+      }else{
+        this.languageType=language
+      }
+        
       this.list=[]
       //这里使用get请求就行了，发送的数据再说
 
@@ -224,8 +229,6 @@ export class CaseComponent implements OnInit {
             }
           }
         }
-        
-        console.log(this.list)  //用来测试，能否成功的将数据接收到
         this.onChangePageSize("10")
       })
 
@@ -239,36 +242,23 @@ export class CaseComponent implements OnInit {
   }
 
 
-  //一开始就显示数据，我添加了数据语言
-  DisplayContent(){
-
-    //使用post请求
-    const httpOptions={
-      headers:new HttpHeaders({'Content-Type':'application/json'})
-    }
-
-    var api = "http://localhost:7080/alldata"
-
-    // 注意这里的content是要搞事情的
-
-    this.http.post(api,{"content":"全部","languageType":this.languageType},httpOptions).subscribe((response:any)=>{
-      // console.log(response)
-      //遍历对象，并且将数据放在一个数组中
-      for(const key of Object.keys(response)){
-        if(response.hasOwnProperty(key)){
-          this.data=response[key]
-          this.list.push(this.data)
-        }
-      }
-      //为什么会在这里显示呢？这是因为执行一次：getPageList()不起任何作用，list的值不会传进去
-      this.onChangePageSize("10")
-    })
-  }
-
-
   //页面传值，通过url传值
   sendData(title:string){
     this.router.navigate(["/display-data"],{queryParams:{"title":title}})
+  }
+
+
+  getJapanKorea(isJapan:boolean){
+    if(isJapan){
+      var languageType="日"
+      this.changeSearchContent(this.searchContent,languageType)      
+    }
+    else{
+      var languageType="韩"
+      this.changeSearchContent(this.searchContent,languageType) 
+    }
+
+    // 这里的日韩切换是正确的
   }
 
 

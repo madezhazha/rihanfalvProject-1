@@ -29,11 +29,11 @@ export class ApiSerivice {
     }
 
     public legallabel2(): Observable<APIResponse[]> {
-        return this.http.get<APIResponse[]>('http://localhost:9000/label');
+        return this.http.get<APIResponse[]>('http://localhost:9000/labels');
     }
 
     public legaltitle(): Observable<APIResponse2[]> {
-        return this.http.get<APIResponse2[]>('http://localhost:9000/title');
+        return this.http.get<APIResponse2[]>('http://localhost:9000/titles');
     }
 
     public legaltitle2(legaltitle: string): Observable<APIResponse2> {
@@ -42,6 +42,6 @@ export class ApiSerivice {
     }
 
     public legalcontent(): Observable<APIResponse3> {
-        return this.http.get<APIResponse3>('http://localhost:9000/content');
+        return this.http.get<APIResponse3>('http://localhost:9000/contents');
     }
 }

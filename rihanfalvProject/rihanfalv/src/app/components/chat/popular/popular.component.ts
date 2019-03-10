@@ -4,6 +4,8 @@ import { DataService } from '../../../services/data.service';
 import { Router, NavigationExtras } from '@angular/router';
 
 
+
+
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
@@ -12,11 +14,12 @@ import { Router, NavigationExtras } from '@angular/router';
 export class PopularComponent implements OnInit {
 
   private threadList: any;
+  // 当前数据的数组是否是最大值
   private isMax: boolean = false;
   private nowData: Array<any> = [];
 
   // 韩国日本的标志
-  private flag: any = 1;
+  private flag: any;
 
   constructor(
     private dataService: DataService,
@@ -25,6 +28,11 @@ export class PopularComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getThreadList().subscribe((response) => {
+      if (localStorage.getItem("JapanOrKorea") == "韩") {
+        this.flag = 0;
+      } else {
+        this.flag = 1;
+      }
       // debugger;
       this.threadList = response;
       if (this.threadList) {
@@ -35,8 +43,6 @@ export class PopularComponent implements OnInit {
           this.isMax = false;
         }
       }
-      // console.log(this.threadList);
-      // console.log(this.nowData);
     });
   }
 
@@ -60,6 +66,14 @@ export class PopularComponent implements OnInit {
     }
   }
 
+  getJapanKorea(isJapan: boolean) {
+    if (isJapan) {
+      this.flag = 1;
+    } else {
+      this.flag = 0;
+    }
+  }
+  
 }
 
 @Pipe({

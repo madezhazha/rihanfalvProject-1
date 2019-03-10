@@ -1,175 +1,33 @@
-.ax_default {
+#MyQAHeader{
     font-family: 'Arial Normal', 'Arial';
-    font-weight: 400;
-    font-style: normal;
-    font-size: 13px;
-    color: #333333; 
-    line-height: normal;
-}
-
-.label {
-    font-size: 14px;
-    text-align: left;
-}
-
-
-p {
-    margin: 0px;
-    text-rendering: optimizeLegibility;
-    font-feature-settings: "kern" 1;
-    -webkit-font-feature-settings: "kern";
-    -moz-font-feature-settings: "kern";
-    -moz-font-feature-settings: "kern=1";
-    font-kerning: normal;
-}
-
-
-#base {
-    margin: 0px;
-    margin-top: 0px;
+    background-color: #f2f2f2;
+    width: 440px;
+    height: 40px;
     margin-left: auto;
     margin-right: auto;
-    background-image: none;
-    max-width: 450px;
-    min-width: 220px; 
-    width: 100%; 
-    
-    text-align: left;
-    z-index: 0;
-    width: auto;
-    height: auto;
-}
-
-#u0 {
     margin-top: 15px;
     margin-bottom: 25px;
-    border-width: 0px;
-    width: auto;
-    height: auto;
-}
-
-#u1_div {
-    border-width: 0px; 
-    
-    border: none;
+    padding: 8px;
     border-radius: 5px;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
 }
 
-#u1 {
-    width: 450px;
-    height: 40px;
-    background: inherit;
-    background-color: rgba(242, 242, 242, 1);
-    border-width: 0px; 
-    top: 99px; 
-    
+#MyQAHeader a{
+    text-decoration: none;
+    color: black;
+	height: 26px;
+    display: block;
+    width: 140px;
+    text-align: center;
+	float: left;
+    padding: 2px;
+}
+#Tags{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
-#u1_text {
-    border-width: 0px; 
-    left: 0px;
-    top: 0px;
-    width: 0px;
-    visibility: hidden;
-    word-wrap: break-word;
-}
-
-#u2_img {
-    border-width: 0px; 
-    left: 0px;
-    top: 0px;
-    width: 2px;
-    height: 24px;
-}
-
-#u2 {
-    margin-top: 6px;
-    float: left;
-    margin-right: 55px;
-    border-width: 0px; 
-    left: 145px;
-    top: 107px;
-    width: auto;
-    height: auto;
-}
-
-
-
-
-#u3 {
-    margin-left: 55px;
-    margin-top: 10px;
-    float: left;
-    margin-right: 55px;
-    border-width: 0px; 
-    left: 70px;
-    top: 110px;
-    width: auto;
-    height: auto;
-}
-
-#u3_text {
-    border-width: 0px;
-    left: 0px;
-    top: 0px;
-    width: auto;
-    white-space: nowrap;
-}
-
-#u4 {
-    margin-top: 10px;
-    float: left;
-    margin-right: 55px;
-    border-width: 0px; 
-    left: 203px;
-    top: 110px;
-    width: auto;
-    height: auto;
-}
-
-#u4_text {
-    border-width: 0px; 
-    left: 0px;
-    top: 0px;
-    width: auto;
-    white-space: nowrap;
-}
-
-
-#u5 {
-    padding-top: 10px; 
-    border-width: 0px; 
-    left: 323px;
-    top: 110px;
-    width: auto;
-    height: auto;
-}
-
-#u5_text {
-    border-width: 0px; 
-    top: 0px;
-    width: auto;
-    white-space: nowrap;
-}
-
-#u6_img {
-    border-width: 0px; 
-    left: 0px;
-    top: 0px;
-    width: 2px;
-    height: 24px;
-}
-
-#u6 {
-    margin-top: 6px;
-    float: left;
-    margin-right: 55px;
-    border-width: 0px; 
-    left: 278px;
-    top: 107px;
-    width: auto;
-    height: auto;
+#MyQAHeader a:hover{
+    font-weight: bolder;
+    /* text-decoration: underline; */
+    /* background-color: aqua; */
 }

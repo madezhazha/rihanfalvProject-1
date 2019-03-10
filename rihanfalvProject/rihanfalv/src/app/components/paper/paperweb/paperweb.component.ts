@@ -1,7 +1,8 @@
 import { Component, OnInit,ElementRef,ViewChild,Renderer2 } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Article} from '../article';
-import { ActivatedRoute, Params} from '@angular/router';
+import { ActivatedRoute, Params,Router} from '@angular/router';
+import {InputData} from '../../head/langing/land/input'
 
 @Component({
   selector: 'app-paperweb',
@@ -17,7 +18,7 @@ export class PaperwebComponent implements OnInit {
   @ViewChild('more') more:ElementRef;
 
   ArticleID:string;
-  UserID:string;
+  UserID:string=""
   Country:string="Japan";
 
   Collectword:string  //bug
@@ -30,14 +31,30 @@ export class PaperwebComponent implements OnInit {
 
   Islogin:boolean=false;
 
+  url:string  //路由
+
+
   IfWantLogin:boolean=false;
   //关闭登陆框
+  
   boxClose(){
     this.IfWantLogin=false;
   }
+
+  getLoginData(date:InputData)
+  {
+    
+    //this.finishedlogin=date.IfLogin
+    if(date.IfLogin==true)
+    {
+      this.Islogin=true
+      this.get()
+    }
+  }
+
   //展示剩余内容
   mshow(){
-    if(this.Islogin==true)
+    if(this.Islogin==false)
     {
        //弹出登录框
        this.IfWantLogin=true;
@@ -56,6 +73,7 @@ export class PaperwebComponent implements OnInit {
      if(this.Islogin==false)
      {
        //弹出登录框
+       this.IfWantLogin=true;
      }
      else{ 
       const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
@@ -79,6 +97,16 @@ export class PaperwebComponent implements OnInit {
 
    //服务器获取文章详情
    get(){
+    let country=localStorage.getItem("JapanOrKorea")
+    if(country=="日")
+    {
+      this.Country="Japan"
+    }
+    else{
+      this.Country="Korea"
+    }
+    this.UserID=localStorage.getItem("id")
+    //console.log(this.Country)
     const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
     let api="http://localhost:7080/paperweb";
     this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country},httpOptions).subscribe((response:any)=>
@@ -86,7 +114,7 @@ export class PaperwebComponent implements OnInit {
       this.Paper=response
       //this.Iscollected=this.Paper.Iscollected
       //console.log(this.Iscollected)
-      console.log(this.Paper.IsCollected)
+      //console.log(this.Paper.IsCollected)
       if(this.Paper.IsCollected==true){
         this.Collectword="取消收藏";
        }
@@ -97,21 +125,28 @@ export class PaperwebComponent implements OnInit {
    }
 
 
-  constructor(private http:HttpClient,private renderer2:Renderer2,private routerIonfo:ActivatedRoute) { 
+   back(){
+     this.rout.navigate([this.url])
+   }
+
+
+  constructor(private http:HttpClient,private renderer2:Renderer2,private routerIonfo:ActivatedRoute,private rout:Router) { 
 
   }
 
   ngOnInit() {
     //获取用户信息
     let userid:string=localStorage.getItem("id");
-    if(userid!="")
+    if(userid!=null)
     {
       this.Islogin=true;
       this.UserID=userid
     }
     else{
-      
+      this.Islogin=false
+      this.UserID=""
     }
+    //console.log(this.Islogin)
 
     
    //if(this.Islogin==false){
@@ -125,17 +160,10 @@ export class PaperwebComponent implements OnInit {
     this.routerIonfo.params
     .subscribe((params:Params)=>{
       this.ArticleID=params['ArticleID']
+      this.url=params['route']
     })
     this.get();
     //this.Iscollected=this.Paper.Iscollected
-    let country=localStorage.getItem("JapanOrKorea")
-    if(country=="日")
-    {
-      this.Country="Japan"
-    }
-    else{
-      this.Country="Korea"
-    }
   }
 
 }

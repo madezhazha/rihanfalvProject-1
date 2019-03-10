@@ -1,3 +1,4 @@
+<app-webhead></app-webhead>
 <app-chat-head></app-chat-head>
 
 <div id="base" class="">
@@ -5,11 +6,11 @@
   <!-- 讨论组合 (组 合) -->
   <div id="u0" class="ax_default" data-label="讨论组合" data-left="0" data-top="22" data-width="448" data-height="355">
 
-    <div style="font-size: 30px;float: right;margin-right:20px;color:#d0cece" 
-    *ngIf="collection?.Collectioncontentid===0" (click)="collect()">✪
+    <div style="font-size: 30px;float: right;margin-right:20px;color:#d0cece"
+      *ngIf="collection?.Collectioncontentid===0 && Islogin==true" (click)="collect()">✪
     </div>
     <div style="font-size: 30px;float: right;margin-right:20px;color:#e7b541" 
-    *ngIf="collection?.Collectioncontentid!=0" (click)="cancel()">★
+    *ngIf="collection?.Collectioncontentid!=0 && Islogin==true" (click)="cancel()">★
     </div>
 
     <!-- 标题 -->
@@ -125,11 +126,20 @@
     </div>
 
     <!-- 我要回答 -->
-    <div id="u14" class="primary_button ripple" (click)="reply()" style="margin-bottom:70px;">
+    <div id="u14" class="primary_button ripple" (click)="reply()" style="margin-bottom:70px;" *ngIf="Islogin==true">
       <div id="u14_text" class="text ">
         <p><span>我要回答</span></p>
       </div>
     </div>
+    <div id="u14" class="primary_button ripple" (click)="popupLogin()" style="margin-bottom:70px;" *ngIf="Islogin==false">
+      <div id="u14_text" class="text ">
+        <p><span>登录</span></p>
+      </div>
+    </div>
 
   </div>
+</div>
+
+<div class="app-langing" *ngIf="IfWantLogin">
+  <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
 </div>
