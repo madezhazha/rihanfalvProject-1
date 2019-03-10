@@ -1,4 +1,4 @@
-<app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
+<app-webhead (isJapan)="getJapanKorea($event)" [IfLogin]=""></app-webhead>
 
 <div class="paperlist" ng-cloak>
   <div *ngFor="let article of Articles">

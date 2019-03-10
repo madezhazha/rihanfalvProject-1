@@ -1,6 +1,6 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
 import {InputData} from '../langing/land/input'
-import { Input } from '@angular/compiler/src/core';
+
 
 @Component({
   selector: 'app-webhead',
@@ -15,7 +15,7 @@ export class WebheadComponent implements OnInit {
   wasJapan:boolean=true;
 
   BackgroundImage:string="../../../../assets/背景图片1.png";
-  IfLogin:boolean=false;  //是否已经登录
+  @Input() IfLogin:boolean=false;  //是否已经登录
 
 
   In:InputData={ID:'',IfLogin:false,Tip:"",Image,Token:''}

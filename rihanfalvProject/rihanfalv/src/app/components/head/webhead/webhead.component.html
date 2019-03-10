@@ -20,5 +20,5 @@
   <div class="registerCSS" >注册</div>
 </div>
 <div class="langing">
-  <app-langing *ngIf="IfLogin" (closed)="close()" (LoginData)="getLoginData($event)" ></app-langing>
+  <app-langing *ngIf="IfLogin&&In.IfLogin==false" (closed)="close()" (LoginData)="getLoginData($event)" ></app-langing>
 </div>
