@@ -52,15 +52,23 @@ export class ThesisComponent implements OnInit {
   specificContent(CollectionType,CollectionContentID){
 
     if(CollectionType=="japanthesis"){
+
+     
+
       let Contentid: NavigationExtras = {             
       queryParams: { ContentID:CollectionContentID },                
-    };       
+    }; 
+    var JapanOrKorea:string="日";    
+    localStorage.setItem("JapanOrKorea",JapanOrKorea)      
     this.router.navigate(['/paperweb'],Contentid) ;
     }
     if(CollectionType=="koreathesis"){
       let Contentid: NavigationExtras = {             
       queryParams: { ContentID:CollectionContentID },                
-    };       
+    };   
+    var JapanOrKorea:string="韩";      
+    localStorage.setItem("JapanOrKorea",JapanOrKorea)
+    
     this.router.navigate(['/paperweb'],Contentid) ;
     }
     
