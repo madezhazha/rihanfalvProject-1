@@ -46,6 +46,7 @@ export class LandComponent implements OnInit {
         this.in=data;
         localStorage.setItem("id",this.in.ID);
         localStorage.setItem('token',this.in.Token);
+        localStorage.setItem('headImage',this.in.Image)
         this.LoginData.emit(this.in);
       }
     )
