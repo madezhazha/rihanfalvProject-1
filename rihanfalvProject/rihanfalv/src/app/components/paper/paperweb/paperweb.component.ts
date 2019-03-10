@@ -1,7 +1,7 @@
 import { Component, OnInit,ElementRef,ViewChild,Renderer2 } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Article} from '../article';
-import { ActivatedRoute, Params} from '@angular/router';
+import { ActivatedRoute, Params,Router} from '@angular/router';
 import {InputData} from '../../head/langing/land/input'
 
 @Component({
@@ -18,7 +18,7 @@ export class PaperwebComponent implements OnInit {
   @ViewChild('more') more:ElementRef;
 
   ArticleID:string;
-  UserID:string;
+  UserID:string=""
   Country:string="Japan";
 
   Collectword:string  //bug
@@ -70,7 +70,6 @@ export class PaperwebComponent implements OnInit {
      {
        //弹出登录框
        this.IfWantLogin=true;
-
      }
      else{ 
       const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
@@ -122,7 +121,13 @@ export class PaperwebComponent implements OnInit {
    }
 
 
-  constructor(private http:HttpClient,private renderer2:Renderer2,private routerIonfo:ActivatedRoute) { 
+   back(){
+     let url=localStorage.getItem("route")
+     this.rout.navigate([url])
+   }
+
+
+  constructor(private http:HttpClient,private renderer2:Renderer2,private routerIonfo:ActivatedRoute,private rout:Router) { 
 
   }
 

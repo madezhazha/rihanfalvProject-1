@@ -2,7 +2,7 @@
 
 <div class="paperlist" ng-cloak>
   <div *ngFor="let article of Articles">
-    <div class="paper" [routerLink]="['/paperweb',article.ID]">
+    <div class="paper" [routerLink]="['/paperweb',article.ID]" (click)="select()">
       <div>
        <img src="../../../assets/word.jpg" class="picture">
         <div class="_三级标题">{{article.Title}}</div>

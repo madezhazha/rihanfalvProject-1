@@ -1,5 +1,5 @@
 <div class="head" ng-cloak>
-  <a routerLink="/paper">&lt;&lt;返回</a>
+  <a (click)="back()">&lt;&lt;返回</a>
   <div class="nt">
     <span class="name">{{Paper?.Author}}</span>
     <span class="time">{{Paper?.Time|date: 'yyyy-MM-dd'}}</span>

@@ -21,6 +21,9 @@ export class PaperComponent implements OnInit {
   Articles:Article[]=[];  //论文列表
   Selectedarticle:Article;  //当前选择的论文
 
+  select(){
+    localStorage.setItem("route","/paper")
+  }
 
   getArticles(){
     let country=localStorage.getItem("JapanOrKorea")
