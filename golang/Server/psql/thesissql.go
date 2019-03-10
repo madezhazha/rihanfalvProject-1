@@ -55,7 +55,7 @@ func ShowArticleList() []Article{
 		Articles[i].Lable=strings.Split(Articles[i].Tagstring,"/")
 	}
 
-	fmt.Println("show over")
+	//fmt.Println("show over")
 
 	return Articles
 }
@@ -88,7 +88,7 @@ func GetJapanArticlesPart(currentpage int) []Article{
 		Articles[i].Lable=strings.Split(Articles[i].Tagstring,"/")
 	}
 
-	fmt.Println("show over")
+	//fmt.Println("show over")
 
 	return Articles
 }
@@ -121,7 +121,7 @@ func GetKoreaArticlesPart(currentpage int) []Article{
 		Articles[i].Lable=strings.Split(Articles[i].Tagstring,"/")
 	}
 
-	fmt.Println("show over")
+	//fmt.Println("show over")
 
 	return Articles
 }
@@ -174,7 +174,7 @@ func CollectArticle(userid int,ctype string,articleid int,collectiontime string)
 	res.LastInsertId()
 	
 	defer stmt.Close()
-	fmt.Println("insert sucess")
+	//fmt.Println("insert sucess")
 }
 
 //取消收藏
@@ -191,7 +191,7 @@ func DeleteArticleCollect(userid int,ctype string,articleid int){
 	res.LastInsertId()
 	
 	defer stmt.Close()
-	fmt.Println("delete sucess")
+	//fmt.Println("delete sucess")
 }
 
 //查询收藏文章

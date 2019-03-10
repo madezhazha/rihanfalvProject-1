@@ -78,6 +78,14 @@ export class PaperComponent implements OnInit {
 
   ngOnInit() {
     //this.Nowcountry=xxx.get()  //获取当前模块
+    let country=localStorage.getItem("JapanOrKorea")
+    if (country=="日")
+    {
+      this.Nowcountry="Japan"
+    }
+    else{
+      this.Nowcountry="Korea"
+    }
     fromEvent(window,'scroll')
     .subscribe(
       ()=>{

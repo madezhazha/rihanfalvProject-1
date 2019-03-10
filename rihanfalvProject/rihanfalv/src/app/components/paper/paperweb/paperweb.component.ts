@@ -37,7 +37,7 @@ export class PaperwebComponent implements OnInit {
   }
   //展示剩余内容
   mshow(){
-    if(this.Islogin==true)
+    if(this.Islogin==false)
     {
        //弹出登录框
        this.IfWantLogin=true;
@@ -56,6 +56,7 @@ export class PaperwebComponent implements OnInit {
      if(this.Islogin==false)
      {
        //弹出登录框
+       this.IfWantLogin=true;
      }
      else{ 
       const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
@@ -79,6 +80,15 @@ export class PaperwebComponent implements OnInit {
 
    //服务器获取文章详情
    get(){
+    let country=localStorage.getItem("JapanOrKorea")
+    if(country=="日")
+    {
+      this.Country="Japan"
+    }
+    else{
+      this.Country="Korea"
+    }
+    console.log(this.Country)
     const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
     let api="http://localhost:7080/paperweb";
     this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country},httpOptions).subscribe((response:any)=>
@@ -86,7 +96,7 @@ export class PaperwebComponent implements OnInit {
       this.Paper=response
       //this.Iscollected=this.Paper.Iscollected
       //console.log(this.Iscollected)
-      console.log(this.Paper.IsCollected)
+      //console.log(this.Paper.IsCollected)
       if(this.Paper.IsCollected==true){
         this.Collectword="取消收藏";
        }
@@ -110,7 +120,8 @@ export class PaperwebComponent implements OnInit {
       this.UserID=userid
     }
     else{
-      
+      this.Islogin=false
+      this.UserID=""
     }
 
     
@@ -128,14 +139,6 @@ export class PaperwebComponent implements OnInit {
     })
     this.get();
     //this.Iscollected=this.Paper.Iscollected
-    let country=localStorage.getItem("JapanOrKorea")
-    if(country=="日")
-    {
-      this.Country="Japan"
-    }
-    else{
-      this.Country="Korea"
-    }
   }
 
 }
