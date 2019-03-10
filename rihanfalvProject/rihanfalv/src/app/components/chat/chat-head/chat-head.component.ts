@@ -23,4 +23,8 @@ export class ChatHeadComponent implements OnInit {
     this.router.navigate(['/tag']);
     
   }
+
+  mychat(){
+    this.router.navigate(['/mychat']);
+  }
 }

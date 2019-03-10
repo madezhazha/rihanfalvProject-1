@@ -1,0 +1,80 @@
+h5{
+    height: 25px;
+    margin: 0px;
+    padding: 1px;
+}
+
+/* img{
+    vertical-align: middle;
+} */
+
+#QAMyInfo{
+    margin: 5px 0px;
+}
+#QAmyimage{
+    width: 15%;
+    height: 45px;
+    padding: 5px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+}
+
+#QAmyinfomation{
+    width: 84%;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1px;
+    text-align: left;
+}
+
+#QAintegral{
+    color: red;
+}
+
+#MyQue, #MyAns{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    padding: 5px;
+    height: 26px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+#MyQue a, #MyAns a{
+    text-decoration: none;
+	margin: 0px;
+    display: block;
+	 float: left; 
+    padding: 2px;
+}
+
+.QABox1{
+    width: 75%;
+    text-align: left;
+    color: black;
+    padding: 2px;
+}
+
+.QABox2{
+    width: 20%;
+    text-align: right;
+    color: red;
+    float: right;
+}
+
+button{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px; 
+    padding: 10px;
+    border: 0px;
+    background-color: #169BD5;
+    color: #ffffff;
+    display: block;
+    border-radius: 5px;
+}
