@@ -2,7 +2,7 @@ package route
 
 import (
 	"encoding/json"
-	"fmt"
+	//"fmt"
 	"io/ioutil"
 	"net/http"
 	"../psql"
@@ -70,7 +70,7 @@ func ArticleDetial(w http.ResponseWriter, r *http.Request){
 	if detial.Country==""{     //collletion.ArticleID==0
 		return
 	}
-	fmt.Println(detial.Country)
+	//fmt.Println(detial.Country)
 	var article psql.Article
 	articleid,_:=strconv.Atoi(detial.ArticleID)
 	userid,_:=strconv.Atoi(detial.UserID)

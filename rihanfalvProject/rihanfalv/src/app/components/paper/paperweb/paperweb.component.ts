@@ -2,6 +2,7 @@ import { Component, OnInit,ElementRef,ViewChild,Renderer2 } from '@angular/core'
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Article} from '../article';
 import { ActivatedRoute, Params} from '@angular/router';
+import {InputData} from '../../head/langing/land/input'
 
 @Component({
   selector: 'app-paperweb',
@@ -30,11 +31,22 @@ export class PaperwebComponent implements OnInit {
 
   Islogin:boolean=false;
 
+  finishedlogin:boolean
   IfWantLogin:boolean=false;
   //关闭登陆框
   boxClose(){
     this.IfWantLogin=false;
   }
+
+  getLoginData(date:InputData)
+  {
+    //this.finishedlogin=date.IfLogin
+    if(date.IfLogin==true)
+    {
+      this.get()
+    }
+  }
+
   //展示剩余内容
   mshow(){
     if(this.Islogin==false)
@@ -57,6 +69,9 @@ export class PaperwebComponent implements OnInit {
      {
        //弹出登录框
        this.IfWantLogin=true;
+       if(this.finishedlogin==true){
+        this.get()
+      }
      }
      else{ 
       const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
@@ -88,7 +103,7 @@ export class PaperwebComponent implements OnInit {
     else{
       this.Country="Korea"
     }
-    console.log(this.Country)
+    //console.log(this.Country)
     const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
     let api="http://localhost:7080/paperweb";
     this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country},httpOptions).subscribe((response:any)=>
@@ -114,7 +129,7 @@ export class PaperwebComponent implements OnInit {
   ngOnInit() {
     //获取用户信息
     let userid:string=localStorage.getItem("id");
-    if(userid!="")
+    if(userid!=null)
     {
       this.Islogin=true;
       this.UserID=userid
@@ -123,6 +138,7 @@ export class PaperwebComponent implements OnInit {
       this.Islogin=false
       this.UserID=""
     }
+    //console.log(this.Islogin)
 
     
    //if(this.Islogin==false){
