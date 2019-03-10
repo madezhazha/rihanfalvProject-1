@@ -41,7 +41,6 @@ func ArticleList(w http.ResponseWriter, r *http.Request){
 	var Articles []psql.Article //文章结构体数组
 	var mes Mes
 	json.Unmarshal(body,&mes)
-	fmt.Println(mes)
 	if mes.Country==""{
 		return
 	}
@@ -71,7 +70,6 @@ func ArticleDetial(w http.ResponseWriter, r *http.Request){
 	if detial.Country==""{     //collletion.ArticleID==0
 		return
 	}
-	fmt.Println(detial)
 	var article psql.Article
 	articleid,_:=strconv.Atoi(detial.ArticleID)
 	userid,_:=strconv.Atoi(detial.UserID)
@@ -107,7 +105,6 @@ func IsCollectedArticle(w http.ResponseWriter, r *http.Request){
 	if collection.Country==""{
 		return
 	}
-	fmt.Println(collection)
 	articleid,_:=strconv.Atoi(collection.ArticleID)
 	userid,_:=strconv.Atoi(collection.UserID)
 	if collection.IsCollected==true{

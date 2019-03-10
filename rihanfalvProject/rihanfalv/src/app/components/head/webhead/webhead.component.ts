@@ -39,6 +39,8 @@ export class WebheadComponent implements OnInit {
     }
     // 弹出日韩状态
     this.isJapan.emit(this.wasJapan);
+    //将日韩存储到本地，用于组件初始化 
+    localStorage.setItem("JapanOrKorea",this.JapanOrKorea)
   }
   login(){
     this.IfLogin=true;

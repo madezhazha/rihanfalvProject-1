@@ -123,6 +123,14 @@ export class PaperwebComponent implements OnInit {
     })
     this.get();
     //this.Iscollected=this.Paper.Iscollected
+    let country=localStorage.getItem("JapanOrKorea")
+    if(country=="日")
+    {
+      this.Country="Japan"
+    }
+    else{
+      this.Country="Korea"
+    }
   }
 
 }
