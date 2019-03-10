@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../../services/data.service';
 import { Router, NavigationExtras } from '@angular/router';
 
+import { InputData } from '../../head/langing/land/input'
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -25,6 +27,10 @@ export class PostComponent implements OnInit {
   //  是否收藏
   private collection: any;
 
+  // 是否登录
+  private Islogin: boolean;
+  private IfWantLogin: boolean = false;
+
   constructor(
     private activatedRouter: ActivatedRoute,
     private dataService: DataService,
@@ -33,6 +39,14 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRouter.queryParams.subscribe((response) => {
+      // localStorage.removeItem("id"); 
+      //获取用户信息
+      let userid: string = localStorage.getItem("id");
+      if (userid != null) {
+        this.Islogin = true;
+      } else {
+        this.Islogin = false
+      }
       // debugger;
       this.hostData = response;
       // console.log(this.hostData.topicID);
@@ -48,6 +62,9 @@ export class PostComponent implements OnInit {
           } else {
             this.isMax = false;
           }
+          // console.log("hello")
+        } else {
+          this.isMax = true;
         }
       });
     });
@@ -77,10 +94,12 @@ export class PostComponent implements OnInit {
   }
 
   more() {
+
     this.nowData = this.post.slice(0, this.nowData.length + 5);
     console.log(this.post);
     if (this.nowData.length == this.post.length) {
       this.isMax = true;
+
     }
   }
 
@@ -95,6 +114,22 @@ export class PostComponent implements OnInit {
     this.dataService.cancel("1", this.hostData.topicID).subscribe((response) => {
       this.collection.Collectioncontentid = response;
     });
+  }
+
+  //关闭登陆框
+  boxClose() {
+    this.IfWantLogin = false;
+  }
+
+  getLoginData(loginData: InputData) {
+    if (loginData.IfLogin == true) {
+      this.Islogin = true
+      this.boxClose();
+    }
+  }
+
+  popupLogin() {
+    this.IfWantLogin = true;
   }
 
 }

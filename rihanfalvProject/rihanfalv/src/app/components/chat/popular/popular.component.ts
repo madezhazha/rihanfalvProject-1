@@ -4,6 +4,8 @@ import { DataService } from '../../../services/data.service';
 import { Router, NavigationExtras } from '@angular/router';
 
 
+
+
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
@@ -12,6 +14,7 @@ import { Router, NavigationExtras } from '@angular/router';
 export class PopularComponent implements OnInit {
 
   private threadList: any;
+  // 当前数据的数组是否是最大值
   private isMax: boolean = false;
   private nowData: Array<any> = [];
 
@@ -72,11 +75,7 @@ export class PopularComponent implements OnInit {
       this.flag = 0;
     }
   }
-
-  getLoginData($event){
-    
-  }
-
+  
 }
 
 @Pipe({
