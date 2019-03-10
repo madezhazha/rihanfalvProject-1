@@ -65,6 +65,9 @@ func main() {
 	mux.HandleFunc("/get", route.Get)
 	mux.HandleFunc("/post", route.Post)
 
+	//上传头像
+	mux.HandleFunc("/photo",route.Photo)
+
 	//收藏
 	mux.HandleFunc("/collection", route.UserCollection)
 

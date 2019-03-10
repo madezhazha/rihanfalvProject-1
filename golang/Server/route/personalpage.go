@@ -13,6 +13,10 @@ import(
 func Get(w http.ResponseWriter, r *http.Request) {
 	SetHeader(w)
 	user1 := psql.SelectUser()
+	//判断头像是系统头像还是用户本地上传的图像(此非长久之计)
+	if(len(user1.Image)<20){
+		user1.Image = ImgToBase64(user1.Image)	// 通过路径读取图片，并转成base64传给前端
+	}
 	js, err := json.Marshal(user1)   //将数据编码成json字符串
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -31,6 +35,11 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		//此处不要用httpserve.User，因为传到pgsql.go时，pgsql.User和httpserve.User是不同类型那个的
 		var user psql.User
 		json.Unmarshal([]byte(result), &user)
+		//判断头像是系统头像还是用户本地上传的图像
+		if len(user.Image)>100 {
+			Base64ToImg(user.Image) //保存前端传来的图片
+			user.Image = "./images/1.jpg"
+		}
 		psql.UpdateUser(user)
 	}
 }
@@ -64,7 +73,17 @@ func GetBase(w http.ResponseWriter, r *http.Request) {
 		w.Write(js)
 	}
 }
-
+func ImgToBase64(image string) string {
+	img, _ := ioutil.ReadFile(image)               //直接读取文件内容，内容是[]byte类型
+	str := base64.StdEncoding.EncodeToString(img)		//将[]byte转化成string
+	return str
+}
+func Base64ToImg(base string ) {
+	str, _ := base64.StdEncoding.DecodeString(string(base)) // 将base64转化[]byte
+	f, _ := os.OpenFile("./images/1.jpg", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	defer f.Close()
+	f.Write(str) //向文件中写入[]byte
+}
 	// w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
 	// w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
 	// w.Header().Set("content-type", "application/json")             //返回数据格式是json
