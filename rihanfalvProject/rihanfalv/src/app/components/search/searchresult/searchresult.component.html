@@ -1,33 +1,24 @@
-<div class="paperlist">
-    <ul *ngFor="let item of this.searchlist">
-        <button class="blank" (click)="click(item)" id="click" >{{item}}</button>
-    </ul>
-</div>
-<!--     
-    <button class="blank">法律条文</button>
-    <button class="blank">论文</button>
-    <button class="blank">案例</button> -->
+
+
     <ul *ngIf="getstatus()">
         <div class="paperlist">
         <div>
             共查询到{{this.m_search.list.length}}条相关信息
         </div>
          <div *ngFor="let item of this.list" class="paper">
-                <li>
-                        <!-- <img src="../../../../assets/word.jpg" class="picture"> -->
-                        <div class="_三级标题">
-                            <a [routerLink]="['/paperweb',item.ID]" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
-                            <!-- <button class="label">{{item.LegalLabel|json}}</button>
-                            <button class="label">标签2</button>
-                            <button class="star"> ✪</button> -->
+                <li >
+                        <div class="_三级标题" >
+                            //{{item.Classify}}//<a [routerLink]="['/paperweb',item.ID]" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                            
                         </div>
                         <div class="num">字数：{{item.Length}}</div>
-    <div class="mes">
-    <span class="name">{{item.Author}}</span>
-    <span class="time">{{item.Time|date: 'yyyy-MM-dd'}}</span>
-            </div>
+                    <div class="mes">
+                    <span class="name">{{item.Author}}</span>
+                    <span class="time">{{item.Time|date: 'yyyy-MM-dd'}}</span>
+                    </div>
                      <div class="content">
-                            <span [innerHTML]="item?.Content |keyword:this.m_search.KeyWord" >
+                           
+                            <span [innerHTML]="item?.Content |keyword:this.m_search.KeyWord" > 
                             </span>
                                 </div> 
                                 </li>
@@ -39,48 +30,3 @@
         <hr>
         </ul>
       
-  <!-- <div class="classify">
-  <button>全部</button>
-  <button>法律条文</button>
-  <button>论文</button>
-  <button>案例</button>
-  </div>
-  </div>
-  <div class="module">
-  <div *ngIf="!getstatus()">
-      <br>
-      肥肠抱歉，没有搜索到目标
-      <br>
-      <br>
-  </div>
-  <ul *ngIf="getstatus()">
-  <div class="module">
-  <div>
-      <br>
-      共查询到{{this.m_search.list.length}}条相关信息
-      <br>
-  </div>
-   <div *ngFor="let item of this.list" class="module">
-          <li>
-                  <div class="title">
-                      <a href="/" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
-                      <button class="label">{{item.LegalLabel|json}}</button>
-                      <button class="label">标签2</button>
-                      <button class="star"> ✪</button>
-                  </div>
-                  <div class="content">
-                      <span [innerHTML]="item.Content |keyword:this.m_search.KeyWord">
-                      </span>
-                          </div>
-                          </li>
-                         显示全部内容 -->
-      <!-- </div> 
-       <button (click)="readmore()" class="readmore" style="height: 40px;">加载更多</button>
-    page:{{this.page}}
-  </div>
-  <hr>
-
-  </ul>
-   
-  </div>
-<app-paper></app-paper> --> 

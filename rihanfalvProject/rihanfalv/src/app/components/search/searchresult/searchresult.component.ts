@@ -13,8 +13,7 @@ export class SearchresultComponent implements OnInit {
 public list=new Array();
 public text :string
 public page=1
-public searchlist=["全部","法律条文","论文","案例"]
-public searchgroup="全部"
+
 
 @ViewChild('click') changeclass:ElementRef;
 

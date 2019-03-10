@@ -1,4 +1,5 @@
-
+<app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
+{{this.Nowcountry|json}}
 <div class="module">
 <div class="search">
    <form>
@@ -14,6 +15,9 @@
     <img src="../../../assets/search.png" width="14" />  
     Search</button>
 </form>
+    <!-- <ul *ngFor="let item of this.searchlist">
+        <button class="blank" (click)="click(item)" id="click" >{{item}}</button>
+    </ul> -->
 </div>
 </div>
 <div class="module" *ngIf="!this.ifsearch">

@@ -1,47 +1,14 @@
-/* .module{
-    border-style: solid;
-    border-width: 1px;
-    margin:2px;
+    .法律 :link{
+        color:blue;
     }
-
-   
-
-    /* body {
-    text-align:center;
-    top: 10px;
-    margin-top: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    height: 600px;
-    max-width: 450px;
-    min-width: 220px;
-    border-style: solid;
-    border-color: darkgray;
-    border-width: 1px;} */
-/* 
-    .title{
-    margin:4px;
-    font-size:18px;
-    text-align:left;
+    .论文 :link{
+        color:yellow;
     }
-
-    .title .label{
-    margin-left: 10px;
-    border:1px;
-    background-color: rgb(108, 165, 240);
-    border-radius: 7px;	
+    .案例 :link{
+        color:purple;
     }
-
-    .title .star{
-    margin-left: 120px;
-    border:1px;
-    background-color: rgb(252, 255, 97);
-    border-radius: 7px;	
-    } */ 
     
     ul{
-
         list-style:none;
         /* display:block; */
         white-space: pre-wrap;
@@ -49,14 +16,13 @@
         margin:0px;
         display:inline
         }
-    
     .content{
     position: absolute;
     left: -30px;
     top: 50px;
     padding: 14px;
     padding-top: 8px !important;
-    font-size:10px;
+    font-size:  10px !important;
     text-align:left;
     overflow: hidden;
     height: 40px;
@@ -64,6 +30,7 @@
     word-wrap:break-word;
     word-break:break-all;
     }
+
 
     .blank{
         font-size: 14px;
@@ -73,24 +40,17 @@
 color: #3d4450;
 background-color: darkseagreen;
     }
-    /* .blank:link {background-color: #FF0000}
-    .blank:visited {background-color: #00FF00}
-   .blank:hover {background-color: #FF00FF} */
    .active {
     font-size: 14px;
     height: 25px;
     width:85px;
     margin:3px;
-color: #3d4450;
-background-color: #0000FF}
+    color: #3d4450;
+    background-color: #0000FF}
     
-
-
-   
 
     .highlightedText{
     color: #c00;
-    /* font-weight: 900; */
     }
 
     .readmore{

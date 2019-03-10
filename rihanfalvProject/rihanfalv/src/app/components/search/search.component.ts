@@ -10,6 +10,7 @@ import{DosearchService}from "../../components/search/dosearch.service"
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+public Nowcountry:string="Japan";   //当前模块 日/韩 用于进行筛选显示
 public KeyWord:string;//搜索关键词
 public HistoryList:any[]=[];//搜索历史
 public IfHistory=false;//是否存在历史记录
@@ -49,6 +50,7 @@ doSearch(){//搜索按键
   this.readHistory()
   this.m_search.KeyWord=this.KeyWord
   this.m_search.Classify=this.searchgroup
+  this.m_search.Nowcountry=this.Nowcountry
   this.m_search.searchtogo()//传数据给后端
   //this.router.navigate(['searchresult'])
   this.ifsearch=true
@@ -71,6 +73,15 @@ remove(){//清除历史记录
 
 setInfo(item){
   this.searchgroup=item
+}
+
+getJapanKorea(isJapan:boolean){
+  if(isJapan){
+    this.Nowcountry="Japan"
+  }
+  else{
+    this.Nowcountry="Korea"
+  }
 }
 
 }
