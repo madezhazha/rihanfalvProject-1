@@ -24,6 +24,12 @@ type Searchbox struct{
 }
 
 func Getclass(readkey string,readcountry string,readclass string,searchlist []Searchbox)[]Searchbox{
+	if readcountry=="日"{
+		readcountry="japan"
+	}
+	if readcountry=="韩"{
+		readcountry="korea"
+	}
 	if readclass=="全部"{
 		class=readcountry+"legal"
 		searchlist=Legalsearch(readkey,searchlist)

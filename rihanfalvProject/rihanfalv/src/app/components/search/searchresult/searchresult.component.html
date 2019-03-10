@@ -8,8 +8,11 @@
          <div *ngFor="let item of this.list" class="paper">
                 <li >
                         <div class="_三级标题" >
-                            //{{item.Classify}}//<a [routerLink]="['/paperweb',item.ID]" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
-                            
+                            //{{item.Classify}}//
+                            <span >
+                                <a [routerLink]="['/paperweb','/search',item.ID]" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                            </span>
+<span></span>
                         </div>
                         <div class="num">字数：{{item.Length}}</div>
                     <div class="mes">
@@ -17,16 +20,17 @@
                     <span class="time">{{item.Time|date: 'yyyy-MM-dd'}}</span>
                     </div>
                      <div class="content">
-                           
-                            <span [innerHTML]="item?.Content |keyword:this.m_search.KeyWord" > 
+                           <!-- <span>{{item.lables|json}}</span> -->
+                             <span  [innerHTML]="item?.Content |keyword:this.m_search.KeyWord" > 
                             </span>
                                 </div> 
-                                </li>
+                                </li> 
                                
             </div> 
-             <button (click)="readmore()" class="readmore" style="height: 40px;">加载更多</button>
-          page:{{this.page}}
+          
         </div>
         <hr>
+           <button (click)="readmore()" class="readmore" style="height: 40px;">加载更多</button>
+          page:{{this.page}}
         </ul>
       

@@ -10,7 +10,7 @@ import{DosearchService}from "../../components/search/dosearch.service"
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-public Nowcountry:string="Japan";   //当前模块 日/韩 用于进行筛选显示
+public Nowcountry:string=localStorage.getItem("JapanOrKorea");   //当前模块 日/韩 用于进行筛选显示
 public KeyWord:string;//搜索关键词
 public HistoryList:any[]=[];//搜索历史
 public IfHistory=false;//是否存在历史记录
@@ -78,9 +78,12 @@ setInfo(item){
 getJapanKorea(isJapan:boolean){
   if(isJapan){
     this.Nowcountry="Japan"
+    this.doSearch()
   }
   else{
     this.Nowcountry="Korea"
+    this.doSearch()
+
   }
 }
 
