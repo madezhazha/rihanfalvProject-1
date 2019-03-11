@@ -1,23 +1,30 @@
+<app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
 
 <div class="module">
 <div class="search">
-   <form>
-     <select  name="searchgroup" id="searchgroup"  [(ngModel)]="this.searchgroup">
+   <form class="navbar-form navbar-left" style="text-align:center;">
+      <ul class="nav navbar-nav" >
+          <li *ngFor="let item of this.searchlist" style="width:100px;">
+            <a (click)="setInfo(item)">{{item}}</a></li>
+        </ul>
+     <!-- <select  name="searchgroup" id="searchgroup"  [(ngModel)]="this.searchgroup">
      <option [value]="item" *ngFor="let item of this.searchlist">
        {{item}}
      </option>
-   </select>
- <input type="text" [(ngModel)]="KeyWord" 
- [ngModelOptions]="{standalone: true}" class="text1"
+   </select> -->
+   <div style="text-align:center;width:400px;">
+ <input type="text" [(ngModel)]="KeyWord" class="form-control" [ngModelOptions]="{standalone: true}" style="width:250px;"
   placeholder="搜索{{this.searchgroup}}" onkeyup="value=value.replace(/\s/g,'')"/>
-  <button (click)="doSearch()" type="submit">  
-    <img src="../../../assets/search.png" width="14" />  
-    Search</button>
+  <button (click)="doSearch()" type="submit" class="btn btn-default">  
+    <img src="assets/images/index/u7.png" width="16" />  
+    </button></div>
 </form>
 </div>
 </div>
+
 <div class="module" *ngIf="!this.ifsearch">
 <div class="history" *ngIf="IfHistory" > 搜索记录
+  <hr>
 <ul>
   <li *ngFor="let item of HistoryList;let key=index">
     <img src="../../../assets/history.png" width="14">

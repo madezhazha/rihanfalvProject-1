@@ -13,8 +13,7 @@ export class SearchresultComponent implements OnInit {
 public list=new Array();
 public text :string
 public page=1
-public searchlist=["全部","法律条文","论文","案例"]
-public searchgroup="全部"
+
 
 @ViewChild('click') changeclass:ElementRef;
 
@@ -22,7 +21,6 @@ public searchgroup="全部"
   }
 
   ngOnInit() {
-
   }
 
   getstatus(){
@@ -36,10 +34,14 @@ public searchgroup="全部"
 }
 if(this.m_search.list.length<5){
   this.list=this.m_search.list
+  this.text=null;
+
 }
 if(this.m_search.list.length>=5)
 for(let i =0;i<5;i++){
    this.list[i]=this.m_search.list[i]
+   this.text=null;
+
 }
 
      return true
