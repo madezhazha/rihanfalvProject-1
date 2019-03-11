@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"strconv"
+
 	"../psql"
 )
 
@@ -25,13 +27,18 @@ func UserCollectionThesis(w http.ResponseWriter, r *http.Request) {
 
 		InterUserID := IUserID["userid"]
 
-		SUserID := InterUserID.(float64)
+		//SUserID := InterUserID.(float64)
 
+		SUserID := InterUserID.(string)
 		fmt.Println(SUserID)
 
-		var UserID int
-		UserID = int(SUserID)
+		//var UserID int
+		//UserID = int(SUserID)
 
+		UserID, err := strconv.Atoi(SUserID)
+		if err != nil {
+			fmt.Println(err)
+		}
 		fmt.Println(UserID)
 
 		var mCollectionsMsg []psql.CollectionsMsg
@@ -64,12 +71,18 @@ func UserCollectionCase(w http.ResponseWriter, r *http.Request) {
 
 		InterUserID := IUserID["userid"]
 
-		SUserID := InterUserID.(float64)
+		//SUserID := InterUserID.(float64)
 
+		SUserID := InterUserID.(string)
 		fmt.Println(SUserID)
 
-		var UserID int
-		UserID = int(SUserID)
+		//var UserID int
+		//UserID = int(SUserID)
+
+		UserID, err := strconv.Atoi(SUserID)
+		if err != nil {
+			fmt.Println(err)
+		}
 
 		fmt.Println(UserID)
 
@@ -103,12 +116,18 @@ func UserCollectionTopic(w http.ResponseWriter, r *http.Request) {
 
 		InterUserID := IUserID["userid"]
 
-		SUserID := InterUserID.(float64)
+		//SUserID := InterUserID.(float64)
 
+		SUserID := InterUserID.(string)
 		fmt.Println(SUserID)
 
-		var UserID int
-		UserID = int(SUserID)
+		//var UserID int
+		//UserID = int(SUserID)
+
+		UserID, err := strconv.Atoi(SUserID)
+		if err != nil {
+			fmt.Println(err)
+		}
 
 		fmt.Println(UserID)
 
@@ -125,4 +144,3 @@ func UserCollectionTopic(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
-

@@ -12,7 +12,7 @@ export class ThesisComponent implements OnInit {
 
   public arr:any[]=[];
   public CollectionMsg:any[]=[];
-  public UserID:number=1;
+  public UserID:any=1;
   public Thesis:any[]=[];
   public Flag:number=1;
   
@@ -21,6 +21,11 @@ export class ThesisComponent implements OnInit {
   constructor(private router: Router, public http:HttpClient) { }
   
   ngOnInit() {
+
+    let userid=localStorage.getItem("id")
+
+    this.UserID=userid
+
     this.CollectionMsg.length=0
     const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json'})};
 

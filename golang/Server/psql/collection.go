@@ -51,12 +51,23 @@ func SqlSelectCase(UserID int) []CollectionsMsg {
 		CollectionsMsg     CollectionsMsg
 	)
 
-	caseRows, err := db.Query("SELECT collectiontime,casetitle,collectionid,collectioncontentid,casecontent,collectiontype FROM collection join casething on(collection.collectioncontentid = casething.id)    where userid=$1 and collectiontype='koreacase' ", UserID)
+	japancaseRows, err := db.Query("SELECT collectiontime,casetitle,collectionid,collectioncontentid,casecontent,collectiontype FROM collection join casething on(collection.collectioncontentid = casething.id)    where userid=$1 and collectiontype='japancase' ", UserID)
 	checkErr(err)
 
-	for caseRows.Next() {
+	for japancaseRows.Next() {
 
-		err = caseRows.Scan(&CollectionsMsg.CollectionTime, &CollectionsMsg.CollectionTitle, &CollectionsMsg.CollectionID, &CollectionsMsg.CollectionContentID, &CollectionsMsg.CollectionContent, &CollectionsMsg.CollectionType)
+		err = japancaseRows.Scan(&CollectionsMsg.CollectionTime, &CollectionsMsg.CollectionTitle, &CollectionsMsg.CollectionID, &CollectionsMsg.CollectionContentID, &CollectionsMsg.CollectionContent, &CollectionsMsg.CollectionType)
+		checkErr(err)
+
+		CollectionsMsgList = append(CollectionsMsgList, CollectionsMsg)
+	}
+
+	koreacaseRows, err := db.Query("SELECT collectiontime,casetitle,collectionid,collectioncontentid,casecontent,collectiontype FROM collection join casething on(collection.collectioncontentid = casething.id)    where userid=$1 and collectiontype='koreacase' ", UserID)
+	checkErr(err)
+
+	for koreacaseRows.Next() {
+
+		err = koreacaseRows.Scan(&CollectionsMsg.CollectionTime, &CollectionsMsg.CollectionTitle, &CollectionsMsg.CollectionID, &CollectionsMsg.CollectionContentID, &CollectionsMsg.CollectionContent, &CollectionsMsg.CollectionType)
 		checkErr(err)
 
 		CollectionsMsgList = append(CollectionsMsgList, CollectionsMsg)
