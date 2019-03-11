@@ -1,7 +1,7 @@
-<meta name="viewport" content="width=450,user-scalable:no">
+<app-webhead></app-webhead>
 
 <div class="biaoti">我的反馈</div>
-<h3>我的历史反馈 ：</h3>
+<!--<h3>我的历史反馈 ：</h3>-->
 
 <div class="gundong">
     <a *ngFor="let item of list" >
@@ -12,7 +12,8 @@
             <a class="yanse"> 回复:</a>
             <p>{{item.feedbackreplie}}</p>
             <p id="a">{{item.feedbacktime | date: 'yyyy-MM-dd HH:mm:ss '}}</p>
-            <br>
+            <br id="br">
+            
         </div>
         <br>
     </a>

@@ -15,8 +15,8 @@ h3{
     text-align: center
 }
 .zi{
-    background-color: rgb(238, 242, 245)
-
+    background-color: rgb(238, 242, 245);
+    border-radius: 20px;
 }
 button{
     border-radius: 20px;
