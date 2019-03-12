@@ -229,6 +229,8 @@ export class CaseComponent implements OnInit {
             }
           }
         }
+
+        console.log(this.list)
         this.onChangePageSize("10")
       })
 

@@ -75,6 +75,7 @@ func Getalldata(languageType string)interface{}{
 
 		//将数据放在了一块
 		all_data[info.ID] = make(map[string]string)
+		all_data[info.ID]["id"]=info.ID
 		all_data[info.ID]["trialtime"] = info.trialtime
 		all_data[info.ID]["causeofaction"] = info.causetype
 		all_data[info.ID]["concretecasetype"] = info.concretecasetype
@@ -116,6 +117,7 @@ func Getfirstfloor(data string,languageType string)interface{}{
 
 		//将数据放在了一块
 		all_data[info.ID] = make(map[string]string)
+		all_data[info.ID]["id"]=info.ID
 		all_data[info.ID]["trialtime"] = info.trialtime
 		all_data[info.ID]["causeofaction"] = info.causetype
 		all_data[info.ID]["concretecasetype"] = info.concretecasetype
@@ -157,6 +159,7 @@ func Getreason(data string,languageType string)interface{}{
 
 		//将数据放在了一块
 		all_data[info.ID] = make(map[string]string)
+		all_data[info.ID]["id"]=info.ID
 		all_data[info.ID]["trialtime"] = info.trialtime
 		all_data[info.ID]["causeofaction"] = info.causetype
 		all_data[info.ID]["concretecasetype"] = info.concretecasetype
@@ -198,6 +201,7 @@ func Getlevel(data string,languageType string)interface{}{
 
 		//将数据放在了一块
 		all_data[info.ID] = make(map[string]string)
+		all_data[info.ID]["id"]=info.ID
 		all_data[info.ID]["trialtime"] = info.trialtime
 		all_data[info.ID]["causeofaction"] = info.causetype
 		all_data[info.ID]["concretecasetype"] = info.concretecasetype
@@ -239,6 +243,7 @@ func Getsecondfloor(data string,languageType string)interface{}{
 
 		//将数据放在了一块
 		all_data[info.ID] = make(map[string]string)
+		all_data[info.ID]["id"]=info.ID
 		all_data[info.ID]["trialtime"] = info.trialtime
 		all_data[info.ID]["causeofaction"] = info.causetype
 		all_data[info.ID]["concretecasetype"] = info.concretecasetype
@@ -286,6 +291,7 @@ func Gettime(data string,languageType string)interface{}{
 		}
 		if a==1{
 			all_data[info.ID] = make(map[string]string)
+			all_data[info.ID]["id"]=info.ID
 			all_data[info.ID]["trialtime"] = info.trialtime
 			all_data[info.ID]["causeofaction"] = info.causetype
 			all_data[info.ID]["concretecasetype"] = info.concretecasetype
