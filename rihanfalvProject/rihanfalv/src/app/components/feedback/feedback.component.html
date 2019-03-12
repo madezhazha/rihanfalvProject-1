@@ -1,4 +1,5 @@
-<meta name="viewport" content="width=450,user-scalable:no">
+
+<app-webhead></app-webhead>
 
 <body>
   <div class="biaoti">反馈中心</div>
@@ -18,6 +19,9 @@
  <br>
  <div style="margin:0 auto;width:200px;">
    <button (click)="submit()">提交</button>
+   <div class="app-langing" *ngIf="IfWantLogin">
+    <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
+  </div>
    <br>
    <br>
    <button (click)="bin()">返回首页</button>

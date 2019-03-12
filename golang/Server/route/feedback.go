@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+
 	"../psql"
 	_ "github.com/lib/pq"
 )
@@ -22,7 +23,7 @@ func Addfeedback(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println(tuserid)
 		//fmt.Println(tfeedbacktype)
 		//fmt.Println(tfeedbackcontent)
-		psql.Addfeedback(tuserid.(string), tfeedbacktype.(string), tfeedbackcontent.(string))
+		psql.Addfeedback(tuserid.(float64), tfeedbacktype.(string), tfeedbackcontent.(string))
 		//fmt.Println("insert into feedback success")
 	}
 }
@@ -39,7 +40,7 @@ func Userfeedback(w http.ResponseWriter, r *http.Request) {
 		tuserid := user["userid"]
 		//fmt.Println(tuserid)
 		var Feedbacklist []psql.Feedback
-		Feedbacklist = psql.Userfeedback(tuserid.(string))
+		Feedbacklist = psql.Userfeedback(tuserid.(float64))
 		res, _ := json.Marshal(Feedbacklist)
 		w.Write(res)
 	}

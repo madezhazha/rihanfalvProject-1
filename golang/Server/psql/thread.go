@@ -67,8 +67,8 @@ func GetThread() (usersAndThreads []map[string]interface{}, err error) {
 
 // User 根据主帖的userid找到指定的用户
 func (thread *Thread) User() (user MyUser, err error) {
-	err = db.QueryRow("SELECT userid, username, email, image,integral,registrationdate FROM users WHERE userid = $1", thread.Userid).
-		Scan(&user.Userid, &user.Username, &user.Email, &user.Image, &user.Integral, &user.Registrationdate)
+	err = db.QueryRow("SELECT userid, username, email, image FROM users WHERE userid = $1", thread.Userid).
+		Scan(&user.Userid, &user.Username, &user.Email, &user.Image)
 	return
 }
 

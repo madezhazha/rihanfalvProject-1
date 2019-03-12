@@ -31,9 +31,8 @@ button:focus{
 .caseContent{
     margin-top: 12px;
     /* width: auto 0; */
-    height: 100px;
-    border:1px solid;
-    border-radius: 6px;
+    height: 50px;
+    border-bottom: 1px solid rgb(238, 234, 234);
 }
 
 .all,.criminal,.civil,.admin,.economics{
@@ -46,9 +45,7 @@ button:focus{
 /* 这是显示第二层内容的刑事案例 */
 .caseContent1{
     margin-top: 8px;
-    height: 100px;
-    border:1px solid;
-    border-radius: 6px;
+    height: 80px;
 }
 .criminalAction,.endangerPublic,.endangerNational,.corruption,.qinfan{
     padding: 1px;
@@ -60,9 +57,8 @@ button:focus{
 /* 这是显示第二层内容的民事案例 */
 .caseContent2{
     margin-top: 8px;
-    height: 100px;
-    border:1px solid;
-    border-radius: 6px;
+    height: 80px;
+
 }
 .contractDispute,.wuquan,.laborDispute,.personDispute,.otherDispute{
     padding: 1px;
@@ -75,8 +71,6 @@ button:focus{
 .caseContent3{
     margin-top: 8px;
     height: 50px;
-    border:1px solid;
-    border-radius: 6px;
 }
 .handle,.AdminLit{
     padding: 1px;
@@ -89,8 +83,6 @@ button:focus{
 .caseContent4{
     margin-top: 8px;
     height: 50px;
-    border:1px solid;
-    border-radius: 6px;
 }
 .zhengquan,.futureTrade,.insurance,.bankruptcy,.commerical{
     padding: 1px;
@@ -105,9 +97,8 @@ button:focus{
 .reasonContent{
     margin-top: 12px;
     /* width: auto 0; */
-    height: 100px;
-    border:1px solid;
-    border-radius: 6px;
+    height: 50px;
+    border-bottom: 1px solid rgb(238, 234, 234);
 }
 
 .evidence,.justCause,.surrenderOneself,.jointOffender{
@@ -121,9 +112,8 @@ button:focus{
 .timeContent{
     margin-top: 12px;
     /* width: auto 0; */
-    height: 100px;
-    border:1px solid;
-    border-radius: 6px;
+    height: 50px;
+    border-bottom: 1px solid rgb(238, 234, 234);
 }
 
 .time1,.time2,.time3,.time4,.time5{
@@ -137,9 +127,8 @@ button:focus{
 .levelContent{
     margin-top: 12px;
     /* width: auto 0; */
-    height: 100px;
-    border:1px solid;
-    border-radius: 6px;
+    height: 50px;
+    border-bottom: 1px solid rgb(238, 234, 234);
 }
 
 .secondInstance,.firstInstance,.againInstance,.implment{
@@ -168,12 +157,19 @@ a:focus,a:active{
     height: 30px;
     padding: 3px 6px;
     font-family: "微软雅黑";
-    border: 1px solid;
-    border-radius: 8px;
+    /* border: 1px solid; */
+    /* border-radius: 8px; */
     margin-right: 9px;
     text-align: center;
     margin-left: 8px;
-    outline: 0;
+
+    margin-top: 10px;
+    border: 0;
+ 
+    background-color: transparent;
+    
+    outline: none;
+
 }
 
 

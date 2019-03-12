@@ -43,7 +43,7 @@ export class PaperwebComponent implements OnInit {
 
   getLoginData(date:InputData)
   {
-    localStorage.setItem('headImage',date.Image)
+    
     //this.finishedlogin=date.IfLogin
     if(date.IfLogin==true)
     {

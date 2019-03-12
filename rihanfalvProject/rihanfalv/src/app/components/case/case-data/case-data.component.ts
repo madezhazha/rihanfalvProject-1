@@ -22,13 +22,8 @@ export class CaseDataComponent implements OnInit {
   ngOnInit() {
     this.getData()
     this.getTxt()
-    this.storageUserid()
     // this.initialState()
   }
-    storageUserid(){
-      var storage=window.localStorage;
-      storage.setItem("userid",'1')
-    }
   //从后端拿数据所设置的变量
   title:string
   viewpoint:any
@@ -38,7 +33,6 @@ export class CaseDataComponent implements OnInit {
   receiveData:any   //接收从后端发来的数据
   IsPay:boolean=true     //是否已经交钱,这个是否付钱的操作决定着：是否出现查看全部
   IsCollection:boolean=false //是否已经收藏
-  casecontent:any
   changeNumber:number=0
   languageType:string      //语言
   titleId:string           //标题的id
@@ -49,9 +43,9 @@ export class CaseDataComponent implements OnInit {
 
   changeImg(){
     var storage=window.localStorage;
-    this.userId=storage["userid"]
+    this.userId=storage["id"]
 
-    console.log("这个是localstorage的数据：",this.userId)
+    // console.log("这个是localstorage的数据：",this.userId)
     if(this.changeNumber===0){
       //这个表示收藏信息
       this.imageUrl='./assets/images/fiveStar2.PNG'
@@ -106,7 +100,6 @@ export class CaseDataComponent implements OnInit {
   getData(){
     this.activatedRoute.queryParams.subscribe(params=>{
       this.title=params["title"]
-      this.casecontent=params["casecontent"]
     })
     // console.log(this.title)  //成功接收到数据
   }
@@ -127,7 +120,7 @@ export class CaseDataComponent implements OnInit {
 
       //接收语言类型和title的id
       this.languageType=response["type"]
-      this.titleId=response["ID"]
+      this.titleId=response["ID"]   //这个ID是point的id
       this.initialState(this.languageType,this.titleId)   //这个是用来判断时候已经是收藏的状态了
 
       //判断是和付款
@@ -150,8 +143,8 @@ export class CaseDataComponent implements OnInit {
   //一开始的收藏状态
   initialState(languageType,titleId){
     var storage=window.localStorage;
-    this.userId=storage["userid"]
-    console.log(this.userId,this.title,this.languageType,this.titleId)
+    this.userId=storage["id"]
+    // console.log(this.userId,this.title,this.languageType,this.titleId)  这个打印的是一开始的收藏状态
     const httpOptions={
       headers:new HttpHeaders({'content-Type':'application/json'})
     }

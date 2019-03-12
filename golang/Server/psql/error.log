@@ -4,4 +4,54 @@ ERROR 2019/03/03 11:33:23 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/03 11:33:24 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/06 22:32:54 thread.go:17: pq: relation "topics" does not exist
 ERROR 2019/03/06 22:39:33 thread.go:17: pq: relation "topics" does not exist
+<<<<<<< HEAD
+ERROR 2019/03/10 14:30:59 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:31:04 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:31:19 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:31:42 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 15:19:28 thread.go:17: sql: Scan error on column index 4, name "integral": converting driver.Value type <nil> ("<nil>") to a int: invalid syntax
+ERROR 2019/03/10 15:19:31 thread.go:17: sql: Scan error on column index 4, name "integral": converting driver.Value type <nil> ("<nil>") to a int: invalid syntax
+ERROR 2019/03/10 15:33:42 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:33:47 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:37:46 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:37:53 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:38:39 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:38:42 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:38:57 post.go:31: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:39:09 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:39:46 post.go:31: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:39:52 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:39:55 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:41:11 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:41:12 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:41:13 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:41:20 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:46:47 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 15:56:33 thread.go:17: sql: Scan error on column index 5, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+=======
+<<<<<<< HEAD
+ERROR 2019/03/10 14:06:38 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:06:58 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:02 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:07 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:13 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:07:36 thread.go:17: pq: column "integral" does not exist
+ERROR 2019/03/10 14:13:06 thread.go:17: sql: Scan error on column index 1, name "username": unsupported Scan, storing driver.Value type <nil> into type *string
+ERROR 2019/03/10 14:13:09 thread.go:17: sql: Scan error on column index 1, name "username": unsupported Scan, storing driver.Value type <nil> into type *string
+ERROR 2019/03/10 14:14:39 thread.go:17: sql: Scan error on column index 4, name "registrationdate": unsupported Scan, storing driver.Value type string into type *psql.JSONTime
+ERROR 2019/03/10 14:18:10 post.go:37: pq: column "integral" does not exist
+ERROR 2019/03/10 14:18:24 post.go:37: pq: column "integral" does not exist
+ERROR 2019/03/10 14:18:30 post.go:37: pq: column "integral" does not exist
+ERROR 2019/03/10 14:32:20 post.go:43: sql: Scan error on column index 2, name "collectiontype": converting driver.Value type string ("topics") to a int: invalid syntax
+ERROR 2019/03/10 14:33:26 post.go:43: sql: Scan error on column index 2, name "collectiontype": converting driver.Value type string ("topics") to a int: invalid syntax
+ERROR 2019/03/10 14:34:10 post.go:43: sql: Scan error on column index 2, name "collectiontype": converting driver.Value type string ("topics") to a int: invalid syntax
+ERROR 2019/03/10 16:38:11 post.go:25: strconv.Atoi: parsing "null": invalid syntax
+=======
+<<<<<<< HEAD
+ERROR 2019/03/10 14:17:32 thread.go:17: pq: relation "topics" does not exist
+=======
 ERROR 2019/03/10 14:17:05 thread.go:17: pq: column "integral" does not exist
+>>>>>>> accd88360fefeb242ffec82a9cfad87ba3c7054a
+>>>>>>> 9651e22b77a0891d4256a3a2803d68bb1fe50204
+>>>>>>> 690fcfa841e4045d6ed5a30d6c50949caf82e66c
+ERROR 2019/03/11 16:49:55 post.go:19: strconv.Atoi: parsing "undefined": invalid syntax

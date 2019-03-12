@@ -55,8 +55,8 @@ func GetPost(topicid int) (usersAndPosts []map[string]interface{}, err error) {
 
 // User 根据回帖的userid找到用户
 func (post *Post) User() (user MyUser, err error) {
-	err = db.QueryRow("SELECT userid, username, email, image,integral,registrationdate FROM users WHERE userid = $1", post.Userid).
-		Scan(&user.Userid, &user.Username, &user.Email, &user.Image, &user.Integral, &user.Registrationdate)
+	err = db.QueryRow("SELECT userid, username, email, image FROM users WHERE userid = $1", post.Userid).
+		Scan(&user.Userid, &user.Username, &user.Email, &user.Image)
 	return
 }
 
@@ -85,8 +85,8 @@ func IsCollected(userID int, topicID int) (collection Collection, err error) {
 		return
 	}
 	for rows.Next() {
-		if err = rows.Scan(&collection.Collectionid, &collection.Userid, &collection.Collectioncontentid,
-			&collection.Collectiontime, &collection.Collectiontype); err != nil {
+		if err = rows.Scan(&collection.Collectionid, &collection.Userid, &collection.Collectiontype, &collection.Collectioncontentid,
+			&collection.Collectiontime); err != nil {
 			return
 		}
 	}

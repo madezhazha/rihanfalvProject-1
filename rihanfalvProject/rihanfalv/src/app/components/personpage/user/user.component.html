@@ -1,5 +1,6 @@
 <div><app-webhead></app-webhead></div>
 <hr>
+<hr>
 <div>
     <div class="container-fluid">
         <div class="row">
@@ -57,13 +58,13 @@
                     <div class="input-group">
                         <span class="input-group-addon">头像：</span>
                         <img [src]="imgsrc" width="100px" height="100px" alt="未选择头像" class="img-thumbnail"> 
-
-                        <button type="button" class="btn btn-default" data-dismiss="modal" [routerLink]="[ '/uploadimage' ]" style="cursor: pointer;" (click)="close()">上传头像</button>
                     </div>
+                    <!-- 选择本地头像 -->
+                    <input type="file" id="img" (change)="uploadImg()"/>
+                    <canvas id="canvas" [hidden]="!hidden" width="50px" height="50px"></canvas>
 
-                    <!-- 显示系统头像 isshow默认为true-->
                     <div [hidden]="isshow">
-                            <a (click)="isshow=!isshow" style="cursor: pointer;">显示系统头像</a>
+                            <a (click)="isshow=!isshow" style="cursor: pointer;">选择系统头像</a>
                     </div>
                     <!-- 关闭系统头像 -->
                     <div [hidden]="!isshow">
@@ -126,5 +127,6 @@
     <button type="button" class="btn btn-info btn-lg" (click)="collection()" style="width:50%;margin-left:25%">我的收藏</button><br><br>
     <button type="button" class="btn btn-info btn-lg" style="width:50%;margin-left: 25%">我的帖子</button><br><br>
     <button type="button" class="btn btn-info btn-lg" style="width:50%;margin-left:25%">我的回复</button><br><br>
-    <button type="button" class="btn btn-info btn-lg" style="width:50%;margin-left:25%">我的反馈</button>
+    <button type="button" class="btn btn-info btn-lg" (click)="feedback()" style="width:50%;margin-left:25%">我的反馈</button>
 </div>
+

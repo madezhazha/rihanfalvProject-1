@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 // import { FlashMessagesService } from 'angular2-flash-messages';
 import {GetdataService} from '../../../services/getdata.service';
 import {Router} from '@angular/router';
-// import { DomSanitizer } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -36,37 +36,47 @@ export class UserComponent implements OnInit {
   msg: any ;
   imgsrc: any;
   Password: any;
-  isshow: boolean;
-  issuccess: boolean;
-  iswarn: boolean;
-  imageUrl: any;
+  isshow: boolean = false;
+  issuccess: boolean = false;
+  iswarn: boolean = false;
   str: string;
-  base64: '';
-  reader = new FileReader();
-  canvasimg: '';
-
+  base64:string;
+  hidden: boolean = false; // 隐藏画布
   constructor(
     public router: Router,
     private serve: GetdataService,
+    private sanitizer: DomSanitizer,
     // public flashMessagesService: FlashMessagesService,
-    // private sanitizer: DomSanitizer,
     private datePipe: DatePipe
-    ) {
-    this.serve.get().subscribe(user => {
-        this.user = user;
-        this.temp.UserId = this.user.UserId;
-        this.temp.Integral = this.user.Integral;
-        this.temp.RegisterDate = this.user.RegisterDate;
-        // 转化日期格式
-        this.user.RegisterDate = this.datePipe.transform(this.user.RegisterDate, 'yyyy-MM-dd');
-    });
-  }
+    ) { }
 
   //  跳转到收藏夹
   collection() {
     this.router.navigate(['/collection']);
   }
-
+  //跳转到反馈
+  feedback(){
+    
+    this.router.navigate(['/Feedback/'])
+  }
+  //上传本地头像
+  uploadImg() {
+    const canvas = <HTMLCanvasElement>document.getElementById('canvas');  // 获取canvas标签
+    const ctx = canvas.getContext('2d');  // 2D对象，绘图环境
+    const uploadimg = <HTMLInputElement>document.getElementById('img');
+    const imgfile = uploadimg.files[0];
+    const img = new Image();
+    let temp = '';
+    img.src = window.URL.createObjectURL(imgfile);
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, 50, 50);
+      this.base64 = canvas.toDataURL('image/png');
+      this.imgsrc = this.base64;
+      temp = this.base64.substring(22, this.base64.length);
+      // ctx.drawImage(img, 100, 100, 200, 200, 0, 0, 100, 100);
+      this.temp.Image = temp;
+    };
+  }
   // 修改信息
   changeinfo() {
     // console.log('修改');
@@ -85,7 +95,7 @@ export class UserComponent implements OnInit {
         if (this.temp.Image == '') {
           this.temp.Image = this.user.Image;
         } else {
-          this.serve.change(this.temp).subscribe(res => {
+          this.serve.change(this.temp).subscribe(() => {
           });
           // alert('修改成功！');
           this.msg = this.msgs[2];
@@ -95,7 +105,6 @@ export class UserComponent implements OnInit {
       }
     }
   }
-
   // 选择系统头像，并显示
   changeimg(src) {
     this.imgsrc = src;
@@ -113,5 +122,21 @@ export class UserComponent implements OnInit {
     this.isshow = false;
   }
   ngOnInit() {
+    this.serve.get().subscribe(user => {
+      this.user = user;
+      // 判断传来的是系统头像的路径还是base64
+      if(this.user.Image.length > 100){
+      let temp: any;
+      temp = 'data:image/png;base64, ' + this.user.Image; //给base64添加头缀
+      this.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+      }
+      //存储用户不可修改的信息
+      this.temp.UserId = this.user.UserId;
+      this.temp.Integral = this.user.Integral;
+      this.temp.RegisterDate = this.user.RegisterDate;
+      // 转化日期格式
+      this.user.RegisterDate = this.datePipe.transform(this.user.RegisterDate, 'yyyy-MM-dd');
+      
+  });
   }
 }
