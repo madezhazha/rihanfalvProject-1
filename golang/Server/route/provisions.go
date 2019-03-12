@@ -88,10 +88,10 @@ func Titleget(w http.ResponseWriter, r *http.Request) {
 	head(w)
     var titles []psql.Legaltitle
 	if Country=="Japan"{
-		titles = psql.Titlesqlj(posttype)
+		titles = psql.Titlesql(posttype)
 	}
 	 if Country=="Korea"{
-	 	titles = psql.Titlesqlk(posttype)
+	 	titles = psql.Titlesql(posttype)
 	}
 	data,_:=json.Marshal(titles) 
 	w.Write(data)
@@ -108,18 +108,20 @@ func Labelpost(w http.ResponseWriter, r *http.Request) {
     fmt.Println("客户端访问：")
     fmt.Println("\tlegallabel:", su.Legallabel)
     postlabel = su.Legallabel
+    
 }
 
 func Labelget(w http.ResponseWriter, r *http.Request) { 
     head(w)
 	var label []psql.Legallabel
     if Country=="Japan"{
-        label= psql.Labelsqlj(postlabel)
+        label=psql.Labelsql(postlabel)
     }else if Country=="Korea"{
-        label=psql.Labelsqlk(postlabel)
+        label=psql.Labelsql(postlabel)
     }
 	data,_:=json.Marshal(label) 
-	w.Write(data)
+    w.Write(data)
+    log.Println(label)
 }
 
 func Contentpost (w http.ResponseWriter, r *http.Request) { 
@@ -141,9 +143,9 @@ func Contentget (w http.ResponseWriter, r *http.Request) {
 	var content []byte
     
     if Country=="Japan"{
-        content=psql.Contentsqlj(posttitle)
+        content=psql.Contentsql(posttitle)
     }else if Country=="Korea"{
-        content=psql.Contentsqlk(posttitle)
+        content=psql.Contentsql(posttitle)
     }
     fmt.Fprintf(w,string(content))
 }
