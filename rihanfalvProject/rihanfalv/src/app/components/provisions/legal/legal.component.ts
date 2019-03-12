@@ -33,7 +33,7 @@ export class LegalComponent implements OnInit {
    }
 
    public hideAside() {
-     const asideDom: any = document.getElementById('aside');  //隐藏侧拉栏
+     const asideDom: any = document.getElementById('aside');  // 隐藏侧拉栏
      asideDom.style.transform = 'translate(100%,0)';
    }
 
@@ -46,20 +46,20 @@ export class LegalComponent implements OnInit {
    public posttype(legaltype: string) {            // 传递选中的标题回服务器
      this.api.legaltype2(legaltype).subscribe();
      const that = this;
-   setTimeout( function () { that.title(legaltype); } , 200);    // 延时触发，给服务器反应留时间
+     // tslint:disable-next-line:only-arrow-functions
+     setTimeout( function() { that.title(legaltype); } , 200);    // 延时触发，给服务器反应留时间
    }
 
    public title(legaltype: string) {
-     this.router.navigate(['article'], {
-       queryParams: {legaltype: legaltype}
-       });
+     this.router.navigate(['article']);
    }
 
    public choose() {                         // 法律条文的分类显示
-     if (this.category === this.categoryb) {
+     if (this.category === this.categoryb) { // 判断是否选中
        this.judge = !this.judge;
        this.api.legallabel2().subscribe(response => {
-         this.types = response; });
+         this.types = response;
+          });
        if (this.judge !== true) {
          this.category = '';
          this.Gettype();
@@ -69,7 +69,8 @@ export class LegalComponent implements OnInit {
        this.categoryb = this.category;
        this.api.legallabel(this.category).subscribe();
        const that = this;
-       setTimeout( function () {
+       // tslint:disable-next-line:only-arrow-functions
+       setTimeout( function() {
          that.api.legallabel2().subscribe(response => {
          that.types = response; }); } , 300);
      }

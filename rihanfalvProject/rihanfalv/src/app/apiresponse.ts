@@ -4,6 +4,7 @@ export class APIResponse {
 
 export class APIResponse2 {
     public legaltitle:    string;
+    public legaltype:     string;
 }
 export class APIResponse3 {
     public legaltype:     string;
