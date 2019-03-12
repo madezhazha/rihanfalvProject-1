@@ -219,7 +219,7 @@ export class CaseComponent implements OnInit {
       // 注意这里的content是要搞事情的
 
       this.http.post(api,{"content":content,"languageType":this.languageType},httpOptions).subscribe((response:any)=>{
-        console.log(response)
+        // console.log(response)
         //遍历对象，并且将数据放在一个数组中
         if(response){
           for(const key of Object.keys(response)){
@@ -230,7 +230,7 @@ export class CaseComponent implements OnInit {
           }
         }
 
-        console.log(this.list)
+        // console.log(this.list)
         this.onChangePageSize("10")
       })
 

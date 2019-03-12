@@ -45,7 +45,7 @@ export class CaseDataComponent implements OnInit {
     var storage=window.localStorage;
     this.userId=storage["id"]
 
-    console.log("这个是localstorage的数据：",this.userId)
+    // console.log("这个是localstorage的数据：",this.userId)
     if(this.changeNumber===0){
       //这个表示收藏信息
       this.imageUrl='./assets/images/fiveStar2.PNG'
