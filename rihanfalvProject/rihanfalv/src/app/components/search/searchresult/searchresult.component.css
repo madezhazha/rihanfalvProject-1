@@ -1,13 +1,4 @@
-    .法律 :link{
-        color:blue;
-    }
-    .论文 :link{
-        color:yellow;
-    }
-    .案例 :link{
-        color:purple;
-    }
-    
+
     ul{
         list-style:none;
         /* display:block; */
@@ -16,7 +7,7 @@
         margin:0px;
         display:inline
         }
-    .content{   
+    .content {   
         white-space: pre-wrap; 
         overflow: hidden;
         text-overflow: ellipsis; /* for IE */
@@ -28,11 +19,11 @@
     text-align: left;
     background: white;
     width: 450px;
-    height:80px;
+    height:100px;
     border-bottom: 1px solid gray;
-    margin-top: 0.5px;
-    margin-bottom: 0.5px 
-   
+    margin: 0.5px;
+    /*margin-bottom: 0.5px ; */
+    line-height:20px;
     }
 
 
@@ -96,10 +87,16 @@ background-color: darkseagreen;
         position: relative;
         background: white;
         width: 450px;
-        height:120px;
-        border-bottom: 1px solid gray;
-        margin-top: 0.5px; 
-    
+        height:140px;
+        line-height: 20px;
+        /* border-bottom: 1px solid gray; */
+        /* margin-top: 0.5px;  */
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis; 
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
     }
     
     

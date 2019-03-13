@@ -7,11 +7,6 @@
           <li *ngFor="let item of this.searchlist" style="width:100px;">
             <a (click)="setInfo(item)">{{item}}</a></li>
         </ul>
-     <!-- <select  name="searchgroup" id="searchgroup"  [(ngModel)]="this.searchgroup">
-     <option [value]="item" *ngFor="let item of this.searchlist">
-       {{item}}
-     </option>
-   </select> -->
    <div style="text-align:center;width:400px;">
  <input type="text" [(ngModel)]="KeyWord" class="form-control" [ngModelOptions]="{standalone: true}" style="width:250px;"
   placeholder="搜索{{this.searchgroup}}" onkeyup="value=value.replace(/\s/g,'')"/>
@@ -43,6 +38,17 @@
 </div>
 </div>
 <div  *ngIf="this.ifsearch">
+    <div style="text-align: center">
+        <ul class="nav navbar-nav" style="text-align: center">
+            <li style="width:130px;text-align: center">
+              <a (click)="order('all')">综合排序</a></li>
+            <li style="width:130px;text-align: center">
+                <a (click)="order('onlytitle')">只搜主题</a></li> 
+            <li style="width:130px;text-align: center">
+                 <a >时间排序(暂无)</a></li>
+          </ul>
+        </div>
+        <br>
 <app-searchresult></app-searchresult>
 </div>
 

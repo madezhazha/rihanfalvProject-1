@@ -50,6 +50,7 @@ doSearch(){//搜索按键
   this.HistoryList.splice(0,1)//当记录到达10时删除第一条
   localStorage.setItem('HistoryList',JSON.stringify(this.HistoryList));//储存进localstorage
   this.readHistory()
+  this.m_search.Order="all";
   this.m_search.KeyWord=this.KeyWord
   this.m_search.Classify=this.searchgroup
   this.m_search.Nowcountry=this.Nowcountry
@@ -89,5 +90,11 @@ getJapanKorea(isJapan:boolean){
 
   }
 }
-
+order(order){//排序方式传递
+this.m_search.Order=order;
+this.m_search.KeyWord=this.KeyWord
+this.m_search.Classify=this.searchgroup
+this.m_search.Nowcountry=this.Nowcountry
+this.m_search.searchtogo()//传数据给后端
+}
 }

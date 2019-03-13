@@ -1,5 +1,7 @@
 
 <hr>
+
+<div>
 {{this.text}}
     <ul *ngIf="getstatus()">
         <div class="paperlist">
@@ -15,11 +17,13 @@
                             </span>
                         <span *ngIf="item.Classify=='法律'"><a [routerLink]="['/article','legaltype']" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
+                            <span *ngIf="item.Classify=='案例'"><a [routerLink]="['/article','legaltype']" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                            </span>
                         </div>
                         <!-- <div class="num" *ngIf="item.Classify=='论文'">字数：{{item.Length}}</div> -->
-                    <div class="mes">
-                    <span class="name">{{item.Author}}</span>
-                    <span class="time">{{item.Date|date: 'yyyy-MM-dd'}}</span>
+                    <div class="mes" >
+                    <span class="name" *ngIf="item.Classify=='论文'">{{item.Author}}</span>
+                    <span class="time" *ngIf="item.Classify=='论文'">{{item.Date|date: 'yyyy-MM-dd'}}</span>
                     </div>
                      <div class="content">
                             <span class="labelcontainer" *ngFor="let label of item.Labelbox">
@@ -39,6 +43,5 @@
         </div>
         <hr>
         <button type="button" class="btn btn-default navbar-btn"(click)="readmore()">加载更多</button>
-          page:{{this.page}}
         </ul>
-      
+      </div>

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 export class SearchresultComponent implements OnInit {
 public list=new Array();
-public text :string
+public text :string="正在获取数据..."
 public page=1
 
 
@@ -25,11 +25,11 @@ public page=1
 
   getstatus(){
     if(!this.m_search.list){
-         this.text="未获取搜索数据" //未获取数据
+         this.text="未获取数据..." //未获取数据
          return false     
     }
-    if(this.m_search.list.length==0){
-      this.text="搜索目标不存在"  
+    if(this.m_search.list=="null"){
+      this.text="数据不存在"  
       return false   
 }
 if(this.m_search.list.length<5){
@@ -61,7 +61,6 @@ readmore(){
   }
     this.page++
     this.list=this.list.concat(addlist);
-   console.log(this.list)
 }
 
 click(item){
