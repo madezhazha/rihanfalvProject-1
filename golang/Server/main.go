@@ -46,7 +46,6 @@ func main() {
 	mux.HandleFunc("/thread/cancel", route.Cancel)
 
 	//讨论区 我的问答
-	mux.HandleFunc("/querytime", route.Query_test_time)       //显示所有用户信息
 	mux.HandleFunc("/showuserinfo", route.ShowUserInfo)       // 个人信息
 	mux.HandleFunc("/showuserquelist", route.ShowUserQueList) // 个人提问列表
 	mux.HandleFunc("/showuseranslist", route.ShowUserAnsList) // 个人回答列表

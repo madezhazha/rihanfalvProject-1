@@ -13,16 +13,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// const (
-// 	host     = "localhost"
-// 	port     = 5432
-// 	user     = "postgres"
-// 	password = "sql1234567"
-// 	dbname   = "user"
-// )
-
-//var Db *sql.DB
-
 //用户信息
 type Users struct {
 	Userid   int    `json:"userid"`
@@ -62,46 +52,6 @@ type Getid struct {
 	Userid int `json:"userid"`
 }
 
-//测试获取时间
-type Reply struct {
-	Userid  int       `json:"userid"`
-	Retime  time.Time `json:"retime"`
-	Othtime time.Time `json:"othtime"`
-	Nowtime time.Time `json:"nowtime"`
-}
-
-/*
-func ConnectDB() *sql.DB {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
-
-	Db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		panic(err)
-	}
-
-	err = Db.Ping()
-	if err != nil {
-		panic(err)
-	}
-	return Db
-}
-*/
-
-//测试获取时间
-func Query_time(pro_id int) Reply {
-	var postbody Reply
-	err := db.QueryRow(" select userid,replytime,othertime - interval '8 Hours',newtime from reply where userid=$1", pro_id).Scan(&postbody.Userid, &postbody.Retime, &postbody.Othtime, &postbody.Nowtime)
-	if err != nil {
-		if err == sql.ErrNoRows {
-		} else {
-			log.Fatal(err)
-		}
-	}
-	fmt.Println(&postbody.Userid, &postbody.Retime, &postbody.Othtime, &postbody.Nowtime)
-	return postbody
-}
 
 //获取个人信息
 func GetUserInfo(postbody Users) Users {
