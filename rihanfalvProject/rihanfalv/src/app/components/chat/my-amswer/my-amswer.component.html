@@ -20,23 +20,20 @@
            <a href="post?topicID={{item.topicid}}">
                 <div class="List">
                   <div class="Info">
-                      <div class="Image">
-                            <img width="28px" height="28px" src="../../../../assets/images/index/u159.png" >
-                      </div>
+                      
+                  <div class="Content">
+                    <p>{{item.replycontent}}</p>
+                  </div>
                       
                       <div class="NameTime">
-                        <div class="Nickname">{{this.UserName}}</div>
+                        <!-- <div class="Nickname">{{this.UserName}}</div> -->
                         <div class="LastTime">
-                          第{{item.floor}}楼 &nbsp; {{item.replytime | date:'HH:mm:ss  yyyy/MM/dd'}}
+                          第{{item.floor}}楼 &nbsp; {{item.replytime | date:'yyyy/MM/dd HH:mm:ss'}}
                         </div>
                       </div>
                       
                   </div>
                    
-                  <div class="Content">
-                    <h3>{{item.replycontent}}</h3>
-                    <!-- <span>{{item.floor}}楼</span> -->
-                  </div>
                   
                 </div>
               </a>

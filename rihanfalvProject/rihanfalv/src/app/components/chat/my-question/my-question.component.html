@@ -20,7 +20,7 @@
 
             <a href="post?topicID={{item.topicid}}">
               <div class="List">
-                <div class="Info">
+                <!-- <div class="Info">
                     <div class="Image">
                           <img width="28px" height="28px" src="../../../../assets/images/index/u159.png" >
                     </div>
@@ -30,20 +30,24 @@
                       <div class="LastTime">{{item.creationtime | date:'HH:mm:ss yyyy/MM/dd'}} </div>
                     </div>
                     
-                </div>
+                </div> -->
                  
                 <div class="Content">
-                  <h2>{{item.topictitle}}</h2>
+                  <h3>{{item.topictitle}}</h3>
                   <p>
                     {{item.topiccontent}}
                   </p>
                 </div>
                 
+
                 <div class="TailData">
-                  <span>replies:{{item.numberofreplies}}</span>&nbsp;
-                  <span>visit:{{item.visitvolume}}</span>&nbsp;
-                  <span>collection:{{item.collectionvolume}}</span>
-                  <br><span>最新回复：{{item.finalreplytime | date:'HH:mm MM/dd'}}</span>
+                  <!-- <div class="LastTime">发表时间：{{item.creationtime | date:'HH:mm:ss yyyy/MM/dd'}} </div> -->
+                  <span>replies: {{item.numberofreplies}}</span>&nbsp;&nbsp;
+                  <span>visit: {{item.visitvolume}}</span>&nbsp;&nbsp;
+                  <span>collection: {{item.collectionvolume}}</span>
+                  <br>
+                  <span>DATE: {{item.creationtime | date:'yyyy/MM/dd HH:mm:ss'}}</span>&nbsp;&nbsp;&nbsp;
+                  <span>UPDATE: {{item.finalreplytime | date:'MM/dd HH:mm'}}</span>
                 </div>
                 
               </div>

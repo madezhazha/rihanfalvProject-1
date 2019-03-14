@@ -99,9 +99,6 @@ ul{
     float: left;
 }
 
-/* .Image a{
-
-} */
 
 /* .List a{
     width: 15%;
@@ -121,9 +118,9 @@ ul{
 .Content{
     clear: both;
 }
-.Content h2,.Content p{
-    margin: 2px;
-
+.Content p{
+    margin: 2px 2px 5px 2px;
+    font-size: 20px;
 }
 
 .TailData{

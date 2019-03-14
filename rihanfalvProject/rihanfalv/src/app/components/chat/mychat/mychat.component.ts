@@ -84,6 +84,11 @@ export class MychatComponent implements OnInit {
     })
   }
 
+  //跳转到我的页面
+  intoUserPage(){
+    this.router.navigate(['/userpage']);
+  }
+
   //跳转到我的提问列表
   myQue(){
 

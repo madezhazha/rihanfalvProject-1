@@ -117,14 +117,18 @@ ul{
 .Content{
     clear: both;
 }
-.Content h2,.Content p{
+.Content h3{
     margin: 2px;
-
+    font-size: 22px;
+}
+.Content p{
+    margin: 2px;
+    font-size: 15px;
 }
 
 .TailData{
-    padding: 2px;
-    font-size: 12px;
+    padding: 8px 2px 2px 5px;
+    font-size: 11px;
 }
 
 #loadmore{
