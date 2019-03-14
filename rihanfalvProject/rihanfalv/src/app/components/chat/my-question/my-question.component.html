@@ -18,7 +18,7 @@
       <li *ngFor="let item of QueList;let key=index" [hidden]="key>this.DisplayCount" >
         <div id="Queorder">
 
-            <a [routerLink]="[ '/' ]">
+            <a href="post?topicID={{item.topicid}}">
               <div class="List">
                 <div class="Info">
                     <div class="Image">

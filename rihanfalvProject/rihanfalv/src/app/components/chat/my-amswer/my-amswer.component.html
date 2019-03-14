@@ -17,7 +17,7 @@
       <li *ngFor="let item of AnsList;let key=index" [hidden]="key>this.DisplayCount" >
         <div id="Ansorder">
 
-           <a [routerLink]="[ '/' ]">
+           <a href="post?topicID={{item.topicid}}">
                 <div class="List">
                   <div class="Info">
                       <div class="Image">
