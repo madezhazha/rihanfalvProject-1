@@ -5,7 +5,7 @@
 
 
 <!-- 我的问答 -->
-<div id="MyInfoQuestionAnswer">
+<div id="MyInfoQuestionAnswer" *ngIf="LoginStatus" >
 
     <!-- 我的信息 -->
     <div id="QAMyInfo">
@@ -44,4 +44,10 @@
       <button id="QueBtn" (click)="toQue()">我要提问</button>
     </div>
    <!-- [queryParams]="{aid:3}" [routerLink]="[ '/toquestion' ]" -->
+  </div>
+
+
+  <!-- 未登录状态下 -->
+  <div id="NotLogin" *ngIf="!LoginStatus" >
+    请先登录！
   </div>

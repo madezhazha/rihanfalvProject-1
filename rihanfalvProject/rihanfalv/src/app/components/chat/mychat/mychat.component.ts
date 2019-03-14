@@ -12,11 +12,12 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class MychatComponent implements OnInit {
 
   // 个人信息
-  public UserId:number=1;
+  public UserId:number;
   public UserName:string='qq_sasx';
-  public Integral:number=5;
+  public Integral:number=0;
   public MyQueCount:number=0;
   public MyAnsCount:number=0;
+  public LoginStatus:boolean=false;   //是否登录
 
   // 个人信息、提问、回答 列表
   public Userinfo:any;
@@ -31,6 +32,12 @@ export class MychatComponent implements OnInit {
   constructor(public router:Router,public http:HttpClient) { }
 
   ngOnInit() {
+
+    this.UserId = JSON.parse(localStorage.getItem("id"));
+    if(this.UserId) this.LoginStatus=true;
+    else this.LoginStatus=false;
+    //console.log(this.UserId);
+    //console.log(number(id));
 
     this.loadUserInfo();
     this.loadQueList();
