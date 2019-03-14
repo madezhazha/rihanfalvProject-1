@@ -34,14 +34,13 @@ export class MychatComponent implements OnInit {
   ngOnInit() {
 
     this.UserId = JSON.parse(localStorage.getItem("id"));
-    if(this.UserId) this.LoginStatus=true;
-    else this.LoginStatus=false;
-    //console.log(this.UserId);
-    //console.log(number(id));
-
-    this.loadUserInfo();
-    this.loadQueList();
-    this.loadAnsList();
+    if(!this.UserId) this.LoginStatus=false;
+    else {
+      this.LoginStatus=true;
+      this.loadUserInfo();
+      this.loadQueList();
+      this.loadAnsList();
+    } 
 
   }
 
@@ -100,6 +99,11 @@ export class MychatComponent implements OnInit {
   //我要提问
   toQue(){
     this.router.navigate(['/toquestion']);
+  }
+
+  //重新加载
+  updateAgain(){
+    this.ngOnInit();
   }
 
 }

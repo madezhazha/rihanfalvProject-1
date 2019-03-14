@@ -48,6 +48,7 @@
 
 
   <!-- 未登录状态下 -->
-  <div id="NotLogin" *ngIf="!LoginStatus" >
-    请先登录！
+  <div *ngIf="!LoginStatus" >
+    <div id="NotLogin">请先登录！</div> 
+    <button (click)="updateAgain()">已登录，刷新一下</button>
   </div>
