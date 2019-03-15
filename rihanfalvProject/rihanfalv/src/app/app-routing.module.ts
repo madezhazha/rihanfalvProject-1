@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: 'Feedback', component: FeedbackComponent},
   { path: 'Personalfeedback', component: PersonalfeedbackComponent },
   { path: 'Feedbacksuccess', component: FeedbacksuccessComponent },
-  { path: 'article/:legaltype', component: ArticleComponent },
+  { path: 'article', component: ArticleComponent },
   { path: 'content', component: ContentComponent },
   { path: 'paperweb/:route/:ArticleID', component: PaperwebComponent},
   { path: 'display-data', component: CaseDataComponent},

@@ -2,6 +2,10 @@ export class APIResponse {
     public legaltype:     string;
 }
 
+export class Nowcountry {
+    public Country:     string;
+}
+
 export class APIResponse2 {
     public legaltitle:    string;
     public legaltype:     string;
