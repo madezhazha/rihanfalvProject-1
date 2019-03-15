@@ -3,44 +3,46 @@
 
 <div id="base" class="">
 
-  <!-- Unnamed (文本框) -->
+  <!--  搜索文本框 -->
   <div id="u5" class="ax_default text_field">
-    <input id="u5_input" style=" border-width: 2.3px;" type="text" [(ngModel)]="inputValue" />
+    <input id="u5_input" style=" border-width: 2.3px;" type="text" [(ngModel)]="inputValue" placeholder="关键字之间请用空格隔开" />
   </div>
 
+  <!-- 搜索的图标(按钮) -->
   <div id="u6" class="ax_default icon" (click)="search()">
     <img id="u6_img" class="img " src="assets/images/index/u7.png" />
   </div>
 
-  <!-- Unnamed (矩形) -->
+
+  <!--  刑法选择项 -->
   <div id="u0" class="ax_default sticky_2" (click)="tag('刑法')">
     <div id="u0_text" class="text ">
       <p><span>刑法</span></p>
     </div>
   </div>
 
-  <!-- Unnamed (矩形) -->
+  <!-- 民法商法选择项 -->
   <div id="u1" class="ax_default sticky_2" (click)="tag('民法商法')">
     <div id="u1_text" class="text ">
       <p><span>民法商法</span></p>
     </div>
   </div>
 
-  <!-- Unnamed (矩形) -->
+  <!-- 行政法选择项 -->
   <div id="u2" class="ax_default sticky_2" (click)="tag('行政法')">
     <div id="u2_text" class="text ">
       <p><span>行政法</span></p>
     </div>
   </div>
 
-  <!-- Unnamed (矩形) -->
+  <!-- 社会法选择项 -->
   <div id="u3" class="ax_default sticky_2" (click)="tag('社会法')">
     <div id="u3_text" class="text ">
       <p><span>社会法</span></p>
     </div>
   </div>
 
-  <!-- Unnamed (矩形) -->
+  <!-- 诉讼与非诉讼程序法选择项 -->
   <div id="u4" class="ax_default sticky_2" (click)="tag('诉讼与非诉讼程序法')">
     <div id="u4_text" class="text ">
       <p><span>诉讼与非诉讼程序法</span></p>
@@ -51,44 +53,55 @@
 <hr style="margin-top:30px;">
 
 
+<!-- 以下是搜索出来的帖子 -->
 <div style="margin-top:20px;margin-left: 20px;" *ngFor="let item of nowData">
 
+  <!-- 问题 -->
   <div style="font-size:20px;margin-bottom: 5px;">
     <div>
-      <a href="post?topicID={{item.ID}}" style="color: #0366d6;text-decoration: none;">问题:{{item.Topictitle}}</a>
+      <a href="post?topicID={{item.thread.ID}}"
+        style="color: #0366d6;text-decoration: none;">问题:{{item.thread.Topictitle}}</a>
     </div>
   </div>
 
+  <!-- 描述 -->
   <div style="font-size:12px;font-size: 14px;color: #767474;margin-bottom: 15px;">
     <div>
-      <p><span>描述:{{item.Topiccontent}}</span></p>
+      <p><span>描述:{{item.thread.Topiccontent}}</span></p>
     </div>
   </div>
 
+  <!-- 楼主的姓名 -->
   <div style="font-size: 13px;;float: left;">
     <div>
-      <p><span style="color: #767474;">楼主:</span></p>
+      <p><span style="color: #767474;">楼主:{{item.user.Username}}</span></p>
     </div>
   </div>
 
+  <!-- 发帖时间 -->
   <div style="font-size:12px;margin-left: 100px;margin-top: 1.8px;">
     <div>
-      <p><span style="color: #767474;">时间:{{item.Creationtime}}</span></p>
+      <p><span style="color: #767474;">时间:{{item.thread.Creationtime}}</span></p>
     </div>
   </div>
 
+  <!-- 分割线 -->
   <hr style="margin-right:20px;margin-top:20px;">
 
 </div>
 
-<div *ngIf="isMax" style="margin-top:20px;" style="font-size: 13px;text-align: center;color: #333333;margin-bottom: 40px;">
-    <div>
-      <span>暂无更多</span>
-    </div>
+<!-- 暂无更多提示 -->
+<div *ngIf="isMax" style="margin-top:20px;"
+  style="font-size: 13px;text-align: center;color: #333333;margin-bottom: 40px;">
+  <div>
+    <span>暂无更多</span>
   </div>
+</div>
 
-  <div *ngIf="!isMax" style="margin-top:20px;" style="font-size: 13px;text-align: center;color: #333333;margin-bottom: 40px;">
-    <div>
-      <span (click)="more()">显示更多</span>
-    </div>
+<!-- 显示更多的按钮 -->
+<div *ngIf="!isMax" style="margin-top:20px;"
+  style="font-size: 13px;text-align: center;color: #333333;margin-bottom: 40px;">
+  <div>
+    <span (click)="more()">显示更多</span>
   </div>
+</div>

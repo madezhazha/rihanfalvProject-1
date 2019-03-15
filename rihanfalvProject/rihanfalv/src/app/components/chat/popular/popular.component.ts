@@ -3,7 +3,7 @@ import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { Router, NavigationExtras } from '@angular/router';
 
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,7 +23,8 @@ export class PopularComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
@@ -33,8 +34,20 @@ export class PopularComponent implements OnInit {
       } else {
         this.flag = 1;
       }
+
       // debugger;
       this.threadList = response;
+      // console.log(this.threadList);
+      for (let i = 0; i < this.threadList.length; i++) {
+        const element = this.threadList[i];
+        if (element.user.Image.indexOf("assets") == -1) {
+          let temp: any;
+          temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
+          element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+        }
+        // console.log(element.user.Image);
+      }
+
       if (this.threadList) {
         this.nowData = this.threadList.slice(0, 1);
         if (this.nowData.length == this.threadList.length) {
@@ -42,7 +55,10 @@ export class PopularComponent implements OnInit {
         } else {
           this.isMax = false;
         }
+      } else {
+        this.isMax = true;
       }
+      
     });
   }
 
@@ -56,7 +72,7 @@ export class PopularComponent implements OnInit {
   }
 
   more() {
-    if (this.threadList != null) {
+    if (this.threadList) {
       this.nowData = this.threadList.slice(0, this.nowData.length + 5);
       if (this.nowData.length == this.threadList.length) {
         this.isMax = true;
@@ -73,7 +89,7 @@ export class PopularComponent implements OnInit {
       this.flag = 0;
     }
   }
-  
+
 }
 
 @Pipe({

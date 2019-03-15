@@ -1,7 +1,10 @@
 package psql
 
 import (
+	"encoding/base64"
 	"fmt"
+	"io/ioutil"
+	"strings"
 	"time"
 
 	// 驱动包
@@ -69,6 +72,11 @@ func GetThread() (usersAndThreads []map[string]interface{}, err error) {
 func (thread *Thread) User() (user MyUser, err error) {
 	err = db.QueryRow("SELECT userid, username, email, image FROM users WHERE userid = $1", thread.Userid).
 		Scan(&user.Userid, &user.Username, &user.Email, &user.Image)
+
+	// 如果不包含“assets”，转成base64.如果包含，直接传该地址
+	if !strings.Contains(user.Image, "assets") {
+		user.Image = ImgToBase64(user.Image) // 通过路径读取图片，并转成base64传给前端
+	}
 	return
 }
 
@@ -106,7 +114,7 @@ func AddRepNum(topicID int) error {
 }
 
 // RsByCondition 根据查询条件查询出结果
-func RsByCondition(condition []string) (thread []Thread, err error) {
+func RsByCondition(condition []string) (usersAndThreads []map[string]interface{}, err error) {
 	for i, value := range condition {
 		rows, err := db.Query("SELECT topicid,posterid,topictitle,topiccontent,creationtime FROM topics where label like $1 ORDER BY topicid", "%"+value+"%")
 		if err != nil {
@@ -114,23 +122,49 @@ func RsByCondition(condition []string) (thread []Thread, err error) {
 		}
 		for rows.Next() {
 			conv := Thread{}
+			user := MyUser{}
+			userAndThread := make(map[string]interface{})
 			if err = rows.Scan(&conv.ID, &conv.Userid, &conv.Topictitle, &conv.Topiccontent, &conv.Creationtime); err != nil {
 				return nil, err
 			}
+			user, err = conv.User()
 			if i == 0 {
-				thread = append(thread, conv)
+				userAndThread["thread"] = conv
+				userAndThread["user"] = user
+				usersAndThreads = append(usersAndThreads, userAndThread)
 			} else {
+				// 判断usersAndThreads里面是否已经包含了查询结果的标志
 				flag := true
-				for _, value := range thread {
-					if value.ID == conv.ID {
-						flag = false
+				for _, val := range usersAndThreads {
+					// if val["thread"] == conv.ID {
+					// 	flag = false
+					// }
+					// 类型断言，因为val[string]本身是interface{}类型，没有属性.
+					// 所以即使确定了key，即现在为val["thread"]在编译时期的类型也会被识别为interface{}.
+					// 解决办法就是使用类型断言，把现在类型便转换成Thread(本身语法不允许使用强制类型转换)，而Thread才有属性
+					v, ok := val["thread"].(Thread)
+					if ok {
+						if v.ID == conv.ID {
+							flag = false
+						}
+					} else {
+						return nil, err
 					}
 				}
 				if flag == true {
-					thread = append(thread, conv)
+					userAndThread["thread"] = conv
+					userAndThread["user"] = user
+					usersAndThreads = append(usersAndThreads, userAndThread)
 				}
 			}
 		}
 	}
 	return
+}
+
+// ImgToBase64 根据图片的地址得到图片的二进制，再把图片转成字符串（抄袭组长的函数）
+func ImgToBase64(image string) string {
+	img, _ := ioutil.ReadFile(image)              //直接读取文件内容，内容是[]byte类型
+	str := base64.StdEncoding.EncodeToString(img) //将[]byte转化成string
+	return str
 }

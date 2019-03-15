@@ -5,6 +5,7 @@ import { DataService } from '../../../services/data.service';
 import { Router, NavigationExtras } from '@angular/router';
 
 import { InputData } from '../../head/langing/land/input'
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
@@ -15,14 +16,13 @@ export class PostComponent implements OnInit {
 
   private
 
-  // 楼主的数据
+  // 楼主的id
   private hostData: any;
 
   private thread: any;
   private post: any;
   private isMax: boolean = false;
   private nowData: any;
-
 
   //  是否收藏
   private collection: any;
@@ -39,12 +39,14 @@ export class PostComponent implements OnInit {
     private activatedRouter: ActivatedRoute,
     private dataService: DataService,
     private router: Router,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
     this.activatedRouter.queryParams.subscribe((response) => {
       // localStorage.removeItem("id");
-      //获取用户信息
+
+      //获取登陆用户信息
       this.userID = localStorage.getItem("id");
       if (this.userID != null) {
         this.Islogin = true;
@@ -54,12 +56,27 @@ export class PostComponent implements OnInit {
       }
       // debugger;
       this.hostData = response;
-      // 这里的userID代表是否收藏此帖的用户ID
+
+      // 这里的userID登陆的用户ID(传回后台判断是否收藏了此贴)
       this.dataService.getPostList(this.userID, response.topicID).subscribe((resp) => {
         this.collection = resp.collection;
         this.post = resp.post;
         this.thread = resp.thread;
-        if (this.post != null) {
+
+        if (this.thread.user.Image.indexOf("assets") == -1) {
+          let temp = 'data:image/png;base64, ' + this.thread.user.Image; //给base64添加头缀
+          this.thread.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+        }
+
+        for (let i = 0; i < this.post.length; i++) {
+          const element = this.post[i];
+          if (element.user.Image.indexOf("assets") == -1) {
+            let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
+            element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+          }
+        }
+
+        if (this.post) {
           this.nowData = this.post.slice(0, 4);
           if (this.nowData.length == this.post.length) {
             this.isMax = true;
@@ -69,6 +86,7 @@ export class PostComponent implements OnInit {
         } else {
           this.isMax = true;
         }
+
       });
     });
   }
@@ -97,9 +115,13 @@ export class PostComponent implements OnInit {
   }
 
   more() {
-    this.nowData = this.post.slice(0, this.nowData.length + 5);
-    console.log(this.post);
-    if (this.nowData.length == this.post.length) {
+    if (this.post) {
+      this.nowData = this.post.slice(0, this.nowData.length + 5);
+      console.log(this.post);
+      if (this.nowData.length == this.post.length) {
+        this.isMax = true;
+      }
+    } else {
       this.isMax = true;
     }
   }

@@ -29,22 +29,26 @@ export class TagComponent implements OnInit {
   search() {
     this.dataService.search(this.inputValue).subscribe((response) => {
       this.resultData = response;
-      if (this.resultData != null) {
+      if (this.resultData) {
         this.nowData = this.resultData.slice(0, 2);
         if (this.nowData.length == this.resultData.length) {
           this.isMax = true;
         } else {
           this.isMax = false;
         }
+      } else {
+        this.isMax = true;
       }
     });
   }
 
   more() {
-    this.nowData = this.resultData.slice(0, this.nowData.length + 5);
-    console.log(this.nowData);
-    if (this.nowData.length == this.resultData.length) {
-      this.isMax = true;
+    if (this.nowData) {
+      this.nowData = this.resultData.slice(0, this.nowData.length + 5);
+      console.log(this.nowData);
+      if (this.nowData.length == this.resultData.length) {
+        this.isMax = true;
+      }
     }
   }
 }
