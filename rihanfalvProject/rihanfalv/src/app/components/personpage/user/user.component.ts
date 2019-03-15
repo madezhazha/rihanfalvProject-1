@@ -55,6 +55,11 @@ export class UserComponent implements OnInit {
   collection() {
     this.router.navigate(['/collection']);
   }
+  //跳转到反馈
+  feedback(){
+    
+    this.router.navigate(['/Feedback/'])
+  }
   //上传本地头像
   uploadImg() {
     const canvas = <HTMLCanvasElement>document.getElementById('canvas');  // 获取canvas标签

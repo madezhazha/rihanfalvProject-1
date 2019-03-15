@@ -148,22 +148,18 @@
 
 <!-- 显示从后端拿到的总共的数据 -->
 <div id="result"><p><span> <span style="font-size:20px; color: rebeccapurple">{{searchContent}}</span> 检索结果：{{list.length}}</span></p></div>
-
+<hr>
 <!-- 显示数据库的数据 -->
 <div class="bigContent" id="bigContent">
-    <li style="height:150px;border:1px solid;border-radius: 8px;list-style: none;margin-top: 1px"  *ngFor="let item of PageList">
+    <li style="height:150px;list-style: none;margin-top: 1px"  *ngFor="let item of PageList">
       <a routerLink="/display-data" (click)="sendData(item.casetitle)">
          <div>
-            <h4 style="color:black">{{item.casetitle}}</h4>
-            <div style="font-style: italic;color: black">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}/{{item.type}}</div>
-            <div style="height:60px;overflow:hidden"><p style="color:black">{{item.casecontent}}</p></div>
-            <div>
-              <div style="color:blue;font-size:20px;float: left;">裁判书</div>
-              <div style="float:right;font-style: italic;color: black">{{item.trialtime}}</div>
-            </div>
+            <h4 style="color:rgb(52, 103, 214);font-family: STXinwei">{{item.casetitle}}</h4>
+            <div style="color: gray!important;">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}/{{item.type}}</div>
+            <div style="height:60px;overflow:hidden;color:black" [innerHTML]="item.casecontent"></div>
         </div>
       </a>
-       
+      <hr>
     </li>
     <div>
         <button type="button" [disabled]="!preShow" (click)="showPrePage()"class="previous"><a (click)="goTo('result')">上一页</a></button>
@@ -175,7 +171,7 @@
           <option *ngFor="let pageSize of pageSizes" value="{{pageSize}}">{{pageSize}}</option>
         </select>
         <span>共{{list.length}}条</span>
-      </div>
+    </div>
 </div>
 
 

@@ -27,8 +27,6 @@ export class ContentComponent implements OnInit {
     });
     }
     public back() {       // 返回上一页面
-      this.router.navigate(['article'], {
-        queryParams: {legaltype: this.content.legaltype}
-        });
+      this.router.navigate(['/article']);
   }
 }

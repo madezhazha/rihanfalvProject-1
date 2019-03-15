@@ -1,47 +1,5 @@
-/* .module{
-    border-style: solid;
-    border-width: 1px;
-    margin:2px;
-    }
 
-   
-
-    /* body {
-    text-align:center;
-    top: 10px;
-    margin-top: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    height: 600px;
-    max-width: 450px;
-    min-width: 220px;
-    border-style: solid;
-    border-color: darkgray;
-    border-width: 1px;} */
-/* 
-    .title{
-    margin:4px;
-    font-size:18px;
-    text-align:left;
-    }
-
-    .title .label{
-    margin-left: 10px;
-    border:1px;
-    background-color: rgb(108, 165, 240);
-    border-radius: 7px;	
-    }
-
-    .title .star{
-    margin-left: 120px;
-    border:1px;
-    background-color: rgb(252, 255, 97);
-    border-radius: 7px;	
-    } */ 
-    
     ul{
-
         list-style:none;
         /* display:block; */
         white-space: pre-wrap;
@@ -49,21 +7,25 @@
         margin:0px;
         display:inline
         }
-    
-    .content{
-    position: absolute;
-    left: -30px;
-    top: 50px;
-    padding: 14px;
-    padding-top: 8px !important;
-    font-size:10px;
-    text-align:left;
-    overflow: hidden;
-    height: 40px;
-    text-overflow:ellipsis; 
-    word-wrap:break-word;
-    word-break:break-all;
+    .content {   
+        white-space: pre-wrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; /* for IE */
+        -o-text-overflow: ellipsis; /* for Opera */
+        -icab-text-overflow: ellipsis; /* for iCab */
+        -khtml-text-overflow: ellipsis; /* for Konqueror Safari */
+        -moz-text-overflow: ellipsis; /* for Firefox,mozilla */
+        -webkit-text-overflow: ellipsis; /* for Safari,Swift*/
+    text-align: left;
+    background: white;
+    width: 430px;
+    height:100px;
+    border-bottom: 1px solid gray;
+    margin: 0.5px;
+    /*margin-bottom: 0.5px ; */
+    line-height:20px;
     }
+
 
     .blank{
         font-size: 14px;
@@ -73,27 +35,21 @@
 color: #3d4450;
 background-color: darkseagreen;
     }
-    /* .blank:link {background-color: #FF0000}
-    .blank:visited {background-color: #00FF00}
-   .blank:hover {background-color: #FF00FF} */
    .active {
     font-size: 14px;
     height: 25px;
     width:85px;
     margin:3px;
-color: #3d4450;
-background-color: #0000FF}
+    color: #3d4450;
+    background-color: #0000FF}
     
-
-
-   
 
     .highlightedText{
     color: #c00;
-    /* font-weight: 900; */
     }
 
     .readmore{
+    position: absolute;
     font-size: 16px;
     border:3px solid;
     border-color: aquamarine;
@@ -127,22 +83,29 @@ background-color: #0000FF}
       }
     
     .paper{
+        text-align: left;
         position: relative;
         background: white;
-        position: relative;
         width: 450px;
-        height: 90px;
-        border-bottom: 1px solid gray;
-        margin-top: 0.5px;
+        height:140px;
+        line-height: 20px;
+        /* border-bottom: 1px solid gray; */
+        /* margin-top: 0.5px;  */
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis; 
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
     }
     
     
     .mes{
         position: relative;
+        top:20px;
         left:320px;
         height: 30px;
         width: 100px;
-        top:-80px;
         text-align: left;
     }
     
@@ -181,22 +144,23 @@ background-color: #0000FF}
         top:15px;
     }
     
-    .lablecontainer{
-        position: absolute;
-        bottom: 8px;
-        left: 90px;
+    .labelcontainer{
+        bottom: 60px;
+        left: 80px;
         width:auto;
-        height: 20px;
+        height: 30px;
     }
     
-    .lables{
+    .label{
+        position: static;
+        color:black;
         font-size: 10px;
         text-align: center;
         padding: 3px; 
+        float: none;
         border: 0.5px solid rgb(197, 178, 178);
         border-radius: 2px; 
-        float:left; 
-        margin-left:5px; 
+        margin-left:5px  !important; 
     }
     
         

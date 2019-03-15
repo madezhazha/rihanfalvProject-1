@@ -2,6 +2,7 @@ div.main{
     position:relative;/*父div用相对定位*/
     height: 477px;
     width:385px;
+    z-index: 2;
     border-radius:7px;
     overflow: hidden;/*溢出部分隐藏*/
     border: 1px solid rgb(112, 112, 112);
@@ -9,7 +10,7 @@ div.main{
 }
 div.Tip{
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     height:22px;
     top:80px;
     left: 37px;
@@ -20,7 +21,7 @@ div.Tip{
 }
 div.Tip2{
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     height:22px;
     top:80px;
     left: 37px;
@@ -30,7 +31,7 @@ div.Tip2{
     border:1.5px dashed rgb(94, 94, 94);
 }
 div.head{
-    z-index:1;
+    z-index:2;
     position:absolute;/*子div用绝对定位*/
     height:46px;
     width:385px;
@@ -38,7 +39,7 @@ div.head{
 }
 div.title{
     position:absolute;
-    z-index:2;
+    z-index:3;
     top:10px;
     left: 17px;
 }

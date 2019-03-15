@@ -12,14 +12,24 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class ToQuestionComponent implements OnInit {
 
   // 新增主贴信息
-  public UserId:number=1;
+  public UserId:number;
   public TopicTitle:string='';
   public TopicContent:string='';
   public TopicLabel:any[]=[];
+  public LoginStatus:boolean=false;
 
   constructor(public router:Router,public http:HttpClient) { }
 
   ngOnInit() {
+
+    this.UserId = JSON.parse(localStorage.getItem("id"));
+    if(this.UserId){
+      this.LoginStatus=true;
+    } 
+    else {
+      this.LoginStatus=false;
+      this.router.navigate(['/mychat']);  //未登录跳转
+    } 
   }
 
   // 添加主贴

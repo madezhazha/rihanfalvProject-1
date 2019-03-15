@@ -1,16 +1,17 @@
-<app-webhead (isJapan)="getJapanKorea($event)" ></app-webhead>
+<app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
 
 <div class="paperlist" ng-cloak>
   <div *ngFor="let article of Articles">
-    <div class="paper" [routerLink]="['/paperweb','/paper',article.ID]">
+    <div class="paper" >
       <div>
-       <img src="../../../assets/word.jpg" class="picture">
-        <div class="_三级标题">{{article.Title}}</div>
-        <div class="num">字数：{{article.Length}}</div>
-        <div class="mes">
-          <span class="name">{{article.Author}}</span>
-          <span class="time">{{article.Time|date: 'yyyy-MM-dd'}}</span>
-        </div>
+       <!--<img src="../../../assets/word.jpg" class="picture">-->
+        <a [routerLink]="['/paperweb','/paper',article.ID]" class="_三级标题">{{article.Title}}</a>
+      <div class="mes">
+        <div class="num">字数：{{article.Length}}</div> 
+        <div class="name">{{article.Author}}</div>
+        <div class="time">{{article.Time|date: 'yyyy-MM-dd'}}</div>
+      </div>
+      <span class="row">></span>
         <div class="lablecontainer">
           <div *ngFor="let lable of article.Lable" class="lables">
              {{lable}}

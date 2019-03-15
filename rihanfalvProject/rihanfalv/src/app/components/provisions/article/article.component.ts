@@ -17,13 +17,15 @@ export class ArticleComponent implements OnInit {
 
   public title1: APIResponse2 = {
     legaltitle:    '',
+    legaltype:    '',
+  };
+  public title2: APIResponse2 = {
+    legaltitle:    '',
+    legaltype:    '',
   };
 
   ngOnInit() {
     this.Gettitle();
-    this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.legaltype = queryParams.legaltype;
-  });
   }
 
   public Gettitle() {           // 获取信息
@@ -35,7 +37,8 @@ export class ArticleComponent implements OnInit {
   public posttype(legaltitle: string) {            // 传递标题回服务器
     this.api.legaltitle2(legaltitle).subscribe();
     const that = this;
-  setTimeout( function () { that.content(); } , 200);   // 延时触发，给服务器留反应时间
+    // tslint:disable-next-line:only-arrow-functions
+    setTimeout( function() { that.content(); } , 200);   // 延时触发，给服务器留反应时间
 }
   public content() {
     this.router.navigate(['/content']);

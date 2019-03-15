@@ -34,17 +34,16 @@ const routes: Routes = [
   // { path: 'text', component:PaperComponent },               //测试专用
   { path: 'homepage', component: HomepageComponent},        //首页
   { path: 'discussionarea', component: PopularComponent },  //讨论区
-  { path: 'legal', component:LegalComponent  },             //法律条文
-  { path: 'caseanalysis',component:CaseComponent},          //案例分析页面
+  { path: 'legal', component: LegalComponent  },             //法律条文
+  { path: 'caseanalysis', component: CaseComponent},          //案例分析页面
   { path: 'paper', component: PaperComponent },             //相关论文
   { path: 'Feedback', component: FeedbackComponent},
   { path: 'Personalfeedback', component: PersonalfeedbackComponent },
   { path: 'Feedbacksuccess', component: FeedbacksuccessComponent },
-  { path: 'legal', component: LegalComponent },
   { path: 'article', component: ArticleComponent },
   { path: 'content', component: ContentComponent },
   { path: 'paperweb/:route/:ArticleID', component: PaperwebComponent},
-  { path: 'display-data',component:CaseDataComponent},
+  { path: 'display-data', component: CaseDataComponent},
   { path: 'post', component: PostComponent },
   { path: 'replyPage', component: ReplyPageComponent },
   { path: 'head', component: ChatHeadComponent },
@@ -58,10 +57,10 @@ const routes: Routes = [
   { path: 'myanswer', component: MyAmswerComponent },
 
 
-  {path:'userpage',component:UserComponent},
-  {path:'collection',component:CollectionComponent},
-  {path:'uploadimage',component:UploadHeadimageComponent},
-  
+  {path: 'userpage', component: UserComponent},
+  {path: 'collection', component: CollectionComponent},
+  {path: 'uploadimage', component: UploadHeadimageComponent},
+
 
   { path: '', redirectTo: 'homepage', pathMatch: 'full' } ,
 ];

@@ -1,18 +1,18 @@
 ._三级标题 {
-    font-family:'Arial Normal', 'Arial';
-    font-weight:bold;
+    font-family:'STXinwei';
     font-style:normal;
     font-size:18px;
     text-align:left;
     position: absolute;
-    left: 95px;
-    width: 200px;
+    left: 8px;
+    width: 400px;
     height: 50px;
     overflow: hidden;
     top:5px;
     overflow-x: hidden; 
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: rgb(82, 82, 231);
   }
     app-webhead{
         position: relative;
@@ -31,19 +31,19 @@
     width: 450px;
     height: 90px;
     cursor: pointer;
-    border-bottom: 1px solid gray;
+    border-bottom: 0.05px solid rgb(189, 183, 183);
     margin-top: 0.5px;
     
 }
 
 
 .mes{
-    position: relative;
-    left:320px;
-    height: 30px;
-    width: 100px;
-    top:-80px;
-    text-align: left;
+    font-size: 12px;
+    margin-top: 34px;
+    margin-left: 15px;
+    height: auto;
+    width: auto;
+    float: left;
 }
 
 .mes img{
@@ -58,33 +58,27 @@
     border-radius: 3px;
 }
 
-.mes .name{
-    position: absolute;
-    font-size: 11px;
-    right:15px;
-
+.name{
+    display: inline-block;
+    margin-left: 10px;
+    color:gray;
 }
 
 .num{
-    font-size: 10px;
     color:gray;
-    position: absolute;
-    top:34px;
-    left: 95px;
+    display: inline-block;
 }
 
-.mes .time{
-    position: absolute;
+.time{
     color:#6B6B6B;
-    font-size: 9px;
-    right:15px;
-    top:15px;
+    margin-left: 10px;
+    display: inline-block;
 }
 
 .lablecontainer{
     position: absolute;
-    bottom: 8px;
-    left: 90px;
+    bottom: 9px;
+    left: 15px;
     width:auto;
     height: 20px;
 }
@@ -93,10 +87,17 @@
     font-size: 10px;
     text-align: center;
     padding: 3px; 
+    padding-left: 4px;
     border: 0.5px solid rgb(197, 178, 178);
     border-radius: 2px; 
     float:left; 
-    margin-left:5px; 
+    margin-left:8px; 
 }
 
-    
+.row{
+    position: absolute;
+    right: 50px;
+    top:35px;
+    font-size: 15px;
+    font-weight: bold
+}

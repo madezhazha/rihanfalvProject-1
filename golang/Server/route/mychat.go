@@ -10,44 +10,6 @@ import (
 	// "github.com/ascoders/alipay"
 )
 
-//处理跨域
-// func Cross(w http.ResponseWriter) http.ResponseWriter {
-// 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
-// 	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
-// 	w.Header().Set("content-type", "application/json")             //返回数据格式是json
-// 	return w
-// }
-
-//测试显示时间数据
-func Query_test_time(w http.ResponseWriter, r *http.Request) {
-	w = Cross(w)
-
-	defer r.Body.Close()
-
-	s, _ := ioutil.ReadAll(r.Body) //把  body 内容读入字符串 s
-	// if err != nil {
-	// 	fmt.Println("error:", err)
-	// 	return
-	// }
-
-	var temp psql.Getid
-	err := json.Unmarshal(s, &temp)
-	if err != nil {
-		fmt.Println("error:", err)
-		return
-	}
-	fmt.Println("Test right :", temp.Userid)
-
-	var postbody psql.Reply
-	postbody=psql.Query_time(temp.Userid)
-
-	rs, err := json.Marshal(postbody)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	fmt.Fprintf(w, "%s", rs)
-	return
-}
 
 // 通过id查个人信息
 func ShowUserInfo(w http.ResponseWriter, r *http.Request) {

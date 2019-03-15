@@ -34,8 +34,8 @@ func main() {
 	//案例分析
 	mux.HandleFunc("/alldata", route.Displayhomeall)
 	mux.HandleFunc("/displaytxt", route.Displaytxt)
-	mux.HandleFunc("/changecollect",route.CollectData)
-	mux.HandleFunc("/InitialState",route.InitialState)
+	mux.HandleFunc("/changecollect", route.CollectData)
+	mux.HandleFunc("/InitialState", route.InitialState)
 
 	// 讨论区
 	mux.HandleFunc("/thread/list", route.ListThread)
@@ -46,30 +46,32 @@ func main() {
 	mux.HandleFunc("/thread/cancel", route.Cancel)
 
 	//讨论区 我的问答
-	mux.HandleFunc("/querytime", route.Query_test_time)  //显示所有用户信息
 	mux.HandleFunc("/showuserinfo", route.ShowUserInfo)       // 个人信息
 	mux.HandleFunc("/showuserquelist", route.ShowUserQueList) // 个人提问列表
 	mux.HandleFunc("/showuseranslist", route.ShowUserAnsList) // 个人回答列表
 	mux.HandleFunc("/addtopics", route.AddTopics)             // 添加帖子
 
 	//法律条文
-	mux.HandleFunc("/type",route.Typeget)
-    mux.HandleFunc("/title",route.Titlepost)
-    mux.HandleFunc("/titles",route.Titleget)
-    mux.HandleFunc("/label",route.Labelpost)
-    mux.HandleFunc("/labels",route.Labelget)
-    mux.HandleFunc("/content",route.Contentpost)
-	mux.HandleFunc("/contents",route.Contentget)
-	
+	mux.HandleFunc("/country",route.Nowcountry)
+	mux.HandleFunc("/type", route.Typeget)
+	mux.HandleFunc("/title", route.Titlepost)
+	mux.HandleFunc("/titles", route.Titleget)
+	mux.HandleFunc("/label", route.Labelpost)
+	mux.HandleFunc("/labels", route.Labelget)
+	mux.HandleFunc("/content", route.Contentpost)
+	mux.HandleFunc("/contents", route.Contentget)
+
 	// 个人主页
 	mux.HandleFunc("/get", route.Get)
 	mux.HandleFunc("/post", route.Post)
 
 	//上传头像
-	mux.HandleFunc("/photo",route.Photo)
+	mux.HandleFunc("/photo", route.Photo)
 
 	//收藏
-	mux.HandleFunc("/collection", route.UserCollection)
+	mux.HandleFunc("/collectionthesis", route.UserCollectionThesis)
+	mux.HandleFunc("/collectioncase", route.UserCollectionCase)
+	mux.HandleFunc("/collectiontopic", route.UserCollectionTopic)
 
 	//论文
 	mux.HandleFunc("/paper", route.ArticleList)                   //论文首页
@@ -77,7 +79,12 @@ func main() {
 	mux.HandleFunc("/paperweb/collect", route.IsCollectedArticle) //处理论文收藏
 	//搜索
 	mux.HandleFunc("/search", route.M_Search)
-	
+	//上传，下载图像服务
+	mux.HandleFunc("/upload",  route.Uploadfiles)
+	mux.HandleFunc("/seefiles/path",  route.Seefiles)
+	mux.HandleFunc("/images", route.GetImages2)
+	mux.HandleFunc("/uploadimage", route.Html)
+
 	fmt.Println("Web:7080启动成功")
 	err := http.ListenAndServe(":7080", mux)
 	if err != nil {
