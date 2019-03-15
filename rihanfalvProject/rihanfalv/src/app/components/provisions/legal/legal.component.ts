@@ -18,15 +18,43 @@ export class LegalComponent implements OnInit {
   public category: string;
   public categoryb: string;
   public judge: boolean;
+  public Nowcountry = 'Japan';   // 当前模块 日/韩 用于进行筛选显示
+
 
   public type: APIResponse = {
     legaltype:    '',
   };
 
   ngOnInit() {
-    this.Gettype();
     this.judge = false;
+    this.getArticles();
+    const that = this;
+    // tslint:disable-next-line:only-arrow-functions
+    setTimeout( function() { that.Gettype(); } , 200);
   }
+
+  public getArticles() {
+    const country = localStorage.getItem('JapanOrKorea');
+    if (country === '日') {
+      this.Nowcountry = 'Japan';
+    } else {
+      this.Nowcountry = 'Korea';
+    }
+    this.api.country(this.Nowcountry).subscribe();
+  }
+
+  getJapanKorea(isJapan: boolean) {
+    if (isJapan) {
+      this.Nowcountry = 'Japan';
+    } else {
+      this.Nowcountry = 'Korea';
+    }
+    this.api.country(this.Nowcountry).subscribe();
+    const that = this;
+    // tslint:disable-next-line:only-arrow-functions
+    setTimeout( function() { that.Gettype(); } , 200);
+  }
+
   public showAside() {
     const asideDom: any = document.getElementById('aside');  // 调出侧拉栏
     asideDom.style.transform = 'translate(0,0)';
@@ -55,7 +83,7 @@ export class LegalComponent implements OnInit {
    }
 
    public choose() {                         // 法律条文的分类显示
-     if (this.category === this.categoryb) { // 判断是否选中
+    if (this.category === this.categoryb) { // 判断是否选中
        this.judge = !this.judge;
        this.api.legallabel2().subscribe(response => {
          this.types = response;

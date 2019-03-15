@@ -46,13 +46,13 @@ func main() {
 	mux.HandleFunc("/thread/cancel", route.Cancel)
 
 	//讨论区 我的问答
-	mux.HandleFunc("/querytime", route.Query_test_time)       //显示所有用户信息
 	mux.HandleFunc("/showuserinfo", route.ShowUserInfo)       // 个人信息
 	mux.HandleFunc("/showuserquelist", route.ShowUserQueList) // 个人提问列表
 	mux.HandleFunc("/showuseranslist", route.ShowUserAnsList) // 个人回答列表
 	mux.HandleFunc("/addtopics", route.AddTopics)             // 添加帖子
 
 	//法律条文
+	mux.HandleFunc("/country",route.Nowcountry)
 	mux.HandleFunc("/type", route.Typeget)
 	mux.HandleFunc("/title", route.Titlepost)
 	mux.HandleFunc("/titles", route.Titleget)

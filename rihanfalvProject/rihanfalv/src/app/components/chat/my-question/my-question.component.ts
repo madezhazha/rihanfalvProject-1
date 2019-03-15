@@ -12,9 +12,10 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class MyQuestionComponent implements OnInit {
 
   // 个人信息
-  public UserId:number=1;
+  public UserId:number;
   public UserName:string='qq_sasx';
   public MyQueCount:number=3;
+  public LoginStatus:boolean=false;
 
   // 回答 列表
   public Userinfo:any;
@@ -29,6 +30,16 @@ export class MyQuestionComponent implements OnInit {
   constructor(public router:Router,public http:HttpClient) { }
 
   ngOnInit() {
+
+    this.UserId = JSON.parse(localStorage.getItem("id"));
+    if(this.UserId){
+      this.LoginStatus=true;
+    } 
+    else {
+      this.LoginStatus=false;
+      this.router.navigate(['/mychat']);  //未登录跳转
+    } 
+    
 
     this.loadUserInfo();
     this.loadQueList();

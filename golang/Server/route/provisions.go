@@ -12,7 +12,7 @@ import (
 )
 
 
-var Country  string = "Japan"
+var Country  string
 const (                      //数据库登入信息
     host     = "localhost"
     port     =  5432
@@ -24,6 +24,10 @@ const (                      //数据库登入信息
 var posttype string
 var postlabel string
 var posttitle string
+
+type country struct {
+    Country        string    `json:"Country"`
+}
 
 type legal struct {
     Legalid           int    `json:"legalid"`
@@ -57,6 +61,17 @@ func checkErr(err error) {   //报错
     }
 }
 
+func Nowcountry(w http.ResponseWriter, r *http.Request) { 
+	head(w)
+	defer r.Body.Close()
+	con, err := ioutil.ReadAll(r.Body) //获取post的数据
+    checkErr(err)
+    su := &country{}         //把json转换回来
+    json.Unmarshal([]byte(con), &su)
+    fmt.Println("当前状态：", su.Country)
+    Country = su.Country
+}
+
 func Typeget(w http.ResponseWriter, r *http.Request) {    //输出信息
     head(w)
     log.Println("开始搜索信息...")
@@ -64,11 +79,10 @@ func Typeget(w http.ResponseWriter, r *http.Request) {    //输出信息
     if Country=="Japan"{
 		types = psql.Typesql()
 	}else if Country=="Korea"{
-		types = psql.Typesql()
+		types = psql.KTypesql()
     }
    data,_:=json.Marshal(types) 
 	w.Write(data)
-	
 }
 
 func Titlepost(w http.ResponseWriter, r *http.Request) { 
@@ -91,7 +105,7 @@ func Titleget(w http.ResponseWriter, r *http.Request) {
 		titles = psql.Titlesql(posttype)
 	}
 	 if Country=="Korea"{
-	 	titles = psql.Titlesql(posttype)
+	 	titles = psql.KTitlesql(posttype)
 	}
 	data,_:=json.Marshal(titles) 
 	w.Write(data)
@@ -113,11 +127,11 @@ func Labelpost(w http.ResponseWriter, r *http.Request) {
 
 func Labelget(w http.ResponseWriter, r *http.Request) { 
     head(w)
-	var label []psql.Legallabel
+	var label []psql.Legaltype
     if Country=="Japan"{
         label=psql.Labelsql(postlabel)
     }else if Country=="Korea"{
-        label=psql.Labelsql(postlabel)
+        label=psql.KLabelsql(postlabel)
     }
 	data,_:=json.Marshal(label) 
     w.Write(data)
@@ -145,7 +159,7 @@ func Contentget (w http.ResponseWriter, r *http.Request) {
     if Country=="Japan"{
         content=psql.Contentsql(posttitle)
     }else if Country=="Korea"{
-        content=psql.Contentsql(posttitle)
+        content=psql.KContentsql(posttitle)
     }
     fmt.Fprintf(w,string(content))
 }

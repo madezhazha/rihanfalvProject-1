@@ -5,15 +5,15 @@
 
 
 <!-- 我的问答 -->
-<div id="MyInfoQuestionAnswer">
+<div id="MyInfoQuestionAnswer" *ngIf="LoginStatus" >
 
     <!-- 我的信息 -->
     <div id="QAMyInfo">
   
       <div id="QAmyimage">
-        <a [routerLink]="[ '/queansdetail' ]">
+        <a (click)="intoUserPage()">
           <!-- {{Image}} -->
-          <img width="40px" height="40px" src="../../../../assets/images/index/u159.png">
+          <img width="40px" height="40px" src="../../../../assets/images/3.jpg">
         </a>
       </div>
       
@@ -44,4 +44,11 @@
       <button id="QueBtn" (click)="toQue()">我要提问</button>
     </div>
    <!-- [queryParams]="{aid:3}" [routerLink]="[ '/toquestion' ]" -->
+  </div>
+
+
+  <!-- 未登录状态下 -->
+  <div *ngIf="!LoginStatus" >
+    <div id="NotLogin">请先登录！</div> 
+    <button (click)="updateAgain()">已登录，刷新一下</button>
   </div>

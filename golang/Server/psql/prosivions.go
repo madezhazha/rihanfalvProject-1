@@ -57,6 +57,22 @@ func Typesql()[]Legaltype{               //从数据库中获取法律总标题
     return Types
 }
 
+func KTypesql()[]Legaltype{               //从数据库中获取法律总标题
+    var Types []Legaltype
+    rows, err := db.Query("SELECT distinct legaltype FROM korealegal;") 
+    checkErr(err)
+    for rows.Next(){
+		var types Legaltype
+		err = rows.Scan(&types.Legaltype)
+		if err != nil {
+			fmt.Println("showscan error:",err)
+		}
+		Types=append(Types,types)
+	}
+    rows.Close()
+    return Types
+}
+
 func Titlesql(legaltype string)[]Legaltitle{               //从数据库中获取法律小标题
     fmt.Println("开始搜索数据库")
     var Titles  []Legaltitle
@@ -73,15 +89,49 @@ func Titlesql(legaltype string)[]Legaltitle{               //从数据库中获�
     return Titles
 }
 
-func Labelsql(legallabel string)[]Legallabel{               //从数据库中获取标签分类
+func KTitlesql(legaltype string)[]Legaltitle{               //从数据库中获取法律小标题
+    fmt.Println("开始搜索数据库")
+    var Titles  []Legaltitle
+    rows, err := db.Query("SELECT legaltitle,legaltype FROM korealegal WHERE legaltype=$1;" ,legaltype) 
+    checkErr(err)
+    for rows.Next(){
+        var titles Legaltitle
+		err = rows.Scan(&titles.Legaltitle,&titles.Legaltype)
+        checkErr(err)
+        if titles.Legaltitle!=""{
+		Titles=append(Titles,titles)}
+    }
+    rows.Close()
+    return Titles
+}
+
+func Labelsql(legallabel string)[]Legaltype{               //从数据库中获取标签分类
     fmt.Println("开始搜索数据库")
     log.Println(legallabel)
     rows, err := db.Query("SELECT  distinct legaltype FROM japanlegal WHERE legallabel=$1;",legallabel) 
-    var Label []Legallabel
+    var Label []Legaltype
     checkErr(err)
     for rows.Next(){
-		var label Legallabel
-		err = rows.Scan(&label.Legallabel)
+		var label Legaltype
+		err = rows.Scan(&label.Legaltype)
+		if err != nil {
+			fmt.Println("showscan error:",err)
+		}
+		Label=append(Label,label)
+	}
+    rows.Close()
+    return Label
+}
+
+func KLabelsql(legallabel string)[]Legaltype{               //从数据库中获取标签分类
+    fmt.Println("开始搜索数据库")
+    log.Println(legallabel)
+    rows, err := db.Query("SELECT  distinct legaltype FROM korealegal WHERE legallabel=$1;",legallabel) 
+    var Label []Legaltype
+    checkErr(err)
+    for rows.Next(){
+		var label Legaltype
+		err = rows.Scan(&label.Legaltype)
 		if err != nil {
 			fmt.Println("showscan error:",err)
 		}
@@ -93,6 +143,27 @@ func Labelsql(legallabel string)[]Legallabel{               //从数据库中获
 
 func Contentsql (legaltitle string)[]byte{               //从数据库中获取条文正文
     rows, err := db.Query("SELECT distinct legalcontent,legaltype,legaltitle FROM japanlegal WHERE legaltitle = $1;" ,legaltitle) 
+    checkErr(err) 
+    p := &legal{}
+    for rows.Next() {
+        var legalcontent string
+        var legaltype    string
+        var legaltitle   string
+        err = rows.Scan(&legalcontent,&legaltype,&legaltitle)
+        checkErr(err)
+        
+        p.Legalcontent = legalcontent
+        p.Legaltype = legaltype
+        p.Legaltitle = legaltitle
+    }
+    data, err := json.Marshal(p)
+    checkErr(err)
+    rows.Close()
+    return data
+}
+
+func KContentsql (legaltitle string)[]byte{               //从数据库中获取条文正文
+    rows, err := db.Query("SELECT distinct legalcontent,legaltype,legaltitle FROM korealegal WHERE legaltitle = $1;" ,legaltitle) 
     checkErr(err) 
     p := &legal{}
     for rows.Next() {

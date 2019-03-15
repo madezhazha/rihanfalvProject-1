@@ -1,12 +1,24 @@
 
 <hr>
-
 <div>
-{{this.text}}
+   <div *ngIf="!getstatus()">
+很抱歉，没有找到与“{{this.m_search.KeyWord}}”相关的
+<span *ngIf="this.m_search.Classify=='全部'">内容</span>
+<span *ngIf="this.m_search.Classify!='全部'">{{this.m_search.Classify}}</span>。
+<br>
+温馨提示：
+<br>
+    请检查您的输入是否正确。
+    <br>
+    如内容未收录，或有任何意见/建议，请及时
+    <a [routerLink]="[ '/Feedback']">反馈</a>给我们。
+</div> 
     <ul *ngIf="getstatus()">
-        <div class="paperlist">
-        <div>
-            共查询到{{this.m_search.list.length}}条相关信息
+        <div class="paperlist" >
+        <div >
+                共查询到{{this.m_search.list.length}}篇相关<span *ngIf="this.m_search.Classify=='全部'">内容</span>
+                <span *ngIf="this.m_search.Classify!='全部'">{{this.m_search.Classify}}</span>。
+                
         </div>
          <div *ngFor="let item of this.list" class="paper">
                 <li > 
@@ -15,9 +27,9 @@
                             <span *ngIf="item.Classify=='论文'">
                                 <a [routerLink]="['/paperweb','/search',item.ID]" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
-                        <span *ngIf="item.Classify=='法律'"><a [routerLink]="['/article','legaltype']" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                        <span *ngIf="item.Classify=='法律'"><a (click)="turntolegal(item.legaltype)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
-                            <span *ngIf="item.Classify=='案例'"><a [routerLink]="['/article','legaltype']" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                            <span *ngIf="item.Classify=='案例'"><a (click)="turntocase(item.Title)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
                         </div>
                         <!-- <div class="num" *ngIf="item.Classify=='论文'">字数：{{item.Length}}</div> -->

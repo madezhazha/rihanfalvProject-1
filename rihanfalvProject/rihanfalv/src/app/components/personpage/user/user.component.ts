@@ -42,6 +42,7 @@ export class UserComponent implements OnInit {
   str: string;
   base64:string;
   hidden: boolean = false; // 隐藏画布
+  id:number=0;  //登录后获取id
   constructor(
     public router: Router,
     private serve: GetdataService,
@@ -68,9 +69,11 @@ export class UserComponent implements OnInit {
     const img = new Image();
     let temp = '';
     img.src = window.URL.createObjectURL(imgfile);
+    console.log(img.src);
     img.onload = () => {
       ctx.drawImage(img, 0, 0, 50, 50);
       this.base64 = canvas.toDataURL('image/png');
+      console.log(this.base64);
       this.imgsrc = this.base64;
       temp = this.base64.substring(22, this.base64.length);
       // ctx.drawImage(img, 100, 100, 200, 200, 0, 0, 100, 100);
@@ -122,7 +125,9 @@ export class UserComponent implements OnInit {
     this.isshow = false;
   }
   ngOnInit() {
-    this.serve.get().subscribe(user => {
+    this.id = JSON.parse(localStorage.getItem('id'));
+    console.log(this.id);
+    this.serve.get(this.id).subscribe(user => {
       this.user = user;
       // 判断传来的是系统头像的路径还是base64
       if(this.user.Image.length > 100){

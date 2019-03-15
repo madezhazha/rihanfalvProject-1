@@ -60,7 +60,7 @@ doSearch(){//搜索按键
 
 }
 deleteHistory(key){//删除某项历史记录
-  this.HistoryList.splice(key,1) //删除key所在项
+  this.HistoryList.splice(key,1) //删除localstorage里key所在项
   localStorage.setItem('HistoryList',JSON.stringify(this.HistoryList));//重新储存进localstorage
   this.readHistory()
 }
@@ -69,7 +69,7 @@ reSearch(item){//点击历史记录查询
   this.doSearch()
 }
 remove(){//清除历史记录
-  localStorage.removeItem('HistoryList')
+  localStorage.removeItem('HistoryList')//清空localstorage
   this.HistoryList=[]
   this.readHistory()
 }
