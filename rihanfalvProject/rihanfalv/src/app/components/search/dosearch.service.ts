@@ -6,14 +6,15 @@ import {HttpClient,HttpHeaders} from "@angular/common/http";
 })
 export class DosearchService {
   constructor(public http:HttpClient) { }
-  public KeyWord:any=null
-  public Nowcountry:any=null
-  public getkey:any={}
-  public list:any=new Array();
-public Classify:any="全部"
-public Order:any="all"
+  public KeyWord:any=null//搜索项
+  public Nowcountry:any=null//当前搜索国家
+  public getkey:any={}//将传递给后端的值
+  public list:any=new Array();//搜索得的表（内容）
+public Classify:any="全部"//搜索分类
+public Order:any="all"//排列方式
+public ifget =false//判断是否获取到搜索内容
   searchtogo(){
-    this.list=null
+    this.list=[]
     const httpOptions={ headers:new HttpHeaders({'Content-Type':'application/json'}) };
     let api='http://localhost:7080/search'; 
     this.getkey.KeyWord=this.KeyWord
@@ -22,7 +23,9 @@ public Order:any="all"
     this.getkey.Order=this.Order
     this.http.post(api,this.getkey,httpOptions).subscribe(response=>{ 
       this.list=response
-
+      if(!response){this.ifget=false
+      this.list=[]}
+if(response)this.ifget=true
     });
   }
 

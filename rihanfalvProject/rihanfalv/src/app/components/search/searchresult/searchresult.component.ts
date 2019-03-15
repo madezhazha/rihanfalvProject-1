@@ -11,41 +11,37 @@ import { Router } from '@angular/router';
 
 export class SearchresultComponent implements OnInit {
 public list=new Array();
-public text :string="正在获取数据..."
 public page=1
 
 
 @ViewChild('click') changeclass:ElementRef;
 
   constructor(public router: Router,public http:HttpClient,public m_search:DosearchService,private renderer2:Renderer2) { 
+
   }
 
   ngOnInit() {
   }
 
   getstatus(){
-    if(!this.m_search.list){
-         this.text="未获取数据..." //未获取数据
-         return false     
-    }
-    if(this.m_search.list=="null"){
-      this.text="数据不存在"  
-      return false   
+    if(this.m_search.ifget==false){
+  this.list=[];
+  return this.m_search.ifget
 }
-if(this.m_search.list.length<5){
-  this.list=this.m_search.list
-  this.text=null;
+     if(this.m_search.ifget==true){
+  if(this.m_search.list.length>0 &&this.m_search.list.length<5){
+    this.list=this.m_search.list
+    return this.m_search.ifget
+  }
+  if(this.m_search.list.length>=5){
+    for(let i =0;i<5;i++){
+   this.list[i]=this.m_search.list[i]}
+   return this.m_search.ifget
+  }
+  }
 
-}
-if(this.m_search.list.length>=5)
-for(let i =0;i<5;i++){
-   this.list[i]=this.m_search.list[i]
-   this.text=null;
 
-}
-
-     return true
-
+    
   }
 
 readmore(){
@@ -67,5 +63,14 @@ click(item){
   this.m_search.Classify=item
 this.m_search.searchtogo()
   this.renderer2.setStyle(this.changeclass.nativeElement,"background-color","0000FF")
+}
+
+turntocase(title){
+  this.router.navigate(["/display-data"],{queryParams:{"title":title}})
+}
+
+turntolegal(legaltype){
+  this.router.navigate(["/article"],{queryParams:{"legaltype":legaltype}})
+
 }
 }
