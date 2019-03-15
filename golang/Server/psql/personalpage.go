@@ -20,8 +20,9 @@ type User struct {
 var user1 User
 var err error
 
-func SelectUser() User {
-	rows, err := db.Query("SELECT * FROM users") //执行一次查询，返回多行结果
+func SelectUser(id int) User {
+	str := fmt.Sprintf("select * from users where userid=%d" ,id)
+	rows, err := db.Query(str) //执行一次查询，返回多行结果
 	if err != nil {
 		log.Fatal(err)
 	}

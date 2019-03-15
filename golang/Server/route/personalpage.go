@@ -12,17 +12,26 @@ import(
 //获取用户信息
 func Get(w http.ResponseWriter, r *http.Request) {
 	SetHeader(w)
-	user1 := psql.SelectUser()
-	//判断头像是系统头像还是用户本地上传的图像(此非长久之计)
-	if(len(user1.Image)<20){
-		user1.Image = ImgToBase64(user1.Image)	// 通过路径读取图片，并转成base64传给前端
+	r.ParseForm() //解析url参数，默认是不会解析的
+	if  r.Method == "POST" {
+		result, _ := ioutil.ReadAll(r.Body)
+		r.Body.Close()
+		fmt.Printf("%s\n", result)
+		// 获取前端传来的用户id
+		var id int
+		json.Unmarshal([]byte(result), &id)
+		user1 := psql.SelectUser(id)
+		//判断头像是系统头像还是用户本地上传的图像(此非长久之计)
+		if(len(user1.Image)<20){
+			user1.Image = ImgToBase64(user1.Image)	// 通过路径读取图片，并转成base64传给前端
+		}
+		js, err := json.Marshal(user1)   //将数据编码成json字符串
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		w.Write(js)
 	}
-	js, err := json.Marshal(user1)   //将数据编码成json字符串
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	w.Write(js)
 }
 //修改用户信息
 func Post(w http.ResponseWriter, r *http.Request) {

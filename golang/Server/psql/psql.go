@@ -12,11 +12,11 @@ var db *sql.DB
 
 //数据库连接配置
 const (
-	host     = "localhost"
+	host     = "123.207.121.2"
 	port     = 5432
 	user     = "postgres"
-	password = "ysm@121388"
-	dbname   = "jkproject"
+	password = "postgres"
+	dbname   = "rihan"
 )
 
 //初始化，调用包时执行

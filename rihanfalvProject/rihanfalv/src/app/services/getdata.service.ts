@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 export class GetdataService {
 
   constructor(private http: HttpClient) { }
-  get() {
-    return this.http.get('http://localhost:7080/get');
+  get(id) {
+    return this.http.post('http://localhost:7080/get',id);
   }
   change(user) {
     return this.http.post('http://localhost:7080/post', user);
