@@ -63,7 +63,7 @@ ul{
     width: 92%;
     margin-left: auto;
     margin-right: auto;
-    padding: 10px;
+    /* padding: 10px; */
     /* border: 1px solid black; */
     clear: both;
 }
@@ -75,13 +75,13 @@ ul{
 }
 
 .List{
-    width: 95%;
+    width: 440px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding: 5px 8px;
-    border: 1px solid black;
+    /* padding: 5px 8px; */
+    border: 1px solid #aaaaaa;
     border-radius: 5px;
 }
 
@@ -117,14 +117,21 @@ ul{
 .Content{
     clear: both;
 }
-.Content h2,.Content p{
-    margin: 2px;
-
+.Content h3{
+    margin: 0px;
+    padding: 5px 15px 5px 15px;
+    font-size: 22px;
+    background-color: #f2f2f2;
+    border-radius: 3px;
+}
+.Content p{
+    margin: 2px 12px 2px 12px;
+    font-size: 15px;
 }
 
 .TailData{
-    padding: 2px;
-    font-size: 12px;
+    padding: 8px 2px 2px 5px;
+    font-size: 11px;
 }
 
 #loadmore{

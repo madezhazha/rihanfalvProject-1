@@ -12,11 +12,12 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class MychatComponent implements OnInit {
 
   // 个人信息
-  public UserId:number=1;
+  public UserId:number;
   public UserName:string='qq_sasx';
-  public Integral:number=5;
+  public Integral:number=0;
   public MyQueCount:number=0;
   public MyAnsCount:number=0;
+  public LoginStatus:boolean=false;   //是否登录
 
   // 个人信息、提问、回答 列表
   public Userinfo:any;
@@ -32,9 +33,14 @@ export class MychatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loadUserInfo();
-    this.loadQueList();
-    this.loadAnsList();
+    this.UserId = JSON.parse(localStorage.getItem("id"));
+    if(!this.UserId) this.LoginStatus=false;
+    else {
+      this.LoginStatus=true;
+      this.loadUserInfo();
+      this.loadQueList();
+      this.loadAnsList();
+    } 
 
   }
 
@@ -78,6 +84,11 @@ export class MychatComponent implements OnInit {
     })
   }
 
+  //跳转到我的页面
+  intoUserPage(){
+    this.router.navigate(['/userpage']);
+  }
+
   //跳转到我的提问列表
   myQue(){
 
@@ -93,6 +104,11 @@ export class MychatComponent implements OnInit {
   //我要提问
   toQue(){
     this.router.navigate(['/toquestion']);
+  }
+
+  //重新加载
+  updateAgain(){
+    this.ngOnInit();
   }
 
 }

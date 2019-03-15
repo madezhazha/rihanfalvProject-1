@@ -11,20 +11,25 @@ var class string
 
 
 type Searchbox struct{
-	ID	int `json:"ID"`
-	Type	string `json:"Type"`
-	Title string `json:"Title"`
-	Author string `json:"Author"`
-	Time string `json:"Date"`
-	Content string `json:"Content"`
-	Length int `json:"Length"`
-	Label string `json:"Label"`
-	Labelbox []string `json:"Labelbox"`
-	Value int `json:"Value"`
-	Classify string `json:"Classify"`
+	ID	int `json:"ID"`//
+	Type	string `json:"Type"`//法律类型、案例类型
+	Title string `json:"Title"`//通用
+	Author string `json:"Author"`//论文作者
+	Time string `json:"Date"`//论文、案例时间
+	Content string `json:"Content"`//各种内容，通用
+	Length int `json:"Length"`//论文长度
+	Label string `json:"Label"`//标签
+	Labelbox []string `json:"Labelbox"`//标签box
+	Value int `json:"Value"`//用来排序的参数
+	Classify string `json:"Classify"`//区分法律、论文、案例
+	Country string `json:"Country"`//案例区分国家，淼哥出来挨打
+	Causeofaction string `json:"Causeofaction"`//案例参数1
+	Concretecasetype string `json:"Concretecasetype"`//案例参数2
+	Legalprinciple string `json:"Legalprinciple"`//案例参数3
+	Trialgrade string `json:Trialgrade`//案例参数4
 }
 
-func Getclass(readkey string,readcountry string,readclass string,searchlist []Searchbox)[]Searchbox{
+func Getclass(readkey string,readcountry string,readclass string,readorder string,searchlist []Searchbox)[]Searchbox{
 	if readcountry=="日"{
 		readcountry="japan"
 	}
@@ -33,30 +38,34 @@ func Getclass(readkey string,readcountry string,readclass string,searchlist []Se
 	}
 	if readclass=="全部"{
 		class=readcountry+"legal"
-		searchlist=Legalsearch(readkey,searchlist)
+		searchlist=Legalsearch(readkey,readorder,searchlist)
 		class=readcountry+"thesis"
-		searchlist=Thesissearch(readkey,searchlist)
+		searchlist=Thesissearch(readkey,readorder,searchlist)
+		searchlist=Analysissearch(readkey,readorder,searchlist)
 
 	}
 	if readclass=="法律条文"{
 		class=readcountry+"legal"
-		searchlist=Legalsearch(readkey,searchlist)
+		searchlist=Legalsearch(readkey,readorder,searchlist)
 	}
 	if readclass=="案例"{	
-		class=readcountry+"analysis"
+		searchlist=Analysissearch(readkey,readorder,searchlist)
 	}
 	if readclass=="论文"{	
 		class=readcountry+"thesis"
-		searchlist=Thesissearch(readkey,searchlist)
+		searchlist=Thesissearch(readkey,readorder,searchlist)
 
 	}
 	return searchlist
 }
 
-func Legalsearch(readkey string,searchlist []Searchbox)[]Searchbox{//从法律数据库查询
+func Legalsearch(readkey string,readorder string,searchlist []Searchbox)[]Searchbox{//从法律数据库查询
 	var m Searchbox
 		 //得到查找的语句，%_%表示前后模糊查找
 		searchstr := "select * from "+class+" where LegalTitle like '%" + readkey + "%' or LegalContent like '%" + readkey + "%' " 
+		if readorder=="onlytitle"{
+			searchstr = "select * from "+class+" where LegalTitle like '%" + readkey + "%'"
+		} 
 		rows, err := db.Query(searchstr)
 		if err != nil {
 			fmt.Println("ERROR:", err)
@@ -70,10 +79,13 @@ func Legalsearch(readkey string,searchlist []Searchbox)[]Searchbox{//从法律�
 		}	
 	return searchlist
 }
-func Thesissearch(readkey string,searchlist []Searchbox)[]Searchbox{//从论文数据库查询
+func Thesissearch(readkey string,readorder string,searchlist []Searchbox)[]Searchbox{//从论文数据库查询
 	var m Searchbox
 	 //得到查找的语句，%_%表示前后模糊查找
-		searchstr := "select * from "+class+" where ThesisTitle like '%" + readkey + "%' or ThesisContent like '%" + readkey + "%' " 
+		searchstr := "select * from "+class+" where ThesisTitle like '%" + readkey + "%' or ThesisContent like '%" + readkey + "%' "
+		if readorder=="onlytitle"{
+			searchstr = "select * from "+class+" where ThesisTitle like '%" + readkey + "%'"
+		} 
 		rows, err := db.Query(searchstr)
 		if err != nil {
 			fmt.Println("ERROR:", err)
@@ -83,6 +95,27 @@ func Thesissearch(readkey string,searchlist []Searchbox)[]Searchbox{//从论文�
 		rows.Scan(&m.ID, &m.Title, &m.Author, &m.Time, &m.Content,&m.Length,&m.Label)
 		m.Labelbox=strings.Split(m.Label,"/")
 		m.Classify="论文"
+		searchlist=append(searchlist,m)
+		}	
+
+	return searchlist
+}
+
+func Analysissearch(readkey string,readorder string,searchlist []Searchbox)[]Searchbox{//从案例数据库查询
+	var m Searchbox
+	 //得到查找的语句，%_%表示前后模糊查找
+		searchstr := "select * from casething where casetitle like '%" + readkey + "%' or casecontent like '%" + readkey + "%' " 
+		if readorder=="onlytitle"{
+			searchstr = "select * from casething where casetitle like '%" + readkey + "%'"
+		} 
+		rows, err := db.Query(searchstr)
+		if err != nil {
+			fmt.Println("ERROR:", err)
+			return searchlist
+		} //检查错误
+		for rows.Next() { //将rows赋值
+		rows.Scan(&m.ID, &m.Time, &m.Causeofaction, &m.Concretecasetype, &m.Legalprinciple,&m.Trialgrade,&m.Title,&m.Content,&m.Country)
+		m.Classify="案例"
 		searchlist=append(searchlist,m)
 		}	
 

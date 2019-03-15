@@ -46,7 +46,6 @@ func main() {
 	mux.HandleFunc("/thread/cancel", route.Cancel)
 
 	//讨论区 我的问答
-	mux.HandleFunc("/querytime", route.Query_test_time)       //显示所有用户信息
 	mux.HandleFunc("/showuserinfo", route.ShowUserInfo)       // 个人信息
 	mux.HandleFunc("/showuserquelist", route.ShowUserQueList) // 个人提问列表
 	mux.HandleFunc("/showuseranslist", route.ShowUserAnsList) // 个人回答列表
@@ -80,6 +79,11 @@ func main() {
 	mux.HandleFunc("/paperweb/collect", route.IsCollectedArticle) //处理论文收藏
 	//搜索
 	mux.HandleFunc("/search", route.M_Search)
+	//上传，下载图像服务
+	mux.HandleFunc("/upload",  route.Uploadfiles)
+	mux.HandleFunc("/seefiles/path",  route.Seefiles)
+	mux.HandleFunc("/images", route.GetImages2)
+	mux.HandleFunc("/uploadimage", route.Html)
 
 	fmt.Println("Web:7080启动成功")
 	err := http.ListenAndServe(":7080", mux)
