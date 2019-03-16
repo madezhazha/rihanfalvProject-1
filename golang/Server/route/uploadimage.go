@@ -72,7 +72,7 @@ func Uploadfiles(w http.ResponseWriter, r *http.Request) {
 		}
 		io.Copy(cur, file)
 		fmt.Println("Save file :", filepath)
-		imgurl := fmt.Sprint("http://123.207.121.2:22:7080/images?tag=", tag, "&name=", filename)
+		imgurl := fmt.Sprint("http://123.207.121.2:7080/images?tag=", tag, "&name=", filename)
 		scues_msg := filename + "upload scuess!...<br>"
 		img_url := fmt.Sprint("<a target=\"_Blank\" href=", imgurl, ">"+imgurl+"</a><br>")
 		feedback := scues_msg + "<!>" + img_url
