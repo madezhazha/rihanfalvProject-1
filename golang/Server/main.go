@@ -25,7 +25,6 @@ func main() {
 	mux.HandleFunc("/CPsendVerification", route.CPsendVerification)
 	mux.HandleFunc("/changePassword", route.ChangePassword)
 	//homepage
-	mux.HandleFunc("/homepage/image", route.GetImages)
 	mux.HandleFunc("/homepage/articals", route.GetHomePageArtical)
 	mux.HandleFunc("/homepage/hotnews", route.GetHomePageHotnews)
 
@@ -52,7 +51,7 @@ func main() {
 	mux.HandleFunc("/addtopics", route.AddTopics)             // 添加帖子
 
 	//法律条文
-	mux.HandleFunc("/country",route.Nowcountry)
+	mux.HandleFunc("/country", route.Nowcountry)
 	mux.HandleFunc("/type", route.Typeget)
 	mux.HandleFunc("/title", route.Titlepost)
 	mux.HandleFunc("/titles", route.Titleget)
@@ -60,19 +59,15 @@ func main() {
 	mux.HandleFunc("/labels", route.Labelget)
 	mux.HandleFunc("/content", route.Contentpost)
 	mux.HandleFunc("/contents", route.Contentget)
-
 	// 个人主页
 	mux.HandleFunc("/get", route.Get)
 	mux.HandleFunc("/post", route.Post)
-
 	//上传头像
 	mux.HandleFunc("/photo", route.Photo)
-
 	//收藏
 	mux.HandleFunc("/collectionthesis", route.UserCollectionThesis)
 	mux.HandleFunc("/collectioncase", route.UserCollectionCase)
 	mux.HandleFunc("/collectiontopic", route.UserCollectionTopic)
-
 	//论文
 	mux.HandleFunc("/paper", route.ArticleList)                   //论文首页
 	mux.HandleFunc("/paperweb", route.ArticleDetial)              //论文内容页
@@ -80,9 +75,9 @@ func main() {
 	//搜索
 	mux.HandleFunc("/search", route.M_Search)
 	//上传，下载图像服务
-	mux.HandleFunc("/upload",  route.Uploadfiles)
-	mux.HandleFunc("/seefiles/path",  route.Seefiles)
-	mux.HandleFunc("/images", route.GetImages2)
+	mux.HandleFunc("/upload", route.Uploadfiles)
+	mux.HandleFunc("/seefiles/path", route.Seefiles)
+	mux.HandleFunc("/images", route.GetImages)
 	mux.HandleFunc("/uploadimage", route.Html)
 
 	fmt.Println("Web:7080启动成功")
