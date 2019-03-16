@@ -45,7 +45,7 @@ export class ThesisComponent implements OnInit {
 
 
 
-    localStorage.setItem("route","/collection") 
+
 
     if(CollectionType=="japanthesis"){
 

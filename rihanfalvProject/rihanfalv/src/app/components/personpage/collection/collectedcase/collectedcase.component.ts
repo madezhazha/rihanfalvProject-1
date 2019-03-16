@@ -39,22 +39,27 @@ export class CollectedcaseComponent implements OnInit {
        })
      
   }
-  specificContent(CollectionType,CollectionContentID){
+  //specificContent(CollectionType,CollectionContentID,CollectionTitle){
 
-    if(CollectionType=="japancase"){
+    specificContent(CollectionTitle){
+    /*if(CollectionType=="japancase"){
       let Contentid: NavigationExtras = {             
       queryParams: { ContentID:CollectionContentID },                
     };       
-    this.router.navigate(['/case'],Contentid) ;
+    //this.router.navigate(['/case'],Contentid) ;
+
+    this.router.navigate(["/display-data"],{queryParams:{"title":CollectionTitle}})
     }
     if(CollectionType=="koreacase"){
       let Contentid: NavigationExtras = {             
       queryParams: { ContentID:CollectionContentID },                
     };       
-    this.router.navigate(['/case'],Contentid) ;
+    //this.router.navigate(['/case'],Contentid) ;*/
+
+    this.router.navigate(["/display-data"],{queryParams:{"title":CollectionTitle}})
     }
     
   }
 
 
-}
+
