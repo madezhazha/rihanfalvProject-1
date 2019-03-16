@@ -14,7 +14,7 @@ import (
 
 //准备工作：uploadimage.html 里将ip地址换成go运行在的主机的地址
 //save the images that upload from browser
-func uploadfiles(w http.ResponseWriter, r *http.Request) {
+func Uploadfiles(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	//read and check the tag
 	var tag = r.PostFormValue("tag")
@@ -92,7 +92,7 @@ func check_tag(tag string) (string, error) {
 }
 
 //reponse the images alerady have
-func seefiles(w http.ResponseWriter, r *http.Request) {
+func Seefiles(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	if r.Method != "GET" {
 		return
