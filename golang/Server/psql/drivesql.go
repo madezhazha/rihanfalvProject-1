@@ -1,7 +1,6 @@
 package psql
 
 import(
-	// _"github.com/lib/pq"
 	"fmt"
 	"strings"
 )
@@ -51,12 +50,12 @@ type collection struct{
 
 
 //获取所有的数据
-func Getalldata(languageType string)interface{}{
+func Getalldata(languageType string,NumberCasethingString string)interface{}{
 
 	all_data := make(map[string]map[string]string)
 
 	//数据库的查询
-	rows,err := db.Query("select * from casething where type=$1",languageType)
+	rows,err := db.Query("select * from casething where type=$1 limit 5 offset $2",languageType,NumberCasethingString)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -92,13 +91,13 @@ func Getalldata(languageType string)interface{}{
 	return all_data
 }
 
-func Getfirstfloor(data string,languageType string)interface{}{
+func Getfirstfloor(data string,languageType string,NumberCasethingString string)interface{}{
 	all_data := make(map[string]map[string]string)
 
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from casething where causeofaction=$1 and type=$2",data,languageType)
+	rows,err := db.Query("select * from casething where causeofaction=$1 and type=$2 limit 5 offset $3",data,languageType,NumberCasethingString)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -134,13 +133,13 @@ func Getfirstfloor(data string,languageType string)interface{}{
 }
 
 
-func Getreason(data string,languageType string)interface{}{
+func Getreason(data string,languageType string,NumberCasethingString string)interface{}{
 	all_data := make(map[string]map[string]string)
 
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from casething where concretecasetype=$1 and type=$2",data,languageType)
+	rows,err := db.Query("select * from casething where concretecasetype=$1 and type=$2 limit 5 offset $3",data,languageType,NumberCasethingString)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -176,13 +175,13 @@ func Getreason(data string,languageType string)interface{}{
 }
 
 
-func Getlevel(data string,languageType string)interface{}{
+func Getlevel(data string,languageType string,NumberCasethingString string)interface{}{
 	all_data := make(map[string]map[string]string)
 
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from casething where trialgrade=$1 and type=$2",data,languageType)
+	rows,err := db.Query("select * from casething where trialgrade=$1 and type=$2 limit 5 offset $3",data,languageType,NumberCasethingString)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -217,14 +216,14 @@ func Getlevel(data string,languageType string)interface{}{
 	return all_data
 } 
 
-func Getsecondfloor(data string,languageType string)interface{}{
+func Getsecondfloor(data string,languageType string,NumberCasethingString string)interface{}{
 	all_data := make(map[string]map[string]string)
 
 
 	//格式化输出
 	// first_cmd := fmt.Sprintf("select * from content where causetype=%s",data)
 	//数据库的查询
-	rows,err := db.Query("select * from casething where legalprinciple=$1 and type=$2",data,languageType)
+	rows,err := db.Query("select * from casething where legalprinciple=$1 and type=$2 limit 5 offset $3",data,languageType,NumberCasethingString)
 
 	if err!=nil{
 		fmt.Println(err)
@@ -259,12 +258,12 @@ func Getsecondfloor(data string,languageType string)interface{}{
 	return all_data
 }
 
-func Gettime(data string,languageType string)interface{}{
+func Gettime(data string,languageType string,NumberCasethingString string)interface{}{
 	all_data := make(map[string]map[string]string)
 
 	a:=0
 
-	rows,err := db.Query("select * from casething where type=$1",languageType)
+	rows,err := db.Query("select * from casething where type=$1 limit 5 offset $2",languageType,NumberCasethingString)
 
 	if err!=nil{
 		fmt.Println(err)

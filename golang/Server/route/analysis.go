@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-
 	"../psql"
-	// "github.com/ascoders/alipay"
 	"time"
 	"strconv"
 )
@@ -32,6 +30,7 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 	//用来接收数据
 	var data map[string]interface{}
 	var languageType string
+	var NumberCasethingString string
 
 	//接收前端发来的请求的请求
 	body, err := ioutil.ReadAll(r.Body)
@@ -49,9 +48,9 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 	if data != nil {
 		if data["content"] == "全部" {
 			languageType=data["languageType"].(string)
+			NumberCasethingString = data["NumberCasething"].(string)    //这说明是可以的
 			//这里从服务端拿去数据
-			all_data := psql.Getalldata(languageType)
-			// fmt.Println(all_data)
+			all_data := psql.Getalldata(languageType,NumberCasethingString)
 
 			json, _ := json.Marshal(all_data)
 
@@ -64,8 +63,8 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 			getBody := data["content"].(string)
 			languageType=data["languageType"].(string)
-
-			all_data := psql.Getfirstfloor(getBody,languageType)
+			NumberCasethingString = data["NumberCasething"].(string)   
+			all_data := psql.Getfirstfloor(getBody,languageType,NumberCasethingString)
 
 			json, _ := json.Marshal(all_data)
 
@@ -76,8 +75,8 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 			getBody := data["content"].(string)
 			languageType=data["languageType"].(string)
-
-			all_data := psql.Getreason(getBody,languageType)
+			NumberCasethingString = data["NumberCasething"].(string) 
+			all_data := psql.Getreason(getBody,languageType,NumberCasethingString)
 
 			json, _ := json.Marshal(all_data)
 
@@ -87,10 +86,10 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 			getBody := data["content"].(string)
 			languageType=data["languageType"].(string)
-
+			NumberCasethingString = data["NumberCasething"].(string) 
 			fmt.Println(getBody)
 
-			all_data := psql.Gettime(getBody,languageType)
+			all_data := psql.Gettime(getBody,languageType,NumberCasethingString)
 
 			json, _ := json.Marshal(all_data)
 
@@ -100,8 +99,8 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 			getBody := data["content"].(string)
 			languageType=data["languageType"].(string)
-
-			all_data := psql.Getlevel(getBody,languageType)
+			NumberCasethingString = data["NumberCasething"].(string) 
+			all_data := psql.Getlevel(getBody,languageType,NumberCasethingString)
 
 			json, _ := json.Marshal(all_data)
 
@@ -113,8 +112,8 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 			getBody := data["content"].(string)
 			languageType=data["languageType"].(string)
-
-			all_data := psql.Getsecondfloor(getBody,languageType)
+			NumberCasethingString = data["NumberCasething"].(string) 
+			all_data := psql.Getsecondfloor(getBody,languageType,NumberCasethingString)
 
 			json, _ := json.Marshal(all_data)
 

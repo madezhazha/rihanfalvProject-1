@@ -61,6 +61,7 @@ import { MyAmswerComponent } from './components/chat/my-amswer/my-amswer.compone
 import { myPipe } from './components/chat/popular/popular.component';
 import { CollectedcaseComponent } from './components/personpage/collection/collectedcase/collectedcase.component';
 import { CollectedtopicComponent } from './components/personpage/collection/collectedtopic/collectedtopic.component';
+import { CasethingComponent } from './components/case/casething/casething.component';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import { CollectedtopicComponent } from './components/personpage/collection/coll
     MychatComponent,
     ToQuestionComponent,
     MyQuestionComponent,
-    MyAmswerComponent
+    MyAmswerComponent,
+    CasethingComponent,
   ],
   imports: [
     BrowserModule,

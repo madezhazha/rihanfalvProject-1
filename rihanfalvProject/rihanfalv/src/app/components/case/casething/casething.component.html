@@ -1,0 +1,21 @@
+<!-- 显示从后端拿到的总共的数据 -->
+
+<div  class="content">
+  <div id="result"><p><span> <span style="font-size:20px; color: rebeccapurple">{{search}}</span> 检索结果:</span></p></div>
+  <!-- 显示数据库的数据 -->
+  <div class="bigContent" id="bigContent">
+      <li style="height:150px;list-style: none;margin-top: 1px;display: block"  *ngFor="let item of list">
+        <a routerLink="/display-data" (click)="sendData(item.casetitle)">
+          <div>
+              <h4 style="color:rgb(52, 103, 214);font-family: STXinwei">{{item.casetitle}}</h4>
+              <div style="color: gray!important;">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}/{{item.type}}</div>
+              <div style="height:60px;overflow:hidden;color:black" [innerHTML]="item.casecontent"></div>
+          </div>
+        </a>
+        <hr>
+      </li>
+  </div>
+  <div *ngIf="Isover" class="bottom">
+      <p>已经到底了.......</p>
+  </div>
+</div>
