@@ -2,7 +2,7 @@ package route
 
 import (
 	"encoding/json"
-	//"fmt"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"../psql"
@@ -50,7 +50,6 @@ func ArticleList(w http.ResponseWriter, r *http.Request){
 	}else if mes.Country=="Korea"{
 		Articles=psql.GetKoreaArticlesPart(mes.CurrentPage-1)
 	}
-
 	data,_:=json.Marshal(Articles) 
 	w.Write(data)
 	//fmt.Println("submit Articles sucess")

@@ -68,7 +68,7 @@ func GetJapanArticlesPart(currentpage int) []Article{
 	//	fmt.Println("Query show ",erro)
 	//}{
 	//fmt.Println(mes)
-	rows,erro:=db.Query("SELECT * FROM japanthesis  LIMIT 10 offset $1 ",currentpage)
+	rows,erro:=db.Query("SELECT * FROM japanthesis  LIMIT 10 offset $1 ",currentpage*10)
 	if erro!=nil{
 		fmt.Println("Query show ",erro)
 	}
@@ -101,7 +101,7 @@ func GetKoreaArticlesPart(currentpage int) []Article{
 	//	fmt.Println("Query show ",erro)
 	//}{
 	//fmt.Println(mes)
-	rows,erro:=db.Query("SELECT * FROM koreathesis  LIMIT 10 offset $1 ",currentpage)
+	rows,erro:=db.Query("SELECT * FROM koreathesis  LIMIT 10 offset $1 ",currentpage*10)
 	if erro!=nil{
 		fmt.Println("Query show ",erro)
 	}
