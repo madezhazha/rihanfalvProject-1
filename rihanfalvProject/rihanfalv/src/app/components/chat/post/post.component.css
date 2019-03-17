@@ -110,14 +110,14 @@ body {
     float: left;
     margin-right: 10px;
     border-width: 0px;
-    width: 46px;
+    width: auto;
     height: 13px;
     font-size: 11px;
 }
 
 #u4_text {
     border-width: 0px;
-    width: 46px;
+    width: auto;
     white-space: nowrap;
 }
 
@@ -189,14 +189,14 @@ body {
     float: left;
     margin-right: 10px;
     border-width: 0px;
-    width: 46px;
+    width: auto;
     height: 13px;
     font-size: 11px;
 }
 
 #u9_text {
     border-width: 0px;
-    width: 46px;
+    width: auto;
     white-space: nowrap;
 }
 
