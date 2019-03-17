@@ -44,10 +44,13 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		//此处不要用httpserve.User，因为传到pgsql.go时，pgsql.User和httpserve.User是不同类型那个的
 		var user psql.User
 		json.Unmarshal([]byte(result), &user)
+		// 头像文件名是id
+		id:=user.UserId
+		imgname := fmt.Sprintf("./images/%d.jpg" ,id)
 		//判断头像是系统头像还是用户本地上传的图像
 		if len(user.Image)>100 {
-			Base64ToImg(user.Image) //保存前端传来的图片
-			user.Image = "./images/1.jpg"
+			Base64ToImg(user.Image,id) //保存前端传来的图片
+			user.Image = imgname
 		}
 		psql.UpdateUser(user)
 	}
@@ -87,12 +90,10 @@ func ImgToBase64(image string) string {
 	str := base64.StdEncoding.EncodeToString(img)		//将[]byte转化成string
 	return str
 }
-func Base64ToImg(base string ) {
+func Base64ToImg(base string, id int) {
+	imgname := fmt.Sprintf("./images/%d.jpg" ,id)
 	str, _ := base64.StdEncoding.DecodeString(string(base)) // 将base64转化[]byte
-	f, _ := os.OpenFile("./images/1.jpg", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	f, _ := os.OpenFile(imgname, os.O_RDWR|os.O_CREATE, os.ModePerm)
 	defer f.Close()
 	f.Write(str) //向文件中写入[]byte
 }
-	// w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
-	// w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
-	// w.Header().Set("content-type", "application/json")             //返回数据格式是json
