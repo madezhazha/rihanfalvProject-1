@@ -13,6 +13,8 @@
 </div>
 
 
+
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLable" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -118,5 +120,8 @@
   </div>
 </div>
 
+<div *ngIf="IsLogin" class="app-langing">
+  <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
+</div>
 
 
