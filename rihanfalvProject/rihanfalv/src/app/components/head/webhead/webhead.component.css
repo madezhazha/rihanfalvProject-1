@@ -7,21 +7,22 @@ div.head{
 img.headImage{
     width: 40px;
     height:40px;
+    
+}
+
+div.headImage{
+    z-index: 100;
+    position: absolute;
+    right:60px;
+    top:2px;
+    width: 40px;
+    height:40px;
     border-radius:50%;
     overflow: hidden;/*溢出部分隐藏*/
 }
 
-div.headImage{
-    position: absolute;
-    right:60px;
-    top:2px;
-    opacity:0; 
-    width: 40px;
-    height:40px;
-}
-
 img.back{
-    z-index:-1;
+    z-index:-2;
     position: absolute;
 }
     

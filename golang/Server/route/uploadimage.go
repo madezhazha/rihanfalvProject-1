@@ -19,9 +19,14 @@ import (
 	mux.HandleFunc("/uploadimage", route.Html)
 */
 
-//准备工作：uploadimage.html 里将ip地址换成go运行在的主机的地址,还有
-//uploadfile中的imgurl也要修改
-//save the images that upload from browser
+//切换环境前的准备工作：修改host_port, 修改 uploadfile.html 里面的服务器ip地址，两者相同即可。
+
+const (
+	img_floder_path string = "./images/" //images文件夹路径
+	// host_port       string = "123.207.121.2:7080"	//修改成golang服务端的端口
+	host_port string = "localhost:7080"
+)
+
 func Uploadfiles(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	//read and check the tag
@@ -65,14 +70,14 @@ func Uploadfiles(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 		filename := files[i].Filename
-		filepath := "./driver-test/" + tag + filename
+		filepath := img_floder_path + tag + filename
 		//if alerady have a same name file, don't save the new one
 		if judge_exist(filepath) {
 			w.Write([]byte("× [" + files[i].Filename + "] already exist... <br> "))
 			continue
 		}
 		//save the file in localhost
-		os.Mkdir("./driver-test/"+tag, os.ModePerm)
+		os.Mkdir(img_floder_path+tag, os.ModePerm)
 		cur, err := os.Create(filepath)
 		defer cur.Close()
 		if err != nil {
@@ -80,7 +85,7 @@ func Uploadfiles(w http.ResponseWriter, r *http.Request) {
 		}
 		io.Copy(cur, file)
 		fmt.Println("Save file :", filepath)
-		imgurl := fmt.Sprint("http://123.207.121.2:7080/images?tag=", tag, "&name=", filename)
+		imgurl := fmt.Sprint("http://"+host_port+"/images?tag=", tag, "&name=", filename)
 		scues_msg := filename + "upload scuess!...<br>"
 		img_url := fmt.Sprint("<a target=\"_Blank\" href=", imgurl, ">"+imgurl+"</a><br>")
 		feedback := scues_msg + "<!>" + img_url
@@ -102,7 +107,7 @@ func GetImages(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//find the images and return []byte
-	filepath := "./driver-test/" + tag[0] + name[0]
+	filepath := img_floder_path + tag[0] + name[0]
 	temp, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		fmt.Println("Images() err: ", err)
@@ -119,7 +124,7 @@ func Seefiles(w http.ResponseWriter, r *http.Request) {
 	}
 	vars := r.URL.Query()
 	tag := vars["tag"]
-	w.Write([]byte(filelist("./driver-test/" + tag[0])))
+	w.Write([]byte(filelist(img_floder_path + tag[0])))
 }
 
 //check if tag can be used or not
