@@ -2,6 +2,7 @@ package route
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -24,6 +25,7 @@ func GetHomePageArtical(w http.ResponseWriter, r *http.Request) {
 
 func GetHomePageHotnews(w http.ResponseWriter, r *http.Request) {
 	SetHeader(w)
+	fmt.Println("asdfasdfasdfasdfgetast")
 	date := psql.GetHomePageHotnewDate()
 	date_json, _ := json.Marshal(date)
 	w.Write(date_json)
