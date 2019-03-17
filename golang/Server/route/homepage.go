@@ -2,7 +2,6 @@ package route
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -18,7 +17,6 @@ func GetHomePageArtical(w http.ResponseWriter, r *http.Request) {
 	var postbody map[string]int64
 	json.Unmarshal(body, &postbody)
 	index := postbody["index"] //get artical index from which
-	fmt.Println(index)
 	var date = psql.GetHPADate(index)
 	date_json, _ := json.Marshal(date)
 	w.Write(date_json)

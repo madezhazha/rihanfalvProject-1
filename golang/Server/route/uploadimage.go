@@ -12,7 +12,15 @@ import (
 	"strings"
 )
 
-//准备工作：uploadimage.html 里将ip地址换成go运行在的主机的地址
+/*
+	mux.HandleFunc("/upload", route.Uploadfiles)
+	mux.HandleFunc("/seefiles/path", route.Seefiles)
+	mux.HandleFunc("/images", route.GetImages)
+	mux.HandleFunc("/uploadimage", route.Html)
+*/
+
+//准备工作：uploadimage.html 里将ip地址换成go运行在的主机的地址,还有
+//uploadfile中的imgurl也要修改
 //save the images that upload from browser
 func Uploadfiles(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -80,15 +88,27 @@ func Uploadfiles(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//check if tag can be used or not
-func check_tag(tag string) (string, error) {
-	if tag == "" {
-		return "", nil
+//images serve
+func GetImages(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	if r.Method != "GET" {
+		return
 	}
-	if strings.Contains(tag, "/") == true {
-		return tag, errors.New("the tag can't be used.")
+	vars := r.URL.Query()
+	tag := vars["tag"] //array
+	name := vars["name"]
+	if len(tag) != 1 && len(name) != 1 {
+		fmt.Println("GetImages url worng, vars:", vars)
+		return
 	}
-	return tag + "/", nil
+	//find the images and return []byte
+	filepath := "./driver-test/" + tag[0] + name[0]
+	temp, err := ioutil.ReadFile(filepath)
+	if err != nil {
+		fmt.Println("Images() err: ", err)
+	}
+	w.Write(temp)
+	return
 }
 
 //reponse the images alerady have
@@ -100,6 +120,17 @@ func Seefiles(w http.ResponseWriter, r *http.Request) {
 	vars := r.URL.Query()
 	tag := vars["tag"]
 	w.Write([]byte(filelist("./driver-test/" + tag[0])))
+}
+
+//check if tag can be used or not
+func check_tag(tag string) (string, error) {
+	if tag == "" {
+		return "", nil
+	}
+	if strings.Contains(tag, "/") == true {
+		return tag, errors.New("the tag can't be used.")
+	}
+	return tag + "/", nil
 }
 
 //judge if the file is exist in a certain path
@@ -126,29 +157,6 @@ func filelist(path string) (list string) {
 	}
 	list = buffer.String()
 	fmt.Println(list)
-	return
-}
-
-//images serve
-func GetImages(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	if r.Method != "GET" {
-		return
-	}
-	vars := r.URL.Query()
-	tag := vars["tag"] //array
-	name := vars["name"]
-	if len(tag) != 1 && len(name) != 1 {
-		fmt.Println("GetImages url worng, vars:", vars)
-		return
-	}
-	//find the images and return []byte
-	filepath := "./driver-test/" + tag[0] + name[0]
-	temp, err := ioutil.ReadFile(filepath)
-	if err != nil {
-		fmt.Println("Images() err: ", err)
-	}
-	w.Write(temp)
 	return
 }
 
