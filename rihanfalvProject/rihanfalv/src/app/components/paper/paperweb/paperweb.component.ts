@@ -13,7 +13,7 @@ export class PaperwebComponent implements OnInit {
 
   //获取dom节点
   @ViewChild('contentbox') contentbox:ElementRef;
-  @ViewChild('text') text:ElementRef;
+  @ViewChild('login') loginbox:ElementRef;
   @ViewChild('showbutton') showbutton:ElementRef;
   @ViewChild('more') more:ElementRef;
 
@@ -49,6 +49,10 @@ export class PaperwebComponent implements OnInit {
     {
       this.Islogin=true
       this.get()
+      this.renderer2.setStyle(this.loginbox.nativeElement,"display","none")
+      this.renderer2.setStyle(this.contentbox.nativeElement,"height","auto")
+      this.renderer2.setStyle(this.more.nativeElement,"display","none")
+      this.renderer2.setStyle(this.showbutton.nativeElement,"display","none")
     }
   }
 

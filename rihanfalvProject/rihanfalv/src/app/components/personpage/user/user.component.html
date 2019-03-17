@@ -52,10 +52,6 @@
                         <input type="password" class="form-control" [(ngModel)]="Password">
                     </div><br>
                     <div class="input-group">
-                        <span class="input-group-addon">邮箱：</span>
-                        <input type="email" class="form-control" [(ngModel)]="temp.Email">
-                    </div><br>
-                    <div class="input-group">
                         <span class="input-group-addon">头像：</span>
                         <img [src]="imgsrc" width="100px" height="100px" alt="未选择头像" class="img-thumbnail"> 
                     </div>
@@ -104,11 +100,11 @@
                     </div><br>
                     <div class="input-group">
                         <span class="input-group-addon">头像：</span>
-                        <img [src]="user.Image" width="100px" height="100px" class="img-thumbnail">
+                        <img src={{user.Image}} width="100px" height="100px" class="img-thumbnail">
                     </div><br>
                     <div class="input-group">
                         <span class="input-group-addon">积分：</span>
-                        <input type="email" class="form-control"  disabled [value]="user.Integral">
+                        <input type="text" class="form-control"  disabled [value]="user.Integral">
                     </div><br>
                     <div class="input-group">
                         <span class="input-group-addon">注册日期：</span> 
