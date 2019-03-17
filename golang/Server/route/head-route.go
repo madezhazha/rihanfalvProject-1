@@ -39,10 +39,12 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 
 	if in.IfLogin {
 		img, err := ioutil.ReadFile(imageUrl)
+		in.Image = img
 		if err != nil {
 			fmt.Println("read file error")
+			in.Image = []byte(imageUrl)
 		}
-		in.Image = img
+
 	}
 	data, _ := json.Marshal(in)
 	w.Write(data)

@@ -15,7 +15,7 @@
 
   </div>
   <div class="headImage" *ngIf="In.IfLogin">
-    <img src="data:image/jpg;base64,{{In.Image}}" class="headImage" routerLink="/userpage" />
+    <img src={{In.Image}} class="headImage" routerLink="/userpage" />
     <!--个人中-->
   </div>
   <div class="registerCSS" (click)="cancel()">注销</div>
