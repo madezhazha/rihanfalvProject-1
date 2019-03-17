@@ -19,7 +19,6 @@ type ArticlaBox struct {
 
 //Get the lastest fith news data
 func GetHomePageHotnewDate() (date [5]HomePageNews) {
-	fmt.Println("!!!!!!testsetsets")
 	command := "select imgurl, linkurl, title from homepagenews order by id desc limit 5"
 	rows, err := db.Query(command)
 	defer rows.Close()
