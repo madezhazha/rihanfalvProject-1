@@ -1,11 +1,13 @@
 package psql
 
 import (
+	"encoding/base64"
+	"strings"
 	"database/sql"
 
 	//"encoding/json"
 	"fmt"
-	//"io/ioutil"
+	"io/ioutil"
 	"log"
 	//"net/http"
 	"time"
@@ -19,6 +21,7 @@ type Users struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 	Email    string `json:"email"`
+	Image	string `json:"image"`
 	Integral int    `json:"integral"`
 }
 
@@ -55,13 +58,19 @@ type Getid struct {
 
 //获取个人信息
 func GetUserInfo(postbody Users) Users {
-	err := db.QueryRow(" select username,password,email,integral from users where userid=$1", &postbody.Userid).Scan(&postbody.Username, &postbody.Password, &postbody.Email, &postbody.Integral)
+	err := db.QueryRow(" select username,password,email,image,integral from users where userid=$1", &postbody.Userid).Scan(&postbody.Username, &postbody.Password, &postbody.Email, &postbody.Image, &postbody.Integral)
 	if err != nil {
 		if err == sql.ErrNoRows {
 		} else {
 			log.Fatal(err)
 		}
 	}
+
+	// 如果不包含“assets”，转成base64.如果包含，直接传该地址
+	if !strings.Contains(postbody.Image, "assets") {
+		postbody.Image = Img_ToBase64(postbody.Image) // 通过路径读取图片，并转成base64传给前端
+	}
+
 	return postbody
 }
 
@@ -124,7 +133,7 @@ func GetUserReply(postbody Getid) []Replies {
 
 //添加主贴
 func InsertTopic(postbody Topics) {
-	stmt, err := db.Prepare("insert into topics(posterid,topictitle,topiccontent,creationtime,finalreplytime,japanorkorea,label) values($1,$2,$3,$4,$5,$6)")
+	stmt, err := db.Prepare("insert into topics(posterid,topictitle,topiccontent,creationtime,finalreplytime,japanorkorea,label) values($1,$2,$3,$4,$5,$6,$7)")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -134,4 +143,11 @@ func InsertTopic(postbody Topics) {
 	} else {
 		fmt.Println("insert into user_tbl success")
 	}
+}
+
+// Img_ToBase64 根据图片的地址得到图片的二进制，再把图片转成字符串（抄袭组长以及队友的函数）
+func Img_ToBase64(image string) string {
+	img, _ := ioutil.ReadFile(image)              //直接读取文件内容，内容是[]byte类型
+	str := base64.StdEncoding.EncodeToString(img) //将[]byte转化成string
+	return str
 }

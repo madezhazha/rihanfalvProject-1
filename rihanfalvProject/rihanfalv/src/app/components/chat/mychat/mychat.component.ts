@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-mychat',
   templateUrl: './mychat.component.html',
@@ -15,6 +17,7 @@ export class MychatComponent implements OnInit {
   public UserId:number;
   public UserName:string='qq_sasx';
   public Integral:number=0;
+  public Image:string;
   public MyQueCount:number=0;
   public MyAnsCount:number=0;
   public LoginStatus:boolean=false;   //是否登录
@@ -29,7 +32,7 @@ export class MychatComponent implements OnInit {
   public secondlist:any;
   public thirdlist:any;
 
-  constructor(public router:Router,public http:HttpClient) { }
+  constructor(public router:Router,public http:HttpClient,public sanitizer: DomSanitizer,) { }
 
   ngOnInit() {
 
@@ -57,6 +60,14 @@ export class MychatComponent implements OnInit {
         
         this.UserName=this.Userinfo.username;
         this.Integral=this.Userinfo.integral;
+        const element = this.Userinfo;
+        if (element.image.indexOf("assets") == -1) {
+          let temp: any;
+          temp = 'data:image/png;base64, ' + element.image; //给base64添加头缀
+          element.image = this.sanitizer.bypassSecurityTrustUrl(temp);
+        }
+        this.Image=this.Userinfo.image;
+        //console.log(this.Userinfo.image);
     })
   }
   // 加载提问列表，取数量
@@ -65,7 +76,7 @@ export class MychatComponent implements OnInit {
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
     let api="http://127.0.0.1:7080/showuserquelist";    
     this.http.post(api,{userid:this.UserId},httpOptions).subscribe((response:any)=>{
-      console.log(response);
+      //console.log(response);
         this.QueList=response;
         
         this.MyQueCount=response.length;
@@ -77,7 +88,7 @@ export class MychatComponent implements OnInit {
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
     let api="http://127.0.0.1:7080/showuseranslist";    
     this.http.post(api,{userid:this.UserId},httpOptions).subscribe((response:any)=>{
-      console.log(response);
+      //console.log(response);
         this.AnsList=response;
         
         this.MyAnsCount=response.length;
