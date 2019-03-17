@@ -13,6 +13,12 @@ import (
 )
 
 /*
+说明：
+这些函数写了一个图片上传和下载工具。直接访问后端端口即可获取相应的上传图片的界面。
+上传的图片将会保存到 route/images 文件夹。界面将会自动生成刚才上传的图片的访问url.
+*/
+
+/*
 	mux.HandleFunc("/upload", route.Uploadfiles)
 	mux.HandleFunc("/seefiles/path", route.Seefiles)
 	mux.HandleFunc("/images", route.GetImages)
