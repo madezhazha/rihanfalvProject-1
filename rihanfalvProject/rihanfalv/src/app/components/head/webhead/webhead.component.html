@@ -2,23 +2,24 @@
   <img src="{{BackgroundImage}}" class="back">
   <img src="../../../../assets/logo.png" class="imge" /><br>
   <div class="oneline"><a routerLink="/homepage">首页</a></div>
-  <div class="oneline"><a routerLink="/discussionarea" >讨论区</a></div>
-  <div class="oneline"><a routerLink="/legal" >法律条文</a></div>
-  <div class="oneline"><a routerLink="/paper" >相关论文</a></div>
-  <div class="oneline"><a routerLink="/caseanalysis" >案例分析</a></div>
+  <div class="oneline"><a routerLink="/discussionarea">讨论区</a></div>
+  <div class="oneline"><a routerLink="/legal">法律条文</a></div>
+  <div class="oneline"><a routerLink="/paper">相关论文</a></div>
+  <div class="oneline"><a routerLink="/caseanalysis">案例分析</a></div>
   <div class="JorK" (click)="JapanKoreaChange()">
     {{JapanOrKorea}}
   </div>
   <img src="../../../../assets/sou.png" class="search" routerLink="/search">
-  <div class="loginCSS" (click)="login()"  *ngIf="In.IfLogin==false">
+  <div class="loginCSS" (click)="login()" *ngIf="In.IfLogin==false">
     <div>未登录</div>
-    
+
   </div>
-  <div class="headImage" *ngIf="In.IfLogin==true">
-    <img src="data:image/jpeg;base64,{{In.Image}}" class="headImage"  routerLink="Home" /><!--个人中-->
+  <div class="headImage" *ngIf="In.IfLogin">
+    <img src="data:image/jpg;base64,{{In.Image}}" class="headImage" routerLink="/userpage" />
+    <!--个人中-->
   </div>
-  <div class="registerCSS" >注册</div>
+  <div class="registerCSS" (click)="cancel()">注销</div>
 </div>
 <div class="langing">
-  <app-langing *ngIf="IfLogin&&In.IfLogin==false" (closed)="close()" (LoginData)="getLoginData($event)" ></app-langing>
+  <app-langing *ngIf="IfLogin&&In.IfLogin==false" (closed)="close()" (LoginData)="getLoginData($event)"></app-langing>
 </div>

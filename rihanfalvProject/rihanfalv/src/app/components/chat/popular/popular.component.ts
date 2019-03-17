@@ -41,8 +41,7 @@ export class PopularComponent implements OnInit {
       for (let i = 0; i < this.threadList.length; i++) {
         const element = this.threadList[i];
         if (element.user.Image.indexOf("assets") == -1) {
-          let temp: any;
-          temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
+          let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
           element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
         }
         // console.log(element.user.Image);
@@ -58,17 +57,19 @@ export class PopularComponent implements OnInit {
       } else {
         this.isMax = true;
       }
-      
+
     });
   }
 
   read(item) {
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        topicID: item.thread.ID,
-      },
-    }
-    this.router.navigate(['/post'], navigationExtras)
+    this.dataService.addVisitNum(item.thread.ID).subscribe(() => {
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          topicID: item.thread.ID,
+        },
+      }
+      this.router.navigate(['/post'], navigationExtras);
+    });
   }
 
   more() {

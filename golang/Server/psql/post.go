@@ -99,7 +99,7 @@ func IsCollected(userID int, topicID int) (collection Collection, err error) {
 	return
 }
 
-// Collect 指定用户收藏指定主贴
+// Collect 指定用户收藏指定主贴并返回收藏表的id
 func Collect(userID int, topicID int) (collectionid int, err error) {
 	statement := "insert into collection (userid, collectioncontentid,collectiontime, collectiontype) values ($1,$2,$3,$4) returning collectionid"
 	stmt, err := db.Prepare(statement)

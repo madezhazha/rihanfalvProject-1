@@ -43,6 +43,7 @@ func main() {
 	mux.HandleFunc("/thread/search", route.Search)
 	mux.HandleFunc("/thread/collect", route.Collect)
 	mux.HandleFunc("/thread/cancel", route.Cancel)
+	mux.HandleFunc("/thread/read", route.Read)
 
 	//讨论区 我的问答
 	mux.HandleFunc("/showuserinfo", route.ShowUserInfo)       // 个人信息
