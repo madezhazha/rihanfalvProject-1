@@ -124,11 +124,11 @@ func GetUserReply(postbody Getid) []Replies {
 
 //添加主贴
 func InsertTopic(postbody Topics) {
-	stmt, err := db.Prepare("insert into topics(posterid,topictitle,topiccontent,japanorkorea,label) values($1,$2,$3,$4,$5)")
+	stmt, err := db.Prepare("insert into topics(posterid,topictitle,topiccontent,creationtime,finalreplytime,japanorkorea,label) values($1,$2,$3,$4,$5,$6)")
 	if err != nil {
 		log.Fatal(err)
 	}
-	_, err = stmt.Exec(postbody.Userid, postbody.Topictitle, postbody.Topiccontent, postbody.Japanorkorea, postbody.Topiclabel)
+	_, err = stmt.Exec(postbody.Userid, postbody.Topictitle, postbody.Topiccontent, time.Now(), time.Now(), postbody.Japanorkorea, postbody.Topiclabel)
 	if err != nil {
 		log.Fatal(err)
 	} else {
