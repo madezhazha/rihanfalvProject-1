@@ -3,6 +3,7 @@ package route
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"../psql"
@@ -44,4 +45,17 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Write(data)
+}
+
+// Read 浏览帖子时，主贴的浏览数加一
+func Read(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	str := r.FormValue("topicID")
+	topicID, err := strconv.Atoi(str)
+	if err != nil {
+		psql.Logger.SetPrefix("ERROR ")
+		psql.Logger.Println(err)
+		return
+	}
+	psql.AddVisitNum(topicID)
 }

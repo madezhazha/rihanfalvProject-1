@@ -119,6 +119,12 @@ func Collect(w http.ResponseWriter, r *http.Request) {
 		psql.Logger.Println(err)
 		return
 	}
+	err = psql.AddCollectNum(topicID)
+	if err != nil {
+		psql.Logger.SetPrefix("ERROR ")
+		psql.Logger.Println(err)
+		return
+	}
 	data, err := json.Marshal(collectionid)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")

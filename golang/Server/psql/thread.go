@@ -113,6 +113,38 @@ func AddRepNum(topicID int) error {
 	return err
 }
 
+// AddCollectNum 主贴的收藏数加一
+func AddCollectNum(topicID int) (err error) {
+	stmt, err := db.Prepare("update topics set collectionvolume=collectionvolume+1 where topicid=$1")
+	if err != nil {
+		fmt.Println("Prepare:", err)
+		return err
+	}
+
+	_, err = stmt.Exec(topicID)
+	if err != nil {
+		fmt.Println("Exec:", err)
+		return err
+	}
+	return err
+}
+
+// AddVisitNum 浏览数加一
+func AddVisitNum(topicID int) (err error) {
+	stmt, err := db.Prepare("update topics set visitvolume=visitvolume+1 where topicid=$1")
+	if err != nil {
+		fmt.Println("Prepare:", err)
+		return err
+	}
+
+	_, err = stmt.Exec(topicID)
+	if err != nil {
+		fmt.Println("Exec:", err)
+		return err
+	}
+	return err
+}
+
 // RsByCondition 根据查询条件查询出结果
 func RsByCondition(condition []string) (usersAndThreads []map[string]interface{}, err error) {
 	for i, value := range condition {
