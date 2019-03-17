@@ -101,3 +101,14 @@
     font-size: 15px;
     font-weight: bold
 }
+
+.tip{
+    font-family:'STXinwei';
+    margin-top: 15px;
+    width: 450px;
+    text-align: center;
+    font-size: 16px;
+    padding-right: 10px;
+    color: gray;
+    display:none;
+}

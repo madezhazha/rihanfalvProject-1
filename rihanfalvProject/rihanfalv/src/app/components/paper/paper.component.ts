@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild,Renderer2 } from '@angular/core';
 import {Article} from '../paper/article'
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router} from '@angular/router';
@@ -12,6 +12,7 @@ import {fromEvent} from 'rxjs'
 })
 export class PaperComponent implements OnInit {
 
+  @ViewChild('tip') tip:ElementRef
   
   Isbottom:boolean=false;  //是否页面到底
   Isover:boolean=false;    //文章是否已无
@@ -43,6 +44,7 @@ export class PaperComponent implements OnInit {
       }
       else{
         this.Isover=true
+        this.renderer2.setStyle(this.tip.nativeElement,"display","block")
       }
     });
   }
@@ -79,7 +81,7 @@ export class PaperComponent implements OnInit {
     }
   }
 
-  constructor(private http:HttpClient,private router:Router) { 
+  constructor(private http:HttpClient,private router:Router,private renderer2:Renderer2) { 
     this.getArticles();
     //this.scrollCallback = this.getArticles.bind(this);
   }
