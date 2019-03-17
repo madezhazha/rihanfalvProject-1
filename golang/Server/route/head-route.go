@@ -42,6 +42,7 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 		in.Image = img
 		if err != nil {
 			fmt.Println("read file error")
+			in.ImageUrl = imageUrl
 			in.Image = []byte(imageUrl)
 		}
 

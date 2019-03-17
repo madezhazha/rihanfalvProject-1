@@ -3,5 +3,6 @@ export class InputData {
 	Tip: string
 	Image: any
 	Token: string
-	ID: string;
+	ID: string
+	ImageUrl: string
 }
