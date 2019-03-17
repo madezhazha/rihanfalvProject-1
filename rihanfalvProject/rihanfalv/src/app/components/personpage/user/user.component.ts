@@ -83,7 +83,7 @@ export class UserComponent implements OnInit {
   // 修改信息
   changeinfo() {
     // console.log('修改');
-    if (this.temp.UserName == '' || this.temp.Email == '' || this.temp.Password == '') {
+    if (this.temp.UserName == '' || this.temp.Password == '') {
         // alert('请补全信息！');
         this.msg = this.msgs[0];
         this.iswarn = true;
@@ -117,7 +117,6 @@ export class UserComponent implements OnInit {
   close() {
     this.temp.UserName = '';
     this.temp.Password = '';
-    this.temp.Email = '';
     this.Password = '' ;
     this.imgsrc = '';
     this.issuccess = false;
@@ -129,6 +128,7 @@ export class UserComponent implements OnInit {
     console.log(this.id);
     this.serve.get(this.id).subscribe(user => {
       this.user = user;
+      console.log(this.user);
       // 判断传来的是系统头像的路径还是base64
       if(this.user.Image.length > 100){
       let temp: any;
@@ -139,6 +139,7 @@ export class UserComponent implements OnInit {
       this.temp.UserId = this.user.UserId;
       this.temp.Integral = this.user.Integral;
       this.temp.RegisterDate = this.user.RegisterDate;
+      this.temp.Email = this.user.Email;
       // 转化日期格式
       this.user.RegisterDate = this.datePipe.transform(this.user.RegisterDate, 'yyyy-MM-dd');
       
