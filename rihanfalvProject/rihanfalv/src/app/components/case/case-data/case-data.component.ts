@@ -2,6 +2,7 @@ import { Component, OnInit,ElementRef,Renderer2 } from '@angular/core';
 import{ActivatedRoute}from "@angular/router"
 import{HttpClient,HttpHeaders} from '@angular/common/http'
 import {DomSanitizer} from '@angular/platform-browser'
+import { InputData } from '../../head/langing/land/input';
 
 
 @Component({
@@ -37,6 +38,7 @@ export class CaseDataComponent implements OnInit {
   languageType:string      //语言
   titleId:string           //标题的id
   userId:string            //使用者的id
+  IsLogin:boolean=false      //判断是否登录
 
 
   imageUrl:string='./assets/images/fiveStar1.PNG'
@@ -45,7 +47,7 @@ export class CaseDataComponent implements OnInit {
     var storage=window.localStorage;
     this.userId=storage["id"]
     if(this.userId!==undefined){
-      // console.log("这个是localstorage的数据：",this.userId)
+       // console.log("这个是localstorage的数据：",this.userId)
       if(this.changeNumber===0){
         //这个表示收藏信息
         this.imageUrl='./assets/images/fiveStar2.PNG'
@@ -72,14 +74,13 @@ export class CaseDataComponent implements OnInit {
         {
           console.log(response)
         })
-      }
+      }  
     }else{
-      alert("你还没有登录哦！不能收藏")
+      this.IsLogin = true
     }
-    
-    
-
+     
   }
+
 
   money:string="5";
 
@@ -148,8 +149,8 @@ export class CaseDataComponent implements OnInit {
   initialState(languageType,titleId){
     var storage=window.localStorage;
     this.userId=storage["id"]
-    // console.log(this.userId,this.title,this.languageType,this.titleId)  这个打印的是一开始的收藏状态
     if(this.userId!==undefined){
+      // console.log(this.userId,this.title,this.languageType,this.titleId)  这个打印的是一开始的收藏状态
       const httpOptions={
         headers:new HttpHeaders({'content-Type':'application/json'})
       }
@@ -166,8 +167,14 @@ export class CaseDataComponent implements OnInit {
       })
     }
   }
+
+  boxClose(){
+    this.IsLogin=false;
+  }
+
+
+  getLoginData(input:InputData){
+    this.IsLogin = !input.IfLogin
+  }
     
-
-
-
 }

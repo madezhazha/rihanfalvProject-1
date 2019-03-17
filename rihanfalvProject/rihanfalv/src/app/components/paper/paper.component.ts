@@ -41,6 +41,7 @@ export class PaperComponent implements OnInit {
         this.Articles=this.Articles.concat(response);
         this.CurrentPage++;
         //this.CurrentPage=this.Articles[this.Articles.length-1].ID
+        console.log(this.CurrentPage)
       }
       else{
         this.Isover=true
@@ -57,9 +58,10 @@ export class PaperComponent implements OnInit {
      {
        if(response!=null)
        {
+        //  console.log(response)
          this.Articles=response
          this.CurrentPage++;
-         //this.CurrentPage=this.Articles[this.Articles.length-1].ID
+        //  this.CurrentPage=this.Articles[this.Articles.length].ID
        }
        else{
          this.Articles=[]
@@ -99,6 +101,7 @@ export class PaperComponent implements OnInit {
             if(!this.Isover){
               setTimeout(()=>{this.getArticles();},1000)    //延时1000ms加载
               this.Isbottom=true
+              console.log(this.Articles)
             }
           }
         }

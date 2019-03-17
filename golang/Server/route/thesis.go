@@ -2,6 +2,10 @@ package route
 
 import (
 	"encoding/json"
+<<<<<<< HEAD
+	"fmt"
+=======
+>>>>>>> 3608ebc6fef5ddc39adf907654bb59f8b8d7eeca
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -50,7 +54,11 @@ func ArticleList(w http.ResponseWriter, r *http.Request) {
 	} else if mes.Country == "Korea" {
 		Articles = psql.GetKoreaArticlesPart(mes.CurrentPage - 1)
 	}
+<<<<<<< HEAD
+	data,_:=json.Marshal(Articles) 
+=======
 	data, _ := json.Marshal(Articles)
+>>>>>>> 3608ebc6fef5ddc39adf907654bb59f8b8d7eeca
 	w.Write(data)
 	//fmt.Println("submit Articles sucess")
 }
