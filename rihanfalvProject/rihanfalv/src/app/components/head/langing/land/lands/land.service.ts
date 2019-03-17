@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import{InputData} from '../input';
+import { InputData } from '../input';
 import { HttpClient } from '@angular/common/http';
-import {OutputData} from '../output'
+import { OutputData } from '../output'
 
 
 @Injectable({
@@ -10,7 +10,8 @@ import {OutputData} from '../output'
 export class LandService {
 
   constructor(private http: HttpClient) { }
-  getInput(out:OutputData){
-    return this.http.post<InputData>("http://localhost:7080/",JSON.stringify(out))
+  getInput(out: OutputData) {
+    return this.http.post<InputData>("http://localhost:7080/", JSON.stringify(out))
   }
 }
+
