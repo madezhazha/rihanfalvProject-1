@@ -12,9 +12,9 @@ export class GolangService {
     private http:HttpClient
   ){}
   //vps
-  private url ='http://192.168.127.128:7080';
+  // private url ='http://192.168.127.128:7080';
   // virtual machin
-  // private url ='http://192.168.226.128:4400/'    
+  private url ='http://localhost:7080'    
   //请求首页的文章数据，从index 到 index+9 的文章数据，自动添加到文章列表末尾
   GetArtical(index:number):Observable<ArticalBox[]>{  
       var post = {index:index};
@@ -30,3 +30,5 @@ export class GolangService {
   }
 
 }
+// mux.HandleFunc("/homepage/articals", route.GetHomePageArtical)
+// mux.HandleFunc("/homepage/hotnews", route.GetHomePageHotnews)

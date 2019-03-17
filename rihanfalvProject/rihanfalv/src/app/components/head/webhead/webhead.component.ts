@@ -23,6 +23,9 @@ export class WebheadComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (localStorage.getItem("JapanOrKorea") == null) {
+      localStorage.setItem("JapanOrKorea", this.JapanOrKorea)
+    }
     if (localStorage.getItem("JapanOrKorea") == "日") {
       this.JapanOrKorea = "日";
       this.BackgroundImage = "../../../../assets/背景图片1.png"
@@ -76,6 +79,7 @@ export class WebheadComponent implements OnInit {
     this.IfLogin = false;
     this.In.IfLogin = false;
     localStorage.clear();
+    localStorage.setItem("JapanOrKorea", this.JapanOrKorea)
   }
 
 }
