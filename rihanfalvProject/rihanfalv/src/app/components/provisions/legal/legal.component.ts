@@ -19,6 +19,7 @@ export class LegalComponent implements OnInit {
   public categoryb: string;
   public judge: boolean;
   public Nowcountry = 'Japan';   // 当前模块 日/韩 用于进行筛选显示
+  public ifclik: boolean;
 
 
   public type: APIResponse = {
@@ -28,6 +29,7 @@ export class LegalComponent implements OnInit {
   ngOnInit() {
     this.judge = false;
     this.getArticles();
+    this.ifclik = false;
     const that = this;
     // tslint:disable-next-line:only-arrow-functions
     setTimeout( function() { that.Gettype(); } , 200);
@@ -56,14 +58,21 @@ export class LegalComponent implements OnInit {
   }
 
   public showAside() {
-    const asideDom: any = document.getElementById('aside');  // 调出侧拉栏
-    asideDom.style.transform = 'translate(0,0)';
-   }
+    this.ifclik   = true;
+    const that = this;
+    // tslint:disable-next-line:only-arrow-functions
+    setTimeout( function() {
+        const asideDom: any = document.getElementById('aside');  // 调出侧拉栏
+        asideDom.style.transform = 'translate(0,0)'; } , 100);
+  }
 
    public hideAside() {
      const asideDom: any = document.getElementById('aside');  // 隐藏侧拉栏
      asideDom.style.transform = 'translate(100%,0)';
-   }
+     const that = this;
+    // tslint:disable-next-line:only-arrow-functions
+     setTimeout( function() { that.ifclik = false; } , 500);
+    }
 
     public Gettype() {           // 获取法律条文
      this.api.legaltype().subscribe(response => {
