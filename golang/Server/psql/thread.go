@@ -129,6 +129,22 @@ func AddCollectNum(topicID int) (err error) {
 	return err
 }
 
+// CutCollectNum 主贴的收藏数减一
+func CutCollectNum(topicID int) (err error) {
+	stmt, err := db.Prepare("update topics set collectionvolume=collectionvolume-1 where topicid=$1")
+	if err != nil {
+		fmt.Println("Prepare:", err)
+		return err
+	}
+
+	_, err = stmt.Exec(topicID)
+	if err != nil {
+		fmt.Println("Exec:", err)
+		return err
+	}
+	return err
+}
+
 // AddVisitNum 浏览数加一
 func AddVisitNum(topicID int) (err error) {
 	stmt, err := db.Prepare("update topics set visitvolume=visitvolume+1 where topicid=$1")
@@ -138,6 +154,22 @@ func AddVisitNum(topicID int) (err error) {
 	}
 
 	_, err = stmt.Exec(topicID)
+	if err != nil {
+		fmt.Println("Exec:", err)
+		return err
+	}
+	return err
+}
+
+// UpdFinReplyTime 更新最后主贴回复时间
+func UpdFinReplyTime(topicID int) (err error) {
+	stmt, err := db.Prepare("update topics set finalreplytime=$1 where topicid=$2")
+	if err != nil {
+		fmt.Println("Prepare:", err)
+		return err
+	}
+
+	_, err = stmt.Exec(time.Now(), topicID)
 	if err != nil {
 		fmt.Println("Exec:", err)
 		return err
@@ -168,9 +200,6 @@ func RsByCondition(condition []string) (usersAndThreads []map[string]interface{}
 				// 判断usersAndThreads里面是否已经包含了查询结果的标志
 				flag := true
 				for _, val := range usersAndThreads {
-					// if val["thread"] == conv.ID {
-					// 	flag = false
-					// }
 					// 类型断言，因为val[string]本身是interface{}类型，没有属性.
 					// 所以即使确定了key，即现在为val["thread"]在编译时期的类型也会被识别为interface{}.
 					// 解决办法就是使用类型断言，把现在类型便转换成Thread(本身语法不允许使用强制类型转换)，而Thread才有属性

@@ -18,6 +18,7 @@ export class PopularComponent implements OnInit {
   private isMax: boolean = false;
   private nowData: Array<any> = [];
 
+
   // 韩国日本的标志
   private flag: any;
 
@@ -35,29 +36,19 @@ export class PopularComponent implements OnInit {
         this.flag = 1;
       }
 
-      // debugger;
       this.threadList = response;
       // console.log(this.threadList);
-      for (let i = 0; i < this.threadList.length; i++) {
-        const element = this.threadList[i];
-        if (element.user.Image.indexOf("assets") == -1) {
-          let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
-          element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
-        }
-        // console.log(element.user.Image);
-      }
-
       if (this.threadList) {
-        this.nowData = this.threadList.slice(0, 1);
-        if (this.nowData.length == this.threadList.length) {
-          this.isMax = true;
-        } else {
-          this.isMax = false;
+        for (let i = 0; i < this.threadList.length; i++) {
+          const element = this.threadList[i];
+          if (element.user.Image.indexOf("assets") == -1) {
+            let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
+            element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+          }
+          // console.log(element.user.Image);
         }
-      } else {
-        this.isMax = true;
       }
-
+      this.cutArray(this.getCountryData(), 2);
     });
   }
 
@@ -73,14 +64,7 @@ export class PopularComponent implements OnInit {
   }
 
   more() {
-    if (this.threadList) {
-      this.nowData = this.threadList.slice(0, this.nowData.length + 5);
-      if (this.nowData.length == this.threadList.length) {
-        this.isMax = true;
-      }
-    } else {
-      this.isMax = true;
-    }
+    this.cutArray(this.getCountryData(), 2);
   }
 
   getJapanKorea(isJapan: boolean) {
@@ -89,8 +73,38 @@ export class PopularComponent implements OnInit {
     } else {
       this.flag = 0;
     }
+
+    this.nowData = [];
+    this.cutArray(this.getCountryData(), 2);
   }
 
+  getCountryData(): Array<any> {
+    if (this.threadList){
+      let countryData: Array<any> = [];
+      for (let i = 0; i < this.threadList.length; i++) {
+        const element = this.threadList[i];
+        if (element.thread.Japanorkorea == this.flag) {
+          countryData.push(element);
+        }
+      }
+      return countryData;
+    }
+    return [];
+  }
+
+  // 截取展示数据，并且判断现在长度是否为最大
+  cutArray(countryData: Array<any>, length: number) {
+    if (countryData) {
+      this.nowData = countryData.slice(0, this.nowData.length + length);
+      if (this.nowData.length == countryData.length) {
+        this.isMax = true;
+      } else {
+        this.isMax = false;
+      }
+    } else {
+      this.isMax = true;
+    }
+  }
 }
 
 @Pipe({

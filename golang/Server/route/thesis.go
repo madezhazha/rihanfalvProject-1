@@ -2,10 +2,6 @@ package route
 
 import (
 	"encoding/json"
-<<<<<<< HEAD
-	"fmt"
-=======
->>>>>>> 3608ebc6fef5ddc39adf907654bb59f8b8d7eeca
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -58,7 +54,7 @@ func ArticleList(w http.ResponseWriter, r *http.Request) {
 	data,_:=json.Marshal(Articles) 
 =======
 	data, _ := json.Marshal(Articles)
->>>>>>> 3608ebc6fef5ddc39adf907654bb59f8b8d7eeca
+>>>>>>> 2a85058073349ba36eb29c84b81b7e540ee4cda7
 	w.Write(data)
 	//fmt.Println("submit Articles sucess")
 }

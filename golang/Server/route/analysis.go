@@ -128,6 +128,7 @@ func Displaytxt(w http.ResponseWriter, r *http.Request) {
 	//解析从前端发来的数据
 	var data map[string]interface{}
 	var content string
+	var userId string
 
 	body, err := ioutil.ReadAll(r.Body)
 
@@ -144,11 +145,19 @@ func Displaytxt(w http.ResponseWriter, r *http.Request) {
 
 	if data != nil {
 		content = data["content"].(string) //这个是标题的内容
-		//根据这个部分处理从前端发来的请求
-		all_data := psql.Gettext(content) //这个是法官的观点
-		json, _ := json.Marshal(all_data)
 
-		w.Write(json)
+		if(data["userid"]!=nil){
+			userId = data["userid"].(string)
+			fmt.Println(userId)
+			all_data:=psql.Gettext_userid(content,userId)
+			json, _ := json.Marshal(all_data)
+			w.Write(json)
+		}else{
+			fmt.Println("没有")
+			all_data:= psql.Gettext_nouserid(content)
+			json, _ := json.Marshal(all_data)
+			w.Write(json)
+		}
 	}
 }
 
@@ -229,4 +238,39 @@ func InitialState(w http.ResponseWriter,r *http.Request){
 		json,_:=json.Marshal(response)
 		w.Write(json)
 	}
+}
+
+
+//付款
+func Payment(w http.ResponseWriter,r *http.Request){
+	w = Cross(w)
+
+	var Data map[string]interface{}
+	var titleId string
+	var userId string
+	var integral string
+
+	//查看从前端发来的数据
+	body,err:=ioutil.ReadAll(r.Body)
+
+	if err!=nil{
+		fmt.Println(err)
+		var info string ="连接出现错误"
+		response:=Response{info}
+		json,_:=json.Marshal(response)
+		w.Write(json)
+		return
+	}
+	json.Unmarshal(body,&Data)
+	
+	if Data!=nil{
+		titleId = Data["titleid"].(string)
+		userId = Data["userid"].(string)
+		integral = Data["integral"].(string)
+		data:= psql.Pay(titleId,userId,integral)
+		response:=Response{data}
+		json,_:=json.Marshal(response)
+		w.Write(json)
+	}
+
 }

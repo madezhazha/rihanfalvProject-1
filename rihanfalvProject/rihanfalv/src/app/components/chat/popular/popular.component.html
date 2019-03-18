@@ -5,7 +5,7 @@
   <app-chat-head></app-chat-head>
 
   <!-- Unnamed (讨论区-讨论模块) -->
-  <div class="ripple" style="margin-bottom:20px" *ngFor="let item of (nowData | myPipe: flag)" (click)="read(item)">
+  <div class="ripple" style="margin-bottom:20px" *ngFor="let item of nowData" (click)="read(item)">
     <div id="u8_div" class="" style="border-right-width: 1.7px;border-bottom-width:1.7px;">
 
       <div id="content" style="margin-top: 0.5%;margin-left: 1.5%;">

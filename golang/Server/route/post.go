@@ -25,18 +25,24 @@ func ListPost(w http.ResponseWriter, r *http.Request) {
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 获取楼主信息
 	thread, err := psql.ThreadByTopicID(topicID)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 获取所有回帖
 	posts, err := psql.GetPost(topicID)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 判断当前登陆的用户是否收藏了此贴
 	collection, err := psql.IsCollected(userID, topicID)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
@@ -82,13 +88,25 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 创建一个新的回帖
 	err = psql.CreatePost(userID, topicID, text, floor)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 修改数据库主贴的回帖数
 	err = psql.AddRepNum(topicID)
+	if err != nil {
+		psql.Logger.SetPrefix("ERROR ")
+		psql.Logger.Println(err)
+		return
+	}
+
+	// 更新主贴的最后回复时间
+	err = psql.UpdFinReplyTime(topicID)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
 		psql.Logger.Println(err)
@@ -113,12 +131,16 @@ func Collect(w http.ResponseWriter, r *http.Request) {
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 登陆用户收藏主贴
 	collectionid, err := psql.Collect(userID, topicID)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 有用户收藏主贴时，修改该主贴的收藏数
 	err = psql.AddCollectNum(topicID)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
@@ -151,7 +173,17 @@ func Cancel(w http.ResponseWriter, r *http.Request) {
 		psql.Logger.Println(err)
 		return
 	}
+
+	// 登陆用户取消收藏主贴
 	collectionid, err := psql.Cancel(userID, topicID)
+	if err != nil {
+		psql.Logger.SetPrefix("ERROR ")
+		psql.Logger.Println(err)
+		return
+	}
+
+	// 每当有用户取消收藏主贴时，主贴的收藏数减一
+	err = psql.CutCollectNum(topicID)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")
 		psql.Logger.Println(err)
