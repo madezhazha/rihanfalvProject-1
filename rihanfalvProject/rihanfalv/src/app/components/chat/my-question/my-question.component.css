@@ -60,7 +60,7 @@ ul{
 }
 
 .detailBody{
-    width: 92%;
+    width: 415px;
     margin-left: auto;
     margin-right: auto;
     /* padding: 10px; */
@@ -116,6 +116,9 @@ ul{
 
 .Content{
     clear: both;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 .Content h3{
     margin: 0px;

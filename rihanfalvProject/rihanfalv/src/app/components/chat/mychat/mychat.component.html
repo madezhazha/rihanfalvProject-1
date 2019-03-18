@@ -13,7 +13,7 @@
       <div id="QAmyimage">
         <a (click)="intoUserPage()">
           <!-- {{Image}} -->
-          <img width="40px" height="40px" src="../../../../assets/images/3.jpg">
+          <img width="40px" height="40px" [src]=this.Image>
         </a>
       </div>
       
@@ -24,28 +24,30 @@
   
     </div>
   
-  
-    <!-- 我的提问 -->
-    <div id="MyQue">
-      <a class="QABox1" (click)="myQue()">我的提问</a>
-      <a class="QABox2">{{MyQueCount}}条提问</a>
-    </div>
-   <!-- [queryParams]="{aid:1}" [routerLink]="[ '/queansdetail/myquestion' ]" -->
-  
-    <!-- 我的回答 -->
-    <div id="MyAns">
-      <a class="QABox1" (click)="myAns()">我的回答</a>
-      <a class="QABox2">{{MyAnsCount}}条回答</a>
-    </div>
-   <!-- [queryParams]="{aid:2}" [routerLink]="[ '/queansdetail/myanswer']" -->
-  
-    <!-- 我要提问 -->
-    <div>
-      <button id="QueBtn" (click)="toQue()">我要提问</button>
-    </div>
-   <!-- [queryParams]="{aid:3}" [routerLink]="[ '/toquestion' ]" -->
-  </div>
+  <div id="QueAndAns">
 
+        <!-- 我的提问 -->
+        <div id="MyQue">
+          <a class="QABox1" (click)="myQue()">我的提问</a>
+          <a class="QABox2">{{MyQueCount}}条提问</a>
+        </div>
+      
+        <!-- 我的回答 -->
+        <div id="MyAns">
+          <a class="QABox1" (click)="myAns()">我的回答</a>
+          <a class="QABox2">{{MyAnsCount}}条回答</a>
+        </div>
+      <!-- [queryParams]="{aid:2}" [routerLink]="[ '/queansdetail/myanswer']" -->
+      
+        <!-- 我要提问 -->
+        <div>
+          <button id="QueBtn" (click)="toQue()">我要提问</button>
+        </div>
+      <!-- [queryParams]="{aid:3}" [routerLink]="[ '/toquestion' ]" -->
+      </div>
+
+  </div>
+    
 
   <!-- 未登录状态下 -->
   <div *ngIf="!LoginStatus" >

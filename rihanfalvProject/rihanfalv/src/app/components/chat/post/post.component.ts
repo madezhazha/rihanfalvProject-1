@@ -58,7 +58,8 @@ export class PostComponent implements OnInit {
       this.hostData = response;
 
       // 这里的userID登陆的用户ID(传回后台判断是否收藏了此贴)
-      this.dataService.getPostList(this.userID, response.topicID).subscribe((resp) => {
+      this.dataService.getPostList(this.userID, this.hostData.topicID).subscribe((resp) => {
+        // debugger;
         this.collection = resp.collection;
         this.post = resp.post;
         this.thread = resp.thread;
@@ -68,11 +69,14 @@ export class PostComponent implements OnInit {
           this.thread.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
         }
 
-        for (let i = 0; i < this.post.length; i++) {
-          const element = this.post[i];
-          if (element.user.Image.indexOf("assets") == -1) {
-            let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
-            element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+        // debugger;
+        if (this.post) {
+          for (let i = 0; i < this.post.length; i++) {
+            const element = this.post[i];
+            if (element.user.Image.indexOf("assets") == -1) {
+              let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
+              element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+            }
           }
         }
 
