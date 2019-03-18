@@ -1,7 +1,6 @@
 package psql
 
 import (
-	"fmt"
 	"strings"
 	"time"
 )
@@ -42,7 +41,6 @@ func GetPost(topicid int) (usersAndPosts []map[string]interface{}, err error) {
 		}
 		user, err = conv.User()
 		if err != nil {
-			fmt.Println("err")
 			return
 		}
 
@@ -58,6 +56,9 @@ func GetPost(topicid int) (usersAndPosts []map[string]interface{}, err error) {
 func (post *Post) User() (user MyUser, err error) {
 	err = db.QueryRow("SELECT userid, username, email, image FROM users WHERE userid = $1", post.Userid).
 		Scan(&user.Userid, &user.Username, &user.Email, &user.Image)
+	if err != nil {
+		return
+	}
 
 	// 如果不包含“assets”，转成base64.如果包含，直接传该地址
 	if !strings.Contains(user.Image, "assets") {
