@@ -4,7 +4,7 @@
 </div>
 <div class="judgePoint">
   <div [innerHTML]="displayData"></div>
-  <div class="veiwAll" *ngIf="IsPay"><a name="veiwAll" style="text-decoration: none" data-toggle="modal" data-target="#myModal">查看全部</a></div>
+  <div class="veiwAll" *ngIf="IsPay"><a name="veiwAll" style="text-decoration: none" data-toggle="modal" data-target="#myModal" (click)="print()" #test>查看全部</a></div>
 </div>
 
 <div>
@@ -22,17 +22,18 @@
         <div>
           <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h3 class="modal-title" id="myModalLabel">积分消费</h3>
+          {{data}}
         </div>
       </div>
       <div class="modal-body">
         <div>
-          <span>当前用户的积分：</span><span>39</span><span>分</span>
+          <span><span>{{userId}}</span>的积分：</span><span>{{allintegral}}</span><span>分</span>
         </div>
         <div>
           <hr>
         </div>
         <div>
-          <span>需要积分：</span><span>3分</span>
+          <span>需要积分：</span><span>{{integral}}分</span>
         </div>
       </div>
       <div class="modal-footer">
@@ -54,11 +55,11 @@
     <div class="modal-content">
       <div class="modal-header">  
         <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 class="modal-title">积分充值</h3>
+        <h3 class="modal-title">积分充值</h3>{{data}}
       </div>
       <div class="modal-body">
         <div>
-          <span>当前用户：</span><span>我是大哥大</span>
+          <span>当前用户：</span><span>{{userId}}</span>
         </div>
         <div class="pay">
           <div class="radio">

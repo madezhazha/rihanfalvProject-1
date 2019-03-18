@@ -3,6 +3,7 @@ package psql
 import(
 	"fmt"
 	"strings"
+	"strconv"
 )
 
 
@@ -21,6 +22,13 @@ type Information struct{
 }
 
 
+type payment struct{
+	payId string
+	userId int
+	pointID int
+}
+
+
 
 type concretelaw1 struct{
 	ID string 
@@ -28,6 +36,7 @@ type concretelaw1 struct{
 	casetitle string
 	header string
 	Type string
+	integral int
 }
 
 type collectioncase struct{
@@ -310,8 +319,8 @@ func Gettime(data string,languageType string,NumberCasethingString string)interf
 }
 
 
-//法官观点
-func Gettext(data string)interface{}{
+//法官观点,没有用户的获取
+func Gettext_nouserid(data string)interface{}{
 	var con concretelaw1
 
 	//创建一个单个集合的承接数据
@@ -323,7 +332,7 @@ func Gettext(data string)interface{}{
 		return "系统出席那错误"
 	}
 	for rows.Next(){
-		err:=rows.Scan(&con.ID,&con.viewpoint,&con.casetitle,&con.header,&con.Type)
+		err:=rows.Scan(&con.ID,&con.viewpoint,&con.casetitle,&con.header,&con.Type,&con.integral)
 		if err!=nil{
 			fmt.Println(err)
 			return "系统出现错误"
@@ -333,12 +342,99 @@ func Gettext(data string)interface{}{
 		all["header"]=con.header
 		all["type"]=con.Type
 		all["ID"]=con.ID
+		all["integral"]=strconv.Itoa(con.integral)  //将它转化为字符串
 	}
 
 	defer rows.Close()
 
 	return all
 }
+
+//获取法官观点，有用户
+func Gettext_userid(data string,userId string)interface{}{
+	var con concretelaw1
+
+	//创建一个单个集合的承接数据
+	all:=make(map[string]string)
+	rows,err:=db.Query("select * from point where casetitle=$1",data) 
+
+	if err!=nil{
+		fmt.Println(err)
+		return "系统出席那错误"
+	}
+	for rows.Next(){
+		err:=rows.Scan(&con.ID,&con.viewpoint,&con.casetitle,&con.header,&con.Type,&con.integral)
+		if err!=nil{
+			fmt.Println(err)
+			return "系统出现错误"
+		}
+		all["viewpoint"]=con.viewpoint
+		all["casetitle"]=con.casetitle
+		all["header"]=con.header
+		all["type"]=con.Type
+		all["ID"]=con.ID
+		all["integral"]=strconv.Itoa(con.integral)  //将它转化为字符串
+	}
+
+	//默认title是唯一的,查找是否已经付钱了
+	searchResult:=searchpay(con.ID,userId)
+	all["searchResult"] = searchResult
+	//放回用户的积分数
+	integral:=GEtintegral(userId)
+	all["allintergral"]=integral
+	defer rows.Close()
+
+	return all
+}
+
+//利用该文章的id和用户的id进行查找
+func searchpay(titleId string,userId string)string{
+	var pay payment
+	//将字符串转化为数字
+	userID,err2 := strconv.Atoi(userId)
+	if(err2!=nil){
+		fmt.Println("titleid或userid的转化的结果出现错误",err2)
+		return "传值错误"
+	}
+	rows,err:=db.Query("select * from payment where pointid=$1",titleId)
+	if err!=nil{
+		fmt.Println(err)
+		return "系统出席那错误"
+	}
+	for rows.Next(){
+		err:=rows.Scan(&pay.payId,&pay.userId,&pay.pointID)
+		if err!=nil{
+			fmt.Println(err)
+			return "系统出现错误"
+		}
+		if(pay.userId == userID){
+			return "1"   //这个人已经付钱了
+		}
+	}
+	return "0"   //这里结束的话，就代表这个人没有付钱
+}
+
+//利用用户的id获取这个id的积分数
+func GEtintegral(userId string)string{
+	var intergral string
+	rows,err:=db.Query("select integral from users where userid=$1",userId)
+
+	if err!=nil{
+		fmt.Println("用户积分查找失败1！",err)
+		return "失败"
+	}
+
+	for rows.Next(){
+		err = rows.Scan(&intergral)
+		if(err!=nil){
+			fmt.Println("用户积分查找失败2")
+			return "失败"
+		}
+	}
+
+	return intergral
+}
+
 
 
 //执行收藏和取消收藏的指令
@@ -419,4 +515,82 @@ func Statecollect(contenTitle string,titleId int,languageType string,userId int)
 }
 
 
+//数据库端的扣钱函数
+func Pay(titleId string,userId string,integral string)string{
+	
+	//首先解决付钱的问题
+	var all_integral int
+	var need_integral int
+	need_integral,_ = strconv.Atoi(integral)    //获取需要的积分
+	fmt.Println(need_integral)
+	rows,err:=db.Query("select integral from users where userid=$1",userId)
+	if err!=nil{
+		fmt.Println("查找用户名字相对应的积分的状态的时候出现的错误1",err)
+		return "错误"
+	}
+
+	for rows.Next(){
+		err:=rows.Scan(&all_integral)
+		if err!= nil{
+			fmt.Println("查找用户名字相对应的积分的状态的时候出现的错误12",err)
+			return "错误"
+		}
+
+		fmt.Println(all_integral)
+
+		if(all_integral == 0 || (all_integral<need_integral)){
+			fmt.Println("积分不够")
+			return "积分不够"
+		}else{
+			all_integral = all_integral - need_integral
+			//把积分这钱保存在数据库中
+			integral_data :=Saveintegral(all_integral,userId)
+			if(integral_data=="保存成功"){
+				pay_data:=SavePayData(titleId,userId)
+				return pay_data
+			}
+		}
+	}
+
+	return "服务器出现问题"
+}
+
+//保存积分函数
+func Saveintegral(integral int,userId string) string{
+	//是更新数据
+	stmt, err := db.Prepare("update users set integral=$1 where userid=$2")
+
+	if err != nil {
+		//err
+		fmt.Println("保存积分的时候出现错误1")
+		return "保存积分错误"
+	}
+
+	_, err = stmt.Exec(integral,userId)
+	if err != nil {
+		fmt.Println("保存积分的时候出现错误2")
+		return "保存积分错误"
+	}
+
+	return "保存成功"
+}
+
+//当保存成功之后，就将数据保存在已经付钱的数据库中
+func SavePayData(titleId string,userId string)string{
+	stmt, err := db.Prepare("insert into payment(useid, pointid) values($1,$2)")
+
+	if err != nil {
+		//err
+		fmt.Println("保存付钱资料的时候出现错误1",err)
+		return "保存付钱资料错误"
+	}
+
+	_, err = stmt.Exec(userId,titleId)
+	if err != nil {
+		fmt.Println("保存付钱资料的时候出现错误2")
+		return "保存付钱资料错误"
+	}
+
+	return "保存成功"
+}
 
