@@ -22,7 +22,7 @@ func Get(w http.ResponseWriter, r *http.Request) {
 		json.Unmarshal([]byte(result), &id)
 		user1 := psql.SelectUser(id)
 		//判断头像是系统头像还是用户本地上传的图像(此非长久之计)
-		if(len(user1.Image)<20){
+		if(len(user1.Image)<16){
 			user1.Image = ImgToBase64(user1.Image)	// 通过路径读取图片，并转成base64传给前端
 		}
 		js, err := json.Marshal(user1)   //将数据编码成json字符串

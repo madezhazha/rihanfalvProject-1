@@ -118,7 +118,7 @@ func RegisterInsert(re *HeadUser) {
 	}
 
 	timeNow := time.Now()
-	Imageurl := "./78dea7ef1543c888ee43ded56d49ed2.png"
+	Imageurl := "./images/1.jpg"
 	_, err = stmt.Exec(re.Email, re.Password, Imageurl, timeNow)
 	if err != nil {
 		//err

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild,Renderer2 } from '@angular/core';
 import {Article} from '../paper/article'
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router} from '@angular/router';
@@ -12,6 +12,7 @@ import {fromEvent} from 'rxjs'
 })
 export class PaperComponent implements OnInit {
 
+  @ViewChild('tip') tip:ElementRef
   
   Isbottom:boolean=false;  //是否页面到底
   Isover:boolean=false;    //文章是否已无
@@ -40,9 +41,11 @@ export class PaperComponent implements OnInit {
         this.Articles=this.Articles.concat(response);
         this.CurrentPage++;
         //this.CurrentPage=this.Articles[this.Articles.length-1].ID
+        console.log(this.CurrentPage)
       }
       else{
         this.Isover=true
+        this.renderer2.setStyle(this.tip.nativeElement,"display","block")
       }
     });
   }
@@ -55,9 +58,10 @@ export class PaperComponent implements OnInit {
      {
        if(response!=null)
        {
+        //  console.log(response)
          this.Articles=response
          this.CurrentPage++;
-         //this.CurrentPage=this.Articles[this.Articles.length-1].ID
+        //  this.CurrentPage=this.Articles[this.Articles.length].ID
        }
        else{
          this.Articles=[]
@@ -79,7 +83,7 @@ export class PaperComponent implements OnInit {
     }
   }
 
-  constructor(private http:HttpClient,private router:Router) { 
+  constructor(private http:HttpClient,private router:Router,private renderer2:Renderer2) { 
     this.getArticles();
     //this.scrollCallback = this.getArticles.bind(this);
   }
@@ -97,6 +101,7 @@ export class PaperComponent implements OnInit {
             if(!this.Isover){
               setTimeout(()=>{this.getArticles();},1000)    //延时1000ms加载
               this.Isbottom=true
+              console.log(this.Articles)
             }
           }
         }

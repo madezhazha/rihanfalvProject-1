@@ -1,6 +1,6 @@
 <div class="head">
   <img src="{{BackgroundImage}}" class="back">
-  <img src="../../../../assets/logo.png" class="imge" /><br>
+  <img src="assets/logo.png" class="imge" /><br>
   <div class="oneline"><a routerLink="/homepage">首页</a></div>
   <div class="oneline"><a routerLink="/discussionarea">讨论区</a></div>
   <div class="oneline"><a routerLink="/legal">法律条文</a></div>
@@ -15,7 +15,8 @@
 
   </div>
   <div class="headImage" *ngIf="In.IfLogin">
-    <img src="data:image/jpg;base64,{{In.Image}}" class="headImage" routerLink="/userpage" />
+
+    <img src={{In.Image}} class="headImage" routerLink="/userpage" />
     <!--个人中-->
   </div>
   <div class="registerCSS" (click)="cancel()">注销</div>
