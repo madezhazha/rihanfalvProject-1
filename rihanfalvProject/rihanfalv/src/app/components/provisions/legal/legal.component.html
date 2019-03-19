@@ -1,9 +1,9 @@
 <app-webhead  (isJapan)="getJapanKorea($event)"></app-webhead>
-<aside id="aside">
+<aside id="aside" *ngIf="ifclik != false">
 <div class="back">
 <button  class="backb" (click)="hideAside()"></button>
 </div>
-<div class="category">
+<div class="category" >
   <h1>类别: {{category}}</h1>
   <li><button (click)="category = '宪法';choose()">宪法</button><button (click)="category = '教育';choose()">教育</button></li>
   <li><button (click)="category = '国会';choose()">国会</button><button (click)="category = '文化';choose()">文化</button></li>
@@ -32,7 +32,7 @@
   </div>
 </aside>
 <br>
-<a class="titles">法律条文：</a>
+<a class="titles" >法律条文：</a>
  <button class="kindb" (click)="showAside()">类别</button>
  <br>
 <div class="body">

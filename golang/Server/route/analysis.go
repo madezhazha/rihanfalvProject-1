@@ -52,6 +52,13 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 			//这里从服务端拿去数据
 			all_data := psql.Getalldata(languageType,NumberCasethingString)
 
+			if(all_data == "系统出现错误"){
+				response := Response{all_data.(string)}
+				json, _ := json.Marshal(response)
+				w.Write(json)
+				return
+			}
+
 			json, _ := json.Marshal(all_data)
 
 			//发送数据
@@ -66,6 +73,13 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 			NumberCasethingString = data["NumberCasething"].(string)   
 			all_data := psql.Getfirstfloor(getBody,languageType,NumberCasethingString)
 
+			if(all_data == "系统出现错误"){
+				response := Response{all_data.(string)}
+				json, _ := json.Marshal(response)
+				w.Write(json)
+				return
+			}
+
 			json, _ := json.Marshal(all_data)
 
 			w.Write(json)
@@ -77,6 +91,13 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 			languageType=data["languageType"].(string)
 			NumberCasethingString = data["NumberCasething"].(string) 
 			all_data := psql.Getreason(getBody,languageType,NumberCasethingString)
+
+			if(all_data == "系统出现错误"){
+				response := Response{all_data.(string)}
+				json, _ := json.Marshal(response)
+				w.Write(json)
+				return
+			}
 
 			json, _ := json.Marshal(all_data)
 
@@ -91,6 +112,13 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 
 			all_data := psql.Gettime(getBody,languageType,NumberCasethingString)
 
+			if(all_data == "系统出现错误"){
+				response := Response{all_data.(string)}
+				json, _ := json.Marshal(response)
+				w.Write(json)
+				return
+			}
+
 			json, _ := json.Marshal(all_data)
 
 			w.Write(json)
@@ -101,6 +129,13 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 			languageType=data["languageType"].(string)
 			NumberCasethingString = data["NumberCasething"].(string) 
 			all_data := psql.Getlevel(getBody,languageType,NumberCasethingString)
+
+			if(all_data == "系统出现错误"){
+				response := Response{all_data.(string)}
+				json, _ := json.Marshal(response)
+				w.Write(json)
+				return
+			}
 
 			json, _ := json.Marshal(all_data)
 
@@ -115,6 +150,13 @@ func Displayhomeall(w http.ResponseWriter, r *http.Request) {
 			NumberCasethingString = data["NumberCasething"].(string) 
 			all_data := psql.Getsecondfloor(getBody,languageType,NumberCasethingString)
 
+			if(all_data == "系统出现错误"){
+				response := Response{all_data.(string)}
+				json, _ := json.Marshal(response)
+				w.Write(json)
+				return
+			}
+
 			json, _ := json.Marshal(all_data)
 
 			w.Write(json)
@@ -128,6 +170,7 @@ func Displaytxt(w http.ResponseWriter, r *http.Request) {
 	//解析从前端发来的数据
 	var data map[string]interface{}
 	var content string
+	var userId string
 
 	body, err := ioutil.ReadAll(r.Body)
 
@@ -144,11 +187,19 @@ func Displaytxt(w http.ResponseWriter, r *http.Request) {
 
 	if data != nil {
 		content = data["content"].(string) //这个是标题的内容
-		//根据这个部分处理从前端发来的请求
-		all_data := psql.Gettext(content) //这个是法官的观点
-		json, _ := json.Marshal(all_data)
 
-		w.Write(json)
+		if(data["userid"]!=nil){
+			userId = data["userid"].(string)
+			fmt.Println(userId)
+			all_data:=psql.Gettext_userid(content,userId)
+			json, _ := json.Marshal(all_data)
+			w.Write(json)
+		}else{
+			fmt.Println("没有")
+			all_data:= psql.Gettext_nouserid(content)
+			json, _ := json.Marshal(all_data)
+			w.Write(json)
+		}
 	}
 }
 
@@ -167,7 +218,7 @@ func CollectData(w http.ResponseWriter,r *http.Request){
 
 	if err!=nil{
 		fmt.Println(err)
-		var info string ="连接出现错误"
+		var info string ="系统出现错误"
 		response:=Response{info}
 		json,_:=json.Marshal(response)
 		w.Write(json)
@@ -185,7 +236,13 @@ func CollectData(w http.ResponseWriter,r *http.Request){
 		userId = Data["userid"].(string)
 		userID,_:= strconv.Atoi(userId)
 		
-		psql.Implement(content,insturction,titleID,languageType,userID,t)
+		data:=psql.Implement(content,insturction,titleID,languageType,userID,t)
+		if(data=="系统出现错误"){
+			response:=Response{data}
+			json,_:=json.Marshal(response)
+			w.Write(json)
+			return
+		}
 		//给了时间
 	}
 }
@@ -205,7 +262,7 @@ func InitialState(w http.ResponseWriter,r *http.Request){
 
 	if err!=nil{
 		fmt.Println(err)
-		var info string ="连接出现错误"
+		var info string ="系统出现错误"
 		response:=Response{info}
 		json,_:=json.Marshal(response)
 		w.Write(json)
@@ -223,10 +280,57 @@ func InitialState(w http.ResponseWriter,r *http.Request){
 		userID,_:= strconv.Atoi(userId)
 		
 		data:=psql.Statecollect(content,titleID,languageType,userID)
-
+		if(data=="系统出现错误"){
+			response:=Response{data}
+			json,_:=json.Marshal(response)
+			w.Write(json)
+			return
+		}
 		response:=Response{data}
 
 		json,_:=json.Marshal(response)
 		w.Write(json)
 	}
+}
+
+
+//付款
+func Payment(w http.ResponseWriter,r *http.Request){
+	w = Cross(w)
+
+	var Data map[string]interface{}
+	var titleId string
+	var userId string
+	var integral string
+
+	//查看从前端发来的数据
+	body,err:=ioutil.ReadAll(r.Body)
+
+	if err!=nil{
+		fmt.Println(err)
+		var info string ="连接出现错误"
+		response:=Response{info}
+		json,_:=json.Marshal(response)
+		w.Write(json)
+		return
+	}
+	json.Unmarshal(body,&Data)
+	
+	if Data!=nil{
+		titleId = Data["titleid"].(string)
+		userId = Data["userid"].(string)
+		integral = Data["integral"].(string)
+		data:= psql.Pay(titleId,userId,integral)
+
+		if(data=="系统出现错误"){
+			response:=Response{data}
+			json,_:=json.Marshal(response)
+			w.Write(json)
+			return
+		}
+		response:=Response{data}
+		json,_:=json.Marshal(response)
+		w.Write(json)
+	}
+
 }

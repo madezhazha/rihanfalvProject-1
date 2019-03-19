@@ -56,4 +56,24 @@ ERROR 2019/03/10 14:17:05 thread.go:17: pq: column "integral" does not exist
 >>>>>>> 690fcfa841e4045d6ed5a30d6c50949caf82e66c
 ERROR 2019/03/11 16:49:55 post.go:19: strconv.Atoi: parsing "undefined": invalid syntax
 ERROR 2019/03/15 22:25:16 thread.go:37: dial tcp 123.207.121.2:5432: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+<<<<<<< HEAD
 ERROR 2019/03/17 23:52:04 post.go:37: sql: no rows in result set
+=======
+ERROR 2019/03/17 17:36:27 thread.go:18: sql: Scan error on column index 6, name "finalreplytime": unsupported Scan, storing driver.Value type <nil> into type *psql.JSONTime
+ERROR 2019/03/17 17:36:39 thread.go:18: sql: Scan error on column index 6, name "finalreplytime": unsupported Scan, storing driver.Value type <nil> into type *psql.JSONTime
+ERROR 2019/03/18 21:17:43 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:19:26 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:20:25 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:22:02 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:22:05 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:25:48 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:26:10 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:30:22 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:30:41 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:30:55 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:31:32 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:32:23 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:32:27 post.go:41: sql: no rows in result set
+ERROR 2019/03/18 21:34:35 post.go:41: sql: no rows in result set
+ERROR 2019/03/19 14:21:51 post.go:41: sql: no rows in result set
+>>>>>>> d68c1b6e69c6262ef080c482d6f0849cddedc84e
