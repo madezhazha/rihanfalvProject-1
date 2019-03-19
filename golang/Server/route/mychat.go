@@ -130,3 +130,32 @@ func AddTopics(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprintf(w, "%s", rs)
 }
+
+//主贴阅读量加一
+func AddTopicVisitNumber(w http.ResponseWriter, r *http.Request){
+	w = Cross(w)
+
+	defer r.Body.Close()
+
+	s, err := ioutil.ReadAll(r.Body) //把  body 内容读入字符串 s
+	if err != nil {
+		fmt.Println("ReadAll:", err)
+		return
+	}
+
+	var postbody psql.Topics
+	err = json.Unmarshal(s, &postbody)
+	if err != nil {
+		fmt.Println("Unmarshal:", err)
+		return
+	}
+	fmt.Println("Test right :", postbody.Topicid)
+
+	err = psql.AddTopicVisNum(postbody.Topicid)
+	if err != nil {
+		fmt.Println("AddTopicVisNum:", err)
+		return
+	}
+
+	fmt.Fprintf(w, "%s", rs)
+}

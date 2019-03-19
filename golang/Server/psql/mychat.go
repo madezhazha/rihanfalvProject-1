@@ -58,7 +58,8 @@ type Getid struct {
 
 //获取个人信息
 func GetUserInfo(postbody Users) Users {
-	err := db.QueryRow(" select username,password,email,image,integral from users where userid=$1", &postbody.Userid).Scan(&postbody.Username, &postbody.Password, &postbody.Email, &postbody.Image, &postbody.Integral)
+	getInfo := " select username,password,email,image,integral from users where userid=$1"
+	err := db.QueryRow(getInfo, &postbody.Userid).Scan(&postbody.Username, &postbody.Password, &postbody.Email, &postbody.Image, &postbody.Integral)
 	if err != nil {
 		if err == sql.ErrNoRows {
 		} else {
@@ -77,7 +78,8 @@ func GetUserInfo(postbody Users) Users {
 //获取主贴
 func GetUserTopic(postbody int) []Topics {
 	var usertopics []Topics
-	rows, err := db.Query(" select * from topics where posterid=$1 ", postbody)
+	getTopic  := " select topicid,posterid,topictitle,topiccontent,creationtime - interval '8 Hours',numberofreplies,finalreplytime - interval '8 Hours',collectionvolume,visitvolume,japanorkorea,label from topics where posterid=$1 "
+	rows, err := db.Query(getTopic, postbody)
 	if err != nil {
 		fmt.Println(err)
 		//return
@@ -93,7 +95,7 @@ func GetUserTopic(postbody int) []Topics {
 		}
 
 		usertopics = append(usertopics, temp)
-		fmt.Println("Test replytime :", temp.Finalreplytime)
+		//fmt.Println("Test replytime :", temp.Finalreplytime)
 	}
 	err = rows.Err()
 	if err != nil {
@@ -106,7 +108,8 @@ func GetUserTopic(postbody int) []Topics {
 //获取回帖
 func GetUserReply(postbody Getid) []Replies {
 	var userreplies []Replies
-	rows, err1 := db.Query(" select * from replies where userid=$1 ", postbody.Userid)
+	getReply := " select replieid,userid,topicid,replycontent,floor,replytime - interval '8 Hours' from replies where userid=$1 "
+	rows, err1 := db.Query(getReply, postbody.Userid)
 	if err1 != nil {
 		fmt.Println(err1)
 		//return
@@ -133,16 +136,35 @@ func GetUserReply(postbody Getid) []Replies {
 
 //添加主贴
 func InsertTopic(postbody Topics) {
-	stmt, err := db.Prepare("insert into topics(posterid,topictitle,topiccontent,creationtime,finalreplytime,japanorkorea,label) values($1,$2,$3,$4,$5,$6,$7)")
+	insertTopic := "insert into topics(posterid,topictitle,topiccontent,japanorkorea,label) values($1,$2,$3,$4,$5)"
+	stmt, err := db.Prepare(insertTopic)
 	if err != nil {
 		log.Fatal(err)
 	}
-	_, err = stmt.Exec(postbody.Userid, postbody.Topictitle, postbody.Topiccontent, time.Now(), time.Now(), postbody.Japanorkorea, postbody.Topiclabel)
+	_, err = stmt.Exec(postbody.Userid, postbody.Topictitle, postbody.Topiccontent, postbody.Japanorkorea, postbody.Topiclabel)
 	if err != nil {
 		log.Fatal(err)
 	} else {
 		fmt.Println("insert into user_tbl success")
 	}
+}
+
+//阅读量加一
+func AddTopicVisNum(topicId int) error {
+	addVisNum := "update topics set visitvolume=visitvolume+1 where topicid=$1"
+	stmt, err := db.Prepare(addVisNum)
+	if err != nil {
+		fmt.Println("Prepare:", err)
+		return err
+	}
+	_, err = stmt.Exec(topicId)
+	if err != nil {
+		fmt.Println("Exec:", err)
+		return err
+	} else {
+		fmt.Println("udpate topics-visitvolume success")
+	}
+	return nil
 }
 
 // Img_ToBase64 根据图片的地址得到图片的二进制，再把图片转成字符串（抄袭组长以及队友的函数）

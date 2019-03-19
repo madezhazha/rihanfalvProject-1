@@ -13,7 +13,7 @@
     <ul>
       <li *ngFor="let item of AnsList;let key=index" [hidden]="key>this.DisplayCount" >
         <div id="Ansorder">
-            <a routerLink="/post?topicID={{item.topicid}}">
+            <a routerLink="/post?topicID={{item.topicid}}" (click)="readTopic(item.topicid)">
            <!-- <a href="post?topicID={{item.topicid}}"> -->
                 <div class="List">
                   <div class="Info">

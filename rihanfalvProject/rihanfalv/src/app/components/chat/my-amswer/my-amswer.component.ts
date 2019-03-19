@@ -73,6 +73,18 @@ export class MyAmswerComponent implements OnInit {
         console.log(this.DisplayCount);
     })
   }
+  
+  //点击阅读原文，阅读量加一
+  readTopic(topicId:number){
+
+    const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
+    let api="http://127.0.0.1:7080/addtopicvisnum";    
+    this.http.post(api,{topicid:topicId},httpOptions).subscribe((response:any)=>{
+      
+      console.log(response);
+        
+    })
+  }
 
   // 加载更多
   loadMore(){
