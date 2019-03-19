@@ -11,13 +11,14 @@ import{DosearchService}from "../../components/search/dosearch.service"
 })
 export class SearchComponent implements OnInit {
 public Nowcountry:string=localStorage.getItem("JapanOrKorea");   //当前模块 日/韩 用于进行筛选显示
-public KeyWord:string;//搜索关键词
+public KeyWord:string="";//搜索关键词
 public HistoryList:any[]=[];//搜索历史
 public IfHistory=false;//是否存在历史记录
 public getkey:any={}
 public searchlist=["全部","法律条文","论文","案例"]
 public searchgroup="全部"
 public ifsearch=false//搜索状态,false显示搜索历史,true显示搜索内容
+
   constructor(public router: Router,public http:HttpClient,public m_search:DosearchService) { }
 
   ngOnInit() {this.readHistory()
@@ -40,16 +41,26 @@ readHistory(){
   }
 }
 
+nullkeyword(){  //判断是否为纯空字符串
+  const Reg = new RegExp(" ", 'gi');    
+  let str=this.KeyWord.replace(Reg,"")
+  if(str==""){
+return true
+  }
+  return false
+}
+
 
 doSearch(){//搜索按键
-  this.m_search.list=null;
   if(!this.KeyWord)return;
+  if(this.nullkeyword()==true)return;
   if(this.HistoryList.indexOf(this.KeyWord)==-1)//判断是否有重复
   this.HistoryList.push(this.KeyWord)//无重复则pushKeyWord进List
   if(this.HistoryList.length==10)
   this.HistoryList.splice(0,1)//当记录到达10时删除第一条
   localStorage.setItem('HistoryList',JSON.stringify(this.HistoryList));//储存进localstorage
-  this.readHistory()
+  this.readHistory() 
+  this.m_search.list=null;
   this.m_search.Order="all";
   this.m_search.KeyWord=this.KeyWord
   this.m_search.Classify=this.searchgroup
@@ -91,6 +102,7 @@ getJapanKorea(isJapan:boolean){
   }
 }
 order(order){//排序方式传递
+if(!this.KeyWord)return;
 this.m_search.Order=order;
 this.m_search.KeyWord=this.KeyWord
 this.m_search.Classify=this.searchgroup

@@ -29,7 +29,7 @@ type Searchbox struct{
 	Trialgrade string `json:Trialgrade`//案例参数4
 }
 
-func Getclass(readkey string,readcountry string,readclass string,readorder string,searchlist []Searchbox)[]Searchbox{
+func Getclass(readkey []string,readcountry string,readclass string,readorder string,searchlist []Searchbox)[]Searchbox{
 	if readcountry=="日"{
 		readcountry="japan"
 	}
@@ -59,13 +59,20 @@ func Getclass(readkey string,readcountry string,readclass string,readorder strin
 	return searchlist
 }
 
-func Legalsearch(readkey string,readorder string,searchlist []Searchbox)[]Searchbox{//从法律数据库查询
+func Legalsearch(readkey []string,readorder string,searchlist []Searchbox)[]Searchbox{//从法律数据库查询
 	var m Searchbox
-		 //得到查找的语句，%_%表示前后模糊查找
-		searchstr := "select * from "+class+" where LegalTitle like '%" + readkey + "%' or LegalContent like '%" + readkey + "%' " 
-		if readorder=="onlytitle"{
-			searchstr = "select * from "+class+" where LegalTitle like '%" + readkey + "%'"
+	str1:=" LegalTitle like '%"+readkey[0]+"%' "
+	str2:=" Legalcontent like '%"+readkey[0]+"%' "
+	length:=len(readkey)
+	for i:=1;i<length;i++{
+	str1+=" and LegalTitle like '%"+readkey[i]+"%' "
+	str2+=" and Legalcontent like '%"+readkey[i]+"%' "
+	}
+	searchstr := "select * from "+class+" where "+str1+ " or "+ str2 //拼接到查找的语句，%_%表示前后模糊查找，sql里and优先级＞or
+	if readorder=="onlytitle"{
+			searchstr = "select * from "+class+" where "+ str1
 		} 
+		fmt.Println(searchstr)
 		rows, err := db.Query(searchstr)
 		if err != nil {
 			fmt.Println("ERROR:", err)
@@ -79,13 +86,22 @@ func Legalsearch(readkey string,readorder string,searchlist []Searchbox)[]Search
 		}	
 	return searchlist
 }
-func Thesissearch(readkey string,readorder string,searchlist []Searchbox)[]Searchbox{//从论文数据库查询
+func Thesissearch(readkey []string,readorder string,searchlist []Searchbox)[]Searchbox{//从论文数据库查询
 	var m Searchbox
 	 //得到查找的语句，%_%表示前后模糊查找
-		searchstr := "select * from "+class+" where ThesisTitle like '%" + readkey + "%' or ThesisContent like '%" + readkey + "%' "
+	 str1:=" ThesisTitle like '%"+readkey[0]+"%' "
+	str2:=" ThesisContent like '%"+readkey[0]+"%' "
+	length:=len(readkey)
+	for i:=1;i<length;i++{
+	str1+=" and ThesisTitle like '%"+readkey[i]+"%' "
+	str2+=" and ThesisContent like '%"+readkey[i]+"%' "
+	}
+	searchstr := "select * from "+class+" where "+str1+ " or "+ str2 
 		if readorder=="onlytitle"{
-			searchstr = "select * from "+class+" where ThesisTitle like '%" + readkey + "%'"
+			searchstr = "select * from "+class+" where "+str1
 		} 
+		fmt.Println(searchstr)
+
 		rows, err := db.Query(searchstr)
 		if err != nil {
 			fmt.Println("ERROR:", err)
@@ -94,6 +110,8 @@ func Thesissearch(readkey string,readorder string,searchlist []Searchbox)[]Searc
 		for rows.Next() { //将rows赋值
 		rows.Scan(&m.ID, &m.Title, &m.Author, &m.Time, &m.Content,&m.Length,&m.Label)
 		m.Labelbox=strings.Split(m.Label,"/")
+
+		
 		m.Classify="论文"
 		searchlist=append(searchlist,m)
 		}	
@@ -101,13 +119,21 @@ func Thesissearch(readkey string,readorder string,searchlist []Searchbox)[]Searc
 	return searchlist
 }
 
-func Analysissearch(readkey string,readorder string,searchlist []Searchbox)[]Searchbox{//从案例数据库查询
+func Analysissearch(readkey []string,readorder string,searchlist []Searchbox)[]Searchbox{//从案例数据库查询
 	var m Searchbox
 	 //得到查找的语句，%_%表示前后模糊查找
-		searchstr := "select * from casething where casetitle like '%" + readkey + "%' or casecontent like '%" + readkey + "%' " 
-		if readorder=="onlytitle"{
-			searchstr = "select * from casething where casetitle like '%" + readkey + "%'"
-		} 
+	 str1:=" casetitle like '%"+readkey[0]+"%' "
+	 str2:=" casecontent like '%"+readkey[0]+"%' "
+	 length:=len(readkey)
+	 for i:=1;i<length;i++{
+	 str1+=" and casetitle like '%"+readkey[i]+"%' "
+	 str2+=" and casecontent like '%"+readkey[i]+"%' "
+	 }
+	 searchstr := "select * from casething where "+str1+ " or "+ str2 
+	 if readorder=="onlytitle"{
+		 searchstr = "select * from casething where "+str1
+	 } 
+	 fmt.Println(searchstr)
 		rows, err := db.Query(searchstr)
 		if err != nil {
 			fmt.Println("ERROR:", err)
@@ -122,15 +148,15 @@ func Analysissearch(readkey string,readorder string,searchlist []Searchbox)[]Sea
 	return searchlist
 }
 
-func Scoreofsearch(searchlist []Searchbox,readkey string){//判断内容的相关度
+func Scoreofsearch(searchlist []Searchbox,readkey []string){//判断内容的相关度
 	i:=0;
 	lenth:=len(searchlist)
 	for ;i<lenth;i++{
         searchlist[i].Value=0
-		titlecount:=strings.Count(searchlist[i].Title, readkey)//获取内容中key的出现次数
+		titlecount:=strings.Count(searchlist[i].Title, readkey[0])//获取内容中key的出现次数
 		searchlist[i].Value=searchlist[i].Value+titlecount*100
 		//fmt.Println("标题包含：",titlecount) 
-		contentcount:=strings.Count(searchlist[i].Content, readkey)
+		contentcount:=strings.Count(searchlist[i].Content, readkey[0])
 		searchlist[i].Value=searchlist[i].Value+contentcount*5
 		// fmt.Println("内容包含",contentcount)  
 		// fmt.Println("相关度：",searchlist[i].Value)

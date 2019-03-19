@@ -50,11 +50,7 @@ func ArticleList(w http.ResponseWriter, r *http.Request) {
 	} else if mes.Country == "Korea" {
 		Articles = psql.GetKoreaArticlesPart(mes.CurrentPage - 1)
 	}
-<<<<<<< HEAD
-	data,_:=json.Marshal(Articles) 
-=======
 	data, _ := json.Marshal(Articles)
->>>>>>> 2a85058073349ba36eb29c84b81b7e540ee4cda7
 	w.Write(data)
 	//fmt.Println("submit Articles sucess")
 }
