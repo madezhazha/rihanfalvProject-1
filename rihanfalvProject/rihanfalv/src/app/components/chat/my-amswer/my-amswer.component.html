@@ -1,12 +1,9 @@
 <!-- 提问、回答 头部 -->
 <div id="DetailHeader">
-  <a id="QAReturn" (click)="detailReturn()" >&lt;返回</a>
-  <!-- [routerLink]="[ '/discussion/myqueans' ]" -->
+  <a id="QAReturn" routerLink="/mychat" >&lt;返回</a>
   <span id="DeHeadQA">
-    <a id="QAMyQue" (click)="detailMyQue()" >我的提问</a>
-    <!-- [routerLink]="[ '/queansdetail/myquestion' ]" -->
-    <a id="QAMyAns" (click)="detailMyAns()" >我的回答</a>
-    <!-- [routerLink]="[ '/queansdetail/myanswer' ]" -->
+    <a id="QAMyQue" routerLink="/myquestion" >我的提问</a>
+    <a id="QAMyAns" routerLink="/myanswer" >我的回答</a>
   </span>
 </div>
 
@@ -16,8 +13,8 @@
     <ul>
       <li *ngFor="let item of AnsList;let key=index" [hidden]="key>this.DisplayCount" >
         <div id="Ansorder">
-
-           <a href="post?topicID={{item.topicid}}">
+            <a routerLink="/post?topicID={{item.topicid}}">
+           <!-- <a href="post?topicID={{item.topicid}}"> -->
                 <div class="List">
                   <div class="Info">
                       

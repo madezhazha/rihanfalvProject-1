@@ -14,7 +14,7 @@ export class MyQuestionComponent implements OnInit {
   // 个人信息
   public UserId:number;
   public UserName:string='qq_sasx';
-  public MyQueCount:number=3;
+  public MyQueCount:number=0;
   public LoginStatus:boolean=false;
 
   // 回答 列表
@@ -22,10 +22,7 @@ export class MyQuestionComponent implements OnInit {
   public QueList:any;
 
   //显示数量
-  public DisplayCount:number=3;
-
-  // 选择状态（补充，此状态不重要）
-  public QAStatus:number=1;
+  public DisplayCount:number=4;
 
   constructor(public router:Router,public http:HttpClient) { }
 
@@ -45,29 +42,6 @@ export class MyQuestionComponent implements OnInit {
     this.loadQueList();
   }
 
-
-  //返回我的问答页面
-  detailReturn(){
-
-    this.router.navigate(['/mychat']);
-  }
-  
-  //显示提问列表
-  detailMyQue(){
-
-    this.QAStatus=1;
-    console.log(this.QAStatus);
-    this.router.navigate(['/myquestion']);
-  }
-
-  //显示回答列表
-  detailMyAns(){
-
-    this.QAStatus=2;
-    console.log(this.QAStatus);
-    this.router.navigate(['/myanswer']);
-  }
-
   // 加载列表
   //加载个人信息
   loadUserInfo(){
@@ -76,7 +50,7 @@ export class MyQuestionComponent implements OnInit {
     let api="http://127.0.0.1:7080/showuserinfo";    
     var postdate = {userid:this.UserId,username:"",password:"",email:"",integral:0};
     this.http.post(api,postdate,httpOptions).subscribe((response:any)=>{
-      console.log(response);
+      //console.log(response);
         this.Userinfo=response;
         
         this.UserName=this.Userinfo.username;
@@ -88,10 +62,16 @@ export class MyQuestionComponent implements OnInit {
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
     let api="http://127.0.0.1:7080/showuserquelist";    
     this.http.post(api,{userid:this.UserId},httpOptions).subscribe((response:any)=>{
-      console.log(response);
+      //console.log(response);
         this.QueList=response;
         
         this.MyQueCount=response.length;
+        
+        if(this.DisplayCount>=this.MyQueCount){
+          this.DisplayCount=this.MyQueCount-1;
+        }
+        console.log(this.MyQueCount)
+        console.log(this.DisplayCount);
     })
   }
 
@@ -99,7 +79,7 @@ export class MyQuestionComponent implements OnInit {
   loadMore(){
     if(this.DisplayCount<this.MyQueCount)
     this.DisplayCount+=5;
-    console.log(this.DisplayCount);
+    //console.log(this.DisplayCount);
   }
 
 }
