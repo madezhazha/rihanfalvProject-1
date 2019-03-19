@@ -51,6 +51,8 @@ func main() {
 	mux.HandleFunc("/showuserquelist", route.ShowUserQueList) // 个人提问列表
 	mux.HandleFunc("/showuseranslist", route.ShowUserAnsList) // 个人回答列表
 	mux.HandleFunc("/addtopics", route.AddTopics)             // 添加帖子
+	mux.HandleFunc("/addtopicvisnum", route.AddTopicVisitNumber)	//阅读量+1
+	//mux.HandleFunc("/showreplies", route.ShowReplies)		//显示我的主贴的回复信息
 
 	//法律条文
 	mux.HandleFunc("/country", route.Nowcountry)

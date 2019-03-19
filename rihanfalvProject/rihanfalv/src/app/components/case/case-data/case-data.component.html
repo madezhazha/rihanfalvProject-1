@@ -8,7 +8,10 @@
 </div>
 
 <div>
-  <h2>首部</h2>
+  <div>
+    <div class="header"><h2>首部</h2></div>
+    <div class="return"><button (click)="goBack()">返回</button></div>
+  </div>
   <div [innerHTML]="header"></div>
 </div>
 
@@ -27,7 +30,7 @@
       </div>
       <div class="modal-body">
         <div>
-          <span><span>{{userId}}</span>的积分：</span><span>{{allintegral}}</span><span>分</span>
+          <span><span>{{username}}</span>的积分：</span><span>{{allintegral}}</span><span>分</span>
         </div>
         <div>
           <hr>

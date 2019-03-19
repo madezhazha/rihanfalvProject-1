@@ -26,10 +26,10 @@ func ShowUserInfo(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Users
 	err = json.Unmarshal(s, &postbody)
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	postbody=psql.GetUserInfo(postbody)
 	
@@ -55,10 +55,10 @@ func ShowUserQueList(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Getid
 	err = json.Unmarshal(s, &postbody) //获取id
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	var usertopics []psql.Topics
 
@@ -87,10 +87,10 @@ func ShowUserAnsList(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Getid
 	err = json.Unmarshal(s, &postbody) //获取id
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	var userreplies []psql.Replies
 	userreplies=psql.GetUserReply(postbody)
@@ -117,10 +117,10 @@ func AddTopics(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Topics
 	err = json.Unmarshal(s, &postbody)
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	psql.InsertTopic(postbody)
 
@@ -129,4 +129,33 @@ func AddTopics(w http.ResponseWriter, r *http.Request) {
 		log.Fatalln(err)
 	}
 	fmt.Fprintf(w, "%s", rs)
+}
+
+//主贴阅读量加一
+func AddTopicVisitNumber(w http.ResponseWriter, r *http.Request){
+	w = Cross(w)
+
+	defer r.Body.Close()
+
+	s, err := ioutil.ReadAll(r.Body) //把  body 内容读入字符串 s
+	if err != nil {
+		fmt.Println("ReadAll:", err)
+		return
+	}
+
+	var postbody psql.Topics
+	err = json.Unmarshal(s, &postbody)
+	if err != nil {
+		//fmt.Println("Unmarshal:", err)
+		return
+	}
+	//fmt.Println("Test right :", postbody.Topicid)
+
+	err = psql.AddTopicVisNum(postbody.Topicid)
+	if err != nil {
+		fmt.Println("AddTopicVisNum:", err)
+		return
+	}
+
+	//fmt.Fprintf(w, "%s", rs)
 }

@@ -15,8 +15,9 @@ export class ToQuestionComponent implements OnInit {
   public UserId:number;
   public TopicTitle:string='';
   public TopicContent:string='';
-  public TopicLabel:any[]=[];
+  public TopicLabel:any='';
   public LoginStatus:boolean=false;
+  public JapanOrKorea:number;
 
   constructor(public router:Router,public http:HttpClient) { }
 
@@ -30,6 +31,14 @@ export class ToQuestionComponent implements OnInit {
       this.LoginStatus=false;
       this.router.navigate(['/mychat']);  //未登录跳转
     } 
+
+    //初始化
+    if( localStorage.getItem("JapanOrKorea")=="日" ){
+      this.JapanOrKorea=1;
+    }
+    else this.JapanOrKorea=0;
+    //console.log(localStorage.getItem("JapanOrKorea"));
+    //console.log(this.JapanOrKorea);
   }
 
   // 添加主贴
@@ -43,11 +52,15 @@ export class ToQuestionComponent implements OnInit {
       alert('提问内容不能为空！');
       return 
     }
+    else if(this.TopicLabel==''){
+      alert('标签内容不能为空！');
+      return
+    }
     
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
 
     var api='http://127.0.0.1:7080/addtopics';
-    var postdate = {userid:this.UserId,topictitle:this.TopicTitle,topiccontent:this.TopicContent,japanorkorea:1,topiclabel:this.TopicLabel}
+    var postdate = {userid:this.UserId,topictitle:this.TopicTitle,topiccontent:this.TopicContent,japanorkorea:this.JapanOrKorea,topiclabel:this.TopicLabel}
     this.http.post<string>(api,postdate,httpOptions).subscribe((response)=>{
       console.log(response);
       
@@ -56,6 +69,14 @@ export class ToQuestionComponent implements OnInit {
       console.log(this.TopicLabel);
     })
     
+  }
+
+  //获取日韩转变
+  getJapanKorea(e){
+    if(e){
+      this.JapanOrKorea=1;
+    }
+    else this.JapanOrKorea=0;
   }
 
   //返回我的问答

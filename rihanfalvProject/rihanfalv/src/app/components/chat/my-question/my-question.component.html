@@ -1,12 +1,9 @@
 <!-- 提问、回答 头部 -->
 <div id="DetailHeader">
-  <a id="QAReturn" (click)="detailReturn()" >&lt;返回</a>
-  <!-- [routerLink]="[ '/discussion/myqueans' ]" -->
+  <a id="QAReturn" routerLink="/mychat" >&lt;返回</a>
   <span id="DeHeadQA">
-    <a id="QAMyQue" (click)="detailMyQue()" >我的提问</a>
-    <!-- [routerLink]="[ '/queansdetail/myquestion' ]" -->
-    <a id="QAMyAns" (click)="detailMyAns()" >我的回答</a>
-    <!-- [routerLink]="[ '/queansdetail/myanswer' ]" -->
+    <a id="QAMyQue" routerLink="/myquestion" >我的提问</a>
+    <a id="QAMyAns" routerLink="/myanswer" >我的回答</a>
   </span>
 </div>
 
@@ -16,21 +13,8 @@
 
     <ul>
       <li *ngFor="let item of QueList;let key=index" [hidden]="key>this.DisplayCount" >
-        <div id="Queorder">
-
-            <a href="post?topicID={{item.topicid}}">
+        <div id="Queorder" (click)="readTopic(item)">
               <div class="List">
-                <!-- <div class="Info">
-                    <div class="Image">
-                          <img width="28px" height="28px" src="../../../../assets/images/index/u159.png" >
-                    </div>
-                    
-                    <div class="NameTime">
-                      <div class="Nickname">{{this.UserName}}</div>
-                      <div class="LastTime">{{item.creationtime | date:'HH:mm:ss yyyy/MM/dd'}} </div>
-                    </div>
-                    
-                </div> -->
                  
                 <div class="Content">
                   <h3>{{item.topictitle}}</h3>
@@ -41,7 +25,6 @@
                 
 
                 <div class="TailData">
-                  <!-- <div class="LastTime">发表时间：{{item.creationtime | date:'HH:mm:ss yyyy/MM/dd'}} </div> -->
                   <span>replies: {{item.numberofreplies}}</span>&nbsp;&nbsp;
                   <span>visit: {{item.visitvolume}}</span>&nbsp;&nbsp;
                   <span>collection: {{item.collectionvolume}}</span>
@@ -51,18 +34,24 @@
                 </div>
                 
               </div>
-            </a>
+            <!-- </a> -->
 
         </div>
       </li>
 
       <li *ngIf="DisplayCount < MyQueCount">
-        <div id="loadmore">
+        <div class="loadmore">
           <a (click)="loadMore()">
           <span>加载更多...</span>
         </a>
         </div>
       </li>
+
+      <li *ngIf="DisplayCount >= MyQueCount" >
+          <div class="loadmore">
+            <span>暂无更多</span>
+          </div>
+        </li>
 
     </ul>
   </div>

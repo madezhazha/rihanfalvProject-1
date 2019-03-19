@@ -1,4 +1,4 @@
-<app-webhead></app-webhead>
+<app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
 
 <div id="WantToQue">
   <input type="text" placeholder="问题标题" [(ngModel)]="TopicTitle">
@@ -6,5 +6,4 @@
   <input type="text" placeholder="添加标签，每个用空格隔开，最多三个" [(ngModel)]="TopicLabel">
   <button (click)="addTopics()">提交</button>
   <button (click)="toQueReturn()">返回</button>
-  <!-- [routerLink]="[ '/discussion/myqueans' ]" -->
 </div>
