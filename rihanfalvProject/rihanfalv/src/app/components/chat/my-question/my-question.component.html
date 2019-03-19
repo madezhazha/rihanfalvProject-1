@@ -13,9 +13,7 @@
 
     <ul>
       <li *ngFor="let item of QueList;let key=index" [hidden]="key>this.DisplayCount" >
-        <div id="Queorder">
-            <a routerLink="/post?topicID={{item.topicid}}" (click)="readTopic(item.topicid)">
-            <!-- <a href="post?topicID={{item.topicid}}"> -->
+        <div id="Queorder" (click)="readTopic(item)">
               <div class="List">
                  
                 <div class="Content">
@@ -36,18 +34,24 @@
                 </div>
                 
               </div>
-            </a>
+            <!-- </a> -->
 
         </div>
       </li>
 
       <li *ngIf="DisplayCount < MyQueCount">
-        <div id="loadmore">
+        <div class="loadmore">
           <a (click)="loadMore()">
           <span>加载更多...</span>
         </a>
         </div>
       </li>
+
+      <li *ngIf="DisplayCount >= MyQueCount" >
+          <div class="loadmore">
+            <span>暂无更多</span>
+          </div>
+        </li>
 
     </ul>
   </div>

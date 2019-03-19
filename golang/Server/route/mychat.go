@@ -26,10 +26,10 @@ func ShowUserInfo(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Users
 	err = json.Unmarshal(s, &postbody)
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	postbody=psql.GetUserInfo(postbody)
 	
@@ -55,10 +55,10 @@ func ShowUserQueList(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Getid
 	err = json.Unmarshal(s, &postbody) //获取id
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	var usertopics []psql.Topics
 
@@ -87,10 +87,10 @@ func ShowUserAnsList(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Getid
 	err = json.Unmarshal(s, &postbody) //获取id
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	var userreplies []psql.Replies
 	userreplies=psql.GetUserReply(postbody)
@@ -117,10 +117,10 @@ func AddTopics(w http.ResponseWriter, r *http.Request) {
 	var postbody psql.Topics
 	err = json.Unmarshal(s, &postbody)
 	if err != nil {
-		fmt.Println("error:", err)
+		//fmt.Println("error:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Userid)
+	//fmt.Println("Test right :", postbody.Userid)
 
 	psql.InsertTopic(postbody)
 
@@ -146,10 +146,10 @@ func AddTopicVisitNumber(w http.ResponseWriter, r *http.Request){
 	var postbody psql.Topics
 	err = json.Unmarshal(s, &postbody)
 	if err != nil {
-		fmt.Println("Unmarshal:", err)
+		//fmt.Println("Unmarshal:", err)
 		return
 	}
-	fmt.Println("Test right :", postbody.Topicid)
+	//fmt.Println("Test right :", postbody.Topicid)
 
 	err = psql.AddTopicVisNum(postbody.Topicid)
 	if err != nil {
@@ -157,5 +157,5 @@ func AddTopicVisitNumber(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	fmt.Fprintf(w, "%s", rs)
+	//fmt.Fprintf(w, "%s", rs)
 }

@@ -55,7 +55,7 @@ export class MychatComponent implements OnInit {
     let api="http://127.0.0.1:7080/showuserinfo";    
     var postdate = {userid:this.UserId,username:"",password:"",email:"",integral:0};
     this.http.post(api,postdate,httpOptions).subscribe((response:any)=>{
-      console.log(response);
+      //console.log(response);
         this.Userinfo=response;
         
         this.UserName=this.Userinfo.username;

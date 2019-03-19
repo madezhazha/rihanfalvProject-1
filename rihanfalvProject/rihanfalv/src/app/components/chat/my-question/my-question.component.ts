@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
@@ -70,21 +70,28 @@ export class MyQuestionComponent implements OnInit {
         if(this.DisplayCount>=this.MyQueCount){
           this.DisplayCount=this.MyQueCount-1;
         }
-        console.log(this.MyQueCount)
-        console.log(this.DisplayCount);
+        //console.log(this.MyQueCount)
+        //console.log(this.DisplayCount);
     })
   }
 
   //点击阅读原文，阅读量加一
-  readTopic(topicId:number){
+  readTopic(item:any){
 
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
     let api="http://127.0.0.1:7080/addtopicvisnum";    
-    this.http.post(api,{topicid:topicId},httpOptions).subscribe((response:any)=>{
-      
-      console.log(response);
+    this.http.post(api,{topicid:item.topicid},httpOptions).subscribe((response:any)=>{
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          topicID: item.topicid,
+        },
+      }
+      this.router.navigate(['/post'], navigationExtras);
+      //console.log(navigationExtras);
+    //console.log(response);
         
     })
+    
   }
 
   // 加载更多

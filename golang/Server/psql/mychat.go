@@ -78,7 +78,7 @@ func GetUserInfo(postbody Users) Users {
 //获取主贴
 func GetUserTopic(postbody int) []Topics {
 	var usertopics []Topics
-	getTopic  := " select topicid,posterid,topictitle,topiccontent,creationtime - interval '8 Hours',numberofreplies,finalreplytime - interval '8 Hours',collectionvolume,visitvolume,japanorkorea,label from topics where posterid=$1 "
+	getTopic  := " select topicid,posterid,topictitle,topiccontent,creationtime - interval '8 Hours',numberofreplies,finalreplytime - interval '8 Hours',collectionvolume,visitvolume,japanorkorea,label from topics where posterid=$1 order by topicid desc "
 	rows, err := db.Query(getTopic, postbody)
 	if err != nil {
 		fmt.Println(err)
@@ -108,7 +108,7 @@ func GetUserTopic(postbody int) []Topics {
 //获取回帖
 func GetUserReply(postbody Getid) []Replies {
 	var userreplies []Replies
-	getReply := " select replieid,userid,topicid,replycontent,floor,replytime - interval '8 Hours' from replies where userid=$1 "
+	getReply := " select replieid,userid,topicid,replycontent,floor,replytime - interval '8 Hours' from replies where userid=$1 order by replieid desc "
 	rows, err1 := db.Query(getReply, postbody.Userid)
 	if err1 != nil {
 		fmt.Println(err1)
