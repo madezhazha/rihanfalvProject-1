@@ -78,7 +78,7 @@ func Getalldata(languageType string,NumberCasethingString string)interface{}{
 
 		if err!=nil{
 			fmt.Println(err)
-			return "系统出现错误2"
+			return "系统出现错误"
 		}
 
 		//将数据放在了一块
@@ -120,7 +120,7 @@ func Getfirstfloor(data string,languageType string,NumberCasethingString string)
 
 		if err!=nil{
 			fmt.Println(err)
-			return "系统出现错误2"
+			return "系统出现错误"
 		}
 
 		//将数据放在了一块
@@ -162,7 +162,7 @@ func Getreason(data string,languageType string,NumberCasethingString string)inte
 
 		if err!=nil{
 			fmt.Println(err)
-			return "系统出现错误2"
+			return "系统出现错误"
 		}
 
 		//将数据放在了一块
@@ -204,7 +204,7 @@ func Getlevel(data string,languageType string,NumberCasethingString string)inter
 
 		if err!=nil{
 			fmt.Println(err)
-			return "系统出现错误2"
+			return "系统出现错误"
 		}
 
 		//将数据放在了一块
@@ -246,7 +246,7 @@ func Getsecondfloor(data string,languageType string,NumberCasethingString string
 
 		if err!=nil{
 			fmt.Println(err)
-			return "系统出现错误2"
+			return "系统出现错误"
 		}
 
 		//将数据放在了一块
@@ -286,7 +286,7 @@ func Gettime(data string,languageType string,NumberCasethingString string)interf
 
 		if err!=nil{
 			fmt.Println(err)
-			return "系统出现错误2"
+			return "系统出现错误"
 		}
 
 		//这里要判断才能将数据放进入
@@ -329,7 +329,7 @@ func Gettext_nouserid(data string)interface{}{
 
 	if err!=nil{
 		fmt.Println(err)
-		return "系统出席那错误"
+		return "系统出现错误"
 	}
 	for rows.Next(){
 		err:=rows.Scan(&con.ID,&con.viewpoint,&con.casetitle,&con.header,&con.Type,&con.integral)
@@ -360,7 +360,7 @@ func Gettext_userid(data string,userId string)interface{}{
 
 	if err!=nil{
 		fmt.Println(err)
-		return "系统出席那错误"
+		return "系统出现错误"
 	}
 	for rows.Next(){
 		err:=rows.Scan(&con.ID,&con.viewpoint,&con.casetitle,&con.header,&con.Type,&con.integral)
@@ -382,24 +382,26 @@ func Gettext_userid(data string,userId string)interface{}{
 	//放回用户的积分数
 	integral:=GEtintegral(userId)
 	all["allintergral"]=integral
+	//获取用户名
+	username:=Getusername(userId)
+	all["username"]=username
 	defer rows.Close()
-
 	return all
 }
 
-//利用该文章的id和用户的id进行查找
+//利用该文章的id和用户的id进行查找，是否是付费的顾客
 func searchpay(titleId string,userId string)string{
 	var pay payment
 	//将字符串转化为数字
 	userID,err2 := strconv.Atoi(userId)
 	if(err2!=nil){
 		fmt.Println("titleid或userid的转化的结果出现错误",err2)
-		return "传值错误"
+		return "系统出现错误"
 	}
 	rows,err:=db.Query("select * from payment where pointid=$1",titleId)
 	if err!=nil{
 		fmt.Println(err)
-		return "系统出席那错误"
+		return "系统出现错误"
 	}
 	for rows.Next(){
 		err:=rows.Scan(&pay.payId,&pay.userId,&pay.pointID)
@@ -421,24 +423,43 @@ func GEtintegral(userId string)string{
 
 	if err!=nil{
 		fmt.Println("用户积分查找失败1！",err)
-		return "失败"
+		return "系统出现错误"
 	}
 
 	for rows.Next(){
 		err = rows.Scan(&intergral)
 		if(err!=nil){
 			fmt.Println("用户积分查找失败2")
-			return "失败"
+			return "系统出现错误"
 		}
 	}
 
 	return intergral
 }
 
+func Getusername(userId string)string{
+	var username string
+	rows,err:=db.Query("select username from users where userid=$1",userId)
+
+	if err!=nil{
+		fmt.Println("查找用户名失败！",err)
+		return "系统出现错误"
+	}
+
+	for rows.Next(){
+		err = rows.Scan(&username)
+		if(err!=nil){
+			fmt.Println("查找用户名失败2",err)
+			return "系统出现错误"
+		}
+	}
+	return username
+}
+
 
 
 //执行收藏和取消收藏的指令
-func Implement(contenTitle string,instruction string,titleId int,languageType string,userId int,collectiontime string){
+func Implement(contenTitle string,instruction string,titleId int,languageType string,userId int,collectiontime string)string{
 	//上面代表的内容有：文章的title，执行收藏还是取消看收藏的指令，文章的id，语言类型，用户id
 	// var collect collectioncase
 
@@ -453,7 +474,7 @@ func Implement(contenTitle string,instruction string,titleId int,languageType st
 		stmt,err:=db.Prepare("insert into collection(userid,collectiontype,collectioncontentid,collectiontime) values($1,$2,$3,$4)")
 		if err!=nil{
 			fmt.Println("添加数据的时候出现的错误1",err)
-			return 
+			return "系统出现错误"
 		}
 		rs,err:=stmt.Exec(userId,languageType,titleId,collectiontime)
 
@@ -473,16 +494,17 @@ func Implement(contenTitle string,instruction string,titleId int,languageType st
 		stmt,err:=db.Prepare("delete from collection where userid=$1 and collectiontype=$2 and collectioncontentid =$3")
 		if err!=nil{
 			fmt.Println("删除数据的时候出现的错误1",err)
-			return 
+			return "系统出现错误"
 		}
 		rs,err:=stmt.Exec(userId,languageType,titleId)
 
 		if err!=nil{
 			fmt.Println("删除数据的时候出现错误2",err)
-			return 
+			return "系统出现错误"
 		}
 		fmt.Println("删除数据成功",rs)
 	}
+	return "成功"
 }
 
 //收藏的初状态
@@ -499,7 +521,7 @@ func Statecollect(contenTitle string,titleId int,languageType string,userId int)
 
 	if err!=nil{
 		fmt.Println("查找收藏的状态的时候出现的错误1",err)
-		return "错误"
+		return "系统出现错误"
 	}
 	
 	for rows.Next(){
@@ -526,14 +548,14 @@ func Pay(titleId string,userId string,integral string)string{
 	rows,err:=db.Query("select integral from users where userid=$1",userId)
 	if err!=nil{
 		fmt.Println("查找用户名字相对应的积分的状态的时候出现的错误1",err)
-		return "错误"
+		return "系统出现错误"
 	}
 
 	for rows.Next(){
 		err:=rows.Scan(&all_integral)
 		if err!= nil{
 			fmt.Println("查找用户名字相对应的积分的状态的时候出现的错误12",err)
-			return "错误"
+			return "系统出现错误"
 		}
 
 		fmt.Println(all_integral)
@@ -552,7 +574,7 @@ func Pay(titleId string,userId string,integral string)string{
 		}
 	}
 
-	return "服务器出现问题"
+	return "系统出现错误"
 }
 
 //保存积分函数
@@ -563,13 +585,13 @@ func Saveintegral(integral int,userId string) string{
 	if err != nil {
 		//err
 		fmt.Println("保存积分的时候出现错误1")
-		return "保存积分错误"
+		return "系统出现错误"
 	}
 
 	_, err = stmt.Exec(integral,userId)
 	if err != nil {
 		fmt.Println("保存积分的时候出现错误2")
-		return "保存积分错误"
+		return "系统出现错误"
 	}
 
 	return "保存成功"
@@ -582,13 +604,13 @@ func SavePayData(titleId string,userId string)string{
 	if err != nil {
 		//err
 		fmt.Println("保存付钱资料的时候出现错误1",err)
-		return "保存付钱资料错误"
+		return "系统出现错误"
 	}
 
 	_, err = stmt.Exec(userId,titleId)
 	if err != nil {
 		fmt.Println("保存付钱资料的时候出现错误2")
-		return "保存付钱资料错误"
+		return "系统出现错误"
 	}
 
 	return "保存成功"

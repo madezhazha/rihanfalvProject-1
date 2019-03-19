@@ -68,16 +68,21 @@ export class CasethingComponent implements OnInit {
     var api = "http://localhost:7080/alldata"
 
     this.http.post(api,{"content":this.search,"languageType":this.languageType,"NumberCasething":this.NumberCasething.toString()},httpOptions).subscribe((response:any)=>{
-      if(JSON.stringify(response)!=="{}"){
-        for(const key of Object.keys(response)){
-          if(response.hasOwnProperty(key)){
-            this.element = response[key]
-            this.list.push(this.element)
-          }  
-        }
-      this.NumberCasething = this.list.length
+      if(response["data"]==="系统出现错误"){
+        //出现错误处理
+        alert("系统出现错误")
       }else{
-        this.Isover = true
+        if(JSON.stringify(response)!=="{}"){
+          for(const key of Object.keys(response)){
+            if(response.hasOwnProperty(key)){
+              this.element = response[key]
+              this.list.push(this.element)
+            }  
+          }
+        this.NumberCasething = this.list.length
+        }else{
+          this.Isover = true
+        }
       }
     })
   }

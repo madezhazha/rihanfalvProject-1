@@ -72,3 +72,4 @@ ERROR 2019/03/18 21:31:32 post.go:41: sql: no rows in result set
 ERROR 2019/03/18 21:32:23 post.go:41: sql: no rows in result set
 ERROR 2019/03/18 21:32:27 post.go:41: sql: no rows in result set
 ERROR 2019/03/18 21:34:35 post.go:41: sql: no rows in result set
+ERROR 2019/03/19 14:21:51 post.go:41: sql: no rows in result set
