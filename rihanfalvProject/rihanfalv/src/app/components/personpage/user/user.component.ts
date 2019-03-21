@@ -100,6 +100,7 @@ export class UserComponent implements OnInit {
         } else {
           this.serve.change(this.temp).subscribe(() => {
           });
+          localStorage.setItem('headImage',JSON.stringify(this.temp.Image));
           // alert('修改成功！');
           this.msg = this.msgs[2];
           this.issuccess = true;
