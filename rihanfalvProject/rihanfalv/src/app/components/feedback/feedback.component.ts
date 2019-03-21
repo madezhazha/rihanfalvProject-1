@@ -34,7 +34,7 @@ export class FeedbackComponent implements OnInit {
       this.Islogin=true
     }
   }
-
+//提交反馈
   submit(){
     this.id=JSON.parse(localStorage.getItem('id'))
    /*if(this.id!=null){
@@ -64,6 +64,7 @@ export class FeedbackComponent implements OnInit {
 
     }
   }
+  //返回首页
   bin(){
     this.router.navigate(['/homepage/'])
     

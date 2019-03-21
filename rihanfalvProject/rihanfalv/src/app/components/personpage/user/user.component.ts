@@ -58,7 +58,7 @@ export class UserComponent implements OnInit {
   //跳转到反馈
   feedback(){
     
-    this.router.navigate(['/Feedback/'])
+    this.router.navigate(['/Personalfeedback/'])
   }
   //上传本地头像
   uploadImg() {
