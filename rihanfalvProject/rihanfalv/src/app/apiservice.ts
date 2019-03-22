@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { APIResponse, APIResponse2, APIResponse3, Nowcountry } from './apiresponse';
+import { APIResponse, APIResponse2, APIResponse3, Nowcountry, Nowpage, Allpage } from './apiresponse';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -12,6 +12,15 @@ const httpOptions = {
 @Injectable()
 export class ApiSerivice {
     constructor(private http: HttpClient) {
+    }
+
+    public legalpage(nowpage: number, kind: string): Observable<Nowpage> {
+        return this.http.post<Nowpage>('http://localhost:7080/page',
+        {nowpage, kind}, httpOptions);
+    }
+
+    public legalpage2(): Observable<Allpage> {
+        return this.http.get<Allpage>('http://localhost:7080/pages');
     }
 
     public country(Country: string): Observable<Nowcountry> {

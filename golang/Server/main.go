@@ -56,6 +56,8 @@ func main() {
 
 	//法律条文
 	mux.HandleFunc("/country", route.Nowcountry)
+	mux.HandleFunc("/page", route.Pagepost)
+    mux.HandleFunc("/pages", route.Pageget)
 	mux.HandleFunc("/type", route.Typeget)
 	mux.HandleFunc("/title", route.Titlepost)
 	mux.HandleFunc("/titles", route.Titleget)

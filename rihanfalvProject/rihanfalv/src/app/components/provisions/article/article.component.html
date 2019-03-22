@@ -1,10 +1,18 @@
-<app-webhead></app-webhead>
+<app-webhead  (isJapan)="getJapanKorea($event)"></app-webhead>
 <br>
-<a class="titles">{{titles[0].legaltype}}</a>
+<a class="titles">{{legaltype}}</a>
 <button class="back" (click)="back()" >返回</button>
 <br>
 <div class="body">
 	<div *ngFor="let title1 of titles">
    <button class="type" (click)="posttype(title1.legaltitle)">{{title1.legaltitle}}</button>
   </div>
+</div>
+<div class="page">
+<button class="pageb" (click)="reducepage()">◁</button>
+<a *ngFor="let paging of pagings">
+<button class="pageb" (click)="Nowpage(paging)" *ngIf="paging != 0">{{paging}}</button>
+</a>
+<button class="pageb" (click)="addpage()">▷</button>
+<li>共 {{allpage.allpage}} 条数据</li>
 </div>

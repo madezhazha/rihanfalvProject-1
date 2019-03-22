@@ -3,7 +3,7 @@
 <div class="back">
 <button  class="backb" (click)="hideAside()"></button>
 </div>
-<div class="category" >
+<div class="category">
   <h1>类别: {{category}}</h1>
   <li><button (click)="category = '宪法';choose()">宪法</button><button (click)="category = '教育';choose()">教育</button></li>
   <li><button (click)="category = '国会';choose()">国会</button><button (click)="category = '文化';choose()">文化</button></li>
@@ -32,11 +32,19 @@
   </div>
 </aside>
 <br>
-<a class="titles" >法律条文：</a>
+<a class="titles">法律条文：</a>
  <button class="kindb" (click)="showAside()">类别</button>
  <br>
 <div class="body">
 	<div *ngFor="let type of types">
   <button class="type" (click)="posttype(type.legaltype)">{{type.legaltype}}</button>
   </div>
+</div>
+<div class="page">
+<button class="pageb" (click)="reducepage()">◁</button>
+<a *ngFor="let paging of pagings">
+<button class="pageb" (click)="Nowpage(paging)" *ngIf="paging != 0">{{paging}}</button>
+</a>
+<button class="pageb" (click)="addpage()">▷</button>
+<li>共 {{allpage.allpage}} 条数据</li>
 </div>
