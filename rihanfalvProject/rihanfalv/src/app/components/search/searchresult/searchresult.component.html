@@ -1,6 +1,6 @@
 
 <div>
-   <div *ngIf="!getstatus()">
+   <div *ngIf="!getstatus()" class="paper">
 很抱歉，没有找到与“{{this.m_search.KeyWord}}”相关的
 <span *ngIf="this.m_search.Classify=='全部'">内容</span>
 <span *ngIf="this.m_search.Classify!='全部'">{{this.m_search.Classify}}</span>。

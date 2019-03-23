@@ -45,7 +45,7 @@ nullkeyword(){  //判断是否为纯空字符串
   const Reg = new RegExp(" ", 'gi');    
   let str=this.KeyWord.replace(Reg,"")
   if(str==""){
-return true
+    return true
   }
   return false
 }
@@ -108,5 +108,10 @@ this.m_search.KeyWord=this.KeyWord
 this.m_search.Classify=this.searchgroup
 this.m_search.Nowcountry=this.Nowcountry
 this.m_search.searchtogo()//传数据给后端
+}
+clear(){
+  this.ifsearch=false 
+   this.KeyWord=""
+
 }
 }

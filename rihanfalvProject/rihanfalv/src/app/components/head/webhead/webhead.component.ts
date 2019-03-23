@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { InputData } from '../langing/land/input'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class WebheadComponent implements OnInit {
 
   In: InputData = { ID: '', IfLogin: false, Tip: "", Image, Token: '', ImageUrl: '' }
 
-  constructor() { }
+  constructor(public router: Router ) { }
 
   ngOnInit() {
     if (localStorage.getItem("JapanOrKorea") == null) {
@@ -80,6 +81,7 @@ export class WebheadComponent implements OnInit {
     this.In.IfLogin = false;
     localStorage.clear();
     localStorage.setItem("JapanOrKorea", this.JapanOrKorea)
+    this.router.navigate(['/homepage']);
   }
 
 }

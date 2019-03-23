@@ -81,6 +81,8 @@ background-color: darkseagreen;
       }
     
     .paper{
+        padding-left:10px;
+
         text-align: left;
         position: relative;
         background: white;
