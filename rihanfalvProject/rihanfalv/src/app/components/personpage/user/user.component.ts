@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { FlashMessagesService } from 'angular2-flash-messages';
-import {GetdataService} from '../../../services/getdata.service';
-import {Router} from '@angular/router';
+import { GetdataService } from '../../../services/getdata.service';
+import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
@@ -33,31 +33,31 @@ export class UserComponent implements OnInit {
     '两次密码不一致，请重新输入！',
     '信息修改成功!'
   ];
-  msg: any ;
+  msg: any;
   imgsrc: any;
   Password: any;
   isshow: boolean = false;
   issuccess: boolean = false;
   iswarn: boolean = false;
   str: string;
-  base64:string;
+  base64: string;
   hidden: boolean = false; // 隐藏画布
-  id:number=0;  //登录后获取id
+  id: number = 0;  //登录后获取id
   constructor(
     public router: Router,
     private serve: GetdataService,
     private sanitizer: DomSanitizer,
     // public flashMessagesService: FlashMessagesService,
     private datePipe: DatePipe
-    ) { }
+  ) { }
 
   //  跳转到收藏夹
   collection() {
     this.router.navigate(['/collection']);
   }
   //跳转到反馈
-  feedback(){
-    
+  feedback() {
+
     this.router.navigate(['/Personalfeedback/'])
   }
   //上传本地头像
@@ -84,10 +84,10 @@ export class UserComponent implements OnInit {
   changeinfo() {
     // console.log('修改');
     if (this.temp.UserName == '' || this.temp.Password == '') {
-        // alert('请补全信息！');
-        this.msg = this.msgs[0];
-        this.iswarn = true;
-        this.issuccess = false;
+      // alert('请补全信息！');
+      this.msg = this.msgs[0];
+      this.iswarn = true;
+      this.issuccess = false;
     } else {
       if (this.temp.Password != this.Password) {
         // alert('密码不一致，请重新输入！');
@@ -100,7 +100,7 @@ export class UserComponent implements OnInit {
         } else {
           this.serve.change(this.temp).subscribe(() => {
           });
-          localStorage.setItem('headImage',JSON.stringify(this.temp.Image));
+          localStorage.setItem('headImage', this.temp.Image);
           // alert('修改成功！');
           this.msg = this.msgs[2];
           this.issuccess = true;
@@ -118,7 +118,7 @@ export class UserComponent implements OnInit {
   close() {
     this.temp.UserName = '';
     this.temp.Password = '';
-    this.Password = '' ;
+    this.Password = '';
     this.imgsrc = '';
     this.issuccess = false;
     this.iswarn = false;
@@ -131,10 +131,10 @@ export class UserComponent implements OnInit {
       this.user = user;
       console.log(this.user);
       // 判断传来的是系统头像的路径还是base64
-      if(this.user.Image.length > 100){
-      let temp: any;
-      temp = 'data:image/png;base64, ' + this.user.Image; //给base64添加头缀
-      this.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+      if (this.user.Image.length > 100) {
+        let temp: any;
+        temp = 'data:image/png;base64, ' + this.user.Image; //给base64添加头缀
+        this.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
       }
       //存储用户不可修改的信息
       this.temp.UserId = this.user.UserId;
@@ -143,7 +143,7 @@ export class UserComponent implements OnInit {
       this.temp.Email = this.user.Email;
       // 转化日期格式
       this.user.RegisterDate = this.datePipe.transform(this.user.RegisterDate, 'yyyy-MM-dd');
-      
-  });
+
+    });
   }
 }
