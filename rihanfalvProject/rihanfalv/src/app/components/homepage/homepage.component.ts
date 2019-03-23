@@ -26,10 +26,11 @@ export class HomepageComponent implements OnInit {
     var adTimer;  
     $(document).ready(function(){
         //鼠标停留在小方块时显示相应的图片
-        $(".scalle_box dt").mouseover(function() {
-            index = $(".scalle_box dt").index(this); 
-            showImg(index);
-        }).eq(0).mouseover();
+        //$(".scalle_box dt").mouseover(function() {
+       //     index = $(".scalle_box dt").index(this); 
+       //     showImg(index);
+       //  }).eq(0).mouseover();
+
         //手机屏幕上左右滑动图片框时图片向左右切换
        $(".picturebox").on("swipeleft",function(){
             if(index<4) showImg(++index);
@@ -39,18 +40,22 @@ export class HomepageComponent implements OnInit {
             if(index>0) showImg(--index); 
             restart();
         });
+
       //滑入停止动画，滑出开始动画.
-         $('.picturebox').on("tap",restart).trigger("taphold"); 
-         run();
+        $('.picturebox').on("tap",restart).trigger("taphold"); 
+
+        run();
    })//<--ready()函数结束
     function setwidth(){  
       $(".picture, .describe_box").width($(".homepagebody").width() * 5 +"px");
       $(".picture img, .describe").width($(".homepagebody").width()+"px");
     }
+
     function restart(){
         clearInterval(adTimer);
         run();
-    }   
+    } 
+      
     function run(){
         adTimer = setInterval(function() {
           if (++index > 4) {       //最后一张图片之后，转到第一张

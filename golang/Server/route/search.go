@@ -8,15 +8,15 @@ import (
 	"encoding/json"
 	_ "github.com/lib/pq"
 	"../psql"
-
+"strings"
 )
 var text map[string]interface{}
 var class[] string
-var readkey interface{}
+var readkeys interface{}
+var readkey[] string
 var readclass interface{}
 var readcountry interface{}
 var readorder interface{}
-
 func Readcontent(w http.ResponseWriter, r *http.Request) { //获取json
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Add("Access-Control-Allow-Headers", "Content-Type")
@@ -28,13 +28,15 @@ func Readcontent(w http.ResponseWriter, r *http.Request) { //获取json
 
 func M_Search(w http.ResponseWriter, r *http.Request) {
 		Readcontent(w,r)
-		readkey = text["KeyWord"]//获取搜索内容
+		readkeys = text["KeyWord"]//获取搜索内容
+		if readkeys==nil{
+			return
+		}	
+		readkey =strings.Split(readkeys.(string)," ")//根据空格切割关键词
 		readclass = text["Classify"]//获取搜索内容
 		readcountry = text["Nowcountry"]//获取当前国家
 		readorder = text["Order"]//获取排序方式
-		if readkey==nil{
-			return
-		}		
+			
 		if readclass==nil{
 			return
 		}	
@@ -50,9 +52,9 @@ func M_Search(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("关键词:",readkey)
 		fmt.Println("搜索方式:",readorder)
 		var searchlist []psql.Searchbox
-		searchlist=psql.Getclass(readkey.(string),readcountry.(string),readclass.(string),readorder.(string),searchlist)
+		searchlist=psql.Getclass(readkey,readcountry.(string),readclass.(string),readorder.(string),searchlist)
 		//转searchsql.go，传递以上输出的值，获取搜索项
-		psql.Scoreofsearch(searchlist,readkey.(string))//计算搜索的相关度
+		psql.Scoreofsearch(searchlist,readkey)//计算搜索的相关度
 		psql.SelectSort(searchlist)//按相关度排序
 		str, err := json.Marshal(searchlist)
 		if err != nil {

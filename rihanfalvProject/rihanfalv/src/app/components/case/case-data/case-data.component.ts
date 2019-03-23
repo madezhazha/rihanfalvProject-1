@@ -171,7 +171,8 @@ export class CaseDataComponent implements OnInit {
             this.initialState(this.languageType,this.titleId)   //这个是用来判断时候已经是收藏的状态了 
           }else{
             alert("系统出现错误")
-          }        
+          } 
+          console.log(response)       
         })
     }
   }

@@ -44,7 +44,7 @@ export class LandComponent implements OnInit {
     this.https.getInput(this.out).subscribe(
       (data: InputData) => {
         this.in = data;
-        if (this.in.Image.length > 36) {
+        if (this.in.Image.length > 60) {
           this.in.Image = "data:image/jpg;base64," + this.in.Image;
         }
         else {

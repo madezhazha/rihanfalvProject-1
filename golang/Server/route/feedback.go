@@ -8,7 +8,7 @@ import (
 	"../psql"
 	_ "github.com/lib/pq"
 )
-
+//接收反馈数据
 func Addfeedback(w http.ResponseWriter, r *http.Request) {
 	SetHeader(w)
 	r.ParseForm()
@@ -27,7 +27,7 @@ func Addfeedback(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println("insert into feedback success")
 	}
 }
-
+//接收用户id
 func Userfeedback(w http.ResponseWriter, r *http.Request) {
 	SetHeader(w)
 	r.ParseForm() //解析参数，默认是不会解析的

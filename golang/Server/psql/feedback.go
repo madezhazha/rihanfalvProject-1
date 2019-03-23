@@ -12,7 +12,7 @@ type Feedback struct {
 	Feedbacktime    string  `json:"feedbacktime"`
 	Feedbackreplie  string  `json:"feedbackreplie"`
 }
-
+//反馈数据插入数据库
 func Addfeedback(userid float64, feedbacktype string, feedbackcontent string) {
 
 	stmt, err := db.Prepare("insert into feedback(userid,feedbacktype,feedbackcontent,feedbackreplie) values($1,$2,$3,$4)")
@@ -23,7 +23,7 @@ func Addfeedback(userid float64, feedbacktype string, feedbackcontent string) {
 	fmt.Println("insert into feedback success")
 
 }
-
+//取出反馈数据
 func Userfeedback(tuserid float64) []Feedback {
 
 	var (

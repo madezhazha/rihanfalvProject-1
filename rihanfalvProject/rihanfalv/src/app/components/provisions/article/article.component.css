@@ -63,3 +63,17 @@ a{
     top: 20%;
     font-size: 18px;
 }
+
+.page {
+    text-align: center;
+    margin-top: 10%;
+    color: #6378ee;
+}
+
+.pageb {
+    width: 7%;
+    height: 30px;
+    background: #fff;
+    text-align: center;
+    border: 1.5px solid rgb(211, 209, 209);
+}
