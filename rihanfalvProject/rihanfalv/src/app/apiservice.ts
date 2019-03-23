@@ -15,20 +15,12 @@ export class ApiSerivice {
     }
 
     public legalpage(nowpage: number, kind: string): Observable<Nowpage> {
-<<<<<<< HEAD
         return this.http.post<Nowpage>('http://localhost:7080/page',
-=======
-        return this.http.post<Nowpage>('http://blackcardriver.cn:7080/page',
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
         {nowpage, kind}, httpOptions);
     }
 
     public legalpage2(): Observable<Allpage> {
-<<<<<<< HEAD
         return this.http.get<Allpage>('http://localhost:7080/pages');
-=======
-        return this.http.get<Allpage>('http://blackcardriver.cn:7080/pages');
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     }
 
     public country(Country: string): Observable<Nowcountry> {
