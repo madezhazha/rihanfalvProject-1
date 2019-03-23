@@ -24,6 +24,8 @@ export class HomepageComponent implements OnInit {
     this.get_artical(); 
     var index = 0;  //自动播放框的图片序号，0~4
     var adTimer;  
+    setwidth();
+    showImg(4);
     $(document).ready(function(){
         //鼠标停留在小方块时显示相应的图片
         //$(".scalle_box dt").mouseover(function() {
@@ -32,14 +34,14 @@ export class HomepageComponent implements OnInit {
        //  }).eq(0).mouseover();
 
         //手机屏幕上左右滑动图片框时图片向左右切换
-       $(".picturebox").on("swipeleft",function(){
-            if(index<4) showImg(++index);
-            restart();
-        });
-        $(".picturebox").on("swiperight",function(){
-            if(index>0) showImg(--index); 
-            restart();
-        });
+      //  $(".picturebox").on("swipeleft",function(){
+      //       if(index<4) showImg(++index);
+      //       restart();
+      //   });
+      //   $(".picturebox").on("swiperight",function(){
+      //       if(index>0) showImg(--index); 
+      //       restart();
+      //   });
 
       //滑入停止动画，滑出开始动画.
         $('.picturebox').on("tap",restart).trigger("taphold"); 
@@ -64,7 +66,7 @@ export class HomepageComponent implements OnInit {
           showImg(index)
         }, 3000);
     }
-  function showImg(index) {
+    function showImg(index) {
         setwidth();
         var imgwidth = $(".picture img").width();
         $(".picture, .describe_box").stop(true, false).animate({
