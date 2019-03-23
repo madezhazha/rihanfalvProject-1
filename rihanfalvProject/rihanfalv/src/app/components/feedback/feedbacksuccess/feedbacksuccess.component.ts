@@ -14,7 +14,6 @@ export class FeedbacksuccessComponent implements OnInit {
   }
   Historicalfeedback(){
     this.router.navigate(['/Personalfeedback/'])
-
   }
   jixu(){
     this.router.navigate(['/Feedback/'])

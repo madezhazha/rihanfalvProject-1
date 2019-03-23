@@ -47,7 +47,7 @@ export class UploadHeadimageComponent implements OnInit {
   postData(){
     const httpOptions={headers : new HttpHeaders({'Content-Type':'application/json'})};
  
-    var api ='http://localhost:7080/photo';
+    var api ='http://blackcardriver.cn:7080/photo';
 
     if(this.canvasImg.length<100){
 

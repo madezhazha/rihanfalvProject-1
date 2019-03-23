@@ -55,7 +55,7 @@ export class FeedbackComponent implements OnInit {
     else{
 
     const httpOptions={headers:new HttpHeaders({'Content-Type' :'application/json'})}
-                  let api='http://localhost:7080/addfeedback';
+                  let api='http://blackcardriver.cn:7080/addfeedback';
                   this.http.post(api,{"userid":this.id,'feedbacktype':this.neixing,'feedbackcontent':this.mark},httpOptions).subscribe((response:any)=>{
                       
                   })

@@ -20,7 +20,7 @@ public ifget =false//判断是否获取到搜索内容
 
     this.list=[]
     const httpOptions={ headers:new HttpHeaders({'Content-Type':'application/json'}) };
-    let api='http://localhost:7080/search'; 
+    let api='http://blackcardriver.cn:7080/search'; 
     this.getkey.KeyWord=this.KeyWord
     this.getkey.Classify=this.Classify
     this.getkey.Nowcountry=this.Nowcountry
