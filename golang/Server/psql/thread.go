@@ -42,7 +42,7 @@ type Thread struct {
 
 // GetThread 从数据库获取所有的帖子
 func GetThread() (usersAndThreads []map[string]interface{}, err error) {
-	rows, err := db.Query("SELECT topicid,posterid,topictitle,topiccontent,creationtime,numberofreplies,finalreplytime,collectionvolume,visitvolume,japanorkorea FROM topics ORDER BY topicid")
+	rows, err := db.Query("SELECT topicid,posterid,topictitle,topiccontent,creationtime,numberofreplies,finalreplytime,collectionvolume,visitvolume,japanorkorea FROM topics ORDER BY finalreplytime DESC")
 	if err != nil {
 		return
 	}
