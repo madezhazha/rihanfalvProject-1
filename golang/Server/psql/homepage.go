@@ -29,7 +29,7 @@ func GetHomePageHotnewDate() (date [5]HomePageNews) {
 	index := 0
 	for rows.Next() {
 		rows.Scan(&date[index].Img_url, &date[index].Link_url, &date[index].Title)
-		fmt.Println(date[index].Img_url)
+		//fmt.Println(date[index].Img_url)
 		index++
 	}
 	return

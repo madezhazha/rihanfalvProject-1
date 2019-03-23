@@ -89,7 +89,7 @@ export class HomepageComponent implements OnInit {
             artical_num=9999;            //服务器里的文章不足100篇
             $(".more").addClass("nomore");
           } 
-          console.log(result.length);
+          //console.log(result.length);
           artical_num += result.length;
           temp_array = result;
           this.artical_date = this.artical_date.concat(temp_array);
@@ -100,7 +100,7 @@ export class HomepageComponent implements OnInit {
   get_head_new(){
       this.service.GetHeadNews().subscribe(
         result =>{
-          console.log(result)
+          //console.log(result)
           this.SlideBox_date = result;
         }
       )
