@@ -23,15 +23,19 @@ type legal struct {
 }
 
 type Legaltype struct {
+    Legalid           int       `json:legalid`
     Legaltype         string    `json:"legaltype"`
 }
+
 type Legaltitle struct {  
     Legaltype         string    `json:"legaltype"`
     Legaltitle        string    `json:"legaltitle"`
 }
+
 type Legallabel struct {  
     Legallabel        string    `json:"legallabel"`
 }
+
 type Legalcontent struct {
     Legaltype         string    `json:"legaltype"`
     Legaltitle        string    `json:"legaltitle"`
@@ -164,11 +168,11 @@ func Titlesqlpk(legaltype string)[]byte{
 func Typesql(page int)[]Legaltype{               //从数据库中获取法律总标题
     var Types []Legaltype
     fmt.Println(page)
-    rows, err := db.Query("SELECT distinct legaltype FROM japanlegal limit 20 offset $1;",page) 
+    rows, err := db.Query("select min(legalid) as id,legaltype from japanlegal group by legaltype order by id limit 20 offset $1;",page) 
     checkErr(err)
     for rows.Next(){
 		var types Legaltype
-		err = rows.Scan(&types.Legaltype)
+		err = rows.Scan(&types.Legalid,&types.Legaltype)
 		if err != nil {
 			fmt.Println("showscan error:",err)
 		}
@@ -180,11 +184,11 @@ func Typesql(page int)[]Legaltype{               //从数据库中获取法律�
 
 func KTypesql(page int)[]Legaltype{               //从数据库中获取法律总标题
     var Types []Legaltype
-    rows, err := db.Query("SELECT distinct legaltype FROM korealegal limit 10 offset $1;",page) 
+    rows, err := db.Query("select min(legalid) as id,legaltype from korealegal group by legaltype order by id limit 20 offset $1;",page) 
     checkErr(err)
     for rows.Next(){
         var types Legaltype
-		err = rows.Scan(&types.Legaltype)
+		err = rows.Scan(&types.Legalid,&types.Legaltype)
 		if err != nil {
 			fmt.Println("showscan error:",err)
         }

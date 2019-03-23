@@ -53,6 +53,7 @@ export class LegalComponent implements OnInit {
   public Postpage(nowpage: number, kind: string) {        // 将当前页数传递会服务器
     this.api.legalpage(nowpage, kind).subscribe(() => {
       this.Getpage();                // 获取总条数
+      this.Gettype();    // 获取法条
     });
   }
 
@@ -65,7 +66,7 @@ export class LegalComponent implements OnInit {
     }
     this.api.country(this.Nowcountry).subscribe(() => {
       this.Postpage(1, 'type');        // 首页页码
-      this.Gettype();    // 获取总页数和法条
+      // this.Gettype();    // 获取总页数和法条
     });
   }
 
@@ -77,7 +78,7 @@ export class LegalComponent implements OnInit {
     }
     this.api.country(this.Nowcountry).subscribe(() => {
       this.Postpage(1, 'type');        // 首页页码
-      this.Gettype();    // 获取总页数和法条
+      // this.Gettype();    // 获取总页数和法条
     });
   }
 
