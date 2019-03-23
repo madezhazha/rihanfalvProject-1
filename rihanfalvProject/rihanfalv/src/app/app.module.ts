@@ -17,8 +17,8 @@ import { PersonpageComponent } from './components/personpage/personpage.componen
 import { HeadComponent } from './components/head/head.component';
 import { HomepageComponent} from './components/homepage/homepage.component';
 
-import { FeedbacksuccessComponent } from './components/Feedback/feedbacksuccess/feedbacksuccess.component';
-import { PersonalfeedbackComponent } from './components/Feedback/personalfeedback/personalfeedback.component';
+import { FeedbacksuccessComponent } from './components/feedback/feedbacksuccess/feedbacksuccess.component';
+import { PersonalfeedbackComponent } from './components/feedback/personalfeedback/personalfeedback.component';
 
 // ng头部组件
 // 头部组件

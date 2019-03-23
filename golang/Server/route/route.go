@@ -13,7 +13,7 @@ func CheckErr(err error) {
 }
 
 func Test(w http.ResponseWriter, r *http.Request) {
-	html :="<html><head></head><body><img src='getimage?tag=&name=11.jpg'></body></html>"
+	html := "<html><head></head><body><img src='getimage?tag=&name=11.jpg'></body></html>"
 	w.Write([]byte(html))
 	// fmt.Fprint(w, "hello")
 }
