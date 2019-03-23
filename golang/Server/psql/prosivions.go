@@ -168,7 +168,7 @@ func Titlesqlpk(legaltype string)[]byte{
 func Typesql(page int)[]Legaltype{               //从数据库中获取法律总标题
     var Types []Legaltype
     fmt.Println(page)
-    rows, err := db.Query("select min(legalid) as id,legaltype from japanlegal group by legaltype order by id limit 20 offset $1;",page) 
+    rows, err := db.Query("select min(legalid) as id,legaltype from japanlegal group by legaltype order by id limit 10 offset $1;",page) 
     checkErr(err)
     for rows.Next(){
 		var types Legaltype
@@ -184,7 +184,7 @@ func Typesql(page int)[]Legaltype{               //从数据库中获取法律�
 
 func KTypesql(page int)[]Legaltype{               //从数据库中获取法律总标题
     var Types []Legaltype
-    rows, err := db.Query("select min(legalid) as id,legaltype from korealegal group by legaltype order by id limit 20 offset $1;",page) 
+    rows, err := db.Query("select min(legalid) as id,legaltype from korealegal group by legaltype order by id limit 10 offset $1;",page) 
     checkErr(err)
     for rows.Next(){
         var types Legaltype
@@ -201,7 +201,7 @@ func KTypesql(page int)[]Legaltype{               //从数据库中获取法律�
 func Titlesql(legaltype string,page int)[]Legaltitle{               //从数据库中获取法律小标题
     fmt.Println("开始搜索数据库")
     var Titles  []Legaltitle
-    rows, err := db.Query("SELECT legaltitle,legaltype FROM japanlegal WHERE legaltype=$1 limit 20 offset $2;" ,legaltype ,page) 
+    rows, err := db.Query("SELECT legaltitle,legaltype FROM japanlegal WHERE legaltype=$1 limit 10 offset $2;" ,legaltype ,page) 
     checkErr(err)
     for rows.Next(){
         var titles Legaltitle
@@ -217,7 +217,7 @@ func Titlesql(legaltype string,page int)[]Legaltitle{               //从数据�
 func KTitlesql(legaltype string,page int)[]Legaltitle{               //从数据库中获取法律小标题
     fmt.Println("开始搜索数据库")
     var Titles []Legaltitle
-    rows, err := db.Query("SELECT legaltitle,legaltype FROM korealegal WHERE legaltype=$1 limit 20 offset $2;" ,legaltype ,page) 
+    rows, err := db.Query("SELECT legaltitle,legaltype FROM korealegal WHERE legaltype=$1 limit 10 offset $2;" ,legaltype ,page) 
     checkErr(err)
     for rows.Next(){
         var titles Legaltitle
@@ -233,7 +233,7 @@ func KTitlesql(legaltype string,page int)[]Legaltitle{               //从数据
 func Labelsql(legallabel string,page int)[]Legaltype{               //从数据库中获取标签分类
     fmt.Println("开始搜索数据库")
     log.Println(legallabel)
-    rows, err := db.Query("SELECT  distinct legaltype FROM japanlegal WHERE legallabel=$1 limit 1 offset $2;",legallabel,page) 
+    rows, err := db.Query("SELECT  distinct legaltype FROM japanlegal WHERE legallabel=$1 limit 10 offset $2;",legallabel,page) 
     var Label []Legaltype
     checkErr(err)
     for rows.Next(){
@@ -251,7 +251,7 @@ func Labelsql(legallabel string,page int)[]Legaltype{               //从数据�
 func KLabelsql(legallabel string,page int)[]Legaltype{               //从数据库中获取标签分类
     fmt.Println("开始搜索数据库")
     log.Println(legallabel)
-    rows, err := db.Query("SELECT  distinct legaltype FROM korealegal WHERE legallabel=$1 limit 1 offset $2;",legallabel,page) 
+    rows, err := db.Query("SELECT  distinct legaltype FROM korealegal WHERE legallabel=$1 limit 10 offset $2;",legallabel,page) 
     var Label []Legaltype
     checkErr(err)
     for rows.Next(){

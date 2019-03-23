@@ -182,7 +182,7 @@ func Labelpost(w http.ResponseWriter, r *http.Request) {
 func Labelget(w http.ResponseWriter, r *http.Request) { 
     head(w)
     var label []psql.Legaltype
-    var number = (page-1)*1
+    var number = (page-1)*10
     if Country=="Japan"{
         label=psql.Labelsql(postlabel,number)
     }else if Country=="Korea"{
