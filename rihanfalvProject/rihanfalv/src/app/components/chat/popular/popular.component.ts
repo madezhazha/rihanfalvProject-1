@@ -47,6 +47,7 @@ export class PopularComponent implements OnInit {
       });
 
     this.dataService.getThreadList().subscribe((response) => {
+      console.log(response);  
       if (localStorage.getItem("JapanOrKorea") == "韩") {
         this.flag = 0;
       } else {
