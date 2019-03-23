@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
-import { HttpClient, HttpHandler, HttpHeaders} from '@angular/common/http';
-import {InputData} from '../head/langing/land/input'
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import {InputData} from '../head/langing/land/input';
+
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
