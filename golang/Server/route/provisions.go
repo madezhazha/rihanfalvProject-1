@@ -126,14 +126,16 @@ func Typeget(w http.ResponseWriter, r *http.Request) {    //输出信息
     log.Println("开始搜索信息...")
     var types []psql.Legaltype
     var number = (page-1)*10
-    log.Println(number)
-    if Country=="Japan"{
-		types = psql.Typesql(number)
-	}else if Country=="Korea"{
-		types = psql.KTypesql(number)
+    if (number>=0) {
+        log.Println(number)
+        if Country=="Japan"{
+            types = psql.Typesql(number)
+        }else if Country=="Korea"{
+            types = psql.KTypesql(number)
+        }
+    data,_:=json.Marshal(types) 
+        w.Write(data)
     }
-   data,_:=json.Marshal(types) 
-	w.Write(data)
 }
 
 func Titlepost(w http.ResponseWriter, r *http.Request) { 
@@ -152,15 +154,17 @@ func Titleget(w http.ResponseWriter, r *http.Request) {
 	head(w)
     var titles []psql.Legaltitle
     var number = (page-1)*10
-	if Country=="Japan"{
-		titles = psql.Titlesql(posttype,number)
-	}
-	 if Country=="Korea"{
-	 	titles = psql.KTitlesql(posttype,number)
-	}
-	data,_:=json.Marshal(titles) 
-	w.Write(data)
-    log.Println(titles)
+    if (number >= 0) {
+        if Country=="Japan"{
+            titles = psql.Titlesql(posttype,number)
+        }
+        if Country=="Korea"{
+            titles = psql.KTitlesql(posttype,number)
+        }
+        data,_:=json.Marshal(titles) 
+        w.Write(data)
+        log.Println(titles)
+    }
 }
 
 func Labelpost(w http.ResponseWriter, r *http.Request) { 
@@ -178,7 +182,7 @@ func Labelpost(w http.ResponseWriter, r *http.Request) {
 func Labelget(w http.ResponseWriter, r *http.Request) { 
     head(w)
     var label []psql.Legaltype
-    var number = (page-1)*1
+    var number = (page-1)*10
     if Country=="Japan"{
         label=psql.Labelsql(postlabel,number)
     }else if Country=="Korea"{
