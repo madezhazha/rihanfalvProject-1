@@ -169,9 +169,28 @@ func Email(w http.ResponseWriter, r *http.Request) {
 				msg := []byte("To: " + strings.Join(to, ",") + "\r\nFrom: " + nickname +
 					"<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
 				err := smtp.SendMail("smtp.qq.com:25", auth, user, to, msg)
-				if err != nil {
-					fmt.Printf("send mail error: %v", err)
-					RandNumberString = "1"
+
+				if err != nil { //第一个邮箱失败就尝试第二个邮箱
+					fmt.Printf("qqEmail send mail error: %v", err)
+
+					auth := smtp.PlainAuth("", "a1062111902@163.com", "zxc123", "smtp.163.com")
+					to := []string{re.Email, "a1062111902@163.com"} //网易很容易把这些邮件视为垃圾邮件，要发一份给自己。。。以证清白[捂脸]
+					nickname := "[日韩法律web应用]验证码"
+					user := "a1062111902@163.com" //主题如果是纯中文或纯英文则字符数必须大于等于5个，不然会报错554 SPM被认为是垃圾邮件或者病毒
+					subject := "[日韩法律web应用]验证码"
+					content_type := "Content-Type: text/plain; charset=UTF-8"
+					body := "【日韩法律web应用】欢迎使用本应用，您的验证码是：" + RandNumberString + "。如非本人操作，请注意账号安全。"
+					msg := []byte("To: " + strings.Join(to, ",") + "\r\nFrom: " + nickname +
+						"<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
+
+					err := smtp.SendMail("smtp.163.com:25", auth, user, to, msg)
+
+					if err != nil {
+						fmt.Printf("send mail error: %v", err)
+						RandNumberString = "1"
+					} else {
+						fmt.Println("send eamil successed! the Verification is :", RandNumberString)
+					}
 				} else {
 					fmt.Println("send eamil successed! the Verification is :", RandNumberString)
 				}
@@ -283,9 +302,28 @@ func CPsendVerification(w http.ResponseWriter, r *http.Request) {
 				msg := []byte("To: " + strings.Join(to, ",") + "\r\nFrom: " + nickname +
 					"<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
 				err := smtp.SendMail("smtp.qq.com:25", auth, user, to, msg)
-				if err != nil {
-					fmt.Printf("send mail error: %v", err)
-					RandNumberString = "1"
+
+				if err != nil { //第一个邮箱失败就尝试第二个邮箱
+					fmt.Printf("qqEmail send mail error: %v", err)
+
+					auth := smtp.PlainAuth("", "a1062111902@163.com", "zxc123", "smtp.163.com")
+					to := []string{re.Email, "a1062111902@163.com"} //网易很容易把这些邮件视为垃圾邮件，要发一份给自己。。。以证清白[捂脸]
+					nickname := "[日韩法律web应用]验证码"
+					user := "a1062111902@163.com" //主题如果是纯中文或纯英文则字符数必须大于等于5个，不然会报错554 SPM被认为是垃圾邮件或者病毒
+					subject := "[日韩法律web应用]验证码"
+					content_type := "Content-Type: text/plain; charset=UTF-8"
+					body := "【日韩法律web应用】欢迎使用本应用，您的验证码是：" + RandNumberString + "。如非本人操作，请注意账号安全。"
+					msg := []byte("To: " + strings.Join(to, ",") + "\r\nFrom: " + nickname +
+						"<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
+
+					err := smtp.SendMail("smtp.163.com:25", auth, user, to, msg)
+
+					if err != nil {
+						fmt.Printf("send mail error: %v", err)
+						RandNumberString = "1"
+					} else {
+						fmt.Println("send eamil successed! the Verification is :", RandNumberString)
+					}
 				} else {
 					fmt.Println("send eamil successed! the Verification is :", RandNumberString)
 				}
