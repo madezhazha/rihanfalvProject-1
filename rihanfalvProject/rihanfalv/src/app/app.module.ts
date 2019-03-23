@@ -58,7 +58,6 @@ import { ToQuestionComponent } from './components/chat/to-question/to-question.c
 import { MyQuestionComponent } from './components/chat/my-question/my-question.component';
 import { MyAmswerComponent } from './components/chat/my-amswer/my-amswer.component';
 
-import { myPipe } from './components/chat/popular/popular.component';
 import { CollectedcaseComponent } from './components/personpage/collection/collectedcase/collectedcase.component';
 import { CollectedtopicComponent } from './components/personpage/collection/collectedtopic/collectedtopic.component';
 import { CasethingComponent } from './components/case/casething/casething.component';
@@ -100,7 +99,6 @@ import { CasethingComponent } from './components/case/casething/casething.compon
     TagComponent,
     SearchresultComponent,
     SearchkeywordPipe,
-    myPipe,
     CollectedcaseComponent,
     CollectedtopicComponent,
     MychatComponent,
