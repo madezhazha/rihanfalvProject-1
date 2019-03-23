@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
-import { HttpClient, HttpHandler, HttpHeaders} from '@angular/common/http';
-import {InputData} from '../head/langing/land/input'
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import {InputData} from '../head/langing/land/input';
+
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
@@ -55,7 +56,7 @@ export class FeedbackComponent implements OnInit {
     else{
 
     const httpOptions={headers:new HttpHeaders({'Content-Type' :'application/json'})}
-                  let api='http://localhost:7080/addfeedback';
+                  let api='http://blackcardriver.cn:7080/addfeedback';
                   this.http.post(api,{"userid":this.id,'feedbacktype':this.neixing,'feedbackcontent':this.mark},httpOptions).subscribe((response:any)=>{
                       
                   })

@@ -7,9 +7,12 @@ export class GetdataService {
 
   constructor(private http: HttpClient) { }
   get(id) {
-    return this.http.post('http://localhost:7080/get',id);
+    // return this.http.post('http://localhost:7080/get',id);
+    return this.http.post('http://blackcardriver.cn:7080/get',id);
   }
   change(user) {
-    return this.http.post('http://localhost:7080/post', user);
+    // return this.http.post('http://localhost:7080/post', user);
+    return this.http.post('http://blackcardriver.cn:7080/post', user);
+    
   }
 }

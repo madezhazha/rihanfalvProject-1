@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-feedbacksuccess',
@@ -14,7 +14,6 @@ export class FeedbacksuccessComponent implements OnInit {
   }
   Historicalfeedback(){
     this.router.navigate(['/Personalfeedback/'])
-
   }
   jixu(){
     this.router.navigate(['/Feedback/'])

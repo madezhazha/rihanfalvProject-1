@@ -32,8 +32,12 @@ func M_Search(w http.ResponseWriter, r *http.Request) {
 		if readkeys==nil{
 			return
 		}	
+<<<<<<< HEAD
+		readkey =strings.Split(readkeys.(string)," ")//根据空格切割关键词
+=======
 		readkey =strings.Split(readkeys.(string)," ")
 		fmt.Print(readkey)
+>>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
 		readclass = text["Classify"]//获取搜索内容
 		readcountry = text["Nowcountry"]//获取当前国家
 		readorder = text["Order"]//获取排序方式

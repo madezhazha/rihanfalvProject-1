@@ -65,7 +65,7 @@ export class CaseDataComponent implements OnInit {
         const httpOptions={
           headers:new HttpHeaders({'Content-Type':'application/json'})
         }
-        var api="http://localhost:7080/changecollect"
+        var api="http://blackcardriver.cn:7080/changecollect"
         this.http.post(api,{"title":this.title,"data":"collect","type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
         {
           if(response!==null){
@@ -82,7 +82,7 @@ export class CaseDataComponent implements OnInit {
         const httpOptions={
           headers:new HttpHeaders({'Content-Type':'application/json'})
         }
-        var api="http://localhost:7080/changecollect"
+        var api="http://blackcardriver.cn:7080/changecollect"
         this.http.post(api,{"title":this.title,"data":"cancle","type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
         {
           if(response!==null){
@@ -134,7 +134,7 @@ export class CaseDataComponent implements OnInit {
       headers:new HttpHeaders({'content-Type':'application/json'})
       }
 
-      var api = "http://localhost:7080/displaytxt"
+      var api = "http://blackcardriver.cn:7080/displaytxt"
 
     if(this.userId ===undefined){
       this.http.post(api,{"content":this.title},httpOptions).subscribe((response:any)=>{
@@ -171,7 +171,8 @@ export class CaseDataComponent implements OnInit {
             this.initialState(this.languageType,this.titleId)   //这个是用来判断时候已经是收藏的状态了 
           }else{
             alert("系统出现错误")
-          }        
+          } 
+          console.log(response)       
         })
     }
   }
@@ -186,7 +187,7 @@ export class CaseDataComponent implements OnInit {
         headers:new HttpHeaders({'content-Type':'application/json'})
       }
   
-      var api = "http://localhost:7080/payment"
+      var api = "http://blackcardriver.cn:7080/payment"
   
       this.http.post(api,{"titleid":this.titleId,"userid":this.userId,"integral":this.integral},httpOptions).subscribe((response:any)=>{
         if(response["data"]!=="系统出现错误"){
@@ -226,7 +227,7 @@ export class CaseDataComponent implements OnInit {
       const httpOptions={
         headers:new HttpHeaders({'content-Type':'application/json'})
       }
-      var api = "http://localhost:7080/InitialState"
+      var api = "http://blackcardriver.cn:7080/InitialState"
       this.http.post(api,{"title":this.title,"type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
       {
         if(response["data"]!=="系统出现错误"){

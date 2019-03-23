@@ -53,6 +53,10 @@ export class LegalComponent implements OnInit {
   public Postpage(nowpage: number, kind: string) {        // 将当前页数传递会服务器
     this.api.legalpage(nowpage, kind).subscribe(() => {
       this.Getpage();                // 获取总条数
+<<<<<<< HEAD
+=======
+      this.Gettype();    // 获取法条
+>>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     });
   }
 
@@ -65,7 +69,11 @@ export class LegalComponent implements OnInit {
     }
     this.api.country(this.Nowcountry).subscribe(() => {
       this.Postpage(1, 'type');        // 首页页码
+<<<<<<< HEAD
       this.Gettype();    // 获取总页数和法条
+=======
+      // this.Gettype();    // 获取总页数和法条
+>>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     });
   }
 
@@ -77,7 +85,11 @@ export class LegalComponent implements OnInit {
     }
     this.api.country(this.Nowcountry).subscribe(() => {
       this.Postpage(1, 'type');        // 首页页码
+<<<<<<< HEAD
       this.Gettype();    // 获取总页数和法条
+=======
+      // this.Gettype();    // 获取总页数和法条
+>>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     });
   }
 
@@ -143,7 +155,11 @@ export class LegalComponent implements OnInit {
  public Paging() {
    this.pagings = [0, 0, 0, 0, 0, 0, 0, 0];
    let p = this.page.nowpage;
+<<<<<<< HEAD
    const n = this.allpage.allpage / 1;
+=======
+   const n = this.allpage.allpage / 10;
+>>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
    if (n > 7) {
     for ( let i = 0; i < 8; i++) {
       if (p > n) {
