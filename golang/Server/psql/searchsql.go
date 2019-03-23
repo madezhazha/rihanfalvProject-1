@@ -65,6 +65,9 @@ func Legalsearch(readkey []string,readorder string,searchlist []Searchbox)[]Sear
 	str2:=" Legalcontent like '%"+readkey[0]+"%' "
 	length:=len(readkey)
 	for i:=1;i<length;i++{
+		if readkey[i]==""{
+			continue;
+		}
 	str1+=" and LegalTitle like '%"+readkey[i]+"%' "
 	str2+=" and Legalcontent like '%"+readkey[i]+"%' "
 	}
@@ -93,6 +96,9 @@ func Thesissearch(readkey []string,readorder string,searchlist []Searchbox)[]Sea
 	str2:=" ThesisContent like '%"+readkey[0]+"%' "
 	length:=len(readkey)
 	for i:=1;i<length;i++{
+		if readkey[i]==""{
+			continue;
+		}
 	str1+=" and ThesisTitle like '%"+readkey[i]+"%' "
 	str2+=" and ThesisContent like '%"+readkey[i]+"%' "
 	}
@@ -126,6 +132,9 @@ func Analysissearch(readkey []string,readorder string,searchlist []Searchbox)[]S
 	 str2:=" casecontent like '%"+readkey[0]+"%' "
 	 length:=len(readkey)
 	 for i:=1;i<length;i++{
+		if readkey[i]==""{
+			continue;
+		}
 	 str1+=" and casetitle like '%"+readkey[i]+"%' "
 	 str2+=" and casecontent like '%"+readkey[i]+"%' "
 	 }
@@ -154,7 +163,7 @@ func Scoreofsearch(searchlist []Searchbox,readkey []string){//判断内容的相
 	for ;i<lenth;i++{
         searchlist[i].Value=0
 		titlecount:=strings.Count(searchlist[i].Title, readkey[0])//获取内容中key的出现次数
-		searchlist[i].Value=searchlist[i].Value+titlecount*100
+		searchlist[i].Value=searchlist[i].Value+titlecount*1000
 		//fmt.Println("标题包含：",titlecount) 
 		contentcount:=strings.Count(searchlist[i].Content, readkey[0])
 		searchlist[i].Value=searchlist[i].Value+contentcount*5

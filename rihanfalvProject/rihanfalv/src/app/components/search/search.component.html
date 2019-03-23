@@ -9,7 +9,8 @@
    <div style="text-align:center;float:center;">
  <input type="text" [(ngModel)]="KeyWord" class="form-control" [ngModelOptions]="{standalone: true}" style="width:320px;float:left;"
   placeholder="加空格可以多关键词搜索/搜索{{this.searchgroup}}" />
-  <button (click)="doSearch()" type="submit" class="btn btn-default" style="float:left;">  
+  <button type="button"class="btn btn-default" style="float:left;" (click)="clear()">✖</button>
+  <button (click)="doSearch()" type="submit" class="btn btn-default"  style="float:left;">  
     <img src="assets/images/index/u7.png" width="16" />  
     </button>
      <br>
@@ -32,7 +33,7 @@
 
 <div class="module" *ngIf="!this.ifsearch">
 <div class="history" *ngIf="IfHistory" > 搜索记录
-  <hr>
+  
 <ul>
   <li *ngFor="let item of HistoryList;let key=index">
     <img src="../../../assets/history.png" width="14">
@@ -40,7 +41,7 @@
    {{item}}
   </button>
  <button (click)="deleteHistory(key)" class="x">
-   x
+   ✖
   </button>
  <hr>
   </li>
@@ -54,7 +55,8 @@
 <div  *ngIf="this.ifsearch">
     
 <app-searchresult></app-searchresult>
-<a href="javascript:scroll(0,0)">回到顶部</a>
+<div style="widows: 420px; text-align: center;"><a href="javascript:scroll(0,0)" >回到顶部</a></div>
+
 
 </div>
 
