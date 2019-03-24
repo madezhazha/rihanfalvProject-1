@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiSerivice } from '../../../apiservice';
-import { APIResponse, Nowpage, Allpage } from '../../../apiresponse';
+import { ApiSerivice } from '../../../services/apiservice';
+import { APIResponse, Nowpage, Allpage } from '../../../services/apiresponse';
 import { Router } from '@angular/router';
 
 @Component({

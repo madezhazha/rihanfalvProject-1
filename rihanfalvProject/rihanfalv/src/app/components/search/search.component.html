@@ -1,7 +1,7 @@
 <app-webhead (isJapan)="getJapanKorea($event)"></app-webhead>
 <div class="module">
 <div class="search">
-   <form class="navbar-form navbar-left" style="text-align:center;">
+   <form class="navbar-form navbar-left" style="text-align:center;width:auto;">
       <ul class="nav navbar-nav" >
           <li *ngFor="let item of this.searchlist" style="width:85px;float:left;">
             <a (click)="setInfo(item)">{{item}}</a></li>
