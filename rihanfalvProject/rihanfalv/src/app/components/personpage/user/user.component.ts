@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ElementRef,ViewChild} from '@angular/core';
 // import { FlashMessagesService } from 'angular2-flash-messages';
 import { GetdataService } from '../../../services/getdata.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
+import { WebheadComponent } from '../../head/webhead/webhead.component';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+
+  @ViewChild(WebheadComponent)
+  a:WebheadComponent;
   user: any;
   temp = {
     UserId: 0,
@@ -120,6 +124,8 @@ export class UserComponent implements OnInit {
           this.temp.Image = this.user.Image;
         } else {
           this.serve.change(this.temp).subscribe(() => {
+            this.ngOnInit();
+            this.a.ngOnInit();
           });
           if(this.temp.Image.length<50){
             localStorage.setItem('headImage', this.temp.Image);
