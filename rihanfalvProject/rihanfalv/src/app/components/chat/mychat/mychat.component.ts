@@ -42,7 +42,7 @@ export class MychatComponent implements OnInit {
   constructor(public router:Router,public http:HttpClient,public sanitizer: DomSanitizer,) { }
 
   ngOnInit() {
-    console.log(1);
+    //console.log(1);
     this.UserId = JSON.parse(localStorage.getItem("id"));
     if(!this.UserId) this.LoginStatus=false;
     else {

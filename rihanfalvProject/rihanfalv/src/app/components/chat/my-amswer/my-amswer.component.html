@@ -11,7 +11,7 @@
   <div class="detailBody">
 
     <ul>
-      <li *ngFor="let item of AnsList;let key=index" [hidden]="key>this.DisplayCount" >
+      <li *ngFor="let item of nowData;let key=index"  >
         <div id="Ansorder" (click)="readTopic(item)">
                 <div class="List">
                   <div class="Info">
@@ -35,15 +35,15 @@
         </div>
       </li>
 
-      <li *ngIf="DisplayCount < MyAnsCount" >
+      <li *ngIf="!isMax" >
         <div class="loadmore">
           <a (click)="loadMore()">
-          <span>加载更多...</span>
+          <span>正在加载...</span>
         </a>
         </div>
       </li>
 
-      <li *ngIf="DisplayCount >= MyAnsCount" >
+      <li *ngIf="isMax" >
           <div class="loadmore">
             <span>暂无更多</span>
           </div>
