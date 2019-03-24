@@ -13,7 +13,7 @@ import { WebheadComponent } from '../../head/webhead/webhead.component';
 export class UserComponent implements OnInit {
 
   @ViewChild(WebheadComponent)
-  a:WebheadComponent;
+  head:WebheadComponent;
   user: any;
   temp = {
     UserId: 0,
@@ -126,7 +126,7 @@ export class UserComponent implements OnInit {
           this.serve.change(this.temp).subscribe(() => {
             // 修改完成后调用头部的初始化函数
             this.ngOnInit();
-            this.a.ngOnInit();
+            this.head.ngOnInit();
           });
           if(this.temp.Image.length<50){
             localStorage.setItem('headImage', this.temp.Image);
