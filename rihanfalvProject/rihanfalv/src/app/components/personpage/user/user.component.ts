@@ -11,7 +11,6 @@ import { WebheadComponent } from '../../head/webhead/webhead.component';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
   @ViewChild(WebheadComponent)
   head:WebheadComponent;
   user: any;
