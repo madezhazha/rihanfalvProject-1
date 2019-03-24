@@ -36,6 +36,7 @@ func main() {
 	mux.HandleFunc("/changecollect", route.CollectData)
 	mux.HandleFunc("/InitialState", route.InitialState)
 	mux.HandleFunc("/payment",route.Payment)
+	mux.HandleFunc("/recharge",route.Recharge)
 
 	// 讨论区
 	mux.HandleFunc("/thread/list", route.ListThread)

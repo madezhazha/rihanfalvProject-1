@@ -61,7 +61,7 @@
       </div>
       <div class="modal-body">
         <div>
-          <span>当前用户：</span><span>{{userId}}</span>
+          <span>当前用户：</span><span>{{username}}</span>
         </div>
         <div class="pay">
           <div class="radio">
@@ -100,12 +100,12 @@
 
         <label for="name"><h4>支付方式：</h4></label>
         <div>
-          <div class="radio-inline">
+          <!-- <div class="radio-inline">
             <label>
               <input type="radio" name="optionsRadios" id="optionsRadios1" value="微信支付" checked> 微信支付
-            <!-- 其中checked表示一开始为被选中状态 -->
+            其中checked表示一开始为被选中状态
             </label>
-          </div>
+          </div> -->
           <div class="radio-inline">
             <label>
               <input type="radio" name="optionsRadios" id="optionsRadios2" value="支付宝支付">支付宝支付
@@ -116,7 +116,7 @@
           <span>应付金额：</span> <span>{{money}}</span>元
         </div>
         <div class="modal-footer">
-          <button class="btn btn-success" data-dismiss="modal">确定支付</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="recharge()">确定支付</button>
         </div>
       </div>
     </div>

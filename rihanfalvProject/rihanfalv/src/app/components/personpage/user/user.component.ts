@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
     Email: '',
     Password: '',
     Image: '',
-    Integral: '',
+    Integral: 0,
     RegisterDate: ''
   };
   imgsrcs: string[] = [
@@ -43,6 +43,8 @@ export class UserComponent implements OnInit {
   base64: string;
   hidden: boolean = false; // 隐藏画布
   id: number = 0;  //登录后获取id
+  money:string='5';   //支付金额
+  integral:string='50';   //支付金额对应的积分
   constructor(
     public router: Router,
     private serve: GetdataService,
@@ -51,6 +53,25 @@ export class UserComponent implements OnInit {
     private datePipe: DatePipe
   ) { }
 
+  sumbitFive(){
+    this.money="5";
+    this.integral = '50';
+  }
+
+  sumbitTen(){
+    this.money="10";
+    this.integral = '120';
+  }
+
+  sumbitTwenty(){
+    this.money="20";
+    this.integral = '300'
+  }
+
+  sumbitFifty(){
+    this.money="50";
+    this.integral = '800'
+  }
   //  跳转到收藏夹
   collection() {
     this.router.navigate(['/collection']);
@@ -100,7 +121,12 @@ export class UserComponent implements OnInit {
         } else {
           this.serve.change(this.temp).subscribe(() => {
           });
-          localStorage.setItem('headImage', this.temp.Image);
+          if(this.temp.Image.length<50){
+            localStorage.setItem('headImage', this.temp.Image);
+          }else{
+            localStorage.setItem('headImage', 'data:image/jpg;base64,'+this.temp.Image);
+          }
+          
           // alert('修改成功！');
           this.msg = this.msgs[2];
           this.issuccess = true;
@@ -124,6 +150,21 @@ export class UserComponent implements OnInit {
     this.iswarn = false;
     this.isshow = false;
   }
+  //积分充值
+  recharge(){
+    this.temp.Integral = this.temp.Integral + Number(this.integral);
+    this.user.Integral = this.temp.Integral;
+    // 去掉头像base64的前缀
+    let tempimg: string;
+    tempimg = localStorage.getItem('headImage');
+    this.user.Image = tempimg.substring(22,tempimg.length);
+    // console.log(tempimg);
+    this.serve.change(this.user).subscribe(()=>{
+      this.user.Image = tempimg;
+    });
+
+  }
+
   ngOnInit() {
     this.id = JSON.parse(localStorage.getItem('id'));
     console.log(this.id);
@@ -133,12 +174,13 @@ export class UserComponent implements OnInit {
       // 判断传来的是系统头像的路径还是base64
       if (this.user.Image.length > 100) {
         let temp: any;
-        temp = 'data:image/png;base64, ' + this.user.Image; //给base64添加头缀
+        temp = 'data:image/jpg;base64, ' + this.user.Image; //给base64添加头缀
         this.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
       }
       //存储用户不可修改的信息
       this.temp.UserId = this.user.UserId;
       this.temp.Integral = this.user.Integral;
+      // console.log(this.temp.Integral);
       this.temp.RegisterDate = this.user.RegisterDate;
       this.temp.Email = this.user.Email;
       // 转化日期格式
