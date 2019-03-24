@@ -1,17 +1,21 @@
+<div *ngIf="this.m_search.ifget==1" style="width:400px;text-align:center;">正在搜索……</div>
 
+<div *ngIf="this.m_search.ifget==0" class="paper">
+        很抱歉，没有找到与“{{this.m_search.KeyWord}}”相关的
+        <span *ngIf="this.m_search.Classify=='全部'">内容</span>
+        <span *ngIf="this.m_search.Classify!='全部'">{{this.m_search.Classify}}</span>。
+        <br>
+        温馨提示：
+        <br>
+            请检查您的输入是否正确。
+            <br>
+            如内容未收录，或有任何意见/建议，请及时
+            <a [routerLink]="[ '/Feedback']">反馈</a>给我们。
+        </div> 
+
+        
 <div>
-   <div *ngIf="!getstatus()" class="paper">
-很抱歉，没有找到与“{{this.m_search.KeyWord}}”相关的
-<span *ngIf="this.m_search.Classify=='全部'">内容</span>
-<span *ngIf="this.m_search.Classify!='全部'">{{this.m_search.Classify}}</span>。
-<br>
-温馨提示：
-<br>
-    请检查您的输入是否正确。
-    <br>
-    如内容未收录，或有任何意见/建议，请及时
-    <a [routerLink]="[ '/Feedback']">反馈</a>给我们。
-</div> 
+ 
     <ul *ngIf="getstatus()">
         <div class="paperlist" >
         <div >
@@ -61,4 +65,6 @@
         <div class="totop" ><a href="javascript:scroll(0,0)" class="glyphicon glyphicon-arrow-up " title="回到顶部"></a></div>
 
         </ul>
+
+        
       </div>

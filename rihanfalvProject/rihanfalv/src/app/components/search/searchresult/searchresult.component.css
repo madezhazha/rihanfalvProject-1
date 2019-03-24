@@ -164,7 +164,7 @@ background-color: darkseagreen;
     }
     .totop{
         padding:5px;
-        width: auto;
+        width: 40px;
         height: auto;
         margin:5px;
         border: 2px solid;
@@ -176,7 +176,7 @@ background-color: darkseagreen;
         position: fixed;
         font-size: 25px;
         right: 20px;
-        top: 600px;
+        top: 500px;
        }
        .totop a{
         color:white;

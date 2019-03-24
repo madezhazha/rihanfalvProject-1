@@ -6,12 +6,11 @@
           <li *ngFor="let item of this.searchlist" style="width:85px;float:left;">
             <a (click)="setInfo(item)">{{item}}</a></li>
         </ul>
-   <div style="text-align:center;float:center;">
-    
+   <div style="text-align:center">
 
- <input type="text" [(ngModel)]="KeyWord" class="form-control" [ngModelOptions]="{standalone: true}" style="width:320px;float:left;"
-  placeholder="加空格可以多关键词搜索/搜索{{this.searchgroup}}" />
-    <button type="button"class="btn btn-default" style="float:left;" (click)="clear()">✖</button>
+ <input type="search" [(ngModel)]="KeyWord" class="form-control" [ngModelOptions]="{standalone: true}" style="width:320px;float:left;"
+  placeholder="加空格可以多关键词搜索/搜索{{this.searchgroup}}" required />
+    <span class="clear-x" (click)="clear()">✖</span>
   
 
   <button (click)="doSearch()" type="submit" class="btn btn-default"  style="float:left;">  
@@ -34,7 +33,7 @@
 </form>
 </div>
 </div>
-<div  *ngIf="this.ifsearch">
+<div  *ngIf="this.ifsearch" >
     
 <app-searchresult ></app-searchresult>
 

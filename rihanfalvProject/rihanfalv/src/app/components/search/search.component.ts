@@ -22,7 +22,6 @@ public ifsearch=false//搜索状态,false显示搜索历史,true显示搜索内�
   constructor(public router: Router,public http:HttpClient,public m_search:DosearchService) { }
 
   ngOnInit() {this.readHistory()
-    console.log(this.m_search.list)
 
 }
 readHistory(){
@@ -67,7 +66,10 @@ doSearch(){//搜索按键
   this.m_search.Nowcountry=this.Nowcountry
   this.m_search.searchtogo()//传数据给后端
   //this.router.navigate(['searchresult'])
-  this.ifsearch=true
+  let that=this
+  setTimeout( function() { 
+     that.ifsearch=true } , 300);  
+
 
 }
 deleteHistory(key){//删除某项历史记录
