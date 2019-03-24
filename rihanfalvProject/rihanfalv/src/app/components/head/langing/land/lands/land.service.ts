@@ -11,7 +11,7 @@ export class LandService {
 
   constructor(private http: HttpClient) { }
   getInput(out: OutputData) {
-    return this.http.post<InputData>("http://localhost:7080/", JSON.stringify(out))
+    return this.http.post<InputData>("http://blackcardriver.cn:7080/", JSON.stringify(out))
   }
 }
 

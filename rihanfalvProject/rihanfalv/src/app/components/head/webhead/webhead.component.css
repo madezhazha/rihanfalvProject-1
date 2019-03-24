@@ -10,6 +10,12 @@ img.headImage{
     
 }
 
+div.logo{
+    height: 60px;
+    padding-top:5px;
+    padding-left:8px;
+}
+
 div.headImage{
     z-index: 100;
     position: absolute;
@@ -27,8 +33,7 @@ img.back{
 }
     
 .imge{
-    width:60px;
-    height:auto;
+    height:35px;
     
 }
     

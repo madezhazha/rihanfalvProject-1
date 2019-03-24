@@ -1,5 +1,5 @@
-import { Component, OnInit,ElementRef,Renderer2,ViewChild } from '@angular/core';
-import{ActivatedRoute}from "@angular/router"
+import { Component, OnInit,ElementRef,Renderer2,ViewChild,Output,EventEmitter } from '@angular/core';
+import{ActivatedRoute,Router}from "@angular/router"
 import{HttpClient,HttpHeaders} from '@angular/common/http'
 import {DomSanitizer} from '@angular/platform-browser'
 import { InputData } from '../../head/langing/land/input';
@@ -20,6 +20,7 @@ export class CaseDataComponent implements OnInit {
     private el:ElementRef,
     private renderer2:Renderer2,
     private location : Location,
+    private router:Router,
   ) { }
 
   ngOnInit() {
@@ -48,6 +49,7 @@ export class CaseDataComponent implements OnInit {
   integral:string            //积分
   allintegral:string         //改用用户的所有的积分
   username:string            //账号名
+  search:string              //查找的东西
 
 
   imageUrl:string='./assets/images/fiveStar1.PNG'
@@ -123,6 +125,7 @@ export class CaseDataComponent implements OnInit {
   getData(){
     this.activatedRoute.queryParams.subscribe(params=>{
       this.title=params["title"]
+      this.search = params["type"]
     })
   }
 
@@ -257,7 +260,7 @@ export class CaseDataComponent implements OnInit {
   }
 
   goBack(){
-    this.location.back()
+    history.go(-1)
   }
     
 }

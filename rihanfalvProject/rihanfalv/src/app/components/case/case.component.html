@@ -11,7 +11,7 @@
 <!-- 这里是案例第一层显示案例 -->
 <div *ngIf="case" class="caseContent">
   <div>
-    <p class="all" (click)="hideContent()" [class.firstAll]="caseContent[4]===true"><a  (click)="changeSearchContent('全部')">全部</a></p>
+    <p class="all" (click)="hideContent()"><a  (click)="changeSearchContent('全部')">全部</a></p>
   </div>
   <div (click)="displayCrim()">
     <p class="criminal"><a  (click)="changeSearchContent('刑事案件')">刑事案件</a></p>
