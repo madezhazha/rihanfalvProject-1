@@ -86,7 +86,7 @@ background-color: darkseagreen;
         text-align: left;
         position: relative;
         background: white;
-        width: 400px;
+        width: 450px;
         height:140px;
         line-height: 20px;
         /* border-bottom: 1px solid gray; */
@@ -162,5 +162,23 @@ background-color: darkseagreen;
         border-radius: 2px; 
         margin-left:5px  !important; 
     }
-    
+    .totop{
+        padding:5px;
+        width: auto;
+        height: auto;
+        margin:5px;
+        border: 2px solid;
+        border-radius:30px;
+        background: rgb(128, 230, 255);
+        filter:alpha(opacity=50); /*仅在ie中支持*/
+        opacity:0.5; /*不支持ie*/
+        display: block;
+        position: fixed;
+        font-size: 25px;
+        right: 20px;
+        top: 600px;
+       }
+       .totop a{
+        color:white;
+       }
         
