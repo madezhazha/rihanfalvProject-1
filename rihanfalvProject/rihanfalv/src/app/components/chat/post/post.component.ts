@@ -16,7 +16,6 @@ import { fromEvent } from 'rxjs'
 })
 export class PostComponent implements OnInit {
 
-  public
 
   // 楼主的id
   public hostData: any;
@@ -135,6 +134,8 @@ export class PostComponent implements OnInit {
   getLoginData(loginData: InputData) {
     if (loginData.IfLogin == true) {
       this.Islogin = true
+      this.userID = localStorage.getItem("id");
+      console.log(this.userID);
       this.boxClose();
     }
   }

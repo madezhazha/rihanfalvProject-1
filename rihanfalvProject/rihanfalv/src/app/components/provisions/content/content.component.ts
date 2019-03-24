@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class ContentComponent implements OnInit {
 
   constructor(public router: Router, private api: ApiSerivice) { }
+  public Nowcountry: string;   // 当前模块 日/韩
+
   public content: any = {
     legaltype:   '',
     legaltitle:  '',
@@ -26,7 +28,17 @@ export class ContentComponent implements OnInit {
       this.content = response;
     });
     }
+
     public back() {       // 返回上一页面
-      this.router.navigate(['/article']);
+      this.router.navigate(['/legal']);
   }
+
+  public getJapanKorea(isJapan: boolean) {
+    if (isJapan) {
+      this.back();
+    } else {
+      this.back();
+    }
+  }
+
 }
