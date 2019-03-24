@@ -99,7 +99,7 @@ export class PaperComponent implements OnInit {
         if(h+scrollTop+20>H){
           if(!this.Isbottom){
             if(!this.Isover){
-              setTimeout(()=>{this.getArticles();},1000)    //延时1000ms加载
+              this.getArticles();
               this.Isbottom=true
               console.log(this.Articles)
             }
