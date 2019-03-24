@@ -29,7 +29,7 @@ import { MyAmswerComponent } from './components/chat/my-amswer/my-amswer.compone
 import { UserComponent } from './components/personpage/user/user.component' ;
 import { CollectionComponent } from './components/personpage/collection/collection.component' ;
 import { UploadHeadimageComponent } from './components/personpage/upload-headimage/upload-headimage.component';
-
+import {LoginserviceService} from '../app/services/loginservice.service';
 const routes: Routes = [
   // { path: 'text', component:PaperComponent },               //测试专用
   { path: 'homepage', component: HomepageComponent},        //首页
@@ -57,7 +57,7 @@ const routes: Routes = [
   { path: 'myanswer', component: MyAmswerComponent },
 
 
-  {path: 'userpage', component: UserComponent},
+  {path: 'userpage', component: UserComponent,canActivate: [LoginserviceService]},
   {path: 'collection', component: CollectionComponent},
   {path: 'uploadimage', component: UploadHeadimageComponent},
 

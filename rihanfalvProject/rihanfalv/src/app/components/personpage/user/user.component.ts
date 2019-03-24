@@ -1,4 +1,4 @@
-import { Component, OnInit ,ElementRef,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 // import { FlashMessagesService } from 'angular2-flash-messages';
 import { GetdataService } from '../../../services/getdata.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { WebheadComponent } from '../../head/webhead/webhead.component';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  // ViewChild 装饰器用于获取模板视图中的元素或直接调用其组件中的方法。
   @ViewChild(WebheadComponent)
   head:WebheadComponent;
   user: any;
@@ -193,5 +194,7 @@ export class UserComponent implements OnInit {
       this.user.RegisterDate = this.datePipe.transform(this.user.RegisterDate, 'yyyy-MM-dd');
 
     });
+    
   }
+  
 }

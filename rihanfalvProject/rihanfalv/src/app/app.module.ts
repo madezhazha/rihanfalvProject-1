@@ -42,6 +42,7 @@ import { UserComponent } from './components/personpage/user/user.component' ;
 import { CollectionComponent } from './components/personpage/collection/collection.component' ;
 import { ThesisComponent } from './components/personpage/collection/thesis/thesis.component' ;
 import { DatePipe } from '@angular/common';
+import { LoginserviceService} from '../app/services/loginservice.service';
 // 服务
 import {GetdataService} from '../app/services/getdata.service';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
@@ -123,6 +124,7 @@ import {HashLocationStrategy , LocationStrategy} from '@angular/common';
     ApiSerivice,
     GetdataService,
     DatePipe,
+    LoginserviceService,
   ],
   bootstrap: [AppComponent]
 })
