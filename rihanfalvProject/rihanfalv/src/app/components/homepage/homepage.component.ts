@@ -34,18 +34,18 @@ export class HomepageComponent implements OnInit {
        //     showImg(index);
        //  }).eq(0).mouseover();
 
-        //手机屏幕上左右滑动图片框时图片向左右切换
-      //  $(".picturebox").on("swipeleft",function(){
-      //       if(index<4) showImg(++index);
-      //       restart();
-      //   });
-      //   $(".picturebox").on("swiperight",function(){
-      //       if(index>0) showImg(--index); 
-      //       restart();
-      //   });
+       // 手机屏幕上左右滑动图片框时图片向左右切换
+        $(".picturebox").on("swipeleft",function(){
+             if(index<4) showImg(++index);
+             restart();
+         });
+         $(".picturebox").on("swiperight",function(){
+             if(index>0) showImg(--index); 
+             restart();
+         });
 
       //滑入停止动画，滑出开始动画.
-        // $('.picturebox').on("tap",restart).trigger("taphold"); 
+       $('.picturebox').on("tap",restart).trigger("taphold"); 
 
         run();
    })//<--ready()函数结束
