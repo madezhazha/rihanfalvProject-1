@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiSerivice } from '../../../apiservice';
-import { APIResponse, Nowpage, Allpage } from '../../../apiresponse';
+import { ApiSerivice } from '../../../services/apiservice';
+import { APIResponse, Nowpage, Allpage } from '../../../services/apiresponse';
 import { Router } from '@angular/router';
 
 @Component({
@@ -144,7 +144,7 @@ export class LegalComponent implements OnInit {
  public Paging() {
    this.pagings = [0, 0, 0, 0, 0, 0, 0, 0];
    let p = this.page.nowpage;
-   const n = this.allpage.allpage / 1;
+   const n = this.allpage.allpage / 10;
    if (n > 7) {
     for ( let i = 0; i < 8; i++) {
       if (p > n) {

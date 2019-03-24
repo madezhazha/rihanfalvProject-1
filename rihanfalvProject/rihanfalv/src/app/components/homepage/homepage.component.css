@@ -29,12 +29,12 @@ a{
 .picturebox{
     background-color: rgb(224, 245, 247);
     width: 100%;
-    height: 150px;
+    height: 180px;
     overflow: hidden;
 }
 
 .picture{
-    height: 130px;
+    height: 160px;
     margin-top: 0px;
     margin-bottom: 1px;
     padding:0px;
@@ -93,7 +93,7 @@ a{
 }
 
 .artical{
-    height: 60px;
+    height: 70px;
     width: 96%;
     /* text-align: center; */
     display: inline-block;
@@ -126,7 +126,7 @@ a{
 /* 文章图片 */
 .atc_pic{
     width:30%;
-    height:60px;
+    height:70px;
     float: left;
     /* background-color: cadetblue; */
     display: block;
@@ -150,13 +150,14 @@ a{
     display: block;
 }
 .artical p{
-    margin: 0px;
+    margin-top: 3px;
+    font-size: 1.1em;
     line-height: 20px;
     word-wrap: break-word;
 }
 .atc_time p{
     float:right;
-    font-size: 9px;
+    font-size: 10px;
     margin:0px 5px 0px;
     position: relative;
     top:4px;

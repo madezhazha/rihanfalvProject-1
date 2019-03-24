@@ -47,7 +47,7 @@ export class MyQuestionComponent implements OnInit {
   loadUserInfo(){
 
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
-    let api="http://127.0.0.1:7080/showuserinfo";    
+    let api="http://blackcardriver.cn:7080/showuserinfo";    
     var postdate = {userid:this.UserId,username:"",password:"",email:"",integral:0};
     this.http.post(api,postdate,httpOptions).subscribe((response:any)=>{
       //console.log(response);
@@ -60,7 +60,7 @@ export class MyQuestionComponent implements OnInit {
   loadQueList(){
 
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
-    let api="http://127.0.0.1:7080/showuserquelist";    
+    let api="http://blackcardriver.cn:7080/showuserquelist";    
     this.http.post(api,{userid:this.UserId},httpOptions).subscribe((response:any)=>{
       //console.log(response);
         this.QueList=response;
@@ -79,7 +79,7 @@ export class MyQuestionComponent implements OnInit {
   readTopic(item:any){
 
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
-    let api="http://127.0.0.1:7080/addtopicvisnum";    
+    let api="http://blackcardriver.cn:7080/addtopicvisnum";    
     this.http.post(api,{topicid:item.topicid},httpOptions).subscribe((response:any)=>{
       let navigationExtras: NavigationExtras = {
         queryParams: {

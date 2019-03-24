@@ -68,14 +68,14 @@ func GetJapanArticlesPart(currentpage int) []Article{
 	//	fmt.Println("Query show ",erro)
 	//}{
 	//fmt.Println(mes)
-	rows,erro:=db.Query("SELECT * FROM japanthesis  LIMIT 10 offset $1 ",currentpage*10)
+	rows,erro:=db.Query("SELECT thesisid,thesistitle,thesisauthor,publicationtime,thesislength,lables FROM japanthesis  LIMIT 10 offset $1 ",currentpage*10)
 	if erro!=nil{
 		fmt.Println("Query show ",erro)
 	}
 
 	for rows.Next(){
 		var article Article
-		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Tagstring)
+		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Length,&article.Tagstring)
 		if erro != nil {
 			fmt.Println("showscan error:",erro)
 		}
@@ -101,14 +101,14 @@ func GetKoreaArticlesPart(currentpage int) []Article{
 	//	fmt.Println("Query show ",erro)
 	//}{
 	//fmt.Println(mes)
-	rows,erro:=db.Query("SELECT * FROM koreathesis  LIMIT 10 offset $1 ",currentpage*10)
+	rows,erro:=db.Query("SELECT thesisid,thesistitle,thesisauthor,publicationtime,thesislength,lables FROM koreathesis  LIMIT 10 offset $1 ",currentpage*10)
 	if erro!=nil{
 		fmt.Println("Query show ",erro)
 	}
 
 	for rows.Next(){
 		var article Article
-		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Content,&article.Length,&article.Tagstring)
+		erro = rows.Scan(&article.ID,&article.Title,&article.Author,&article.Time,&article.Length,&article.Tagstring)
 		if erro != nil {
 			fmt.Println("showscan error:",erro)
 		}
