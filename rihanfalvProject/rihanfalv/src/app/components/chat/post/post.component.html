@@ -1,12 +1,15 @@
 <app-webhead></app-webhead>
 <app-chat-head></app-chat-head>
+<div class="app-langing" *ngIf="IfWantLogin" style="position:absolute;margin-left:35px;">
+  <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
+</div>
 
 <div id="base" class="">
 
   <!-- 讨论组合 (组 合) -->
   <div id="u0" class="ax_default" data-label="讨论组合" data-left="0" data-top="22" data-width="448" data-height="355">
 
-    <div style="font-size: 30px;float: right;margin-right:20px;color:#d0cece"
+    <div style="font-size: 30px;float: right;margin-right:20px;color:hsl(0, 8%, 46%)"
       *ngIf="collection?.Collectioncontentid===0 && Islogin==true" (click)="collect()">✪
     </div>
     <div style="font-size: 30px;float: right;margin-right:20px;color:#e7b541"
@@ -141,6 +144,4 @@
   </div>
 </div>
 
-<div class="app-langing" *ngIf="IfWantLogin">
-  <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
-</div>
+

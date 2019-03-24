@@ -53,7 +53,7 @@ export class PostComponent implements OnInit {
       const scrollTop: any = document.documentElement.scrollTop || document.body.scrollTop;
       if (h + scrollTop + 20 > H) {
         if (!this.isBottom) {
-          setTimeout(() => { this.more()}, 1000);
+          setTimeout(() => { this.more()}, 500);
         }
         this.isBottom = true;
       } else {
