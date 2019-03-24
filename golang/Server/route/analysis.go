@@ -334,3 +334,42 @@ func Payment(w http.ResponseWriter,r *http.Request){
 	}
 
 }
+
+//支付宝充值
+func Recharge(w http.ResponseWriter,r *http.Request){
+	w = Cross(w)
+
+	var Data map[string]interface{}
+	var userId string
+	var integral string //用户想要充值的积分
+	var allintegral string  //用户的所有的积分
+	var num_intergral int
+	var num_allintergral int
+
+	body,err:=ioutil.ReadAll(r.Body)
+
+	if err!=nil{
+		fmt.Println(err)
+		var info string ="连接出现错误"
+		response:=Response{info}
+		json,_:=json.Marshal(response)
+		w.Write(json)
+		return
+	}
+
+	json.Unmarshal(body,&Data)
+
+	if Data!=nil{
+		userId = Data["userid"].(string)
+		integral = Data["integral"].(string)
+		allintegral = Data["allintegral"].(string)
+		// fmt.Println(userId,integral,allintegral)
+		num_intergral,_ = strconv.Atoi(integral)
+		num_allintergral,_=strconv.Atoi(allintegral)
+		// fmt.Println(num_allintergral,num_intergral)
+		num_allintergral = num_allintergral+num_intergral
+		data:=psql.Saveintegral(num_allintergral,userId)
+		fmt.Println(data)
+	}
+	fmt.Println("充值成功")
+}
