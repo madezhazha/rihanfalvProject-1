@@ -29,7 +29,7 @@ export class CollectedtopicComponent implements OnInit {
     this.CollectionMsg.length=0
     const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json'})};
 
-       var api ='http://localhost:7080/collectiontopic';
+       var api ='http://blackcardriver.cn:7080/collectiontopic';
        this.http.post(api,{"userid":this.UserID},httpOptions).subscribe((response:any)=>{
 
         this.CollectionMsg=response;
