@@ -16,11 +16,12 @@
                 </a>
             </div>
             <div class="col-xs-6" style="line-height:45px;">
-                {{user.Integral}}积分<a style="margin-left:1%;cursor: pointer;">充值</a>
+                {{user.Integral}}积分<a style="margin-left:1%;cursor: pointer;" data-toggle="modal" data-target="#RechargeModal">充值</a>
             </div>
         </div>
     </div>
-  <!-- 模态框（Modal） 修改信息-->
+
+   <!-- 模态框（Modal） 修改信息-->
     <div class="modal fade" id="ChangeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -81,6 +82,7 @@
             </div>
         </div>
     </div>
+
    <!-- 模态框（Modal） 查看信息-->
     <div class="modal fade" id="LookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -100,7 +102,7 @@
                     </div><br>
                     <div class="input-group">
                         <span class="input-group-addon">头像：</span>
-                        <img src={{user.Image}} width="100px" height="100px" class="img-thumbnail">
+                        <img [src]="user.Image" width="100px" height="100px" class="img-thumbnail">
                     </div><br>
                     <div class="input-group">
                         <span class="input-group-addon">积分：</span>
@@ -117,6 +119,85 @@
             </div>
         </div>
     </div>
+
+
+    <!-- 充值模态框 -->
+    <div class="modal fade" id="RechargeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">  
+              <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 class="modal-title">积分充值</h3>
+            </div>
+            <div class="modal-body">
+              <div>
+                <span>当前用户：</span><span>{{user.UserId}}</span>
+              </div>
+              <div class="pay">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios1" id="optionsRadios3" value="option1" checked  (click)="sumbitFive()">
+                    <div id="five" style="width:180px;height:38px;border:1px solid;border-radius: 12px;background-color: rgba(204,255,204,1);text-align: center;">
+                      <h4>50分/5元</h4>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios1" id="optionsRadios4" value="option2" (click)="sumbitTen()">
+                    <div id="five" style="width:180px;height:38px;border:1px solid;border-radius: 12px;background-color: rgba(204,255,204,1);text-align: center;">
+                      <h4>120分/10元</h4>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios1" id="optionsRadios5" value="option3" (click)="sumbitTwenty()">
+                    <div id="five" style="width:180px;height:38px;border:1px solid;border-radius: 12px;background-color: rgba(204,255,204,1);text-align: center;">
+                      <h4>300分/20元</h4>
+                    </div>
+                  </label>
+                </div>
+                
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios1" id="optionsRadios6" value="option4" (click)="sumbitFifty()">
+                    <div id="five" style="width:180px;height:38px;border:1px solid;border-radius: 12px;background-color: rgba(204,255,204,1);text-align: center;">
+                      <h4>800分/50元</h4>
+                    </div>
+                  </label>
+                </div>
+
+              </div>
+      
+              <label for="name"><h4>支付方式：</h4></label>
+              <div>
+                <div class="radio-inline">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="微信支付" checked> 微信支付
+                  <!-- 其中checked表示一开始为被选中状态 -->
+                  </label>
+                </div>
+                <div class="radio-inline">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="支付宝支付">支付宝支付
+                  </label>
+                </div>
+              </div>
+              <div>
+                <span>应付金额：</span> <span>{{money}}</span>元
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" (click)="recharge()">确定支付</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
 </div>
 <hr>
 <div>
