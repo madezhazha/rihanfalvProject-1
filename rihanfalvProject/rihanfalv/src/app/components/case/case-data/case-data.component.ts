@@ -50,6 +50,7 @@ export class CaseDataComponent implements OnInit {
   allintegral:string         //改用用户的所有的积分
   username:string            //账号名
   search:string              //查找的东西
+  rechargeIntegral:string    //充值的积分
 
 
   imageUrl:string='./assets/images/fiveStar1.PNG'
@@ -107,18 +108,22 @@ export class CaseDataComponent implements OnInit {
 
   sumbitFive(){
     this.money="5"
+    this.rechargeIntegral = "50"
   }
 
   sumbitTen(){
     this.money="10"
+    this.rechargeIntegral = "120"
   }
 
   sumbitTwenty(){
     this.money="20"
+    this.rechargeIntegral = "300"
   }
 
   sumbitFifty(){
     this.money="50"
+    this.rechargeIntegral = "800"
   }
 
   //接收页面传过来的值
@@ -149,7 +154,7 @@ export class CaseDataComponent implements OnInit {
           this.languageType=response["type"]
           this.titleId=response["ID"]   //这个ID是point的id
           this.integral = response["integral"]
-          console.log(this.titleId,this.integral)
+          // console.log(this.titleId,this.integral)
         }else{
           alert("系统出现错误")
         }   
@@ -170,12 +175,12 @@ export class CaseDataComponent implements OnInit {
               this.IsPay = false
               this.renderer2.setStyle(this.el.nativeElement.querySelector(".judgePoint"),'height',"auto")
             }
-            console.log(this.titleId,this.integral,this.userId,response["searchResult"],this.allintegral)
+            // console.log(this.titleId,this.integral,this.userId,response["searchResult"],this.allintegral)
             this.initialState(this.languageType,this.titleId)   //这个是用来判断时候已经是收藏的状态了 
           }else{
             alert("系统出现错误")
           } 
-          console.log(response)       
+          // console.log(response)       
         })
     }
   }
@@ -263,4 +268,24 @@ export class CaseDataComponent implements OnInit {
     history.go(-1)
   }
     
+
+  //充值
+  recharge(){
+
+    var storage=window.localStorage;
+    this.userId=storage["id"]
+
+    const httpOptions={
+      headers:new HttpHeaders({'content-Type':'application/json'})
+    }
+
+    var api = "http://blackcardriver.cn:7080/recharge"
+
+    this.http.post(api,{"integral":this.rechargeIntegral,"userid":this.userId,"allintegral":this.allintegral},httpOptions).subscribe((response:any)=>{
+      console.log("充值成功")
+      // console.log(response)
+    })
+    
+  }
+
 }

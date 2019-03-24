@@ -1,7 +1,8 @@
-<app-webhead></app-webhead>
- 
+<app-webhead #getwebhead ></app-webhead>
  <app-chat-head></app-chat-head>
-
+ <div class="app-langing" *ngIf="ifWantToLogin" style="position:absolute;margin-left:35px;">
+  <app-langing (closed)="boxClose()" (LoginData)="getLoginData($event)"></app-langing>
+</div>
 
 
 <!-- 我的问答 -->
@@ -52,5 +53,6 @@
   <!-- 未登录状态下 -->
   <div *ngIf="!LoginStatus" >
     <div id="NotLogin">请先登录！</div> 
-    <button (click)="updateAgain()">已登录，刷新一下</button>
+    <button (click)="mychatLogin()">登录</button>
+    <!-- (click)="updateAgain()" -->
   </div>
