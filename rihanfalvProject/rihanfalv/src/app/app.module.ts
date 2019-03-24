@@ -64,7 +64,7 @@ import { CollectedcaseComponent } from './components/personpage/collection/colle
 import { CollectedtopicComponent } from './components/personpage/collection/collectedtopic/collectedtopic.component';
 import { CasethingComponent } from './components/case/casething/casething.component';
 
-import {HashLocationStrategy , LocationStrategy} from '@angular/common';
+// import {HashLocationStrategy , LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -119,7 +119,7 @@ import {HashLocationStrategy , LocationStrategy} from '@angular/common';
     FormsModule,
   ],
   providers: [
-    {provide:LocationStrategy,useClass:HashLocationStrategy},
+    // {provide:LocationStrategy,useClass:HashLocationStrategy},
     ApiSerivice,
     GetdataService,
     DatePipe,
