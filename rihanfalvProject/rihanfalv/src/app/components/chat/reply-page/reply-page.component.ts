@@ -11,17 +11,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReplyPageComponent implements OnInit {
 
-  private RoutingData: any;
+  public RoutingData: any;
   // 回答的文本
-  private text: string;
+  public text: string;
 
   // 登录的用户ID
-  private userID: any;
+  public userID: any;
 
   constructor(
-    private activatedRouter: ActivatedRoute,
-    private dataService: DataService,
-    private router: Router,
+    public activatedRouter: ActivatedRoute,
+    public dataService: DataService,
+    public router: Router,
   ) { }
 
   ngOnInit() {
