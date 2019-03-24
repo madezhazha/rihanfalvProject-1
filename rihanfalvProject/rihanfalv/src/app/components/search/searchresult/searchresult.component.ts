@@ -8,7 +8,6 @@ import { ApiSerivice } from '../../../services/apiservice';
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
   styleUrls: ['./searchresult.component.css']
-
 })
 
 export class SearchresultComponent implements OnInit {
