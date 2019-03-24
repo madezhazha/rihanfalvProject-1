@@ -10,14 +10,17 @@
   <!-- 提问列表 -->
   <div class="detailBody">
     
-
+ <!-- [hidden]="key>this.DisplayCount"  -->
     <ul>
-      <li *ngFor="let item of QueList;let key=index" [hidden]="key>this.DisplayCount" >
+      <li *ngFor="let item of nowData;let key=index">
         <div id="Queorder" (click)="readTopic(item)">
               <div class="List">
                  
+                <div class="Title">
+                  <p>{{item.topictitle}}</p>
+                </div>
+
                 <div class="Content">
-                  <h3>{{item.topictitle}}</h3>
                   <p>
                     {{item.topiccontent}}
                   </p>
@@ -29,8 +32,10 @@
                   <span>visit: {{item.visitvolume}}</span>&nbsp;&nbsp;
                   <span>collection: {{item.collectionvolume}}</span>
                   <br>
-                  <span>DATE: {{item.creationtime | date:'yyyy/MM/dd HH:mm:ss'}}</span>&nbsp;&nbsp;&nbsp;
-                  <span>UPDATE: {{item.finalreplytime | date:'MM/dd HH:mm'}}</span>
+                  <span>DATE: {{item.creationtime | date:'yyyy/MM/dd HH:mm:ss'}}</span>
+                  <!-- &nbsp;&nbsp;&nbsp; -->
+                  <br>
+                  <span>UPDATE: {{item.finalreplytime | date:'yyyy/MM/dd HH:mm:ss'}}</span>
                 </div>
                 
               </div>
@@ -38,16 +43,16 @@
 
         </div>
       </li>
-
-      <li *ngIf="DisplayCount < MyQueCount">
+<!-- DisplayCount < MyQueCount -->
+      <li *ngIf="!isMax">
         <div class="loadmore">
           <a (click)="loadMore()">
-          <span>加载更多...</span>
+          <span>正在加载...</span>
         </a>
         </div>
       </li>
-
-      <li *ngIf="DisplayCount >= MyQueCount" >
+<!-- DisplayCount >= MyQueCount -->
+      <li *ngIf="isMax" >
           <div class="loadmore">
             <span>暂无更多</span>
           </div>

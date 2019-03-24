@@ -50,7 +50,7 @@ export class CaseDataComponent implements OnInit {
   allintegral:string         //改用用户的所有的积分
   username:string            //账号名
   search:string              //查找的东西
-  rechargeIntegral:string    //充值的积分
+  rechargeIntegral:string="50"    //充值的积分
 
 
   imageUrl:string='./assets/images/fiveStar1.PNG'
@@ -68,7 +68,7 @@ export class CaseDataComponent implements OnInit {
         const httpOptions={
           headers:new HttpHeaders({'Content-Type':'application/json'})
         }
-        var api="http://blackcardriver.cn:7080/changecollect"
+        var api="http://localhost:7080/changecollect"
         this.http.post(api,{"title":this.title,"data":"collect","type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
         {
           if(response!==null){
@@ -85,7 +85,7 @@ export class CaseDataComponent implements OnInit {
         const httpOptions={
           headers:new HttpHeaders({'Content-Type':'application/json'})
         }
-        var api="http://blackcardriver.cn:7080/changecollect"
+        var api="http://localhost:7080/changecollect"
         this.http.post(api,{"title":this.title,"data":"cancle","type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
         {
           if(response!==null){
@@ -142,7 +142,7 @@ export class CaseDataComponent implements OnInit {
       headers:new HttpHeaders({'content-Type':'application/json'})
       }
 
-      var api = "http://blackcardriver.cn:7080/displaytxt"
+      var api = "http://localhost:7080/displaytxt"
 
     if(this.userId ===undefined){
       this.http.post(api,{"content":this.title},httpOptions).subscribe((response:any)=>{
@@ -195,7 +195,7 @@ export class CaseDataComponent implements OnInit {
         headers:new HttpHeaders({'content-Type':'application/json'})
       }
   
-      var api = "http://blackcardriver.cn:7080/payment"
+      var api = "http://localhost:7080/payment"
   
       this.http.post(api,{"titleid":this.titleId,"userid":this.userId,"integral":this.integral},httpOptions).subscribe((response:any)=>{
         if(response["data"]!=="系统出现错误"){
@@ -235,7 +235,7 @@ export class CaseDataComponent implements OnInit {
       const httpOptions={
         headers:new HttpHeaders({'content-Type':'application/json'})
       }
-      var api = "http://blackcardriver.cn:7080/InitialState"
+      var api = "http://localhost:7080/InitialState"
       this.http.post(api,{"title":this.title,"type":this.languageType,"titleId":this.titleId,"userid":this.userId},httpOptions).subscribe((response:any)=>
       {
         if(response["data"]!=="系统出现错误"){
@@ -279,13 +279,17 @@ export class CaseDataComponent implements OnInit {
       headers:new HttpHeaders({'content-Type':'application/json'})
     }
 
-    var api = "http://blackcardriver.cn:7080/recharge"
+    var api = "http://localhost:7080/recharge"
 
     this.http.post(api,{"integral":this.rechargeIntegral,"userid":this.userId,"allintegral":this.allintegral},httpOptions).subscribe((response:any)=>{
       console.log("充值成功")
-      // console.log(response)
+      console.log(response)
+      if(response){
+        alert("系统出现错误")
+      }
     })
     
   }
+  
 
 }

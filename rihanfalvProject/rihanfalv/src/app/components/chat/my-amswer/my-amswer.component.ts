@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-my-amswer',
@@ -24,6 +25,11 @@ export class MyAmswerComponent implements OnInit {
   //显示数量
   public DisplayCount:number=4;
 
+  // 当前数据的数组是否是最大值
+  public isMax: boolean = false;
+  public nowData: Array<any> = [];
+  public isBottom: boolean = false;
+
   constructor(public router:Router,public http:HttpClient) { }
 
   ngOnInit() {
@@ -36,6 +42,20 @@ export class MyAmswerComponent implements OnInit {
       this.LoginStatus=false;
       this.router.navigate(['/mychat']);  //未登录跳转
     } 
+    
+    fromEvent(window, 'scroll').subscribe(() => {
+      const h: any = document.documentElement.clientHeight;
+      const H: any = document.body.clientHeight;
+      const scrollTop: any = document.documentElement.scrollTop || document.body.scrollTop;
+      if (h + scrollTop + 20 > H) {
+        if (!this.isBottom) {
+          setTimeout(() => { this.loadMore()}, 500);
+        }
+        this.isBottom = true;
+      } else {
+        this.isBottom = false;
+      }
+    });
 
     this.loadUserInfo();
     this.loadAnsList();
@@ -66,11 +86,8 @@ export class MyAmswerComponent implements OnInit {
         
         this.MyAnsCount=response.length;
         
-        if(this.DisplayCount>=this.MyAnsCount){
-        this.DisplayCount=this.MyAnsCount-1;
-        }
-        //console.log(this.MyAnsCount)
-        //console.log(this.DisplayCount);
+        this.cutArray(this.AnsList, 5);
+        
     })
   }
   
@@ -94,9 +111,22 @@ export class MyAmswerComponent implements OnInit {
 
   // 加载更多
   loadMore(){
-    if(this.DisplayCount<this.MyAnsCount)
-    this.DisplayCount+=5;
-    //console.log(this.DisplayCount);
+    
+    this.cutArray(this.AnsList, 2);
+  }
+  
+  // 截取展示数据，并且判断现在长度是否为最大
+  cutArray(countryData: Array<any>, length: number) {
+    if (countryData) {
+      this.nowData = countryData.slice(0, this.nowData.length + length);
+      if (this.nowData.length == countryData.length) {
+        this.isMax = true;
+      } else {
+        this.isMax = false;
+      }
+    } else {
+      this.isMax = true;
+    }
   }
 
 }
