@@ -2,6 +2,9 @@ import { Component, OnInit,ElementRef,ViewChild,Renderer2} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import{DosearchService}from "../dosearch.service"
 import { Router } from '@angular/router';
+import { APIResponse2, Nowpage, Allpage } from 'src/app/apiresponse';
+import { ApiSerivice } from 'src/app/apiservice';
+
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
@@ -16,7 +19,7 @@ public page=1
 
 @ViewChild('click') changeclass:ElementRef;
 
-  constructor(public router: Router,public http:HttpClient,public m_search:DosearchService,private renderer2:Renderer2) { 
+  constructor(public router: Router,public http:HttpClient,public m_search:DosearchService,private renderer2:Renderer2,private api: ApiSerivice) { 
 
   }
 
@@ -65,12 +68,15 @@ this.m_search.searchtogo()
   this.renderer2.setStyle(this.changeclass.nativeElement,"background-color","0000FF")
 }
 
-turntocase(title){
+turntocase(title){//案例跳转
   this.router.navigate(["/display-data"],{queryParams:{"title":title}})
 }
 
-turntolegal(legaltype){
-  this.router.navigate(["/article"],{queryParams:{"legaltype":legaltype}})
+turntolegal(Title){//法律跳转
+  console.log(Title)
+  this.api.legaltitle2(Title).subscribe();
+  let that=this
+  setTimeout( function() {  that.router.navigate(['/content']) } , 200);   // 延时触发，给服务器留反应时
 
 }
 }

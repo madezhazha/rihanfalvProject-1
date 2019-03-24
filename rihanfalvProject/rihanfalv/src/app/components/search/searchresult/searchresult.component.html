@@ -28,7 +28,7 @@
                             </span>
                         <span *ngIf="item.Classify=='法律'">
                             <span class="label label-success" style="font-size: 14px;">{{item.Classify}}</span>
-                            <a (click)="turntolegal(item.legaltype)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                            <a (click)="turntolegal(item.Title)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
                             <span *ngIf="item.Classify=='案例'">
                                     <span class="label label-info" style="font-size: 14px;">{{item.Classify}}</span>
