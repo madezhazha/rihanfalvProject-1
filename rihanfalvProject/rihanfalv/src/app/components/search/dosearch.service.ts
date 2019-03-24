@@ -27,7 +27,8 @@ public ifget =false//判断是否获取到搜索内容
     this.getkey.Order=this.Order
     this.http.post(api,this.getkey,httpOptions).subscribe(response=>{ 
       this.list=response
-      if(!response){this.ifget=false
+      if(!response){
+        this.ifget=false
       this.list=[]}
 if(response)this.ifget=true
     });

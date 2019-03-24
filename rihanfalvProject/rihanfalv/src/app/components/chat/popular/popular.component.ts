@@ -14,21 +14,21 @@ import { fromEvent } from 'rxjs'
 })
 export class PopularComponent implements OnInit {
 
-  private threadList: any;
+  public threadList: any;
   // 当前数据的数组是否是最大值
-  private isMax: boolean = false;
-  private nowData: Array<any> = [];
+  public isMax: boolean = false;
+  public nowData: Array<any> = [];
 
 
   // 韩国日本的标志
-  private flag: any;
+  public flag: any;
 
-  private isBottom: boolean = false;
+  public isBottom: boolean = false;
 
   constructor(
-    private dataService: DataService,
-    private router: Router,
-    private sanitizer: DomSanitizer,
+    public dataService: DataService,
+    public router: Router,
+    public sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
