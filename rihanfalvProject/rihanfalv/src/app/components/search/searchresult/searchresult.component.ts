@@ -2,8 +2,7 @@ import { Component, OnInit,ElementRef,ViewChild,Renderer2} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import{DosearchService}from "../dosearch.service"
 import { Router } from '@angular/router';
-import { APIResponse2, Nowpage, Allpage } from 'src/app/apiresponse';
-import { ApiSerivice } from 'src/app/apiservice';
+import { ApiSerivice } from '../../../services/apiservice';
 
 @Component({
   selector: 'app-searchresult',

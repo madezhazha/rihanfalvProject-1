@@ -33,7 +33,7 @@ import { UploadHeadimageComponent } from './components/personpage/upload-headima
 import { LegalComponent } from './components/provisions/legal/legal.component';
 import { ArticleComponent } from './components/provisions/article/article.component';
 import { ContentComponent } from './components/provisions/content/content.component';
-import { ApiSerivice } from './apiservice';
+import { ApiSerivice } from './services/apiservice';
 
 
 
