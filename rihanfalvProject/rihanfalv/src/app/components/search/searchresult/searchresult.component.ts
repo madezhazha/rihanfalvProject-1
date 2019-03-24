@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import{DosearchService}from "../dosearch.service"
 import { Router } from '@angular/router';
 import { ApiSerivice } from '../../../services/apiservice';
+import {fromEvent} from 'rxjs'
 
 @Component({
   selector: 'app-searchresult',
@@ -13,6 +14,7 @@ import { ApiSerivice } from '../../../services/apiservice';
 export class SearchresultComponent implements OnInit {
 public list=new Array();
 public page=1
+public Isbottom: boolean = false;
 
 
 @ViewChild('click') changeclass:ElementRef;
@@ -22,6 +24,27 @@ public page=1
   }
 
   ngOnInit() {
+
+fromEvent(window,'scroll')
+    .subscribe(
+      ()=>{
+        const h:any=document.documentElement.clientHeight;
+        const H:any=document.body.clientHeight;
+        const scrollTop:any=document.documentElement.scrollTop || document.body.scrollTop;
+        if(h+scrollTop+20>H){
+          if(!this.Isbottom){
+           
+              setTimeout(()=>{this.readmore();},700)    //延时700ms加载
+            
+          }
+        }
+        else
+        {
+          this.Isbottom=false
+        }
+      }
+    );
+
   }
 
   getstatus(){
@@ -48,7 +71,10 @@ readmore(){
   let addlist=new Array();
   if(length<5)return;
   if(this.page*5>length)
+  {
+    this.Isbottom=true
     return
+  }
 
   for(let i =0;i<5;i++){
     if(this.m_search.list[this.page*5+i])
