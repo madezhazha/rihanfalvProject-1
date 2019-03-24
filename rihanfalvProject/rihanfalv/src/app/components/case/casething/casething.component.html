@@ -5,7 +5,7 @@
   <!-- 显示数据库的数据 -->
   <div class="bigContent" id="bigContent">
       <li style="height:150px;list-style: none;margin-top: 1px;display: block"  *ngFor="let item of list">
-        <a routerLink="/display-data" (click)="sendData(item.casetitle)">
+        <a (click)="sendData(item.casetitle)">
           <div>
               <h4 style="color:rgb(52, 103, 214);font-family: STXinwei">{{item.casetitle}}</h4>
               <div style="color: gray!important;">{{item.trialtime}}/{{item.causeofaction}}/{{item.concretecasetype}}/{{item.legalprinciple}}/{{item.trialgrade}}/{{item.type}}</div>
