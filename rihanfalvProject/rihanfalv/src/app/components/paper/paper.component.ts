@@ -32,7 +32,7 @@ export class PaperComponent implements OnInit {
     else{
       this.Nowcountry="Korea"
     }
-   let api="http://localhost:7080/paper";
+   let api="http://blackcardriver.cn:7080/paper";
    const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
    this.http.post(api,{CurrentPage:this.CurrentPage,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>
     {
@@ -52,7 +52,7 @@ export class PaperComponent implements OnInit {
 
   //日韩切换初始化
   newArticles(){
-    let api="http://localhost:7080/paper";
+    let api="http://blackcardriver.cn:7080/paper";
     const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
     this.http.post(api,{CurrentPage:this.CurrentPage,Country:this.Nowcountry},httpOptions).subscribe((response:any)=>
      {

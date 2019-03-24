@@ -4,6 +4,7 @@ import { DataService } from '../../../services/data.service';
 import { Router, NavigationExtras } from '@angular/router';
 
 import { DomSanitizer } from '@angular/platform-browser';
+import { fromEvent } from 'rxjs'
 
 
 @Component({
@@ -22,6 +23,8 @@ export class PopularComponent implements OnInit {
   // 韩国日本的标志
   private flag: any;
 
+  private isBottom: boolean = false;
+
   constructor(
     private dataService: DataService,
     private router: Router,
@@ -29,26 +32,32 @@ export class PopularComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    fromEvent(window, 'scroll').subscribe(() => {
+        const h: any = document.documentElement.clientHeight;
+        const H: any = document.body.clientHeight;
+        const scrollTop: any = document.documentElement.scrollTop || document.body.scrollTop;
+        if (h + scrollTop + 20 > H) {
+          if (!this.isBottom) {
+            setTimeout(() => { this.more()}, 1000);
+          }
+          this.isBottom = true;
+        } else {
+          this.isBottom = false;
+        }
+      });
+
     this.dataService.getThreadList().subscribe((response) => {
+      console.log(response);  
       if (localStorage.getItem("JapanOrKorea") == "韩") {
         this.flag = 0;
       } else {
         this.flag = 1;
       }
-
       this.threadList = response;
-      // console.log(this.threadList);
-      if (this.threadList) {
-        for (let i = 0; i < this.threadList.length; i++) {
-          const element = this.threadList[i];
-          if (element.user.Image.indexOf("assets") == -1) {
-            let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
-            element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
-          }
-          // console.log(element.user.Image);
-        }
-      }
-      this.cutArray(this.getCountryData(), 2);
+
+      this.imgHandle()
+
+      this.cutArray(this.getCountryData(), 5);
     });
   }
 
@@ -75,11 +84,11 @@ export class PopularComponent implements OnInit {
     }
 
     this.nowData = [];
-    this.cutArray(this.getCountryData(), 2);
+    this.cutArray(this.getCountryData(), 5);
   }
 
   getCountryData(): Array<any> {
-    if (this.threadList){
+    if (this.threadList) {
       let countryData: Array<any> = [];
       for (let i = 0; i < this.threadList.length; i++) {
         const element = this.threadList[i];
@@ -105,20 +114,17 @@ export class PopularComponent implements OnInit {
       this.isMax = true;
     }
   }
-}
 
-@Pipe({
-  name: 'myPipe',
-})
-export class myPipe implements PipeTransform {
-  transform(data: Array<any>, args?: string): Array<any> {
-    let newArray: Array<any> = [];
-    for (let i = 0; i < data.length; i++) {
-      const element = data[i];
-      if (element.thread.Japanorkorea === args) {
-        newArray.push(element);
+  imgHandle() {
+    if (this.threadList) {
+      for (let i = 0; i < this.threadList.length; i++) {
+        const element = this.threadList[i];
+        if (element.user.Image.indexOf("assets") == -1) {
+          let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
+          element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+        }
       }
     }
-    return newArray;
   }
 }
+

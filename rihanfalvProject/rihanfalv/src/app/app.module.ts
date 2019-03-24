@@ -16,6 +16,7 @@ import { CaseComponent } from './components/case/case.component';
 import { PersonpageComponent } from './components/personpage/personpage.component';
 import { HeadComponent } from './components/head/head.component';
 import { HomepageComponent} from './components/homepage/homepage.component';
+//import { GolangService } from './components/homepage/golang.service';
 
 import { FeedbacksuccessComponent } from './components/feedback/feedbacksuccess/feedbacksuccess.component';
 import { PersonalfeedbackComponent } from './components/feedback/personalfeedback/personalfeedback.component';
@@ -33,6 +34,7 @@ import { LegalComponent } from './components/provisions/legal/legal.component';
 import { ArticleComponent } from './components/provisions/article/article.component';
 import { ContentComponent } from './components/provisions/content/content.component';
 import { ApiSerivice } from './apiservice';
+
 
 
 // 个人主页
@@ -58,11 +60,11 @@ import { ToQuestionComponent } from './components/chat/to-question/to-question.c
 import { MyQuestionComponent } from './components/chat/my-question/my-question.component';
 import { MyAmswerComponent } from './components/chat/my-amswer/my-amswer.component';
 
-import { myPipe } from './components/chat/popular/popular.component';
 import { CollectedcaseComponent } from './components/personpage/collection/collectedcase/collectedcase.component';
 import { CollectedtopicComponent } from './components/personpage/collection/collectedtopic/collectedtopic.component';
 import { CasethingComponent } from './components/case/casething/casething.component';
 
+import {HashLocationStrategy , LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,6 @@ import { CasethingComponent } from './components/case/casething/casething.compon
     TagComponent,
     SearchresultComponent,
     SearchkeywordPipe,
-    myPipe,
     CollectedcaseComponent,
     CollectedtopicComponent,
     MychatComponent,
@@ -118,9 +119,10 @@ import { CasethingComponent } from './components/case/casething/casething.compon
     FormsModule,
   ],
   providers: [
+    {provide:LocationStrategy,useClass:HashLocationStrategy},
     ApiSerivice,
     GetdataService,
-     DatePipe
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,8 @@ import { Router, NavigationExtras } from '@angular/router';
 import { InputData } from '../../head/langing/land/input'
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { fromEvent } from 'rxjs'
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -22,7 +24,7 @@ export class PostComponent implements OnInit {
   private thread: any;
   private post: any;
   private isMax: boolean = false;
-  private nowData: any;
+  private nowData: any = [];
 
   //  是否收藏
   private collection: any;
@@ -35,6 +37,8 @@ export class PostComponent implements OnInit {
   // 登录的用户ID
   private userID: any;
 
+  private isBottom: boolean = false;
+
   constructor(
     private activatedRouter: ActivatedRoute,
     private dataService: DataService,
@@ -43,12 +47,25 @@ export class PostComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    fromEvent(window, 'scroll').subscribe(() => {
+      const h: any = document.documentElement.clientHeight;
+      const H: any = document.body.clientHeight;
+      const scrollTop: any = document.documentElement.scrollTop || document.body.scrollTop;
+      if (h + scrollTop + 20 > H) {
+        if (!this.isBottom) {
+          setTimeout(() => { this.more()}, 1000);
+        }
+        this.isBottom = true;
+      } else {
+        this.isBottom = false;
+      }
+    });
+
     this.activatedRouter.queryParams.subscribe((response) => {
-      // localStorage.removeItem("id");
 
       //获取登陆用户信息
       this.userID = localStorage.getItem("id");
-      if (this.userID != null) {
+      if (this.userID) {
         this.Islogin = true;
       } else {
         this.Islogin = false
@@ -64,33 +81,9 @@ export class PostComponent implements OnInit {
         this.post = resp.post;
         this.thread = resp.thread;
 
-        if (this.thread.user.Image.indexOf("assets") == -1) {
-          let temp = 'data:image/png;base64, ' + this.thread.user.Image; //给base64添加头缀
-          this.thread.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
-        }
+        this.imgHandle()
 
-        // debugger;
-        if (this.post) {
-          for (let i = 0; i < this.post.length; i++) {
-            const element = this.post[i];
-            if (element.user.Image.indexOf("assets") == -1) {
-              let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
-              element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
-            }
-          }
-        }
-
-        if (this.post) {
-          this.nowData = this.post.slice(0, 4);
-          if (this.nowData.length == this.post.length) {
-            this.isMax = true;
-          } else {
-            this.isMax = false;
-          }
-        } else {
-          this.isMax = true;
-        }
-
+        this.cutArray(2);
       });
     });
   }
@@ -98,7 +91,7 @@ export class PostComponent implements OnInit {
   reply() {
     // 求出当前帖子的最大楼层数
     let maxFloor: number = 0;
-    if (this.post != null) {
+    if (this.post) {
       this.post.forEach(element => {
         if (element.post.Floor > maxFloor) {
           maxFloor = element.post.Floor;
@@ -119,19 +112,10 @@ export class PostComponent implements OnInit {
   }
 
   more() {
-    if (this.post) {
-      this.nowData = this.post.slice(0, this.nowData.length + 5);
-      console.log(this.post);
-      if (this.nowData.length == this.post.length) {
-        this.isMax = true;
-      }
-    } else {
-      this.isMax = true;
-    }
+    this.cutArray(5)
   }
 
   collect() {
-    // 1也是模拟用户id
     this.dataService.collect(this.userID, this.hostData.topicID).subscribe((response) => {
       this.collection.Collectioncontentid = response;
     });
@@ -157,6 +141,36 @@ export class PostComponent implements OnInit {
 
   popupLogin() {
     this.IfWantLogin = true;
+  }
+
+  imgHandle() {
+    if (this.thread.user.Image.indexOf("assets") == -1) {
+      let temp = 'data:image/png;base64, ' + this.thread.user.Image; //给base64添加头缀
+      this.thread.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+    }
+
+    if (this.post) {
+      for (let i = 0; i < this.post.length; i++) {
+        const element = this.post[i];
+        if (element.user.Image.indexOf("assets") == -1) {
+          let temp = 'data:image/png;base64, ' + element.user.Image; //给base64添加头缀
+          element.user.Image = this.sanitizer.bypassSecurityTrustUrl(temp);
+        }
+      }
+    }
+  }
+
+  cutArray(length: number) {
+    if (this.post) {
+      this.nowData = this.post.slice(0, this.nowData.length + length);
+      if (this.nowData.length == this.post.length) {
+        this.isMax = true;
+      } else {
+        this.isMax = false;
+      }
+    } else {
+      this.isMax = true;
+    }
   }
 
 }

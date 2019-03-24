@@ -73,6 +73,7 @@ a{
 .pageb {
     width: 7%;
     height: 30px;
+    border-radius: 5px;
     background: #fff;
     text-align: center;
     border: 1.5px solid rgb(211, 209, 209);

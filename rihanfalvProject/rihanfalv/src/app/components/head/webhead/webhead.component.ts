@@ -85,4 +85,9 @@ export class WebheadComponent implements OnInit {
     this.router.navigate(['/homepage']);
   }
 
+  //删除案例分析的localStorage
+  deleteSearch(){
+    localStorage.removeItem("search")
+  }
+
 }

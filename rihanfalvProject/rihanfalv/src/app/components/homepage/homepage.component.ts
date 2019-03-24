@@ -3,7 +3,7 @@ import {GolangService} from './golang.service';
 import {HotnewsBox, ArticalBox} from './struct';
 import * as $ from 'jquery';
 var artical_num = 0;  //当前页面上已经有多少文章 
- 
+var temp_array : ArticalBox[];
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -20,10 +20,13 @@ export class HomepageComponent implements OnInit {
     
     //使用jquery来打到自动轮播的效果，以及调整元素宽度
     ngOnInit() {
+      artical_num = 0;
     this.get_head_new(); 
     this.get_artical(); 
     var index = 0;  //自动播放框的图片序号，0~4
     var adTimer;  
+    setwidth();
+    showImg(1);
     $(document).ready(function(){
         //鼠标停留在小方块时显示相应的图片
         //$(".scalle_box dt").mouseover(function() {
@@ -32,17 +35,17 @@ export class HomepageComponent implements OnInit {
        //  }).eq(0).mouseover();
 
         //手机屏幕上左右滑动图片框时图片向左右切换
-       $(".picturebox").on("swipeleft",function(){
-            if(index<4) showImg(++index);
-            restart();
-        });
-        $(".picturebox").on("swiperight",function(){
-            if(index>0) showImg(--index); 
-            restart();
-        });
+      //  $(".picturebox").on("swipeleft",function(){
+      //       if(index<4) showImg(++index);
+      //       restart();
+      //   });
+      //   $(".picturebox").on("swiperight",function(){
+      //       if(index>0) showImg(--index); 
+      //       restart();
+      //   });
 
       //滑入停止动画，滑出开始动画.
-        $('.picturebox').on("tap",restart).trigger("taphold"); 
+        // $('.picturebox').on("tap",restart).trigger("taphold"); 
 
         run();
    })//<--ready()函数结束
@@ -64,7 +67,7 @@ export class HomepageComponent implements OnInit {
           showImg(index)
         }, 3000);
     }
-  function showImg(index) {
+    function showImg(index) {
         setwidth();
         var imgwidth = $(".picture img").width();
         $(".picture, .describe_box").stop(true, false).animate({
@@ -77,8 +80,8 @@ export class HomepageComponent implements OnInit {
 
 
   //加载首页文章列表的数据，每次最多10篇，总共最多100篇，初始化和点击下端加载跟多按钮调用
-  get_artical(){
-      var temp_array : ArticalBox[];
+  get_artical(){   
+    // alert(artical_num)
       if( artical_num > 100 ){                          //主页最多显示的文章数量
         return;    
       }                

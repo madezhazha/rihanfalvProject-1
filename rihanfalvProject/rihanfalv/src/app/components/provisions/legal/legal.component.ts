@@ -53,6 +53,7 @@ export class LegalComponent implements OnInit {
   public Postpage(nowpage: number, kind: string) {        // 将当前页数传递会服务器
     this.api.legalpage(nowpage, kind).subscribe(() => {
       this.Getpage();                // 获取总条数
+      this.Gettype();    // 获取法条
     });
   }
 
