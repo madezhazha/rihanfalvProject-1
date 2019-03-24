@@ -21,19 +21,19 @@
     </div>
 <dl>
         <dt  *ngFor="let row of artical_date">
-            <a  href={{row.linkurl}}>
-                <div class="artical">
+           
+            <div class="artical">
                     <div class="atc_pic">
                         <img src={{row.imgurl}}>
                     </div>
                     <div class="atc_tex">
-                        <p>{{row.brief}}</p>
+                        <a  href={{row.linkurl}}><p>{{row.brief}}</p></a>
                     </div>
                     <div class="atc_time">
                         <p>{{row.date}}</p>
                     </div>
-                </div>
-            </a>
+            </div><!--artical over-->
+           
             <hr>
         </dt>         
 
