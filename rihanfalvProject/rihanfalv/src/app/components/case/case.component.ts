@@ -15,9 +15,11 @@ export class CaseComponent implements OnInit {
     public router:Router
 
   ) 
-  { }
+  { 
+  }
 
   ngOnInit() {
+    this.languageType = localStorage.getItem('JapanOrKorea')
   }
 
     //下面的这些操作都是为了不同页面的显示的
@@ -118,7 +120,7 @@ export class CaseComponent implements OnInit {
     //调用子组件的函数
     @ViewChild("casething")
     casething:CasethingComponent
-    languageType:string="日"
+    languageType:string     //去掉默认值
     searchContent:string
 
 

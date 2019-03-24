@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output } from '@angular/core';
 import {HttpClient,HttpHeaders} from "@angular/common/http"
 import {ActivatedRoute,Router} from "@angular/router"
 import {fromEvent} from 'rxjs'
@@ -10,13 +10,23 @@ import {fromEvent} from 'rxjs'
 })
 export class CasethingComponent implements OnInit {
 
+
+
   //初始化组件
   constructor(
     public http:HttpClient,
     public activatedRoute:ActivatedRoute,
     public router:Router,
-  ) { }
+  ) { 
+  }
+
   ngOnInit() {
+    this.languageType = localStorage.getItem('JapanOrKorea')
+    if(localStorage.getItem("search")===null){
+      this.search = "全部"
+    }else{
+      this.search = localStorage.getItem("search")
+    }
     this.getData()  //先从后端获取数据
     fromEvent(window,'scroll')
     .subscribe(
@@ -43,8 +53,8 @@ export class CasethingComponent implements OnInit {
   //定义变量
   element:any //用来接收单个元素的
   list:any[]=[]
-  search:string="全部"
-  languageType:string = "日"
+  search:string 
+  languageType:string
   Isbottom:boolean = false
   Isover:boolean = false
   NumberCasething:number = 0
@@ -55,6 +65,7 @@ export class CasethingComponent implements OnInit {
        this.search = search
        this.list = []
        this.NumberCasething = 0
+       localStorage.setItem("search",this.search);
      }
      if(languageType){
        this.languageType = languageType
@@ -89,6 +100,8 @@ export class CasethingComponent implements OnInit {
 
 
   sendData(title:string){
-    this.router.navigate(["/display-data"],{queryParams:{"title":title}})
+    this.router.navigate(["/display-data"],{queryParams:{"type":this.search,"title":title}})
   }
+
+
 }

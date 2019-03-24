@@ -168,19 +168,11 @@ func Titlesqlpk(legaltype string)[]byte{
 func Typesql(page int)[]Legaltype{               //从数据库中获取法律总标题
     var Types []Legaltype
     fmt.Println(page)
-<<<<<<< HEAD
     rows, err := db.Query("SELECT distinct legaltype FROM japanlegal limit 20 offset $1;",page) 
     checkErr(err)
     for rows.Next(){
 		var types Legaltype
 		err = rows.Scan(&types.Legaltype)
-=======
-    rows, err := db.Query("select min(legalid) as id,legaltype from japanlegal group by legaltype order by id limit 10 offset $1;",page) 
-    checkErr(err)
-    for rows.Next(){
-		var types Legaltype
-		err = rows.Scan(&types.Legalid,&types.Legaltype)
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
 		if err != nil {
 			fmt.Println("showscan error:",err)
 		}
@@ -192,19 +184,11 @@ func Typesql(page int)[]Legaltype{               //从数据库中获取法律�
 
 func KTypesql(page int)[]Legaltype{               //从数据库中获取法律总标题
     var Types []Legaltype
-<<<<<<< HEAD
     rows, err := db.Query("SELECT distinct legaltype FROM korealegal limit 10 offset $1;",page) 
     checkErr(err)
     for rows.Next(){
         var types Legaltype
 		err = rows.Scan(&types.Legaltype)
-=======
-    rows, err := db.Query("select min(legalid) as id,legaltype from korealegal group by legaltype order by id limit 10 offset $1;",page) 
-    checkErr(err)
-    for rows.Next(){
-        var types Legaltype
-		err = rows.Scan(&types.Legalid,&types.Legaltype)
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
 		if err != nil {
 			fmt.Println("showscan error:",err)
         }
@@ -217,11 +201,7 @@ func KTypesql(page int)[]Legaltype{               //从数据库中获取法律�
 func Titlesql(legaltype string,page int)[]Legaltitle{               //从数据库中获取法律小标题
     fmt.Println("开始搜索数据库")
     var Titles  []Legaltitle
-<<<<<<< HEAD
     rows, err := db.Query("SELECT legaltitle,legaltype FROM japanlegal WHERE legaltype=$1 limit 20 offset $2;" ,legaltype ,page) 
-=======
-    rows, err := db.Query("SELECT legaltitle,legaltype FROM japanlegal WHERE legaltype=$1 limit 10 offset $2;" ,legaltype ,page) 
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     checkErr(err)
     for rows.Next(){
         var titles Legaltitle
@@ -237,11 +217,7 @@ func Titlesql(legaltype string,page int)[]Legaltitle{               //从数据�
 func KTitlesql(legaltype string,page int)[]Legaltitle{               //从数据库中获取法律小标题
     fmt.Println("开始搜索数据库")
     var Titles []Legaltitle
-<<<<<<< HEAD
     rows, err := db.Query("SELECT legaltitle,legaltype FROM korealegal WHERE legaltype=$1 limit 20 offset $2;" ,legaltype ,page) 
-=======
-    rows, err := db.Query("SELECT legaltitle,legaltype FROM korealegal WHERE legaltype=$1 limit 10 offset $2;" ,legaltype ,page) 
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     checkErr(err)
     for rows.Next(){
         var titles Legaltitle
@@ -257,11 +233,7 @@ func KTitlesql(legaltype string,page int)[]Legaltitle{               //从数据
 func Labelsql(legallabel string,page int)[]Legaltype{               //从数据库中获取标签分类
     fmt.Println("开始搜索数据库")
     log.Println(legallabel)
-<<<<<<< HEAD
     rows, err := db.Query("SELECT  distinct legaltype FROM japanlegal WHERE legallabel=$1 limit 1 offset $2;",legallabel,page) 
-=======
-    rows, err := db.Query("SELECT  distinct legaltype FROM japanlegal WHERE legallabel=$1 limit 10 offset $2;",legallabel,page) 
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     var Label []Legaltype
     checkErr(err)
     for rows.Next(){
@@ -279,11 +251,7 @@ func Labelsql(legallabel string,page int)[]Legaltype{               //从数据�
 func KLabelsql(legallabel string,page int)[]Legaltype{               //从数据库中获取标签分类
     fmt.Println("开始搜索数据库")
     log.Println(legallabel)
-<<<<<<< HEAD
     rows, err := db.Query("SELECT  distinct legaltype FROM korealegal WHERE legallabel=$1 limit 1 offset $2;",legallabel,page) 
-=======
-    rows, err := db.Query("SELECT  distinct legaltype FROM korealegal WHERE legallabel=$1 limit 10 offset $2;",legallabel,page) 
->>>>>>> 4533ee3495af12391c955345f7eebc0240676ed0
     var Label []Legaltype
     checkErr(err)
     for rows.Next(){
