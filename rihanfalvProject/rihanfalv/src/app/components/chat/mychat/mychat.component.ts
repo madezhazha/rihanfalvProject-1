@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Router } from '@angular/router';
 
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 import { DomSanitizer } from '@angular/platform-browser';
+import { InputData } from '../../head/langing/land/input';
 
 @Component({
   selector: 'app-mychat',
@@ -13,6 +14,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class MychatComponent implements OnInit {
 
+  @ViewChild('getwebhead') getWebHead:any;
+
   // 个人信息
   public UserId:number;
   public UserName:string='qq_sasx';
@@ -20,7 +23,11 @@ export class MychatComponent implements OnInit {
   public Image:string;
   public MyQueCount:number=0;
   public MyAnsCount:number=0;
-  public LoginStatus:boolean=false;   //是否登录
+
+  //是否登录
+  public LoginStatus:boolean=false;
+  //是否点击登录
+  public ifWantToLogin:boolean=false;   
 
   // 个人信息、提问、回答 列表
   public Userinfo:any;
@@ -35,7 +42,7 @@ export class MychatComponent implements OnInit {
   constructor(public router:Router,public http:HttpClient,public sanitizer: DomSanitizer,) { }
 
   ngOnInit() {
-
+    console.log(1);
     this.UserId = JSON.parse(localStorage.getItem("id"));
     if(!this.UserId) this.LoginStatus=false;
     else {
@@ -121,5 +128,27 @@ export class MychatComponent implements OnInit {
   updateAgain(){
     this.ngOnInit();
   }
+
+  //当前页面登录
+  mychatLogin(){
+    this.ifWantToLogin=true;
+  }
+
+  //关闭登陆框
+  boxClose() {
+    this.ifWantToLogin = false;
+  }
+
+  getLoginData(loginData: InputData) {
+    if (loginData.IfLogin == true) {
+      this.LoginStatus = true
+      this.boxClose();
+      this.ngOnInit();
+      this.getWebHead.ngOnInit();
+      // this.router.navigate(['/#']);
+      // console.log(2);
+    }
+  }
+
 
 }
