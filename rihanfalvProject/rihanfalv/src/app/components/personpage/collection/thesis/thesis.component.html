@@ -7,7 +7,8 @@
     
               <h4>&nbsp;&nbsp;&nbsp;{{aitem.CollectionTitle}}</h4>
             </div>
-            <div class="content" [innerHTML]=aitem.CollectionContent|sanitizeHtml>
+            <div class="content" [innerHTML]="aitem.CollectionContent|keyword:'123456789'">
+              <!-- 调用关键词过滤管道，里面已包含去除html标签，关键词随便填了个很难出现的 -->
     
                <!-- &nbsp;&nbsp;{{aitem.CollectionContent}}-->
             </div>
