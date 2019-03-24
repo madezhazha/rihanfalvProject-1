@@ -52,7 +52,7 @@ export class MychatComponent implements OnInit {
   loadUserInfo(){
 
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
-    let api="http://127.0.0.1:7080/showuserinfo";    
+    let api="http://blackcardriver.cn:7080/showuserinfo";    
     var postdate = {userid:this.UserId,username:"",password:"",email:"",integral:0};
     this.http.post(api,postdate,httpOptions).subscribe((response:any)=>{
       //console.log(response);
@@ -74,7 +74,7 @@ export class MychatComponent implements OnInit {
   loadQueList(){
 
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
-    let api="http://127.0.0.1:7080/showuserquelist";    
+    let api="http://blackcardriver.cn:7080/showuserquelist";    
     this.http.post(api,{userid:this.UserId},httpOptions).subscribe((response:any)=>{
       //console.log(response);
         this.QueList=response;
@@ -86,7 +86,7 @@ export class MychatComponent implements OnInit {
   loadAnsList(){
 
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
-    let api="http://127.0.0.1:7080/showuseranslist";    
+    let api="http://blackcardriver.cn:7080/showuseranslist";    
     this.http.post(api,{userid:this.UserId},httpOptions).subscribe((response:any)=>{
       //console.log(response);
         this.AnsList=response;

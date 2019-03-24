@@ -59,7 +59,7 @@ export class ToQuestionComponent implements OnInit {
     
     const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json'})};
 
-    var api='http://127.0.0.1:7080/addtopics';
+    var api='http://blackcardriver.cn:7080/addtopics';
     var postdate = {userid:this.UserId,topictitle:this.TopicTitle,topiccontent:this.TopicContent,japanorkorea:this.JapanOrKorea,topiclabel:this.TopicLabel}
     this.http.post<string>(api,postdate,httpOptions).subscribe((response)=>{
       console.log(response);

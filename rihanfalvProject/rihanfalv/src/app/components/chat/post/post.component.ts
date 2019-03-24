@@ -16,34 +16,33 @@ import { fromEvent } from 'rxjs'
 })
 export class PostComponent implements OnInit {
 
-  private
 
   // 楼主的id
-  private hostData: any;
+  public hostData: any;
 
-  private thread: any;
-  private post: any;
-  private isMax: boolean = false;
-  private nowData: any = [];
+  public thread: any;
+  public post: any;
+  public isMax: boolean = false;
+  public nowData: any = [];
 
   //  是否收藏
-  private collection: any;
+  public collection: any;
 
   // 是否登录
-  private Islogin: boolean;
+  public Islogin: boolean;
   // 是否弹出登录框
-  private IfWantLogin: boolean = false;
+  public IfWantLogin: boolean = false;
 
   // 登录的用户ID
-  private userID: any;
+  public userID: any;
 
-  private isBottom: boolean = false;
+  public isBottom: boolean = false;
 
   constructor(
-    private activatedRouter: ActivatedRoute,
-    private dataService: DataService,
-    private router: Router,
-    private sanitizer: DomSanitizer,
+    public activatedRouter: ActivatedRoute,
+    public dataService: DataService,
+    public router: Router,
+    public sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
@@ -53,7 +52,7 @@ export class PostComponent implements OnInit {
       const scrollTop: any = document.documentElement.scrollTop || document.body.scrollTop;
       if (h + scrollTop + 20 > H) {
         if (!this.isBottom) {
-          setTimeout(() => { this.more()}, 1000);
+          setTimeout(() => { this.more()}, 500);
         }
         this.isBottom = true;
       } else {
@@ -135,6 +134,8 @@ export class PostComponent implements OnInit {
   getLoginData(loginData: InputData) {
     if (loginData.IfLogin == true) {
       this.Islogin = true
+      this.userID = localStorage.getItem("id");
+      console.log(this.userID);
       this.boxClose();
     }
   }

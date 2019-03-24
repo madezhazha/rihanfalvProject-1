@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { APIResponse2, Nowpage, Allpage } from 'src/app/apiresponse';
-import { ApiSerivice } from 'src/app/apiservice';
+import { APIResponse2, Nowpage, Allpage } from '../../../services/apiresponse';
+import { ApiSerivice } from '../../../services/apiservice';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

@@ -88,7 +88,7 @@ export class HomepageComponent implements OnInit {
       this.service.GetArtical(artical_num).subscribe(   //10是每次加载的文章数量
         result => {
           if (result == null || result.length<10){
-            this.more_button_show = "没有跟多了...";
+            this.more_button_show = "没有更多了...";
             artical_num=9999;            //服务器里的文章不足100篇
             $(".more").addClass("nomore");
           } 

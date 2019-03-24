@@ -10,17 +10,17 @@ import { fromEvent } from 'rxjs'
 })
 export class TagComponent implements OnInit {
 
-  private inputValue: string = "";
-  private resultData;
+  public inputValue: string = "";
+  public resultData;
 
-  private isMax: boolean = true;
-  private nowData: any = [];
+  public isMax: boolean = true;
+  public nowData: any = [];
 
-  private isBottom: boolean = false;
-  private warn: string;
+  public isBottom: boolean = false;
+  public warn: string;
 
   constructor(
-    private dataService: DataService,
+    public dataService: DataService,
   ) { }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class TagComponent implements OnInit {
       const scrollTop: any = document.documentElement.scrollTop || document.body.scrollTop;
       if (h + scrollTop + 20 > H) {
         if (!this.isBottom) {
-          setTimeout(() => { this.more()}, 1000);
+          setTimeout(() => { this.more()}, 500);
         }
         this.isBottom = true;
       } else {
