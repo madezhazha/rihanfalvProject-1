@@ -97,50 +97,6 @@ func Pageget(w http.ResponseWriter, r *http.Request) { // 向客户端输出总�
 	head(w)
 	var allpage []byte
 	if kind == "type" {
-<<<<<<< HEAD
-        if Country=="Japan"{
-            allpage = psql.Typesqlp()
-        }else if Country=="Korea"{
-            allpage = psql.Typesqlpk()
-        }
-    }
-    if kind == "typec" {
-        if Country=="Japan"{
-            allpage = psql.Typesqlpc(postlabel)
-        }else if Country=="Korea"{
-            allpage = psql.Typesqlpkc(postlabel)
-        }
-    }
-    if kind == "title" {
-        if Country=="Japan"{
-            allpage = psql.Titlesqlp(posttype)
-        }else if Country=="Korea"{
-            allpage = psql.Titlesqlpk(posttype)
-        }
-    }
-    fmt.Println("总条数：", string(allpage))
-    fmt.Fprintf(w,string(allpage))
-}
-
-func Typeget(w http.ResponseWriter, r *http.Request) {    //输出信息
-    head(w)
-    log.Println("开始搜索信息...")
-    var types []psql.Legaltype
-    var number = (page-1)*10
-    if (number>=0) {
-        log.Println(number)
-        if Country=="Japan"{
-            types = psql.Typesql(number)
-        }else if Country=="Korea"{
-            types = psql.KTypesql(number)
-        }
-    data,_:=json.Marshal(types) 
-        w.Write(data)
-    }
-}
-
-func Titlepost(w http.ResponseWriter, r *http.Request) { 
-=======
 		if Country == "Japan" {
 			allpage = psql.Typesqlp()
 		} else if Country == "Korea" {
@@ -183,7 +139,6 @@ func Typeget(w http.ResponseWriter, r *http.Request) { //输出信息
 }
 
 func Titlepost(w http.ResponseWriter, r *http.Request) {
->>>>>>> a46da373e7c96c54a7cb9485fcd1bff4ec9f978d
 	head(w)
 	defer r.Body.Close()
 	con, err := ioutil.ReadAll(r.Body) //获取post的数据
@@ -197,51 +152,6 @@ func Titlepost(w http.ResponseWriter, r *http.Request) {
 
 func Titleget(w http.ResponseWriter, r *http.Request) {
 	head(w)
-<<<<<<< HEAD
-    var titles []psql.Legaltitle
-    var number = (page-1)*10
-    if (number >= 0) {
-        if Country=="Japan"{
-            titles = psql.Titlesql(posttype,number)
-        }
-        if Country=="Korea"{
-            titles = psql.KTitlesql(posttype,number)
-        }
-        data,_:=json.Marshal(titles) 
-        w.Write(data)
-        log.Println(titles)
-    }
-}
-
-func Labelpost(w http.ResponseWriter, r *http.Request) { 
-    head(w)
-	defer r.Body.Close()
-	con, err := ioutil.ReadAll(r.Body) //获取post的数据
-    checkErr(err)
-    su := &legal{}         //把json转换回来
-    json.Unmarshal([]byte(con), &su)
-    fmt.Println("客户端访问：")
-    fmt.Println("\tlegallabel:", su.Legallabel)
-    postlabel = su.Legallabel   
-}
-
-func Labelget(w http.ResponseWriter, r *http.Request) { 
-    head(w)
-    var label []psql.Legaltype
-    var number = (page-1)*10
-    if Country=="Japan"{
-        label=psql.Labelsql(postlabel,number)
-    }else if Country=="Korea"{
-        label=psql.KLabelsql(postlabel,number)
-    }
-	data,_:=json.Marshal(label) 
-    w.Write(data)
-    log.Println(label)
-}
-
-func Contentpost (w http.ResponseWriter, r *http.Request) { 
-    head(w)
-=======
 	var titles []psql.Legaltitle
 	var number = (page - 1) * 10
 	if number >= 0 {
@@ -285,7 +195,6 @@ func Labelget(w http.ResponseWriter, r *http.Request) {
 
 func Contentpost(w http.ResponseWriter, r *http.Request) {
 	head(w)
->>>>>>> a46da373e7c96c54a7cb9485fcd1bff4ec9f978d
 	defer r.Body.Close()
 	con, err := ioutil.ReadAll(r.Body) //获取post的数据
 	checkErr(err)

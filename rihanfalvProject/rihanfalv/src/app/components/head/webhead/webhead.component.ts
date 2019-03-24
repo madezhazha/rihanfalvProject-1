@@ -21,12 +21,7 @@ export class WebheadComponent implements OnInit {
 
   In: InputData = { ID: '', IfLogin: false, Tip: "", Image, Token: '', ImageUrl: '' }
 
-<<<<<<< HEAD
-  constructor(public router: Router ) {
-   }
-=======
   constructor(public router: Router) { }
->>>>>>> a46da373e7c96c54a7cb9485fcd1bff4ec9f978d
 
   ngOnInit() {
     if (localStorage.getItem("JapanOrKorea") == null) {
