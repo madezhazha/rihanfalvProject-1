@@ -22,13 +22,17 @@
          <div *ngFor="let item of this.list" class="paper">
                 <li > 
                         <div class="_三级标题" >
-                            //{{item.Classify}}//
                             <span *ngIf="item.Classify=='论文'">
-                                <a [routerLink]="['/paperweb','/search',item.ID]" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                            <span class="label label-primary" style="font-size: 14px;">{{item.Classify}}</span>
+                            <a [routerLink]="['/paperweb','/search',item.ID]" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
-                        <span *ngIf="item.Classify=='法律'"><a (click)="turntolegal(item.legaltype)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                        <span *ngIf="item.Classify=='法律'">
+                            <span class="label label-success" style="font-size: 14px;">{{item.Classify}}</span>
+                            <a (click)="turntolegal(item.legaltype)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
-                            <span *ngIf="item.Classify=='案例'"><a (click)="turntocase(item.Title)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
+                            <span *ngIf="item.Classify=='案例'">
+                                    <span class="label label-info" style="font-size: 14px;">{{item.Classify}}</span>
+                                <a (click)="turntocase(item.Title)" [innerHTML]="item.Title |keyword:this.m_search.KeyWord" ></a>
                             </span>
                         </div>
                         <!-- <div class="num" *ngIf="item.Classify=='论文'">字数：{{item.Length}}</div> -->
