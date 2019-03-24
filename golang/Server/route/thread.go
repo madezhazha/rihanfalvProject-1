@@ -2,7 +2,6 @@ package route
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -19,7 +18,6 @@ func ListThread(w http.ResponseWriter, r *http.Request) {
 		psql.Logger.Println(err)
 		return
 	}
-	fmt.Println(threads)
 	data, err := json.Marshal(threads)
 	if err != nil {
 		psql.Logger.SetPrefix("ERROR ")

@@ -12,12 +12,12 @@ export class DosearchService {
   public list:any=new Array();//搜索得的表（内容）
 public Classify:any="全部"//搜索分类
 public Order:any="all"//排列方式
-public ifget =false//判断是否获取到搜索内容
+public ifget =0//判断是否获取到搜索内容,0为查找不到，1为正在查询，2为已查询到
   searchtogo(){
     if(this.nullkeyword()==true){
       return
     }
-
+    this.ifget=1
     this.list=[]
     const httpOptions={ headers:new HttpHeaders({'Content-Type':'application/json'}) };
     let api='http://blackcardriver.cn:7080/search'; 
@@ -26,11 +26,12 @@ public ifget =false//判断是否获取到搜索内容
     this.getkey.Nowcountry=this.Nowcountry
     this.getkey.Order=this.Order
     this.http.post(api,this.getkey,httpOptions).subscribe(response=>{ 
+
       this.list=response
       if(!response){
-        this.ifget=false
+        this.ifget=0
       this.list=[]}
-if(response)this.ifget=true
+      if(response)this.ifget=2
     });
   }
 

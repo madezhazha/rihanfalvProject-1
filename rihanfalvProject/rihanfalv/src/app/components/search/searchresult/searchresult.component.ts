@@ -25,23 +25,21 @@ public page=1
   }
 
   getstatus(){
-    if(this.m_search.ifget==false){
+    if(this.m_search.ifget==0||this.m_search.ifget==1){//0为查找不到，1为正在查询，2为已查询到
   this.list=[];
-  return this.m_search.ifget
+  return false
 }
-     if(this.m_search.ifget==true){
+     if(this.m_search.ifget==2){
   if(this.m_search.list.length>0 &&this.m_search.list.length<5){
     this.list=this.m_search.list
-    return this.m_search.ifget
+    return true
   }
   if(this.m_search.list.length>=5){
     for(let i =0;i<5;i++){
    this.list[i]=this.m_search.list[i]}
-   return this.m_search.ifget
+   return true
   }
   }
-
-
     
   }
 
@@ -63,7 +61,6 @@ readmore(){
 click(item){
   this.m_search.Classify=item
 this.m_search.searchtogo()
-  this.renderer2.setStyle(this.changeclass.nativeElement,"background-color","0000FF")
 }
 
 turntocase(title){//案例跳转
@@ -71,7 +68,6 @@ turntocase(title){//案例跳转
 }
 
 turntolegal(Title){//法律跳转
-  console.log(Title)
   this.api.legaltitle2(Title).subscribe();
   let that=this
   setTimeout( function() {  that.router.navigate(['/content']) } , 200);   // 延时触发，给服务器留反应时

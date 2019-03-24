@@ -124,6 +124,7 @@ export class UserComponent implements OnInit {
           this.temp.Image = this.user.Image;
         } else {
           this.serve.change(this.temp).subscribe(() => {
+            // 修改完成后调用头部的初始化函数
             this.ngOnInit();
             this.a.ngOnInit();
           });
