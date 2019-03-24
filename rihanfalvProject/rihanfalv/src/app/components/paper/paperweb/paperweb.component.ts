@@ -81,7 +81,7 @@ export class PaperwebComponent implements OnInit {
      }
      else{ 
       const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
-      let api="http://localhost:7080/paperweb/collect";
+      let api="http://blackcardriver.cn:7080/paperweb/collect";
       this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country,Iscollected:this.Paper.IsCollected},httpOptions).subscribe((response:any)=>
       {
         let result=response
@@ -112,7 +112,7 @@ export class PaperwebComponent implements OnInit {
     this.UserID=localStorage.getItem("id")
     //console.log(this.Country)
     const httpOptions={headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
-    let api="http://localhost:7080/paperweb";
+    let api="http://blackcardriver.cn:7080/paperweb";
     this.http.post(api,{UserID:this.UserID,ArticleID:this.ArticleID,Country:this.Country},httpOptions).subscribe((response:any)=>
     {
       this.Paper=response
