@@ -59,8 +59,10 @@
   <!-- 问题 -->
   <div style="font-size:20px;margin-bottom: 5px;">
     <div>
-      <a href="post?topicID={{item.thread.ID}}"
+      <a [routerLink]="['/post']" [queryParams]="{topicID:item.thread.ID}"
         style="color: #0366d6;text-decoration: none;">问题:{{item.thread.Topictitle}}</a>
+          <!-- <a href="post?topicID={{item.thread.ID}}"
+        style="color: #0366d6;text-decoration: none;">问题:{{item.thread.Topictitle}}</a>  -->
     </div>
   </div>
 
