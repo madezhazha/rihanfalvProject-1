@@ -136,9 +136,9 @@ func ChangePassword(re *HeadUser) {
 		check(err)
 	}
 	if rows.Next() { //若存在此账号则修改数据库数据
-		stmt, err := db.Prepare("update users set password=$1")
+		stmt, err := db.Prepare("update users set password=$1 where email=$2")
 		check(err)
-		_, err = stmt.Exec(re.Password)
+		_, err = stmt.Exec(re.Password,re.Email)
 		check(err)
 	} else {
 		if !strings.Contains(re.Email, "@") {
