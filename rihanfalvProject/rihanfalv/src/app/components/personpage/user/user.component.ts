@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { WebheadComponent } from '../../head/webhead/webhead.component';
+import { TemplateBinding } from '@angular/compiler';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -164,8 +165,12 @@ export class UserComponent implements OnInit {
     // 去掉头像base64的前缀
     let tempimg: string;
     tempimg = localStorage.getItem('headImage');
-    this.user.Image = tempimg.substring(22,tempimg.length);
-    // console.log(tempimg);
+    if(tempimg.length>100){
+      this.user.Image = tempimg.substring(22,tempimg.length);
+    }else{
+      this.user.Image = tempimg;
+    }
+    console.log(this.user);
     this.serve.change(this.user).subscribe(()=>{
       this.user.Image = tempimg;
     });
