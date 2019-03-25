@@ -1,10 +1,10 @@
 .biaoti{
 
     text-align: center;
-    color:rgb(82, 82, 247);
+    color:rgb(113, 113, 194);
     font-size: 30px;
     font-weight:bold;
-    line-height:70px
+    line-height:70px;
 }
 h2{
 
@@ -19,10 +19,15 @@ h3{
     border-radius: 20px;
 }
 button{
-    border-radius: 20px;
-    width: 200px;
-    height: 40px;
-    background-color:  rgb(76, 149, 206);
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: Arial;
+    width: 180px;
+    height: 35px;
+    background-color:  rgb(95, 160, 209);
+    font-size: 18px;
     
     
 }
