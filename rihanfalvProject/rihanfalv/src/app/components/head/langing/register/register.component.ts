@@ -18,6 +18,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
+ // posturl='http://localhost:7080/register'
+ //getVerificationUrl='http://localhost:7080/sendVerification'
 
   posturl = 'http://blackcardriver.cn:7080/register';      //注册的url
   getVerificationUrl = 'http://blackcardriver.cn:7080/sendVerification'
