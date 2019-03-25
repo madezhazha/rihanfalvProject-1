@@ -82,7 +82,7 @@ export class PostComponent implements OnInit {
 
         this.imgHandle()
 
-        this.cutArray(2);
+        this.cutArray(5);
       });
     });
   }

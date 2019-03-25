@@ -69,14 +69,14 @@ func (post *Post) User() (user MyUser, err error) {
 
 // CreatePost 新建一个新的回帖
 func CreatePost(userID int, topicID int, text string, floor int) error {
-	statement := "insert into replies (userid,topicid,replycontent,floor,replytime) values ($1,$2,$3,$4,$5) "
+	statement := "insert into replies (userid,topicid,replycontent,floor,replytime) values ($1,$2,$3,$4,now()) "
 	stmt, err := db.Prepare(statement)
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(userID, topicID, text, floor, time.Now())
+	_, err = stmt.Exec(userID, topicID, text, floor)
 	if err != nil {
 		return err
 	}

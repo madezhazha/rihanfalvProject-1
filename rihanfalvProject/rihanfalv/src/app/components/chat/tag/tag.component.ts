@@ -56,7 +56,7 @@ export class TagComponent implements OnInit {
       this.resultData = response;
       this.warn = null;
       if (this.resultData) {
-        this.nowData = this.resultData.slice(0, 2);
+        this.nowData = this.resultData.slice(0, 5);
         if (this.nowData.length == this.resultData.length) {
           this.isMax = true;
         } else {
