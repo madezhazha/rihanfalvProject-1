@@ -372,12 +372,12 @@ func Recharge(w http.ResponseWriter,r *http.Request){
 		allintegral = psql.GEtintegral(userId)
 		fmt.Println(allintegral)
 		fmt.Println(data)
-		if(data=="系统出现错误"){
-			response:=Response{data}
-			json,_:=json.Marshal(response)
-			w.Write(json)
-			return	
-		}
+		// if(data=="系统出现错误"){
+		// 	response:=Response{data}
+		// 	json,_:=json.Marshal(response)
+		// 	w.Write(json)
+		// 	return	
+		// }
 		response:=Response{allintegral}
 		json,_:=json.Marshal(response)
 		w.Write(json)

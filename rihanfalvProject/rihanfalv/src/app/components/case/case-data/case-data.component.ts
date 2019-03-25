@@ -284,11 +284,7 @@ export class CaseDataComponent implements OnInit {
     this.http.post(api,{"integral":this.rechargeIntegral,"userid":this.userId,"allintegral":this.allintegral},httpOptions).subscribe((response:any)=>{
       console.log("充值成功")
       console.log(response)
-      if(response["data"]==="系统出现错误"){
-        alert("系统出现错误")
-      }else{
-        this.allintegral = response["data"]
-      }
+      this.allintegral = response["data"] 
     })
   }
   
