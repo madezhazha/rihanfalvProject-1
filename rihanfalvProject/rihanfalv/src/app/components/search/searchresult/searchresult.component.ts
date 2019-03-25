@@ -53,6 +53,7 @@ fromEvent(window,'scroll')
 }
      if(this.m_search.ifget==2){
   if(this.m_search.list.length>0 &&this.m_search.list.length<5){
+    this.Isbottom=true;
     this.list=this.m_search.list
     return true
   }
@@ -68,7 +69,9 @@ fromEvent(window,'scroll')
 readmore(){
   let length=this.m_search.list.length
   let addlist=new Array();
-  if(length<5)return;
+  if(length<5){
+    return;
+  }
   if(this.m_search.page*5>length)
   {
     this.Isbottom=true
