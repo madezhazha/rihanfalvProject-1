@@ -67,13 +67,10 @@ fromEvent(window,'scroll')
 
 readmore(){
   let length=this.m_search.list.length
-  console.log(length)
-  console.log(this.m_search.page)
   let addlist=new Array();
   if(length<5)return;
   if(this.m_search.page*5>length)
   {
-    console.log("isbottom")
     this.Isbottom=true
     return
   }
