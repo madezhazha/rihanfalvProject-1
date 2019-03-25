@@ -21,7 +21,7 @@ export class PaperComponent implements OnInit {
   Nowcountry:string="Japan";   //当前模块 日/韩 用于进行筛选显示
   Articles:Article[]=[];  //论文列表
   Selectedarticle:Article;  //当前选择的论文
-  
+  n:number=1;
 
 
   getArticles(){
@@ -98,10 +98,10 @@ export class PaperComponent implements OnInit {
         const h:any=document.documentElement.clientHeight;
         const H:any=document.body.clientHeight;
         const scrollTop:any=document.documentElement.scrollTop || document.body.scrollTop; 
-        if(h+scrollTop+20>H){
+        if(h+scrollTop+20>H&&scrollTop!=0){
           if(!this.Isbottom){
             if(!this.Isover){
-              setTimeout(() => {this.getArticles();}, 100); 
+              this.getArticles()
               this.Isbottom=true
             }
           }
