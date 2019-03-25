@@ -57,8 +57,9 @@ func M_Search(w http.ResponseWriter, r *http.Request) {
 	var searchlist []psql.Searchbox
 	searchlist = psql.Getclass(readkey, readcountry.(string), readclass.(string), readorder.(string), searchlist)
 	//转searchsql.go，传递以上输出的值，获取搜索项
-	psql.Scoreofsearch(searchlist, readkey) //计算搜索的相关度
-	psql.SelectSort(searchlist)             //按相关度排序
+	//psql.Scoreofsearch(searchlist, readkey) //计算搜索的相关度
+	//psql.SelectSort(searchlist)             //按相关度排序
+	//没有热度相关数值，暂时不排序，加速搜索
 	str, err := json.Marshal(searchlist)
 	if err != nil {
 		fmt.Println("ERROR:", err)
