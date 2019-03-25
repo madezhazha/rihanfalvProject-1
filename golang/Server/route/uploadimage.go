@@ -30,7 +30,7 @@ import (
 const (
 	img_floder_path string = "./images/" //images文件夹路径
 	// host_port       string = "123.207.121.2:7080"	//修改成golang服务端的端口
-	host_port string = "localhost:7080"
+	host_port string = "blackcardriver.cn:7080"
 )
 
 func Uploadfiles(w http.ResponseWriter, r *http.Request) {
@@ -167,7 +167,7 @@ func filelist(path string) (list string) {
 		buffer.WriteString(v.Name() + "<br>")
 	}
 	list = buffer.String()
-	fmt.Println(list)
+	//fmt.Println(list)
 	return
 }
 
