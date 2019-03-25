@@ -86,7 +86,7 @@ export class MyAmswerComponent implements OnInit {
         
         this.MyAnsCount=response.length;
         
-        this.cutArray(this.AnsList, 5);
+        this.cutArray(this.AnsList, 8);
         
     })
   }

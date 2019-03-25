@@ -86,7 +86,7 @@ export class MyQuestionComponent implements OnInit {
         
         this.MyQueCount=response.length;
         
-        this.cutArray(this.QueList, 5);
+        this.cutArray(this.QueList, 8);
         
     })
   }
