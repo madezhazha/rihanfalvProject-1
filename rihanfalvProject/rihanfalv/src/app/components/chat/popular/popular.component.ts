@@ -38,7 +38,8 @@ export class PopularComponent implements OnInit {
         const scrollTop: any = document.documentElement.scrollTop || document.body.scrollTop;
         if (h + scrollTop + 20 > H) {
           if (!this.isBottom) {
-            setTimeout(() => { this.more()}, 500);
+            // setTimeout(() => { this.more()}, 500);
+            this.more();
           }
           this.isBottom = true;
         } else {
