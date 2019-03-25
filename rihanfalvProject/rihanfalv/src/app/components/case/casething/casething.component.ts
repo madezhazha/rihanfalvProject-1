@@ -76,7 +76,7 @@ export class CasethingComponent implements OnInit {
       headers:new HttpHeaders({'Content-Type':'application/json'})
     }
 
-    var api = "http://blackcardriver.cn:7080/alldata"
+    var api = "http://blackcardriver.cn.cn:7080/alldata"
 
     this.http.post(api,{"content":this.search,"languageType":this.languageType,"NumberCasething":this.NumberCasething.toString()},httpOptions).subscribe((response:any)=>{
       if(response["data"]==="系统出现错误"){
