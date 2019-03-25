@@ -21,6 +21,7 @@ export class PaperComponent implements OnInit {
   Nowcountry:string="Japan";   //当前模块 日/韩 用于进行筛选显示
   Articles:Article[]=[];  //论文列表
   Selectedarticle:Article;  //当前选择的论文
+  
 
 
   getArticles(){
@@ -41,7 +42,7 @@ export class PaperComponent implements OnInit {
         this.Articles=this.Articles.concat(response);
         this.CurrentPage++;
         //this.CurrentPage=this.Articles[this.Articles.length-1].ID
-        console.log(this.CurrentPage)
+        //console.log(this.CurrentPage)
       }
       else{
         this.Isover=true
@@ -84,24 +85,24 @@ export class PaperComponent implements OnInit {
   }
 
   constructor(private http:HttpClient,private router:Router,private renderer2:Renderer2) { 
-    this.getArticles();
+   
     //this.scrollCallback = this.getArticles.bind(this);
   }
 
-  ngOnInit() {
-    //this.Nowcountry=xxx.get()  //获取当前模块
+  ngOnInit() { 
+    this.getArticles();
+    //this.Nowcountry=xxx.get()  //获取当前模块 
     fromEvent(window,'scroll')
     .subscribe(
       ()=>{
         const h:any=document.documentElement.clientHeight;
         const H:any=document.body.clientHeight;
-        const scrollTop:any=document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollTop:any=document.documentElement.scrollTop || document.body.scrollTop; 
         if(h+scrollTop+20>H){
           if(!this.Isbottom){
             if(!this.Isover){
-              this.getArticles();
+              setTimeout(() => {this.getArticles();}, 100); 
               this.Isbottom=true
-              console.log(this.Articles)
             }
           }
         }
