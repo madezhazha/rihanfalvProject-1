@@ -6,6 +6,7 @@ import {HttpClient,HttpHeaders} from "@angular/common/http";
 })
 export class DosearchService {
   constructor(public http:HttpClient) { }
+  public page=1;
   public KeyWord:any=""//搜索项
   public Nowcountry:any=null//当前搜索国家
   public getkey:any={}//将传递给后端的值
@@ -17,10 +18,12 @@ public ifget =0//判断是否获取到搜索内容,0为查找不到，1为正在
     if(this.nullkeyword()==true){
       return
     }
+    this.page=1;
     this.ifget=1
     this.list=[]
     const httpOptions={ headers:new HttpHeaders({'Content-Type':'application/json'}) };
     let api='http://blackcardriver.cn:7080/search'; 
+    //let api='http://localhost:7080/search'
     this.getkey.KeyWord=this.KeyWord
     this.getkey.Classify=this.Classify
     this.getkey.Nowcountry=this.Nowcountry

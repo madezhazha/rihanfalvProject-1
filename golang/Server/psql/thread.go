@@ -163,13 +163,13 @@ func AddVisitNum(topicID int) (err error) {
 
 // UpdFinReplyTime 更新最后主贴回复时间
 func UpdFinReplyTime(topicID int) (err error) {
-	stmt, err := db.Prepare("update topics set finalreplytime=$1 where topicid=$2")
+	stmt, err := db.Prepare("update topics set finalreplytime=now() where topicid=$1")
 	if err != nil {
 		fmt.Println("Prepare:", err)
 		return err
 	}
 
-	_, err = stmt.Exec(time.Now(), topicID)
+	_, err = stmt.Exec(topicID)
 	if err != nil {
 		fmt.Println("Exec:", err)
 		return err

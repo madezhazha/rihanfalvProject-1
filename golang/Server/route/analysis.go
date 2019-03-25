@@ -369,7 +369,18 @@ func Recharge(w http.ResponseWriter,r *http.Request){
 		// fmt.Println(num_allintergral,num_intergral)
 		num_allintergral = num_allintergral+num_intergral
 		data:=psql.Saveintegral(num_allintergral,userId)
+		allintegral = psql.GEtintegral(userId)
+		fmt.Println(allintegral)
 		fmt.Println(data)
+		if(data=="系统出现错误"){
+			response:=Response{data}
+			json,_:=json.Marshal(response)
+			w.Write(json)
+			return	
+		}
+		response:=Response{allintegral}
+		json,_:=json.Marshal(response)
+		w.Write(json)
 	}
 	fmt.Println("充值成功")
 }

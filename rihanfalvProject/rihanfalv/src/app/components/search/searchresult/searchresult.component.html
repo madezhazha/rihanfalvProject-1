@@ -56,7 +56,9 @@
                     </div> 
                 </li> 
             </div> 
-          
+          <div *ngIf="!Isbottom">加载更多……
+          </div>
+          <div *ngIf="Isbottom">已经到底……</div>
         </div>
         
 <!--         

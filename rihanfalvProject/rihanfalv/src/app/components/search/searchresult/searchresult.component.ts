@@ -13,7 +13,6 @@ import {fromEvent} from 'rxjs'
 
 export class SearchresultComponent implements OnInit {
 public list=new Array();
-public page=1
 public Isbottom: boolean = false;
 
 
@@ -70,17 +69,17 @@ readmore(){
   let length=this.m_search.list.length
   let addlist=new Array();
   if(length<5)return;
-  if(this.page*5>length)
+  if(this.m_search.page*5>length)
   {
     this.Isbottom=true
     return
   }
 
   for(let i =0;i<5;i++){
-    if(this.m_search.list[this.page*5+i])
-     addlist[i]=this.m_search.list[this.page*5+i]
+    if(this.m_search.list[this.m_search.page*5+i])
+     addlist[i]=this.m_search.list[this.m_search.page*5+i]
   }
-    this.page++
+    this.m_search.page++
     this.list=this.list.concat(addlist);
 }
 
