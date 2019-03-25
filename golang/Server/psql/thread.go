@@ -180,7 +180,7 @@ func UpdFinReplyTime(topicID int) (err error) {
 // RsByCondition 根据查询条件查询出结果
 func RsByCondition(condition []string) (usersAndThreads []map[string]interface{}, err error) {
 	for i, value := range condition {
-		rows, err := db.Query("SELECT topicid,posterid,topictitle,topiccontent,creationtime FROM topics where label like $1 ORDER BY topicid", "%"+value+"%")
+		rows, err := db.Query("SELECT topicid,posterid,topictitle,topiccontent,creationtime FROM topics where label like $1 ORDER BY finalreplytime DESC", "%"+value+"%")
 		if err != nil {
 			return nil, err
 		}
