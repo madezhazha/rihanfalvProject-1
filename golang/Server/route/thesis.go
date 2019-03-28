@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"../psql"
+	"workplace/psql"
 )
 
 //用于按信息查询数据库文章列表

@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"../psql"
+	"workplace/psql"
 
 	_ "github.com/lib/pq"
 )

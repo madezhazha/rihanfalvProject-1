@@ -5,7 +5,7 @@ import(
 	//_ "github.com/bmizerany/pq"
 	"io/ioutil"
 	"net/http"
-	"../psql"
+	"workplace/psql"
 	"encoding/base64"
 	"os"
 )

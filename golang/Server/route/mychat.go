@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"log"
-	"../psql"
+	"workplace/psql"
 	// "github.com/ascoders/alipay"
 )
 

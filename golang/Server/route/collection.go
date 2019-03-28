@@ -8,7 +8,7 @@ import (
 
 	"strconv"
 
-	"../psql"
+	"workplace/psql"
 )
 
 func UserCollectionThesis(w http.ResponseWriter, r *http.Request) {

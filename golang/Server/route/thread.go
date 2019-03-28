@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"../psql"
+	"workplace/psql"
 )
 
 // ListThread 列出所有的主贴

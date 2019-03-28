@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"./psql"
-	"./route"
+	"workplace/psql"
+	"workplace/route"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"../psql"
+	"workplace/psql"
 )
 
 // ListPost 列出某一主贴的所有回帖

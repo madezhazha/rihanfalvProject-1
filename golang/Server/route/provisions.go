@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	//"database/sql"
-	"../psql"
+	"workplace/psql"
 	_ "github.com/lib/pq"
 )
 
@@ -123,7 +123,7 @@ func Pageget(w http.ResponseWriter, r *http.Request) { // 向客户端输出总�
 
 func Typeget(w http.ResponseWriter, r *http.Request) { //输出信息
 	head(w)
-	log.Println("开始搜索信息...")
+	log.Println("开始搜索信息workplace.")
 	var types []psql.Legaltype
 	var number = (page - 1) * 10
 	if number >= 0 {

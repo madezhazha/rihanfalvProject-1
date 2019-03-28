@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"../psql"
+	"workplace/psql"
 	_ "github.com/lib/pq"
 )
 

@@ -1,7 +1,7 @@
 package route
 
 import (
-	//"../psql"
+	//"workplace/psql"
 	// "fmt"
 	"net/http"
 )

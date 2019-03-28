@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"../psql"
+	"workplace/psql"
 )
 
 func GetHomePageArtical(w http.ResponseWriter, r *http.Request) {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"../psql"
+	"workplace/psql"
 	"time"
 	"strconv"
 )

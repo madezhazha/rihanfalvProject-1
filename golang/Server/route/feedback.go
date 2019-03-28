@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"../psql"
+	"workplace/psql"
 	_ "github.com/lib/pq"
 )
 //接收反馈数据
